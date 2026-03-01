@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@theme
+{
+  --font-body:Poppins,sans-serif;
+  --font-heading:Geologica,sans-serif;
+}
