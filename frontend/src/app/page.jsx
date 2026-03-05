@@ -3,6 +3,7 @@
 import {motion} from "framer-motion";
 import ProductsSection from "../components/productSection";
 import OurProcess from "../components/process";
+import Carousel from "@/components/carousel";
 
 export default function Home() {
   return(
@@ -223,6 +224,65 @@ export default function Home() {
 
           </div>
 
+      </section>
+
+      <Carousel />
+
+      <section 
+      className="pt-20 pb-0 px-20 h-[1000px] relative"
+      style={{
+        backgroundImage: `url(/formBg.svg)`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat"
+      }}
+      >
+        <div className="backdrop-blur-lg bg-white/20 border border-white/30 shadow-xl rounded-2xl p-10 w-[400px] absolute right-30">
+
+        <h2 className="text-3xl font-bold text-white text-center mb-6">
+          Contact Us!
+        </h2>
+
+        <form className="flex flex-col gap-4">
+
+          {/* Full Name */}
+          <div className="flex flex-col gap-2">
+            <label className="text-black">Full Name</label>
+            <input
+              type="text"
+              className="p-3 rounded-lg bg-white/60 text-black outline-none focus:ring-2 focus:ring-white"
+            />
+          </div>
+
+          {/* Email */}
+           <div className="flex flex-col gap-2">
+            <label className="text-black">Email</label>
+            <input
+              type="email"
+              className="p-3 rounded-lg bg-white/60 text-black outline-none focus:ring-2 focus:ring-white"
+            />
+          </div>
+
+          {/* Message */}
+          <div className="flex flex-col gap-2">
+            <label className="text-black">Message</label>
+            <textarea
+              rows="4"
+              className="p-3 rounded-lg bg-white/80 text-black outline-none focus:ring-2 focus:ring-white resize-none"
+            ></textarea>
+          </div>
+
+          {/* Button */}
+          <button
+            type="submit"
+            className="mt-2 bg-[#93C553] text-white font-semibold py-3 rounded-lg hover:bg-gray-200 transition"
+          >
+            Send Message
+          </button>
+
+        </form>
+
+      </div>
       </section>
     </>
   )

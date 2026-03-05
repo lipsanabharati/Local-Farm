@@ -5,8 +5,8 @@ export default function Footer()
     return(
         <div className="relative bg-[url('/footer-box.svg')] bg-cover bg-center w-full h-[265px]">
             {/* Overlay text */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-white font-body">
-                <div className="flex flex-row gap-60 mx-[10px] mt-[80px]">
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-white font-body mt-20">
+                <div className="flex flex-row gap-60 mx-[10px]">
                      {/* Hours */}
                     <div className="flex flex-col gap-3">
                         <div className="font-heading font-bold text-center text-xl">Hours</div>

@@ -6,7 +6,7 @@ export default function Header()
 {
     return(
         <motion.div 
-        className=" flex flex-row gap-[48%] my-[20px] mx-[80px] p-2 w-full fixed"
+        className="flex flex-row gap-[48%] my-[20px] mx-[80px] p-2 w-full fixed"
         initial={{ y:-100 }}
         animate={{ y:0}}
         transition={{ duration: 2 }}
