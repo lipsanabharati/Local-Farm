@@ -4,58 +4,80 @@ import {motion} from "framer-motion";
 import ProductsSection from "../components/productSection";
 import OurProcess from "../components/process";
 import Carousel from "@/components/carousel";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+      const imgVariants = {
+      hidden: { x: -50, y: -50, scale: 0.2 },
+      visible: { x: 0, y: 0, scale: 1 }
+    };
+
+    const [isMobile,setIsMobile]=useState(false);
+
+    useEffect(
+      ()=>{
+        setIsMobile(window.innerWidth<768);
+      },[window.innerWidth]
+    );
   return(
     <>
     {/*Hero section */}
     <section className="bg-[url('/landing-bg.svg')] bg-center bg-cover relative z-[-1] h-screen w-screen">
         <motion.div
-        initial={{ x: 500, y: 600 }}
+        initial={{ x: 100, y: 300 }}
         animate={{ x: 0, y: 0 }}
         transition={{ duration: 2, ease: "easeOut" }}
-         className="absolute w-[320px] h-[340px] left-30 top-60 rounded-[11px] bg-white/1 backdrop-blur-sm border border-white/4 relative">
+         className="absolute lg:w-[320px] lg:h-[340px] lg:left-30 lg:top-60 rounded-[11px] bg-white/1 backdrop-blur-sm border border-white/4 w-[50%] h-[30%] md:w-[45%] left-[25%] top-[40%]">
           {/*photo */}
         <motion.img
         initial={{ scale:0 }}
         animate={{  scale:1 }}
         transition={{ duration: 2, ease: "easeOut" }}
-        src="akabare.svg" className="absolute top-[-80px]"></motion.img>
+        src="akabare.svg" className="absolute top-[-80px] md:-top-[40%]"></motion.img>
 
-        <button className="absolute bottom-10 left-20 py-3 px-8 bg-[#609647] rounded-xl font-heading font-bold">Shop Now</button>
+        <button className="absolute bottom-[10%] left-[12%] md:left-[30%] py-3 px-8 bg-[#609647] rounded-xl font-heading font-bold">Shop Now</button>
         </motion.div>
     </section>
 
     {/*About us*/}
-    <section className="bg-[#F2F6E8] py-20 px-10 flex flex-col gap-8 font-body">
+    <motion.section 
+    initial="hidden"
+    whileInView="visible"
+    className="bg-[#F2F6E8] lg:py-20 py-10 px-10 flex flex-col lg:gap-8 gap-4 font-body overflow-hidden">
       {/*Heading*/}
-      <h1 className="font-heading text-5xl font-bold text-center text-[#4D641E]">About Us</h1>
+      <h1 className="font-heading lg:text-5xl text-3xl font-bold text-center text-[#4D641E]">About Us</h1>
 
       {/*Body*/}
-      <div className="flex flex-row gap-10 justify-center item-center">
+      <div className="flex flex-row lg:gap-10  gap-2 justify-center items-center">
         <motion.img 
-        initial={{x:-100,y:-100, scale:0.2 }}
-        animate={{x:0,y:0, scale:1 }}
+        variants={imgVariants}
+        initial="hidden"
+        whileInView="visible"
         transition={{ duration: 2, ease: "easeOut" }}
+        className="w-1/2 lg:w-1/3"
         src="a1.svg">
         </motion.img>
          <motion.img 
-        initial={{x:-100,y:-100, scale:0.2 }}
-        animate={{x:0,y:0, scale:1 }}
+        variants={imgVariants}
+        initial="hidden"
+        whileInView="visible"
         transition={{ duration: 2, ease: "easeOut" }}
+        className="w-1/2 lg:w-1/3"
         src="a2.svg">
         </motion.img>
       </div>
 
-       <div className="flex flex-row gap-10 justify-center">
-        <div className="w-1/2"><motion.img 
-        initial={{x:-100,y:-100, scale:0.2 }}
-        animate={{x:0,y:0, scale:1 }}
+       <div className="flex flex-row lg:gap-10 gap-2 justify-center items-start">
+        
+        <motion.img 
+        variants={imgVariants}
+        initial="hidden"
+        whileInView="visible"
         transition={{ duration: 2, ease: "easeOut" }}
-        className="pl-80"
+        className=" w-1/2 lg:w-1/3"
         src="a3.svg">
-        </motion.img></div>
-        <div className="text-[#4D641E] w-1/2 pr-50">
+        </motion.img>
+        <div className="text-[#4D641E] w-1/2 lg:w-[33%] text-xs lg:text-xl">
           LocalFarm Nepal is your go-to organic food store 
             located in Maharajgunj, Nepal. We proudly offer a diverse range
             of organically sourced products, including Shilajit, Honey, Powders, 
@@ -63,7 +85,7 @@ export default function Home() {
             Nepal is your go-to organic food store located in Maharajgunj, Nepal.
         </div>
       </div>
-    </section>
+    </motion.section>
 
 
  {/*We prioritize quality*/}
@@ -74,26 +96,28 @@ export default function Home() {
     backgroundRepeat: "no-repeat"
   }}>
 
+
       {/*Heading*/}
       <div className="w-full flex flex-row-reverse relative">
-        <div className="w-1/4 me-40">
-          <h1 className="font-heading text-5xl font-bold text-start text-[#4D641E]">We prioritize quality.</h1>
+        <div className="lg:w-1/4 w-1/2 me-[10%]">
+          <h1 className="font-heading lg:text-5xl text-3xl font-bold text-start text-[#4D641E]">We prioritize quality.</h1>
         </div>
       </div>
 
-      <div className="flex flex-col gap-[600px]">
+      <div className="flex flex-col lg:gap-[600px] gap-[70%]">
 
         {/*Description*/}
-        <div className="w-1/6 text-end ms-50 text-[#4D641E] relative">
+        <div className="lg:w-1/6 w-1/4 text-end lg:ms-50 ms-5 text-[#4D641E] relative">
           <motion.p
-          initial={{x:-300}}
+          initial={{x:-100}}
           animate={{x:0 }}
           transition={{ duration: 2, ease: "easeOut" }}
+          className="text-xs lg:text-lg"
           >
           Locally produced,straight from the farms.
           Lorem ipsum dolor sit amet, consectetur
           </motion.p>
-          <img src="arrow1.svg" className="absolute right-[-40px] bottom-[-40px] w-[20px]"></img>
+          <img src="arrow1.svg" className="absolute right-[-30px] lg:right-[-40px] lg:bottom-[-40px] lg:w-[20px]"></img>
         </div>
 
          
