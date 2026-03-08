@@ -33,28 +33,28 @@ export default function Carousel()
   };
 
   return(
-    <section className="h-[500px] flex flex-col items-center justify-center bg-[#F2F6E8] py-10">
-        <div className="w-[80%]  m-0"
+    <div className="flex flex-col items-center justify-center bg-[#F2F6E8] py-10 px-10">
+        <div className="flex flex-col"
         >
 
             {/*Slide*/}
-            <div className="flex bg-[#FFAA00]/10 gap-1">
+            <div className="flex lg:flex-row flex-col bg-[#FFAA00]/10 lg:gap-5 gap-5 md:gap-0">
 
                 {/*Image*/}
-                <div className="w-1/2">
+                <div className="lg:w-1/2 w-full">
                     <img 
                     src={slides[current].image}
-                    className="w-full h-[400px]"></img>
+                    className="w-full object-contain"></img>
 
                 </div>
 
                 {/*Text*/}
-                <div className="w-1/2 space-y-6 p-10">
-                    <h2 className="text-4xl text-[#609647] font-bold">
+                <div className="lg:w-1/2 space-y-6 p-5">
+                    <h2 className="md:text-4xl text-2xl text-[#609647] font-bold">
                         {slides[current].title}
                     </h2>
 
-                    <p className="text-gray-600">
+                    <p className="text-gray-600 md:text-lg text-sm">
                          {slides[current].text}
                     </p>
                 </div>
@@ -75,6 +75,6 @@ export default function Carousel()
                 ></button>
             ))}
             </div>
-    </section>
+    </div>
   )
 }

@@ -8,8 +8,9 @@ export default function Header()
     const [open,setOpen]=useState(false);
     const toggleMenu=()=>setOpen(!open);
     return(
+        <section className="flex flex-row lg:justify-center ">
         <motion.div 
-        className="lg:grid lg:grid-cols-2 lg:gap-10 lg:gap-80 lg:my-10 lg:mx-20 lg:p-2 lg:w-full fixed flex flex-row gap-15 my-5 mx-5 md:gap-65"
+        className="lg:grid lg:grid-cols-2 lg:gap-[0%] lg:my-10 lg:mx-10 lg:p-2 w-full fixed flex flex-row gap-15 my-5 mx-5 md:gap-65 max-w-[1440px]"
         initial={{ y:-100 }}
         animate={{ y:0}}
         transition={{ duration: 2 }}
@@ -23,13 +24,13 @@ export default function Header()
             </div>
 
             {/*Logo*/}
-            <div className="">
+            <div className="lg:ms-[30%]">
               <img src="logo.svg" className="h-[45px] w-[170px]"/>
             </div>
 
 
             {/*Items*/}
-            <div className=" hidden font-heading lg:flex lg:flex-row gap-10 items-center">
+            <div className=" hidden font-heading lg:flex lg:flex-row gap-10 items-center justify-center">
                 <div>Home</div>
                 <div>About</div>
                 <div>Blog</div>
@@ -56,5 +57,7 @@ export default function Header()
             )}
 
         </motion.div>
+
+     </section>
     );
 };
