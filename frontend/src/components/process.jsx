@@ -42,12 +42,12 @@ export default function OurProcess() {
 
       <div className="md:hidden block relative flex flex-col justify-between items-start max-w-5xl mx-auto px-8">
         {/* vertical connecting line */}
-        <div className="absolute top-12 left-[18%] h-[76%] w-[2px] bg-[#609647]/50 z-0"></div>
+        <div className="absolute top-[10%] left-[14%] h-[76%] w-[2px] bg-[#609647]/50 z-0"></div>
 
         {steps.map((step, idx) => (
-          <div key={step.number} className="relative z-10 flex flex-row text-center w-ful gap-6 items-center">
+          <div key={step.number} className="relative z-10 flex flex-row text-center w-full gap-6 items-center">
             {/* Circle with number */}
-            <div className="w-38 h-20 rounded-full border-2 border-[#609647] flex items-center justify-center text-[#93C553] font-bold text-3xl mb-4 bg-[#F2F6E8] ">
+            <div className="w-[20%] h-[30%] rounded-full border-2 border-[#609647] flex items-center justify-center text-[#93C553] font-bold text-3xl mb-4 bg-[#F2F6E8] ">
               {step.number}
             </div>
 

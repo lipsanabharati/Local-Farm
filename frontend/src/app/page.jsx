@@ -14,12 +14,12 @@ export default function Home() {
   return(
     <>
     {/*Hero section */}
-    <section className="bg-[url('/landing-bg.svg')] bg-center bg-cover relative z-[-1] h-screen w-screen">
+    <section className="bg-[url('/landing-bg.svg')] bg-center bg-cover  h-screen w-screen flex flex-row lg:justify-start justify-center lg:items-center items-end lg:ps-30 lg:pt-30 lg:pb-0 pb-30">
         <motion.div
         initial={{ x: 100, y: 300 }}
         animate={{ x: 0, y: 0 }}
         transition={{ duration: 2, ease: "easeOut" }}
-         className="absolute lg:w-[320px] lg:h-[340px] lg:left-30 lg:top-60 rounded-[11px] bg-white/1 backdrop-blur-sm border border-white/4 md:w-[40%] md:h-[35%] lg:h-[30%] lg:left-[10%] lg:top-[40%] md:left-[30%] md:top-[40%] w-[50%] h-[30%] left-[25%] top-[50%]">
+         className="lg:w-80 lg:h-80 lg:left-30 lg:top-60 rounded-[11px] bg-white/1 backdrop-blur-sm border border-white/4 w-60 h-60">
           {/*photo */}
         <motion.img
         initial={{ scale:0 }}
@@ -81,21 +81,22 @@ export default function Home() {
 
 
  {/*We prioritize quality*/}
-  <section className="md:bg-[url('/ribbon.svg')] bg-[url('/ribbonMob.png')] bg-center bg-contain bg-no-repeat lg:bg-position-[center_bottom_1rem]  md:bg-position-[center_top_12rem] bg-position-[center_top_10rem] md:p-0 p-10">
+  <section className="md:bg-[url('/ribbon.svg')] bg-[url('/ribbonMob.png')] bg-center bg-contain bg-no-repeat lg:bg-position-[center_bottom_1rem]  md:bg-position-[center_top_0rem] bg-position-[center_top_5rem] md:p-0 p-5">
     <div className="flex flex-col lg:py-10 w-full max-w-[1440px] justify-items-center">
 
       
       {/*Heading*/}
       <div className="flex flex-row justify-end relative md:px-[8%] h-[10%] md:h-[2%]">
-        <div className="md:w-1/3 lg:w-1/2 w-40">
+        <div className="md:w-1/3 lg:w-80 w-40">
           <h1 className="font-heading lg:text-5xl text-2xl font-bold text-[#4D641E]">We prioritize quality.</h1>
         </div>
       </div>
 
-      <div className="relative lg:min-h-200 md:min-h-150 min-h-150 min-w-screen">
+      <div className="flex flex-col">
 
         {/*Description*/}
-        <div className="absolute lg:top-[20%] top-[10%] md:top-20 lg:w-1/6 w-1/4 md:w-1/5 text-end lg:ms-[20%] md:ms-[10%] ms-[5%] text-[#4D641E] relative">
+      <div className="flex flex-row justify-start items-center ms-[10%]">
+        <div className="lg:w-1/4 w-1/4 md:w-1/5 text-end text-[#4D641E] relative">
           <motion.p
           initial={{x:-100}}
           whileInView={{x:0 }}
@@ -105,17 +106,21 @@ export default function Home() {
           Locally produced,straight from the farms.
           Lorem ipsum dolor sit amet, consectetur
           </motion.p>
-          <img src="arrow1.svg" className="absolute right-[-30px] lg:right-[-40px] lg:bottom-[-40px] lg:w-[20px]"></img>
+          <img src="arrow1.svg" className=" absolute right-[-30px] lg:right-[-40px]lg:bottom-[-40px] lg:w-[20px]"></img>
+        </div>
         </div>
 
-          <img src="beePollenMob.png" className="absolute top-[10%] left-[10%] md:hidden w-[80%]"></img>
+          <div className="md:hidden flex flex-row justify-center -mt-5">
+          <img src="beePollenMob.png" className=" w-[60%]"></img>
+          </div>
 
-          <img src="beePollen.png" className=" absolute md:block hidden lg:-top-[10%] left-[10%] w-[80%]"></img>
+          <div className="hidden md:flex justify-center lg:-mt-40 md:-mt-30">
+          <img src="beePollen.png" className=" w-[80%]"></img>
+          </div>
 
-
-      <div className="absolute lg:top-[85%] flex flex-row lg:gap-[23%] bottom-[10%] md:top-[80%] gap-[25%] md:gap-[30%] justify-start md:h-[20%]">
+      <div className="flex flex-row justify-start gap-[40%] md:gap-[45%] lg:ms-[10%] md:ms-[12%] md:-mt-25 -mt-10">
         {/*Description*/}
-        <div className="lg:w-1/6 w-1/4 md:w-1/5 text-end lg:ms-[24%] ms-[5%] md:ms-[10%] text-[#4D641E] relative">
+        <div className="lg:w-1/4 w-1/4 md:w-1/5 text-end  text-[#4D641E] relative">
          <img src="arrow3.svg" className="absolute lg:right-[-40px]
          lg:top-[-40px] lg:w-[20px] right-[-40px]"></img>
           <motion.p
@@ -129,7 +134,7 @@ export default function Home() {
         </div>
 
         {/*Description*/}
-        <div className="lg:w-1/6 w-1/4 md:w-1/5 text-start lg:ms-[10%] ms-[15%] text-[#4D641E] relative">
+        <div className="lg:w-1/4 w-1/4 md:w-1/5 text-start text-[#4D641E] relative">
           <img src="arrow2.svg" className="absolute lg:left-[-40px]
          lg:top-[-40px] lg:w-[20px] left-[-40px]"></img>
           <motion.p

@@ -1,40 +1,80 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { easeInOut, motion } from "framer-motion";
+import axios from "axios";
 
 export default function ProductsSection() {
-  const [activeCategory, setActiveCategory] = useState("Honey");
+  
 
-  const categories = ["Honey", "Tea", "Coffee", "Shilajit"];
-
-  const products = [
+  const categories = [
     {
-      id: 1,
-      title: "Bee Pollen",
-      price: 2500,
-      category: "Honey",
-      image: "/bee.png",
+      name:"Honey",
+      id:1
     },
     {
-      id: 2,
-      title: "Akabare Achar",
-      price: 3000,
-      category: "Honey",
-      image: "/achar.png",
+      name:"Shilajit",
+      id:2
     },
     {
-      id: 3,
-      title: "Mad Honey",
-      price: 4000,
-      category: "Honey",
-      image: "/mad.png",
+      name:"Tea",
+      id:3
     },
-  ];
+    {
+      name:"Pickles",
+      id:4
+    }
+  ]
+    
+  const [activeCategory, setActiveCategory] = useState(categories[0]);
+  const [products,setProducts]=useState([]);
 
-  const filteredProducts = products.filter(
-    (product) => product.category === activeCategory
+  useEffect(
+   ()=>{
+    axios.get(`http://localhost:5000/api/products/category/three/${activeCategory.id}`)
+    .then(
+      (res)=>{
+        setProducts(res.data);
+        console.log(res.data);
+      }
+    )
+    .catch((err)=>{
+      console.error(err);
+    });
+   },[activeCategory]
   );
+
+  // const products = [
+  //   {
+  //     id: 1,
+  //     title: "Bee Pollen",
+  //     price: 2500,
+  //     category: "Honey",
+  //     image: "/bee.png",
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Akabare Achar",
+  //     price: 3000,
+  //     category: "Honey",
+  //     image: "/achar.png",
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Mad Honey",
+  //     price: 4000,
+  //     category: "Honey",
+  //     image: "/mad.png",
+  //   },
+  // ];
+
+  // const filteredProducts = products.filter(
+  //   (product) => product.category === activeCategory.name
+  // );
+
+  useEffect(()=>{
+  console.log(products);
+},[products]);
 
   return (
       <div className="h-150 md:h-150 lg:h-200">
@@ -43,22 +83,22 @@ export default function ProductsSection() {
         <div className="flex justify-center lg:gap-10 gap-5 lg:text-lg text-sm lg:mb-30 mb-20">
           {categories.map((category) => (
             <button
-              key={category}
+              key={category.id}
               onClick={() => setActiveCategory(category)}
-              className={`pb-2 p-1 transition-all duration-300 ${
-                activeCategory === category
+              className={`pb-2 p-1 transition-all duration-300 hover:cursor-pointer ${
+                activeCategory.id === category.id
                   ? "text-[#93C553] border-b-2 border-black bg-[#EDF2E0]"
                   : "text-gray-600 hover:text-[#93C553]"
               }`}
             >
-              {category}
+              {category.name}
             </button>
           ))}
         </div>
 
         {/* Products Grid Large */}
         <div className="md:grid md:grid-cols-3 md:gap-10 gap-20 hidden md:block">
-          {filteredProducts.map((product) => (
+          {products.map((product) => (
             <motion.div
               key={product.id}
               whileHover="hover"
@@ -72,16 +112,16 @@ export default function ProductsSection() {
             >
               {/* Image */}
                 <div className="flex justify-center -mt-20">
-                    <img
-                  src={product.image}
-                  alt={product.title}
+                  <img
+                  src="/bee.png"
+                  alt={product.productName}
                   className="h-48 object-contain drop-shadow-xl relative"
                 />
                 </div>
 
               {/* Title */}
               <h3 className="text-xl font-medium mt-4">
-                {product.title}
+                {product.productName}
               </h3>
 
               {/* Price */}
@@ -112,7 +152,9 @@ export default function ProductsSection() {
         </div>
 
         {/* Products Grid Mobile */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 md:gap-30 gap-20 md:hidden block">
+        {
+          products[0] && (
+            <div className="grid grid-cols-1 lg:grid-cols-3 md:gap-30 gap-20 md:hidden block">
          
             <motion.div
               key={products[0].id}
@@ -128,15 +170,15 @@ export default function ProductsSection() {
               {/* Image */}
                 <div className="flex justify-center -mt-20">
                     <img
-                  src={products[0].image}
-                  alt={products[0].title}
+                  src="/bee.png"
+                  alt={products[0].productName}
                   className="h-48 object-contain drop-shadow-xl relative"
                 />
                 </div>
 
               {/* Title */}
               <h3 className="text-xl font-medium mt-4">
-                {products[0].title}
+                {products[0].productName}
               </h3>
 
               {/* Price */}
@@ -165,6 +207,8 @@ export default function ProductsSection() {
             </motion.div>
          
         </div>
+          )
+        }
 
       </div>
   );
