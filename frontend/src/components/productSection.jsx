@@ -113,7 +113,10 @@ export default function ProductsSection() {
               {/* Image */}
                 <div className="flex justify-center -mt-20">
                   <img
-                  src="/bee.png"
+                  src={product.photos?.[0]?.imagePath
+                        ? `http://localhost:5000/${product.photos[0].imagePath}`
+                        : "/logo.svg"
+                    }
                   alt={product.productName}
                   className="h-48 object-contain drop-shadow-xl relative"
                 />
@@ -170,7 +173,11 @@ export default function ProductsSection() {
               {/* Image */}
                 <div className="flex justify-center -mt-20">
                     <img
-                  src="/bee.png"
+                  src={
+                        products[0].photos?.[0]?.imagePath
+                      ? `http://localhost:5000/${products[0].photos[0].imagePath}`
+                      : "/logo.svg"
+                  }
                   alt={products[0].productName}
                   className="h-48 object-contain drop-shadow-xl relative"
                 />

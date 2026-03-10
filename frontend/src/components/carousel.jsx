@@ -1,39 +1,58 @@
 "use client";
 
-import {useState} from "react";
+import {useState,useEffect} from "react";
+import axios from "axios";
 
 export default function Carousel()
 {
-    const slides = [
-    {
-      image: "/farm1.png",
-      title: "How our Bee Pollen Comes to Life",
-      text: "Local Farm serves as an inspiration for aspiring entrepreneurs and a reminder to consumers about the value of supporting local bussinesses. As Birat Bikram Shah and his team continue their journey, they’re not just growing a  business; they’re ."
-    },
-    {
-      image: "farm1.png",
-      title: "Premium Tea Leaves",
-      text: "Local Farm serves as an inspiration for aspiring entrepreneurs and a reminder to consumers about the value of supporting local bussinesses. As Birat Bikram Shah and his team continue their journey, they’re not just growing a  business; they’re ."
-    },
-    {
-      image: "farm1.png",
-      title: "Rich Coffee Beans",
-      text: "Local Farm serves as an inspiration for aspiring entrepreneurs and a reminder to consumers about the value of supporting local bussinesses. As Birat Bikram Shah and his team continue their journey, they’re not just growing a  business; they’re ."
-    }
-  ];
-
+  const [blogs,setBlogs]=useState([]);
   const [current,setCurrent]=useState(0);
+  useEffect(
+     ()=>{
+      axios.get(`http://localhost:5000/api/blogslp`)
+      .then(
+        (res)=>{
+          setBlogs(res.data);
+          console.log(res.data);
+        }
+      )
+      .catch((err)=>{
+        console.error(err);
+      });
+     },[]
+    );
+  //   const slides = [
+  //   {
+  //     image: "/farm1.png",
+  //     title: "How our Bee Pollen Comes to Life",
+  //     text: "Local Farm serves as an inspiration for aspiring entrepreneurs and a reminder to consumers about the value of supporting local bussinesses. As Birat Bikram Shah and his team continue their journey, they’re not just growing a  business; they’re ."
+  //   },
+  //   {
+  //     image: "farm1.png",
+  //     title: "Premium Tea Leaves",
+  //     text: "Local Farm serves as an inspiration for aspiring entrepreneurs and a reminder to consumers about the value of supporting local bussinesses. As Birat Bikram Shah and his team continue their journey, they’re not just growing a  business; they’re ."
+  //   },
+  //   {
+  //     image: "farm1.png",
+  //     title: "Rich Coffee Beans",
+  //     text: "Local Farm serves as an inspiration for aspiring entrepreneurs and a reminder to consumers about the value of supporting local bussinesses. As Birat Bikram Shah and his team continue their journey, they’re not just growing a  business; they’re ."
+  //   }
+  // ];
+
+  
 
   const nextSlide=()=>{
-    setCurrent((current+1)%slides.length);
+    setCurrent((current+1)%blogs.length);
   };
 
   const prevSlide=()=>{
-    setCurrent((current-1+slides.length)%slides.length);
+    setCurrent((current-1+blogs.length)%blogs.length);
   };
 
   return(
-    <div className="flex flex-col items-center justify-center bg-[#F2F6E8] py-10 px-10">
+    
+      blogs.length>0 && (
+        <div className="flex flex-col items-center justify-center bg-[#F2F6E8] py-10 px-10">
         <div className="flex flex-col"
         >
 
@@ -43,19 +62,22 @@ export default function Carousel()
                 {/*Image*/}
                 <div className="lg:w-1/2 w-full">
                     <img 
-                    src={slides[current].image}
-                    className="w-full object-contain"></img>
+                    src={blogs[current]?.photos?.[0]?.imagePath
+                        ? `http://localhost:5000/${blogs[current].photos[0].imagePath}`
+                        : "/logo.svg"
+                    }
+                    className="lg:w-80 w-full object-contain"></img>
 
                 </div>
 
                 {/*Text*/}
                 <div className="lg:w-1/2 space-y-6 p-5">
                     <h2 className="md:text-4xl text-2xl text-[#609647] font-bold">
-                        {slides[current].title}
+                        {blogs[current].title}
                     </h2>
 
                     <p className="text-gray-600 md:text-lg text-sm">
-                         {slides[current].text}
+                         {blogs[current].introduction}
                     </p>
                 </div>
             </div>
@@ -63,7 +85,7 @@ export default function Carousel()
 
          {/* Dots */}
             <div className="flex justify-center mt-8 gap-3">
-            {slides.map((_, index) => (
+            {blogs.map((_, index) => (
                 <button
                 key={index}
                 onClick={() => setCurrent(index)}
@@ -76,5 +98,7 @@ export default function Carousel()
             ))}
             </div>
     </div>
+      )
+    
   )
 }
