@@ -27,7 +27,7 @@ export default function Home() {
         transition={{ duration: 2, ease: "easeOut" }}
         src="akabare.svg" className="absolute -top-[30%]"></motion.img>
 
-        <button className="absolute bottom-[10%] left-[25%] md:py-3 md:px-8 py-2 px-3 bg-[#609647] rounded-xl font-heading font-bold md:text-lg text-xs">Shop Now</button>
+        <button className="absolute bottom-[10%] left-[25%] md:py-3 md:px-8 py-2 px-3 bg-[#609647] rounded-xl font-heading font-bold md:text-lg text-xs hover:cursor-pointer hover:bg-[#93C553]">Shop Now</button>
         </motion.div>
     </section>
 
@@ -67,7 +67,7 @@ export default function Home() {
         whileInView="visible"
         transition={{ duration: 2, ease: "easeOut" }}
         className=" w-1/2 lg:w-1/3"
-        src="a3.svg">
+        src="a3.png">
         </motion.img>
         <div className="text-[#4D641E] w-1/2 lg:w-[33%] text-xs lg:text-xl">
           LocalFarm Nepal is your go-to organic food store 
@@ -106,7 +106,7 @@ export default function Home() {
           Locally produced,straight from the farms.
           Lorem ipsum dolor sit amet, consectetur
           </motion.p>
-          <img src="arrow1.svg" className=" absolute right-[-30px] lg:right-[-40px]lg:bottom-[-40px] lg:w-[20px]"></img>
+          <img src="arrow1.svg" className="absolute right-[-30px] lg:right-[-40px] lg:bottom-[-40px] lg:w-[20px]"></img>
         </div>
         </div>
 
@@ -323,7 +323,7 @@ export default function Home() {
           {/* Button */}
           <button
             type="submit"
-            className="mt-2 bg-[#93C553] text-white font-semibold py-3 rounded-lg hover:bg-gray-200 transition"
+            className="mt-2 bg-[#609647] text-black font-semibold py-3 rounded-lg transition hover:cursor-pointer hover:bg-[#93C553]"
           >
             Send Message
           </button>

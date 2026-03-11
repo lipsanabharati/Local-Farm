@@ -64,9 +64,10 @@ export default function Carousel()
                     <img 
                     src={blogs[current]?.photos?.[0]?.imagePath
                         ? `http://localhost:5000/${blogs[current].photos[0].imagePath}`
-                        : "/logo.svg"
+                        : "/error.png"
                     }
-                    className="lg:w-80 w-full object-contain"></img>
+                    className="w-full object-cover"
+                    alt={blogs[current].title}></img>
 
                 </div>
 
@@ -89,7 +90,7 @@ export default function Carousel()
                 <button
                 key={index}
                 onClick={() => setCurrent(index)}
-                className={`w-3 h-3 rounded-full transition-all ${
+                className={`hover:cursor-pointer w-3 h-3 rounded-full transition-all ${
                     current === index
                     ? "bg-[#93C553] scale-125"
                     : "bg-[#609647]"

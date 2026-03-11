@@ -9,6 +9,10 @@ export default function ProductsSection() {
 
   const categories = [
     {
+      name:"All",
+      id:0
+    },
+    {
       name:"Honey",
       id:1
     },
@@ -28,49 +32,36 @@ export default function ProductsSection() {
     
   const [activeCategory, setActiveCategory] = useState(categories[0]);
   const [products,setProducts]=useState([]);
+  const [message,setMessage]=useState("");
+  
+  
+ 
+  useEffect(() => {
 
-  useEffect(
-   ()=>{
-    axios.get(`http://localhost:5000/api/products/category/three/${activeCategory.id}`)
-    .then(
-      (res)=>{
+  const url =
+    activeCategory.id > 0
+      ? `http://localhost:5000/api/products/category/three/${activeCategory.id}`
+      : `http://localhost:5000/api/products/three`;
+
+  axios.get(url)
+    .then((res) => {
+      if (Array.isArray(res.data)) {
         setProducts(res.data);
-        console.log(res.data);
+        setMessage("");
+      } else {
+        setProducts([]);
+        setMessage(res.data.message);
       }
-    )
-    .catch((err)=>{
+    })
+    .catch((err) => {
       console.error(err);
+      setProducts([]);
+      setMessage("No products found.");
     });
-   },[activeCategory]
-  );
 
-  // const products = [
-  //   {
-  //     id: 1,
-  //     title: "Bee Pollen",
-  //     price: 2500,
-  //     category: "Honey",
-  //     image: "/bee.png",
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Akabare Achar",
-  //     price: 3000,
-  //     category: "Honey",
-  //     image: "/achar.png",
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "Mad Honey",
-  //     price: 4000,
-  //     category: "Honey",
-  //     image: "/mad.png",
-  //   },
-  // ];
+}, [activeCategory]);
 
-  // const filteredProducts = products.filter(
-  //   (product) => product.category === activeCategory.name
-  // );
+  
 
   useEffect(()=>{
   console.log(products);
@@ -96,14 +87,22 @@ export default function ProductsSection() {
           ))}
         </div>
 
+        {/* Show message if no products */}
+          {products.length === 0 && message && (
+            <div className="flex justify-center items-center w-full py-10">
+              <p className="text-gray-500 text-lg">{message}</p>
+            </div>
+          )}
+                  
         {/* Products Grid Large */}
+        {products.length>0 && (
         <div className="md:grid md:grid-cols-3 md:gap-10 gap-20 hidden md:block">
           {products.map((product) => (
             <motion.div
               key={product.id}
               whileHover="hover"
               animate="rest"
-              className="relative bg-[#779768]/10 rounded-3xl shadow-xl py-10 text-center"
+              className="relative bg-[#779768]/10 rounded-xl shadow-xl shadow-[#C4DBBA] py-10 text-center"
               style={{height:260}}
               variants={{
                 rest: { height:260,top: 0 },
@@ -115,7 +114,7 @@ export default function ProductsSection() {
                   <img
                   src={product.photos?.[0]?.imagePath
                         ? `http://localhost:5000/${product.photos[0].imagePath}`
-                        : "/logo.svg"
+                        : "/error.png"
                     }
                   alt={product.productName}
                   className="h-48 object-contain drop-shadow-xl relative"
@@ -141,11 +140,11 @@ export default function ProductsSection() {
                 transition={{ duration: 0.2}}
                 className="flex justify-center gap-4 mt-6 p-2"
               >
-               <button className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg">
+               <button className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg hover:cursor-pointer hover:bg-[#93C553]">
                 Order Now
                 </button>
 
-                <button className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg">
+                <button className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg hover:cursor-pointer hover:bg-[#93C553]">
                 Add to Cart
                 </button>
               </motion.div>
@@ -153,6 +152,7 @@ export default function ProductsSection() {
             </motion.div>
           ))}
         </div>
+        )}
 
         {/* Products Grid Mobile */}
         {
@@ -163,7 +163,7 @@ export default function ProductsSection() {
               key={products[0].id}
               whileHover="hover"
               animate="rest"
-              className="relative bg-[#779768]/10 rounded-3xl shadow-xl py-10 text-center"
+              className="relative bg-[#779768]/10 rounded-xl shadow-[#C4DBBA] py-10 text-center"
               style={{height:260}}
               variants={{
                 rest: { height:260,top: 0 },
@@ -176,7 +176,7 @@ export default function ProductsSection() {
                   src={
                         products[0].photos?.[0]?.imagePath
                       ? `http://localhost:5000/${products[0].photos[0].imagePath}`
-                      : "/logo.svg"
+                      : "/error.png"
                   }
                   alt={products[0].productName}
                   className="h-48 object-contain drop-shadow-xl relative"
