@@ -3,7 +3,7 @@
 export default function Footer()
 {
     return(
-        <footer className="relative text-white -mt-10 md:-mt-20 max-w-screen">
+        <footer className="text-white -mt-10 md:-mt-20 max-w-screen">
            
             <svg width="1665" height="265" viewBox="0 0 1665 265" fill="none" xmlns="http://www.w3.org/2000/svg"
             className="md:flex hidden max-w-screen">
@@ -17,7 +17,7 @@ export default function Footer()
 
 
             
-            <div className="p-5 lg:p-10 absolute top-10 md:top-20 left-0 flex flex-col items-start md:items-center justify-center text-white font-body bg-[#344304] w-full gap-5">
+            <div className="p-5 lg:p-10 md:-mt-45 -mt-70 md:top-20 left-0 flex flex-col items-start md:items-center justify-center text-white font-body bg-[#344304] w-full gap-5">
                <div className="md:grid md:grid-cols-3 md:gap-10 lg:gap-60 flex flex-col gap-5">
                     
                     {/* Hours */}

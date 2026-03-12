@@ -9,7 +9,7 @@ export default function RootLayout({children}) {
     <html lang="en">
       <body className="bg-[#F2F6E8] ">
         <Header />
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center scroll-smooth">
          
         {children}
         <Footer />
