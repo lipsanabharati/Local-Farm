@@ -4,7 +4,7 @@ import CartCard from "@/components/cartCard"
 export default function Cart()
 {
     return(
-        <section className="max-w-[1440px] flex flex-col lg:flex lg:flex-row justify-center md:justify-start mt-30 p-2 md:p-10 w-full">
+        <section className="max-w-[1440px] flex flex-col lg:flex lg:flex-row justify-center md:justify-start mt-30 p-5 md:p-10 w-full">
             
             <div className="flex flex-col lg:w-1/2 lg:ms-50">
             {/*Heading*/}
@@ -27,6 +27,15 @@ export default function Cart()
             <span className="font-semibold">Rs.1200</span>
             </div>
 
+              
+            <fieldset className="border border-[#93C553] rounded-xl px-4 pb-3 mb-5">
+            <legend className="px-2 text-[#93C553]">Full Name</legend>
+            <input
+                type="text"
+                className="w-full bg-gray-100 rounded-lg p-2 outline-none focus:border-[#93C553] focus:border-2 "
+
+            />
+            </fieldset>
             
             <fieldset className="border border-[#93C553] rounded-xl px-4 pb-3 mb-5">
             <legend className="px-2 text-[#93C553]">Address</legend>

@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { easeInOut, motion } from "framer-motion";
 import axios from "axios";
+import { useContext } from "react";
+import { CartContext } from "@/context/CartContext";
 
 export default function ProductsSection() {
   
@@ -66,6 +68,8 @@ export default function ProductsSection() {
   useEffect(()=>{
   console.log(products);
 },[products]);
+
+const {addToCart}=useContext(CartContext);
 
   return (
       <div className="h-150 md:h-150 lg:h-200">
@@ -144,7 +148,9 @@ export default function ProductsSection() {
                 Order Now
                 </button>
 
-                <button className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg hover:cursor-pointer hover:bg-[#93C553]">
+                <button 
+                onClick={()=>addToCart(product)}
+                className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg hover:cursor-pointer hover:bg-[#93C553]">
                 Add to Cart
                 </button>
               </motion.div>
@@ -206,7 +212,9 @@ export default function ProductsSection() {
                 Order Now
                 </button>
 
-                <button className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg">
+                <button 
+                onClick={()=>addToCart(product)}
+                className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg">
                 Add to Cart
                 </button>
               </motion.div>

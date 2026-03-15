@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import ProductForShop from "@/components/productForShop";
 
+
 export default function Shop()
 {
     return(
