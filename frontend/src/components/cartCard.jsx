@@ -1,12 +1,14 @@
 "use client";
-import { useContext } from "react";
-import { CartContext } from "@/context/CartContext";
+import { useContext,useState } from "react";
+import  {CartContext}  from "@/context/CartContext";
 
 
 export default function CartCard()
 {
-    const {cart,removeFromCart}=useContext(CartContext);
-    console.log(cart);
+    const {cart,addToCart,removeFromCart,clearCart,increaseAmount,decreaseAmount,itemAmount,total}=useContext(CartContext);
+    console.log("Cart",cart);
+
+    
     return(
         <div className="">
             {
@@ -40,15 +42,19 @@ export default function CartCard()
                                 
                                 {/*Plus and minus*/}
                                 <div className="flex flex-row w-25">
-                                    <div className="bg-black text-white w-1/3 flex justify-center hover:cursor-pointer hover:bg-gray-600">
+                                    <button 
+                                    onClick={()=>{increaseAmount(product.id)}}
+                                    className="bg-black text-white w-1/3 flex justify-center hover:cursor-pointer hover:bg-gray-600">
                                     +
-                                    </div>
+                                    </button>
                                     <div className="bg-white text-black w-1/3 flex justify-center">
-                                    1
+                                    {product.amount}
                                     </div>
-                                    <div className="bg-black text-white w-1/3 flex justify-center hover:cursor-pointer hover:bg-gray-600">
+                                    <button 
+                                    onClick={()=>{decreaseAmount(product.id)}}
+                                    className="bg-black text-white w-1/3 flex justify-center hover:cursor-pointer hover:bg-gray-600">
                                     -
-                                    </div>
+                                    </button>
                                 </div>
                         </div>
                         </div>

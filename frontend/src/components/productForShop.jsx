@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { easeInOut, motion } from "framer-motion";
 import axios from "axios";
 import { useContext } from "react";
-import { CartContext } from "@/context/CartContext";
+import {CartContext} from "@/context/CartContext";
 
 export default function ProductForShop() {
   
@@ -65,11 +65,15 @@ export default function ProductForShop() {
 
   
 
-  useEffect(()=>{
-  console.log(products);
-},[products]);
+  
 
-  const {addToCart}=useContext(CartContext);
+  const {cart,addToCart,removeFromCart,clearCart,increaseAmount,decreaseAmount,itemAmount,total}=useContext(CartContext);
+  
+ useEffect(()=>{
+  console.log("Cart",cart);
+},[cart]);
+
+
 
   return (
       <div className="lg:py-20 py-10">
@@ -151,7 +155,7 @@ export default function ProductForShop() {
                 </button>
 
                 <button
-                  onClick={()=>addToCart(product)}
+                  onClick={()=>addToCart(product,product.id)}
                  className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg hover:cursor-pointer hover:bg-[#93C553]">
                 Add to Cart
                 </button>

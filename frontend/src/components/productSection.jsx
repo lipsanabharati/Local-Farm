@@ -69,7 +69,9 @@ export default function ProductsSection() {
   console.log(products);
 },[products]);
 
-const {addToCart}=useContext(CartContext);
+const {cart,addToCart}=useContext(CartContext);
+
+console.log("Cart",cart);
 
   return (
       <div className="h-150 md:h-150 lg:h-200">
@@ -149,7 +151,7 @@ const {addToCart}=useContext(CartContext);
                 </button>
 
                 <button 
-                onClick={()=>addToCart(product)}
+                onClick={()=>addToCart(product,product.id)}
                 className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg hover:cursor-pointer hover:bg-[#93C553]">
                 Add to Cart
                 </button>

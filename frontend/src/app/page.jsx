@@ -6,6 +6,7 @@ import OurProcess from "../components/process";
 import Carousel from "@/components/carousel";
 import { useEffect, useState } from "react";
 
+
 export default function Home() {
       const imgVariants = {
       hidden: { x: -50, y: -50, scale: 0.2 },

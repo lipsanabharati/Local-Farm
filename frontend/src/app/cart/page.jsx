@@ -1,8 +1,60 @@
 "use client"
 import CartCard from "@/components/cartCard"
+import { useContext, useState } from "react"
+import { CartContext } from "@/context/CartContext"
+import axios from "axios"
 
 export default function Cart()
-{
+ {
+    const {cart,clearCart,total}=useContext(CartContext);
+
+    //form states
+
+    const [customerName,setCustomerName]=useState("");
+    const [customerAddress,setCustomerAddress]=useState("");
+    const [customerPhone,setCustomerPhone]=useState(0);
+    const [customerEmail,setCustomerEmail]=useState("");
+   
+
+    //handle form submission
+    const handleCheckout=async ()=>{
+         if (!customerName || !customerAddress || !customerPhone || !customerEmail) {
+            alert("Please fill all required fields");
+            return;
+            }
+
+        //mapping cart to API format
+        const items=cart.map((item)=>(
+            {
+                productId:item.id,
+                productName:item.productName,
+                price:item.price,
+                quantity:item.amount,
+            }
+        ))
+
+        const orderData={
+            customerName,
+            customerPhone,
+            customerEmail,
+            customerAddress,
+            items,
+        };
+
+        axios.post("http://localhost:5000/api/orders",orderData)
+        .then((res)=>{
+            console.log("Order placed successfully:",res.data);
+            alert("Order placed!");
+            clearCart();//clearing cart after success
+        })
+        .catch((err)=>{
+            console.log("Error placing order:",err);
+            alert("Something went wrong while placing your order.");
+        });
+
+    };
+
+
     return(
         <section className="max-w-[1440px] flex flex-col lg:flex lg:flex-row justify-center md:justify-start mt-30 p-5 md:p-10 w-full">
             
@@ -24,7 +76,7 @@ export default function Cart()
            
             <div className="flex justify-between text-lg mb-6">
             <span>Subtotal:</span>
-            <span className="font-semibold">Rs.1200</span>
+            <span className="font-semibold">{total}</span>
             </div>
 
               
@@ -33,6 +85,8 @@ export default function Cart()
             <input
                 type="text"
                 className="w-full bg-gray-100 rounded-lg p-2 outline-none focus:border-[#93C553] focus:border-2 "
+                value={customerName}
+                onChange={(e)=>setCustomerName(e.target.value)}
 
             />
             </fieldset>
@@ -42,7 +96,8 @@ export default function Cart()
             <input
                 type="text"
                 className="w-full bg-gray-100 rounded-lg p-2 outline-none focus:border-[#93C553] focus:border-2 "
-
+                value={customerAddress}
+                onChange={(e)=>setCustomerAddress(e.target.value)}
             />
             </fieldset>
 
@@ -52,6 +107,8 @@ export default function Cart()
             <input
                 type="text"
                 className="w-full bg-gray-100 rounded-lg p-2 outline-none focus:border-[#93C553] focus:border-2"
+                 value={customerPhone}
+                onChange={(e)=>setCustomerPhone(e.target.value)}
             />
             </fieldset>
 
@@ -61,21 +118,16 @@ export default function Cart()
             <input
                 type="email"
                 className="w-full bg-gray-100 rounded-lg p-2 outline-none focus:border-[#93C553] focus:border-2"
+                 value={customerEmail}
+                onChange={(e)=>setCustomerEmail(e.target.value)}
             />
             </fieldset>
 
-           
-            <fieldset className="border border-[#93C553] rounded-xl px-4 pb-3 mb-8">
-            <legend className="px-2 text-[#93C553]">Additional Information</legend>
-            <input
-                type="text"
-                className="w-full bg-gray-100 rounded-lg p-2 outline-none focus:border-[#93C553] focus:border-2"
-            />
-            </fieldset>
 
            
             <button
             className="w-full bg-[#93C553] text-white py-3 rounded-xl text-lg font-medium hover:opacity-90 transition hover:cursor-pointer hover:bg-[#609647]"
+            onClick={handleCheckout}
             >
             Checkout
             </button>
