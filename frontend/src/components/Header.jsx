@@ -2,6 +2,7 @@
 
 import {motion} from "framer-motion";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function Header()
 {
@@ -31,11 +32,12 @@ export default function Header()
 
             {/*Items*/}
             <div className=" hidden font-heading lg:flex lg:flex-row gap-10 items-center justify-center">
-                <div>Home</div>
-                <div>About</div>
-                <div>Blog</div>
-                <div>Contact</div>
-                <div>Shops</div>
+                <Link href="/">Home</Link>
+                <Link href="">About</Link>
+                <Link href="">Blog</Link>
+                <Link href="/shop">Shops</Link>
+                <Link href="/cart">Cart</Link>
+
             </div>
 
             
@@ -48,11 +50,12 @@ export default function Header()
                 transition={{ duration: 1 }}
                 className="p-2 absolute top-full left-0 w-[100px] bg-white/20 flex flex-col gap-2 items-start lg:hidden rounded-lg backdrop-blur-sm"
             >
-                <div>Home</div>
-                <div>About</div>
-                <div>Blog</div>
-                <div>Contact</div>
-                <div>Shops</div>
+                 <Link href="/">Home</Link>
+                <Link href="">About</Link>
+                <Link href="">Blog</Link>
+                <Link href="/shop">Shops</Link>
+                <Link href="/cart">Cart</Link>
+
             </motion.div>
             )}
 

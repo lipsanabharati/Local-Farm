@@ -14,6 +14,14 @@ export default function Cart()
     const [customerAddress,setCustomerAddress]=useState("");
     const [customerPhone,setCustomerPhone]=useState(0);
     const [customerEmail,setCustomerEmail]=useState("");
+
+
+    //success,error and loading states
+    const [loading,setLoading]=useState("");
+    const [success,setSuccess]=useState("");
+    const [error,setError]=useState("");
+
+
    
 
     //handle form submission
@@ -41,16 +49,19 @@ export default function Cart()
             items,
         };
 
-        axios.post("http://localhost:5000/api/orders",orderData)
-        .then((res)=>{
-            console.log("Order placed successfully:",res.data);
-            alert("Order placed!");
-            clearCart();//clearing cart after success
-        })
-        .catch((err)=>{
-            console.log("Error placing order:",err);
-            alert("Something went wrong while placing your order.");
-        });
+        try {
+            setLoading(true);
+            setSuccess("");
+            setError("");
+
+            const res = await axios.post("http://localhost:5000/api/orders", orderData);
+            setSuccess("Order placed successfully!");
+            clearCart();
+        } catch (error) {
+            setError("Something went wrong. Please try again.");
+        } finally {
+            setLoading(false);
+        }
 
     };
 
@@ -66,7 +77,7 @@ export default function Cart()
             </div>
 
             {/*Form*/}
-           <div className="flex items-center justify-center bg-[#f3f6ee] m-5 md:m-10 lg:w-1/2">
+           <div className="flex flex-col items-center justify-center bg-[#f3f6ee] m-5 md:m-10 lg:w-1/2">
              <div className="bg-white w-[380px] p-8 rounded-3xl shadow-xl">
 
            
@@ -129,9 +140,21 @@ export default function Cart()
             className="w-full bg-[#93C553] text-white py-3 rounded-xl text-lg font-medium hover:opacity-90 transition hover:cursor-pointer hover:bg-[#609647]"
             onClick={handleCheckout}
             >
-            Checkout
+           {loading ? "Placing Order..." : "Place Order"}
             </button>
           </div>
+
+        {success && (
+            <div className=" text-green-700 p-5 ">
+                {success}
+            </div>
+            )}
+
+            {error && (
+            <div className=" text-red-700 p-5">
+                {error}
+            </div>
+            )}
         </div>
         </section>
     )

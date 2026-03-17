@@ -1,10 +1,16 @@
 "use client";
 import { motion } from "framer-motion";
 import ProductForShop from "@/components/productForShop";
-
+import { useRef } from "react";
 
 export default function Shop()
 {
+    const productsRef = useRef(null); //reference to a dom element
+
+  const scrollToProducts = () => { //supposed to make scrolling smooth
+    productsRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
     return(
         <>
         {/*Hero Section*/}
@@ -25,7 +31,9 @@ export default function Shop()
                         <h1 className="font-bold text-2xl lg:text-5xl w-[80%] md:w-[70%]">
                         NATURE'S SECRET TO TIMELESS ENERGY.
                     </h1>
-                    <button className="py-2 px-3 bg-[#609647] rounded-xl font-heading font-bold  w-[40%] md:w-[30%] lg:text-lg md:text-md text-sm text-white hover:cursor-pointer hover:bg-[#93C553] transition z-10"><a href="#products">Discover More</a></button>
+                    <button
+                    onClick={scrollToProducts} 
+                    className="py-2 px-3 bg-[#609647] rounded-xl font-heading font-bold  w-[40%] md:w-[30%] lg:text-lg md:text-md text-sm text-white hover:cursor-pointer hover:bg-[#93C553] transition z-10">Discover More</button>
                     </div>
                 </div>
 
@@ -35,7 +43,7 @@ export default function Shop()
                 </div>
             </div>
 
-            <div id="products">
+            <div ref={productsRef}>
                 <ProductForShop/>
             </div>
         </section>
