@@ -272,7 +272,7 @@ export default function Home() {
 
       </section>
 
-      <section className="max-w-[1440px]">
+      <section className="max-w-[1440px] bg-[#FFAA00]/10 mb-30">
          <Carousel />
       </section>
 

@@ -26,7 +26,7 @@ export default function Header()
 
             {/*Logo*/}
             <div className="lg:ms-[30%]">
-              <img src="logo.svg" className="h-[45px] w-[170px]"/>
+              <img src="/logo.svg" className="h-[45px] w-[170px]"/>
             </div>
 
 

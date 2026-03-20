@@ -67,6 +67,28 @@ const CartProvider = ({children}) => {
     }
   };
   
+  //add to cart by number
+  const addToCartNum=(product,id,amt)=>{
+    const newItem={...product,amount:amt,price:product.price||0};
+    //check if the item is already in the cart
+    const cartItem = cart.find(item=>{
+      return item.id ===id;
+    });
+    //if cart item is already in the cart
+    if(cartItem){
+      const newCart= [...cart].map(item=>{
+        if(item.id===id){
+          return {...item, amount:cartItem.amount+amt};
+        }else{
+          return item;
+        }
+      });
+      setCart(newCart);
+    }else{
+      setCart([...cart,newItem]);
+    }
+  };
+
   //remove from cart
   const removeFromCart=(id)=>{
     const newCart= cart.filter(item=>{
@@ -110,7 +132,7 @@ const CartProvider = ({children}) => {
 
   return (
   <CartContext.Provider 
-  value={{cart,addToCart,removeFromCart,clearCart,increaseAmount,decreaseAmount,itemAmount,total}}>
+  value={{cart,addToCart,removeFromCart,clearCart,increaseAmount,decreaseAmount,itemAmount,total,addToCartNum}}>
     {children}
     </CartContext.Provider>);
 };

@@ -52,12 +52,12 @@ export default function Carousel()
   return(
     
       blogs.length>0 && (
-        <div className="flex flex-col items-center justify-center bg-[#F2F6E8] py-10 px-10">
+        <div className="flex flex-col items-center justify-center bg-transparent py-10 px-10">
         <div className="flex flex-col"
         >
 
             {/*Slide*/}
-            <div className="flex lg:flex-row flex-col bg-[#FFAA00]/10 lg:gap-5 gap-5 md:gap-0">
+            <div className="flex lg:flex-row flex-col  lg:gap-5 gap-5 md:gap-0">
 
                 {/*Image*/}
                 <div className="lg:w-1/2 w-full">
@@ -80,7 +80,13 @@ export default function Carousel()
                     <p className="text-gray-600 md:text-lg text-sm">
                          {blogs[current].introduction}
                     </p>
+
+                    <button 
+                    className="py-3 px-3 bg-[#93C553] text-white py-2 rounded-xl text-md font-medium hover:opacity-90 transition hover:cursor-pointer hover:bg-[#609647]"
+                    >Read More</button>
                 </div>
+
+                
             </div>
        </div>
 

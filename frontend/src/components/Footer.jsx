@@ -52,7 +52,7 @@ export default function Footer()
 
                 </div>
 
-                <img src="logo-white.svg" className="" /> 
+                <img src="/logo-white.svg" className="" /> 
                 
             </div>
         </footer>
