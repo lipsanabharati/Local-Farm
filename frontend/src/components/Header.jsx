@@ -34,7 +34,7 @@ export default function Header()
             <div className=" hidden font-heading lg:flex lg:flex-row gap-10 items-center justify-center">
                 <Link href="/">Home</Link>
                 <Link href="">About</Link>
-                <Link href="">Blog</Link>
+                <Link href="/blog/benefits-of-mad-honey">Blog</Link>
                 <Link href="/shop">Shops</Link>
                 <Link href="/cart">Cart</Link>
 
