@@ -5,6 +5,8 @@ import { easeInOut, motion } from "framer-motion";
 import axios from "axios";
 import { useContext } from "react";
 import { CartContext } from "@/context/CartContext";
+import Link from "next/link";
+
 
 export default function ProductsSection() {
   
@@ -72,6 +74,8 @@ export default function ProductsSection() {
 const {cart,addToCart}=useContext(CartContext);
 
 console.log("Cart",cart);
+
+
 
   return (
       <div className="h-150 md:h-150 lg:h-200">
@@ -146,9 +150,10 @@ console.log("Cart",cart);
                 transition={{ duration: 0.2}}
                 className="flex justify-center gap-4 mt-6 p-2"
               >
-               <button className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg hover:cursor-pointer hover:bg-[#93C553]">
+               <Link 
+               href={`/product/${product.id}`} className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg hover:cursor-pointer hover:bg-[#93C553]">
                 Order Now
-                </button>
+                </Link>
 
                 <button 
                 onClick={()=>addToCart(product,product.id)}
@@ -210,13 +215,15 @@ console.log("Cart",cart);
                 transition={{ duration: 0.2}}
                 className="flex justify-center gap-4 mt-6 p-2"
               >
-               <button className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg">
+               <Link href={`/product/${products[0].id}`} 
+               className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg hover:cursor-pointer hover:bg-[#93C553] "
+               >
                 Order Now
-                </button>
+                </Link>
 
                 <button 
-                onClick={()=>addToCart(product)}
-                className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg">
+                onClick={()=>addToCart(products[0],products[0].id)}
+                className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg hover:cursor-pointer hover:bg-[#93C553]">
                 Add to Cart
                 </button>
               </motion.div>

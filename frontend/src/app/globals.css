@@ -10,3 +10,14 @@
 body{
   margin: 0;
 }
+
+.mySwiper .swiper-pagination-bullet {
+  background: #609647; /* gray */
+  opacity: 1;
+}
+
+.mySwiper .swiper-pagination-bullet-active {
+  background: #93C553;
+  scale:1.5; /* green */
+}
+

@@ -32,7 +32,7 @@ export default function ProductDesc({id})
     return(
     <>
         {product && (
-       <div className="flex flex-row justify-center w-screen px-10 md:p-20 lg:px-30 m-20 ">
+       <div className="flex flex-row justify-center w-screen px-20 md:p-20 lg:px-30 m-20 ">
 
             <div className="flex md:flex-row  flex-col justify-center gap-5 lg:gap-10 w-full lg:w-[60%]">
                 {/*Images*/}

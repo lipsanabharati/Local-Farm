@@ -5,6 +5,7 @@ import { easeInOut, motion } from "framer-motion";
 import axios from "axios";
 import { useContext } from "react";
 import {CartContext} from "@/context/CartContext";
+import Link from "next/link";
 
 export default function ProductForShop() {
   
@@ -79,12 +80,12 @@ export default function ProductForShop() {
       <div className="lg:py-20 py-10">
 
         {/* Category Tabs */}
-        <div className="flex justify-center lg:gap-10 gap-5 lg:text-lg text-sm lg:mb-30 mb-20">
+        <div className="flex justify-center lg:gap-10 gap-5 lg:text-lg text-sm lg:mb-40 mb-40">
           {categories.map((category) => (
             <button
               key={category.id}
               onClick={() => setActiveCategory(category)}
-              className={`pb-2 p-1 transition-all duration-300 hover:cursor-pointer ${
+              className={`pb-2 p-1 transition-all duration-300 hover:cursor-pointer text-lg ${
                 activeCategory.id === category.id
                   ? "text-[#93C553] border-b-2 border-black bg-[#EDF2E0]"
                   : "text-gray-600 hover:text-[#93C553]"
@@ -150,9 +151,11 @@ export default function ProductForShop() {
                 transition={{ duration: 0.2}}
                 className="flex justify-center gap-4 mt-6 p-2"
               >
-               <button className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg hover:cursor-pointer hover:bg-[#93C553]">
+               <Link
+               href={`/product/${product.id}`}
+               className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg hover:cursor-pointer hover:bg-[#93C553]">
                 Order Now
-                </button>
+                </Link>
 
                 <button
                   onClick={()=>addToCart(product,product.id)}
@@ -218,12 +221,14 @@ export default function ProductForShop() {
                 transition={{ duration: 0.2}}
                 className="flex justify-center gap-4 mt-6 p-2"
               >
-               <button className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg">
+               <Link 
+                href={`/product/${product.id}`}
+               className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg">
                 Order Now
-                </button>
+                </Link>
 
                 <button 
-                onClick={()=>addToCart(product)}
+                onClick={()=>addToCart(product,product.id)}
                 className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg">
                 Add to Cart
                 </button>

@@ -67,7 +67,7 @@ export default function Cart()
 
 
     return(
-        <section className="max-w-[1440px] flex flex-col lg:flex lg:flex-row justify-center md:justify-start mt-30 p-5 md:p-10 w-full">
+        <section className="max-w-[1440px] flex flex-col lg:flex lg:flex-row justify-center md:justify-start mt-40 p-5 md:p-10 w-full">
             
             <div className="flex flex-col lg:w-1/2 lg:ms-50">
             {/*Heading*/}

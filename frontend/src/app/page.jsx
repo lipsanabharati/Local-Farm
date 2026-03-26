@@ -5,6 +5,8 @@ import ProductsSection from "../components/productSection";
 import OurProcess from "../components/process";
 import Carousel from "@/components/carousel";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+
 
 
 export default function Home() {
@@ -12,6 +14,7 @@ export default function Home() {
       hidden: { x: -50, y: -50, scale: 0.2 },
       visible: { x: 0, y: 0, scale: 1 }
     };
+   
   return(
     <>
     {/*Hero section */}
@@ -28,7 +31,11 @@ export default function Home() {
         transition={{ duration: 2, ease: "easeOut" }}
         src="akabare.svg" className="absolute -top-[30%]"></motion.img>
 
-        <button className="absolute bottom-[10%] left-[25%] md:py-3 md:px-8 py-2 px-3 bg-[#609647] rounded-xl font-heading font-bold md:text-lg text-xs hover:cursor-pointer hover:bg-[#93C553]">Shop Now</button>
+        <Link
+        href={`/product/3`}
+        className="absolute bottom-[10%] left-[25%] md:py-3 md:px-8 py-2 px-3 bg-[#609647] rounded-xl font-heading font-bold md:text-lg text-xs hover:cursor-pointer hover:bg-[#93C553]">
+          Shop Now
+        </Link>
         </motion.div>
     </section>
 

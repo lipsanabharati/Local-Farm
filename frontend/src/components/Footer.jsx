@@ -33,7 +33,8 @@ export default function Footer()
                   </div>
 
                     {/* Location */} 
-                <div className="flex flex-col gap-1">    <div className="font-heading font-bold md:text-center text-start text-xl">
+                <div className="flex flex-col gap-1">    
+                 <div className="font-heading font-bold md:text-center text-start text-xl">
                         Location
                 </div> 
                     <div className="flex flex-col"> <p>Maharajgunj-03,Kathmandu</p> 

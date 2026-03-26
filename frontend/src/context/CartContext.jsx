@@ -1,5 +1,6 @@
 "use client";
 import React, {createContext,useState,useEffect} from 'react';
+import { useToast } from "@/context/ToastContext";
 
 //create context
 export const CartContext= createContext();
@@ -18,6 +19,9 @@ const CartProvider = ({children}) => {
   const[itemAmount,setItemAmount]=useState(0);
   const [total,setTotal]= useState(0);
 
+  //functions for toast notif
+   const { showSuccess, showFail } = useToast();
+
   // Save cart to localStorage whenever it changes
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -25,7 +29,7 @@ const CartProvider = ({children}) => {
     }
   }, [cart]);
 
-  //update total proce
+  //update total price
   useEffect(()=>{
     const total=cart.reduce((accumulator,currentItem)=>{
       return accumulator + currentItem.price * currentItem.amount;
@@ -47,45 +51,62 @@ const CartProvider = ({children}) => {
 
   //add to cart
   const addToCart=(product,id)=>{
-    const newItem={...product,amount:1,price:product.price||0};
-    //check if the item is already in the cart
-    const cartItem = cart.find(item=>{
-      return item.id ===id;
-    });
-    //if cat item is already in the cart
-    if(cartItem){
-      const newCart= [...cart].map(item=>{
-        if(item.id===id){
-          return {...item, amount:cartItem.amount+1};
-        }else{
-          return item;
-        }
+   try
+   {
+      const newItem={...product,amount:1,price:product.price||0};
+      //check if the item is already in the cart
+      const cartItem = cart.find(item=>{
+        return item.id ===id;
       });
-      setCart(newCart);
-    }else{
-      setCart([...cart,newItem]);
+      //if cart item is already in the cart
+      if(cartItem){
+        const newCart= [...cart].map(item=>{
+          if(item.id===id){
+            return {...item, amount:cartItem.amount+1};
+          }else{
+            return item;
+          }
+        });
+        setCart(newCart);
+      }else{
+        setCart([...cart,newItem]);
+      }
+      showSuccess("Added to cart");
+   }
+    catch(err)
+    {
+      showFail("Failed to add to cart");
     }
+    
   };
   
   //add to cart by number
   const addToCartNum=(product,id,amt)=>{
-    const newItem={...product,amount:amt,price:product.price||0};
-    //check if the item is already in the cart
-    const cartItem = cart.find(item=>{
-      return item.id ===id;
-    });
-    //if cart item is already in the cart
-    if(cartItem){
-      const newCart= [...cart].map(item=>{
-        if(item.id===id){
-          return {...item, amount:cartItem.amount+amt};
+    try
+    {
+          const newItem={...product,amount:amt,price:product.price||0};
+        //check if the item is already in the cart
+        const cartItem = cart.find(item=>{
+          return item.id ===id;
+        });
+        //if cart item is already in the cart
+        if(cartItem){
+          const newCart= [...cart].map(item=>{
+            if(item.id===id){
+              return {...item, amount:cartItem.amount+amt};
+            }else{
+              return item;
+            }
+          });
+          setCart(newCart);
         }else{
-          return item;
+          setCart([...cart,newItem]);
         }
-      });
-      setCart(newCart);
-    }else{
-      setCart([...cart,newItem]);
+        showSuccess("Added to cart");
+    }
+    catch(err)
+    {
+       showFail("Failed to add to cart");
     }
   };
 

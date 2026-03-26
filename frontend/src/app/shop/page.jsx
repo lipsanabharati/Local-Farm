@@ -24,7 +24,7 @@ export default function Shop()
                 <img src="drip.png" className="h-1/3 md:h-1/2 lg:h-110"></img>
             </motion.div>
 
-            <div className="flex flex-col -mt-30 lg:-mt-60">
+            <div className="flex flex-col -mt-10 lg:-mt-50">
                 <div className="flex flex-row ps-10 py-5 gap-3 md:px-15 lg:justify-center">
                     
                     <div className="flex flex-col items-start lg:gap-5 lg:ms-[20%] md:gap-3 gap-3">
