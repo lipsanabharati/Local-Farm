@@ -18,8 +18,20 @@ export default function ProductAdmin()
     const [quantity,setQuantity]=useState(0);
     const [price,setPrice]=useState(0);
     const [description,setDescription]=useState("");
-    const [photos,setPhotos]=useState([""]);
+    const [photos,setPhotos]=useState([]);
+    const [previewPhotos,setPreviewPhotos]=useState([]);
     const [update,setUpdate]=useState(false);
+
+    //pagination states
+    const [currentPage,setCurrentPage]=useState(1);
+    const itemsPerPage=5;
+
+    const indexOfLastItem = currentPage*itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem- itemsPerPage;
+
+    const currentProducts=products.slice(indexOfFirstItem,indexOfLastItem);
+
+    const totalPages= Math.ceil(products.length/itemsPerPage);
 
     useEffect(()=>{
         axios.get(`http://localhost:5000/api/products`)
@@ -48,10 +60,18 @@ export default function ProductAdmin()
 
     }
 
-    const handlePhotoChange= (index,value)=>{
-        const updated=[...photos];
-        updated[index]=value;
-        setPhotos(updated);
+    const handlePhotoChange= (e,index)=>{
+       const file=e.target.files[0];
+       if(!file) return;
+
+       const updatedPhotos=[...photos];
+       updatedPhotos[index]=file;
+       setPhotos(updatedPhotos);
+
+       //preview
+       const updatedPreview=[...previewPhotos];
+       updatedPreview[index]=URL.createObjectURL(file); //creates a url without passing to server
+       setPreviewPhotos(updatedPreview);
     }
 
     const addPhotoField=()=>{
@@ -66,28 +86,38 @@ export default function ProductAdmin()
     const handleSubmit= async (e)=>{
         e.preventDefault();
 
-        const cleanedPhotos=photos.filter(p=>p.trim() !== "");
+        //sending files must be done through form data
+        const formData= new FormData();
 
-        const data={
-            categoryId,
-            productName,
-            quantity,
-            price,
-            description,
-            photos:cleanedPhotos
-        }
+        formData.append("categoryId",categoryId);
+        formData.append("productName",productName);
+        formData.append("quantity",quantity);
+        formData.append("price",price);
+        formData.append("description",description);
+
+        photos.forEach((photo)=>{
+            if(photo){
+                formData.append("photos",photo);
+            }
+        })
 
         try{
-            await axios.put(`http://localhost:5000/api/products/${selected.id}`,data);
+            await axios.put(`http://localhost:5000/api/products/${selected.id}`,formData,
+                {
+                    headers:{
+                        "Content-Type":"multipart/form-data"
+                    },
+                }
+            )
+
             showSuccess("Updated Successfully");
-            console.log("Updated:",data);
             setShowForm(false);
             setUpdate(prev=>!prev);
         }
         catch(err)
         {
             console.log(err);
-            showFail("Update failed");
+            showFail("Update failed!");
         }
     };
 
@@ -111,7 +141,7 @@ export default function ProductAdmin()
               </thead>
               <tbody>
                 {
-                    products.map((product,index)=>(
+                    currentProducts.map((product,index)=>(
                         <tr key={index} className="border-1 border-gray-300">
                             <td>{product.id}</td>
                             <td className="ps-8">{product.categoryId}</td>
@@ -122,8 +152,8 @@ export default function ProductAdmin()
                             <td>{product.createdAt}</td>
                             <td>{product.updatedAt}</td>
                             <td>{product.photos?.map((image,index)=>(
-                                <div
-                                key={index}>{image.imagePath}</div>
+                                <img
+                                key={index} src={`http://localhost:5000/${image.imagePath}`} className="w-16 h-16 object-cover"></img>
                             ))}</td>
                             <td><button 
                             className="bg-[#609647] p-2 hover:bg-[#93C553] hover:cursor-pointer m-3 "
@@ -134,6 +164,22 @@ export default function ProductAdmin()
                 }
               </tbody>
             </table>
+
+            <div className="flex gap-2 mt-4">
+            {[...Array(totalPages)].map((_, index) => (
+                <button
+                key={index}
+                onClick={() => setCurrentPage(index + 1)}
+                className={`px-3 py-1 border rounded hover:cursor-pointer ${
+                    currentPage === index + 1
+                    ? "bg-[#609647] text-white"
+                    : "bg-white"
+                }`}
+                >
+                {index + 1}
+                </button>
+            ))}
+            </div>
 
             {
                 showForm && (
@@ -215,15 +261,23 @@ export default function ProductAdmin()
                         <div className="flex flex-col gap-2">
                         <label className="text-sm font-bold text-gray-700 ml-1">Photos</label>
 
-                        {photos.map((photo, index) => (
+                        {photos.map((_, index) => (
                             <div key={index} className="flex gap-2">
                             <input
-                                type="text"
-                                value={photo}
-                                onChange={(e) => handlePhotoChange(index, e.target.value)}
-                                placeholder={`Photo ${index + 1}`}
+                                type="file"
+                                accept="image/*"
+                                onChange={(e) => handlePhotoChange(e,index)}
                                 className="p-4 bg-gray-50 border border-gray-200 rounded-2xl w-full"
                             />
+
+                            {
+                                previewPhotos[index] && (
+                                    <img 
+                                    src={previewPhotos[index]}
+                                    className="w-16 h-16 rounded object-cover"
+                                    />
+                                )
+                            }
 
                             <button
                                 type="button"

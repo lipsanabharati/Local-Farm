@@ -4,7 +4,7 @@ import {useEffect,useState} from "react";
 import axios from "axios"
 import { useToast } from "@/context/ToastContext";
 
-export default function ProductAdmin()
+export default function BlogAdmin()
 {
     const [blogs,setBlogs]=useState([]);
     const [showForm,setShowForm]=useState(false);
@@ -17,13 +17,24 @@ export default function ProductAdmin()
     const [title,setTitle]=useState("");
     const [slug,setSlug]=useState("");
     const [introduction,setIntroduction]=useState("");
-    const [photos,setPhotos]=useState([""]);
-    const [update,setUpdate]=useState(false);
     const [content,setContent]=useState("");
-     const [author,setAuthor]=useState("");
+    const [photos,setPhotos]=useState([]);
+    const [previewPhotos,setPreviewPhotos]=useState([]);
+    const [update,setUpdate]=useState(false);
+
+    //pagination states
+    const [currentPage,setCurrentPage]=useState(1);
+    const itemsPerPage=5;
+
+    const indexOfLastItem = currentPage*itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem- itemsPerPage;
+
+    const currentBlogs=blogs.slice(indexOfFirstItem,indexOfLastItem);
+
+    const totalPages= Math.ceil(blogs.length/itemsPerPage);
 
     useEffect(()=>{
-        axios.get(`http://localhost:5000/api/blogslp`)
+        axios.get(`http://localhost:5000/api/blogs`)
         .then((res)=>{
             setBlogs(res.data);
             console.log(res.data);
@@ -39,20 +50,27 @@ export default function ProductAdmin()
         setSelected(item);
 
         //prefilling form
-        setId(item.id);
         setTitle(item.title);
         setSlug(item.slug);
         setIntroduction(item.introduction);
-        setContent(item.content? item.content :"");
-        setAuthor(item.author? item.author :"");
+        setContent(item.content);
+
         setPhotos(item.photos?.map(p=>p.imagePath)|| [""]);
 
     }
 
-    const handlePhotoChange= (index,value)=>{
-        const updated=[...photos];
-        updated[index]=value;
-        setPhotos(updated);
+    const handlePhotoChange= (e,index)=>{
+       const file=e.target.files[0];
+       if(!file) return;
+
+       const updatedPhotos=[...photos];
+       updatedPhotos[index]=file;
+       setPhotos(updatedPhotos);
+
+       //preview
+       const updatedPreview=[...previewPhotos];
+       updatedPreview[index]=URL.createObjectURL(file); //creates a url without passing to server
+       setPreviewPhotos(updatedPreview);
     }
 
     const addPhotoField=()=>{
@@ -67,28 +85,38 @@ export default function ProductAdmin()
     const handleSubmit= async (e)=>{
         e.preventDefault();
 
-        const cleanedPhotos=photos.filter(p=>p.trim() !== "");
+        //sending files must be done through form data
+        const formData= new FormData();
 
-        const data={
-            id,
-            title,
-            slug,
-            introduction,
-            content,
-            photos:cleanedPhotos
-        }
+        formData.append("title",title);
+        formData.append("slug",slug);
+        formData.append("introduction",introduction);
+        formData.append("content",content);
+        
+
+        photos.forEach((photo)=>{
+            if(photo){
+                formData.append("photos",photo);
+            }
+        })
 
         try{
-            await axios.put(`http://localhost:5000/api/blogs/${selected.slug}`,data);
+            await axios.put(`http://localhost:5000/api/blogs/${selected.id}`,formData,
+                {
+                    headers:{
+                        "Content-Type":"multipart/form-data"
+                    },
+                }
+            )
+
             showSuccess("Updated Successfully");
-            console.log("Updated:",data);
             setShowForm(false);
             setUpdate(prev=>!prev);
         }
         catch(err)
         {
             console.log(err);
-            showFail("Update failed");
+            showFail("Update failed!");
         }
     };
 
@@ -96,32 +124,32 @@ export default function ProductAdmin()
     return(
         <section className="mt-20 mb-10 p-10">
             <table className="border-1 border-gray-300">
+             <thead>
                 <tr className="border-1 border-gray-300">
                     <th>Id</th>
                     <th>Title</th>
-                    <th>Slug</th>
-                    <th className="p-2">Introduction</th>
-                    <th className="p-2 overflow-hidden">Content</th>
-                    <th>Author</th>
+                    <th className="break-words max-w-[200px]">Slug</th>
+                    <th className="break-words max-w-[200px]">Introduction</th>
+                    <th className="break-words max-w-[200px]">Content</th>
                     <th>Created At</th>
-                    <th>Updated At</th>
                     <th>Photos</th>
                     <th>Update</th>
                 </tr>
+              </thead>
+              <tbody>
                 {
-                    blogs.map((blog,index)=>(
+                    currentBlogs.map((blog,index)=>(
                         <tr key={index} className="border-1 border-gray-300">
                             <td>{blog.id}</td>
-                            <td className="ps-8">{blog.title}</td>
-                            <td>{blog.slug}</td>
-                            <td className="ps-8">{blog.introduction}</td>
-                            <td className="overflow-hidden">{blog.content}</td>
-                            <td>{blog.author}</td>
+                            
+                            <td>{blog.title}</td>
+                            <td className="break-words max-w-[200px]">{blog.slug}</td>
+                            <td className="break-words max-w-[200px]">{blog.introduction}</td>
+                            <td className="break-words max-w-[200px]">{blog.content}</td>
                             <td>{blog.createdAt}</td>
-                            <td>{blog.updatedAt}</td>
                             <td>{blog.photos?.map((image,index)=>(
-                                <div
-                                key={index}>{image.imagePath}</div>
+                                <img
+                                key={index} src={`http://localhost:5000/${image.imagePath}`} className="w-16 h-16 object-cover"></img>
                             ))}</td>
                             <td><button 
                             className="bg-[#609647] p-2 hover:bg-[#93C553] hover:cursor-pointer m-3 "
@@ -130,7 +158,24 @@ export default function ProductAdmin()
 
                     ))
                 }
+              </tbody>
             </table>
+
+            <div className="flex gap-2 mt-4">
+            {[...Array(totalPages)].map((_, index) => (
+                <button
+                key={index}
+                onClick={() => setCurrentPage(index + 1)}
+                className={`px-3 py-1 border rounded hover:cursor-pointer ${
+                    currentPage === index + 1
+                    ? "bg-[#609647] text-white"
+                    : "bg-white"
+                }`}
+                >
+                {index + 1}
+                </button>
+            ))}
+            </div>
 
             {
                 showForm && (
@@ -148,63 +193,51 @@ export default function ProductAdmin()
                             </button>
 
                     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-                        <div className="flex flex-col gap-1.5">
-                            <label  className="text-sm font-bold text-gray-700 ml-1">Category ID</label>
-                            <input 
-                                type="number" 
-                                id='category' 
-                                className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#93C553]
-                                 focus:bg-white outline-none transition-all text-gray-800"
-                                value={id} 
-                                onChange={(e) => setId(e.target.value)} 
-                                required 
-                            />
-                        </div>
 
                         <div className="flex flex-col gap-1.5">
-                            <label className="text-sm font-bold text-gray-700 ml-1">Product Name</label>
+                            <label className="text-sm font-bold text-gray-700 ml-1">Title</label>
                             <input 
                                 type="text" 
-                                id='productName' 
+                                id='title' 
                                 className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#93C553] focus:bg-white outline-none transition-all text-gray-800"
-                                value={productName} 
-                                onChange={(e) => setProductName(e.target.value)} 
+                                value={title} 
+                                onChange={(e) => setTitle(e.target.value)} 
                                 required 
                             />
                         </div>
 
                         <div className="flex flex-col gap-1.5">
-                            <label className="text-sm font-bold text-gray-700 ml-1">Quantity</label>
-                            <input 
-                                type="number" 
-                                id='quantity' 
-                                className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#93C553] focus:bg-white outline-none transition-all text-gray-800"
-                                value={quantity} 
-                                onChange={(e) => setQuantity(e.target.value)} 
-                                required 
-                            />
-                        </div>
-
-                        <div className="flex flex-col gap-1.5">
-                            <label className="text-sm font-bold text-gray-700 ml-1">Price</label>
-                            <input 
-                                type="number" 
-                                id='price' 
-                                className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#93C553] focus:bg-white outline-none transition-all text-gray-800"
-                                value={price} 
-                                onChange={(e) => setPrice(e.target.value)} 
-                                required 
-                            />
-                        </div>
-
-                        <div className="flex flex-col gap-1.5">
-                            <label className="text-sm font-bold text-gray-700 ml-1">Description</label>
+                            <label className="text-sm font-bold text-gray-700 ml-1">Slug</label>
                             <input 
                                 type="text" 
-                                id='description' 
+                                id='slug' 
                                 className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#93C553] focus:bg-white outline-none transition-all text-gray-800"
-                                value={description} 
-                                onChange={(e) => setDescription(e.target.value)} 
+                                value={slug} 
+                                onChange={(e) => setSlug(e.target.value)} 
+                                required 
+                            />
+                        </div>
+
+                        <div className="flex flex-col gap-1.5">
+                            <label className="text-sm font-bold text-gray-700 ml-1">Introduction</label>
+                            <input 
+                                type="text" 
+                                id='introduction' 
+                                className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#93C553] focus:bg-white outline-none transition-all text-gray-800 break-words max-w-[500px]"
+                                value={introduction} 
+                                onChange={(e) => setIntroduction(e.target.value)} 
+                                required 
+                            />
+                        </div>
+
+                        <div className="flex flex-col gap-1.5">
+                            <label className="text-sm font-bold text-gray-700 ml-1">Content</label>
+                            <input 
+                                type="text" 
+                                id='content' 
+                                className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#93C553] focus:bg-white outline-none transition-all text-gray-800 break-words max-w-[500px]"
+                                value={content} 
+                                onChange={(e) => setContent(e.target.value)} 
                                 required 
                             />
                         </div>
@@ -212,15 +245,23 @@ export default function ProductAdmin()
                         <div className="flex flex-col gap-2">
                         <label className="text-sm font-bold text-gray-700 ml-1">Photos</label>
 
-                        {photos.map((photo, index) => (
+                        {photos.map((_, index) => (
                             <div key={index} className="flex gap-2">
                             <input
-                                type="text"
-                                value={photo}
-                                onChange={(e) => handlePhotoChange(index, e.target.value)}
-                                placeholder={`Photo ${index + 1}`}
+                                type="file"
+                                accept="image/*"
+                                onChange={(e) => handlePhotoChange(e,index)}
                                 className="p-4 bg-gray-50 border border-gray-200 rounded-2xl w-full"
                             />
+
+                            {
+                                previewPhotos[index] && (
+                                    <img 
+                                    src={previewPhotos[index]}
+                                    className="w-16 h-16 rounded object-cover"
+                                    />
+                                )
+                            }
 
                             <button
                                 type="button"

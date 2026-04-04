@@ -4,16 +4,22 @@ import {useEffect,useState} from "react";
 import {useRouter} from "next/navigation";
 import ProductAdmin from "@/components/productAdmin"
 import EventAdmin from "@/components/eventAdmin";
+import BlogAdmin from "@/components/blogAdmin";
+import OrderAdmin from "@/components/orderAdmin";
 
 export default function Admin()
 {
     const router= useRouter();
+    const [authorized,setAuthorized]=useState(false);
 
      useEffect(() => {
         const token = localStorage.getItem("token");
 
         if (!token) {
         router.push("/login");
+        }
+        else{
+            setAuthorized(true);
         }
     }, []);
 
@@ -27,6 +33,10 @@ export default function Admin()
     ];
 
 
+    if(!authorized)
+    {
+        return <div>Checking Authentication...</div>;
+    }
     return(
        <section className="p-6 max-w-[1440px] mt-40">
             {/*Tabs Header*/}
@@ -50,9 +60,11 @@ export default function Admin()
                 </div>)}
             {activeTab === "orders" && 
             <div>
-               
+               <OrderAdmin />
             </div>}
-            {activeTab === "blog" && <div></div>}
+            {activeTab === "blog" && <div>
+                <BlogAdmin />
+                </div>}
             {activeTab === "event" && <div>
                  <EventAdmin />
                 </div>}
