@@ -3,11 +3,13 @@
 import {useEffect,useState} from "react";
 import axios from "axios"
 import { useToast } from "@/context/ToastContext";
+import { div } from "framer-motion/client";
 
 export default function ProductAdmin()
 {
     const [products,setProducts]=useState([]);
     const [showForm,setShowForm]=useState(false);
+    const [showAddForm,setShowAddForm]=useState(false);
     const [selected,setSelected]=useState(0);
 
     const {showSuccess,showFail}=useToast();
@@ -21,6 +23,16 @@ export default function ProductAdmin()
     const [photos,setPhotos]=useState([]);
     const [previewPhotos,setPreviewPhotos]=useState([]);
     const [update,setUpdate]=useState(false);
+
+    //add form data(adding api)
+    const [addCategoryId,setAddCategoryId]=useState(0);
+    const [addProductName,setAddProductName]=useState("");
+    const [addQuantity,setAddQuantity]=useState(0);
+    const [addPrice,setAddPrice]=useState(0);
+    const [addDescription,setAddDescription]=useState("");
+    const [addPhotos,setAddPhotos]=useState([]);
+    const [addPreviewPhotos,setAddPreviewPhotos]=useState([]);
+
 
     //pagination states
     const [currentPage,setCurrentPage]=useState(1);
@@ -74,13 +86,36 @@ export default function ProductAdmin()
        setPreviewPhotos(updatedPreview);
     }
 
+     const handleAddPhotoChange= (e,index)=>{
+       const file=e.target.files[0];
+       if(!file) return;
+
+       const updatedPhotos=[...addPhotos];
+       updatedPhotos[index]=file;
+       setAddPhotos(updatedPhotos);
+
+       //preview
+       const updatedPreview=[...addPreviewPhotos];
+       updatedPreview[index]=URL.createObjectURL(file); //creates a url without passing to server
+       setAddPreviewPhotos(updatedPreview);
+    }
+
     const addPhotoField=()=>{
         setPhotos([...photos,""]);
+    }
+
+     const addAddPhotoField=()=>{
+        setAddPhotos([...addPhotos,""]);
     }
 
     const removePhotoField=(index)=>{
         const updated=photos.filter((_,i)=>i !== index);
         setPhotos(updated);
+    }
+
+     const addRemovePhotoField=(index)=>{
+        const updated=addPhotos.filter((_,i)=>i !== index);
+        setAddPhotos(updated);
     }
 
     const handleSubmit= async (e)=>{
@@ -120,6 +155,49 @@ export default function ProductAdmin()
             showFail("Update failed!");
         }
     };
+
+    const addHandleSubmit= async (e)=>{
+        e.preventDefault();
+
+        //sending files must be done through form data
+        const formData= new FormData();
+
+        formData.append("categoryId",addCategoryId);
+        formData.append("productName",addProductName);
+        formData.append("quantity",addQuantity);
+        formData.append("price",addPrice);
+        formData.append("description",addDescription);
+
+        addPhotos.forEach((photo)=>{
+            if(photo){
+                formData.append("photos",photo);
+            }
+        })
+
+        try{
+            await axios.post(`http://localhost:5000/api/products`,formData,
+                {
+                    headers:{
+                        "Content-Type":"multipart/form-data"
+                    },
+                }
+            )
+
+            showSuccess("Updated Successfully");
+            setShowForm(false);
+            setUpdate(prev=>!prev);
+        }
+        catch(err)
+        {
+            console.log(err);
+            showFail("Update failed!");
+        }
+    };
+
+
+    const handleAddClick=(item)=>{
+        setShowAddForm(true);
+    }
 
 
     return(
@@ -165,7 +243,8 @@ export default function ProductAdmin()
               </tbody>
             </table>
 
-            <div className="flex gap-2 mt-4">
+            <div className="flex gap-10">
+                <div className="flex gap-2 mt-4">
             {[...Array(totalPages)].map((_, index) => (
                 <button
                 key={index}
@@ -179,6 +258,11 @@ export default function ProductAdmin()
                 {index + 1}
                 </button>
             ))}
+            </div>
+
+            <div>
+                <button className="mt-4  bg-[#609647] text-white py-2 px-2 rounded-2xl font-bold hover:bg-[#93C553] hover:cursor-pointer transition-all shadow-lg shadow-indigo-200 active:scale-[0.98]" onClick={handleAddClick}>Add Product</button>
+            </div>                 
             </div>
 
             {
@@ -311,6 +395,139 @@ export default function ProductAdmin()
                 </div>
                 )
             }
+
+             {
+                showAddForm && (
+
+                    <div className="fixed inset-0 bg-black/40 flex justify-center items-center z-50">
+    
+                            <div className="bg-white p-8 rounded-2xl w-[500px] max-h-[90vh] overflow-y-auto shadow-2xl">
+                            
+                            {/* Close Button */}
+                            <button
+                                onClick={() => setShowAddForm(false)}
+                                className="float-right text-red-500 font-bold"
+                            >
+                                X
+                            </button>
+
+                    <form onSubmit={addHandleSubmit} className="flex flex-col gap-5">
+                        <div className="flex flex-col gap-1.5">
+                            <label  className="text-sm font-bold text-gray-700 ml-1">Category ID</label>
+                            <input 
+                                type="number" 
+                                id='category' 
+                                className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#93C553]
+                                 focus:bg-white outline-none transition-all text-gray-800"
+                                value={addCategoryId} 
+                                onChange={(e) => setAddCategoryId(e.target.value)} 
+                                required 
+                            />
+                        </div>
+
+                        <div className="flex flex-col gap-1.5">
+                            <label className="text-sm font-bold text-gray-700 ml-1">Product Name</label>
+                            <input 
+                                type="text" 
+                                id='productName' 
+                                className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#93C553] focus:bg-white outline-none transition-all text-gray-800"
+                                value={addProductName} 
+                                onChange={(e) => setAddProductName(e.target.value)} 
+                                required 
+                            />
+                        </div>
+
+                        <div className="flex flex-col gap-1.5">
+                            <label className="text-sm font-bold text-gray-700 ml-1">Quantity</label>
+                            <input 
+                                type="number" 
+                                id='quantity' 
+                                className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#93C553] focus:bg-white outline-none transition-all text-gray-800"
+                                value={addQuantity} 
+                                onChange={(e) => setAddQuantity(e.target.value)} 
+                                required 
+                            />
+                        </div>
+
+                        <div className="flex flex-col gap-1.5">
+                            <label className="text-sm font-bold text-gray-700 ml-1">Price</label>
+                            <input 
+                                type="number" 
+                                id='price' 
+                                className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#93C553] focus:bg-white outline-none transition-all text-gray-800"
+                                value={addPrice} 
+                                onChange={(e) => setAddPrice(e.target.value)} 
+                                required 
+                            />
+                        </div>
+
+                        <div className="flex flex-col gap-1.5">
+                            <label className="text-sm font-bold text-gray-700 ml-1">Description</label>
+                            <input 
+                                type="text" 
+                                id='description' 
+                                className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#93C553] focus:bg-white outline-none transition-all text-gray-800"
+                                value={addDescription} 
+                                onChange={(e) => setAddDescription(e.target.value)} 
+                                required 
+                            />
+                        </div>
+
+                        <div className="flex flex-col gap-2">
+                        <label className="text-sm font-bold text-gray-700 ml-1">Photos</label>
+
+                        {addPhotos.map((_, index) => (
+                            <div key={index} className="flex gap-2">
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={(e) => handleAddPhotoChange(e,index)}
+                                className="p-4 bg-gray-50 border border-gray-200 rounded-2xl w-full"
+                            />
+
+                            {
+                                addPreviewPhotos[index] && (
+                                    <img 
+                                    src={addPreviewPhotos[index]}
+                                    className="w-16 h-16 rounded object-cover"
+                                    />
+                                )
+                            }
+
+                            <button
+                                type="button"
+                                onClick={() => addRemovePhotoField(index)}
+                                className="bg-red-400 px-3 rounded-xl"
+                            >
+                                X
+                            </button>
+                            </div>
+                        ))}
+
+                        <button
+                            type="button"
+                            onClick={addAddPhotoField}
+                            className="bg-gray-300 p-2 rounded-xl"
+                        >
+                            + Add Photo
+                        </button>
+                        </div>
+
+
+                        <button 
+                            type='submit' 
+                            className="mt-4  bg-[#609647] text-white py-4 rounded-2xl font-bold hover:bg-[#93C553] hover:cursor-pointer transition-all shadow-lg shadow-indigo-200 active:scale-[0.98]"
+                        >
+                            add
+                        </button>
+                    </form>
+
+                    </div>
+                </div>
+                )
+            }
+
+            
         </section>
     )
 }

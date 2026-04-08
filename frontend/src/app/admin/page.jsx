@@ -6,6 +6,8 @@ import ProductAdmin from "@/components/productAdmin"
 import EventAdmin from "@/components/eventAdmin";
 import BlogAdmin from "@/components/blogAdmin";
 import OrderAdmin from "@/components/orderAdmin";
+import ContactAdmin from "@/components/contactAdmin";
+import CategoryAdmin from "@/components/categoryAdmin";
 
 export default function Admin()
 {
@@ -30,6 +32,8 @@ export default function Admin()
         {id:"orders",label:"Orders"},
         {id:"blog",label:"Blog"},
         {id:"event",label:"Event"},
+        {id:"contact",label:"Contact"},
+         {id:"category",label:"Category"}
     ];
 
 
@@ -67,6 +71,12 @@ export default function Admin()
                 </div>}
             {activeTab === "event" && <div>
                  <EventAdmin />
+                </div>}
+             {activeTab === "contact" && <div>
+                 <ContactAdmin />
+                </div>}
+                 {activeTab === "category" && <div>
+                 <CategoryAdmin />
                 </div>}
             </div>
        </section>

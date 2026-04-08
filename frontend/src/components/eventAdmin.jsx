@@ -18,8 +18,20 @@ export default function EventAdmin()
     const [eventDescription,setEventDescription]=useState("");
     const [isupcoming,setIsupcoming]=useState(false);
     const [date,setDate]=useState("");
-    const [photos,setPhotos]=useState([""]);
+    const [photos,setPhotos]=useState(null);
+     const [previewPhotos,setPreviewPhotos]=useState([]);
     const [update,setUpdate]=useState(false);
+
+    //pagination states
+        const [currentPage,setCurrentPage]=useState(1);
+        const itemsPerPage=5;
+    
+        const indexOfLastItem = currentPage*itemsPerPage;
+        const indexOfFirstItem = indexOfLastItem- itemsPerPage;
+    
+        const currentEvents=events.slice(indexOfFirstItem,indexOfLastItem);
+    
+        const totalPages= Math.ceil(events.length/itemsPerPage);
 
     useEffect(()=>{
         axios.get(`http://localhost:5000/api/events`)
@@ -44,50 +56,67 @@ export default function EventAdmin()
         setEventDescription(item.eventDescription);
         setDate(item.date.slice(0, 10));
 
-        setPhotos(item.photos?.map(p=>p.imagePath)|| [""]);
+        setPhotos(item.photos[0].imagePath);
 
     }
 
-    const handlePhotoChange= (index,value)=>{
-        const updated=[...photos];
-        updated[index]=value;
-        setPhotos(updated);
+   const handlePhotoChange=()=>{
+       const file=e.target.files[0];
+       if(!file) return;
+
+       
+       setPhotos(file);
+
+       //preview
+        //creates a url without passing to server
+       setPreviewPhotos([URL.createObjectURL(file)]);
     }
 
-    const addPhotoField=()=>{
-        setPhotos([...photos,""]);
-    }
 
-    const removePhotoField=(index)=>{
-        const updated=photos.filter((_,i)=>i !== index);
-        setPhotos(updated);
-    }
+    // const addPhotoField=()=>{
+    //     setPhotos([...photos,""]);
+    // }
+
+    // const removePhotoField=(index)=>{
+    //     const updated=photos.filter((_,i)=>i !== index);
+    //     setPhotos(updated);
+    // }
 
     const handleSubmit= async (e)=>{
         e.preventDefault();
 
-        const cleanedPhotos=photos.filter(p=>p.trim() !== "");
+        //sending files must be done through form data
+        const formData= new FormData();
 
-        const data={
-            id,
-            eventTitle,
-            eventDescription,
-            isupcoming,
-            date,
-            photos:cleanedPhotos
-        }
+        formData.append("eventTitle",eventTitle);
+        console.log(typeof(eventTitle));
+        formData.append("eventDescription",eventDescription);
+        formData.append("date",date);
+        formData.append("isUpcoming",isupcoming);
+        
+
+       if(photos){
+        formData.append("image",photos[0].imagePath);
+       }
+       
 
         try{
-            await axios.put(`http://localhost:5000/api/events/${selected.id}`,data);
+            await axios.put(`http://localhost:5000/api/events/${selected.id}`,formData,
+                {
+                    headers:{
+                        "Content-Type":"multipart/form-data"
+                    },
+                }
+            )
+
             showSuccess("Updated Successfully");
-            console.log("Updated:",data);
             setShowForm(false);
             setUpdate(prev=>!prev);
         }
         catch(err)
         {
             console.log(err);
-            showFail("Update failed");
+            showFail("Update failed!");
         }
     };
 
@@ -111,7 +140,7 @@ export default function EventAdmin()
               </thead>
               <tbody>
                 {
-                    events.map((event,index)=> {
+                    currentEvents.map((event,index)=> {
                         return (
                         <tr key={index} className="border-1 border-gray-300">
                             <td>{event.id}</td>
@@ -121,10 +150,10 @@ export default function EventAdmin()
                             <td>{event.date}</td>
                             <td>{event.createdAt}</td>
                             <td>{event.updatedAt}</td>
-                            <td>{event.photos?.map((image,index)=>(
-                                <p
-                                key={index}>{image.imagePath}</p>
-                            ))}</td>
+                             <td>
+                                <img
+                                key={index} src={`http://localhost:5000/${event.photos[0].imagePath}`} className="w-16 h-16 object-cover"></img>
+                            </td>
                             <td><button 
                             className="bg-[#609647] p-2 hover:bg-[#93C553] hover:cursor-pointer m-3 "
                             onClick={()=>handleUpdateClick(event)}>Update</button></td>
@@ -134,6 +163,22 @@ export default function EventAdmin()
                 }
                 </tbody>
             </table>
+
+             <div className="flex gap-2 mt-4">
+            {[...Array(totalPages)].map((_, index) => (
+                <button
+                key={index}
+                onClick={() => setCurrentPage(index + 1)}
+                className={`px-3 py-1 border rounded hover:cursor-pointer ${
+                    currentPage === index + 1
+                    ? "bg-[#609647] text-white"
+                    : "bg-white"
+                }`}
+                >
+                {index + 1}
+                </button>
+            ))}
+            </div>
 
             {
                 showForm && (
@@ -201,37 +246,44 @@ export default function EventAdmin()
                         </div>
 
 
-                        <div className="flex flex-col gap-2">
+                       <div className="flex flex-col gap-2">
                         <label className="text-sm font-bold text-gray-700 ml-1">Photos</label>
 
-                        {photos.map((photo, index) => (
-                            <div key={index} className="flex gap-2">
-                            <input
-                                type="text"
-                                value={photo}
-                                onChange={(e) => handlePhotoChange(index, e.target.value)}
-                                placeholder={`Photo ${index + 1}`}
+                        <input
+                                type="file"
+                                accept="image/*"
+                                onChange={handlePhotoChange}
                                 className="p-4 bg-gray-50 border border-gray-200 rounded-2xl w-full"
                             />
 
-                            <button
+                            {
+                                previewPhotos[0] && (
+                                    <img 
+                                    src={previewPhotos[0]}
+                                    className="w-16 h-16 rounded object-cover"
+                                    />
+                                )
+                            }
+
+                            {/* <button
                                 type="button"
                                 onClick={() => removePhotoField(index)}
                                 className="bg-red-400 px-3 rounded-xl"
                             >
                                 X
-                            </button>
-                            </div>
-                        ))}
+                            </button> */}
+                            
+                       
 
-                        <button
+                        {/* <button
                             type="button"
                             onClick={addPhotoField}
                             className="bg-gray-300 p-2 rounded-xl"
                         >
                             + Add Photo
-                        </button>
+                        </button> */}
                         </div>
+
 
 
                         <button 

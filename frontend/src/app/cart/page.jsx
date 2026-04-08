@@ -3,6 +3,7 @@ import CartCard from "@/components/cartCard"
 import { useContext, useState } from "react"
 import { CartContext } from "@/context/CartContext"
 import axios from "axios"
+import { useToast } from "@/context/ToastContext"
 
 export default function Cart()
  {
@@ -21,13 +22,14 @@ export default function Cart()
     const [success,setSuccess]=useState("");
     const [error,setError]=useState("");
 
-
+    //toast
+    const {showSuccess,showFail}=useToast();
    
 
     //handle form submission
     const handleCheckout=async ()=>{
          if (!customerName || !customerAddress || !customerPhone || !customerEmail) {
-            alert("Please fill all required fields");
+            showFail("Please fill all required fields");
             return;
             }
 

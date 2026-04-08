@@ -10,36 +10,58 @@ import Link from "next/link";
 export default function ProductForShop() {
   
 
-  const categories = [
-    {
-      name:"All",
-      id:0
-    },
-    {
-      name:"Honey",
-      id:1
-    },
-    {
-      name:"Shilajit",
-      id:2
-    },
-    {
-      name:"Tea",
-      id:3
-    },
-    {
-      name:"Pickles",
-      id:4
-    }
-  ]
-    
-  const [activeCategory, setActiveCategory] = useState(categories[0]);
+  // const categories = [
+  //   {
+  //     name:"All",
+  //     id:0
+  //   },
+  //   {
+  //     name:"Honey",
+  //     id:1
+  //   },
+  //   {
+  //     name:"Shilajit",
+  //     id:2
+  //   },
+  //   {
+  //     name:"Tea",
+  //     id:3
+  //   },
+  //   {
+  //     name:"Pickles",
+  //     id:4
+  //   }
+  // ]
+  const [categories,setCategories]=useState([]);
+  const [activeCategory, setActiveCategory] = useState(null);
   const [products,setProducts]=useState([]);
   const [message,setMessage]=useState("");
   
+  useEffect(() => {
+  const fetchCategories = async () => {
+    try {
+      const res = await axios.get(`http://localhost:5000/api/product-categories`);
+      setCategories(res.data);
+      console.log(res.data);
+      // set default category here
+      setActiveCategory(res.data[0]);
+    } catch (err) {
+      setCategories([]);
+      console.log(err);
+    }
+  };
+
   
+
+  fetchCategories();
+
+}, []);
+ 
  
   useEffect(() => {
+
+    if (!activeCategory)
+    return;
 
   const url =
     activeCategory.id > 0
@@ -65,7 +87,7 @@ export default function ProductForShop() {
 }, [activeCategory]);
 
   
-
+console.log(categories)
   
 
   const {cart,addToCart,removeFromCart,clearCart,increaseAmount,decreaseAmount,itemAmount,total}=useContext(CartContext);
@@ -86,12 +108,12 @@ export default function ProductForShop() {
               key={category.id}
               onClick={() => setActiveCategory(category)}
               className={`pb-2 p-1 transition-all duration-300 hover:cursor-pointer text-lg ${
-                activeCategory.id === category.id
+                activeCategory?.id === category.id
                   ? "text-[#93C553] border-b-2 border-black bg-[#EDF2E0]"
                   : "text-gray-600 hover:text-[#93C553]"
               }`}
             >
-              {category.name}
+              {category.categoryName}
             </button>
           ))}
         </div>

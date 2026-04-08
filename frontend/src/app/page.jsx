@@ -6,6 +6,9 @@ import OurProcess from "../components/process";
 import Carousel from "@/components/carousel";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useToast } from "@/context/ToastContext";
+import axios from "axios";
+import emailjs from "@emailjs/browser"
 
 
 
@@ -14,6 +17,56 @@ export default function Home() {
       hidden: { x: -50, y: -50, scale: 0.2 },
       visible: { x: 0, y: 0, scale: 1 }
     };
+
+    const [name,setName]=useState("");
+    const [email,setEmail]=useState("");
+    const [message,setMessage]=useState("");
+    const [followup,setFollowUp]=useState(false);
+
+    const {showSuccess,showFail}=useToast();
+
+    const handleSubmit= async (e)=>{
+
+      e.preventDefault();
+
+      if(!name||!email||!message)
+      {
+        showFail("All fields are required.")
+        return;
+      }
+      const contactData={
+        name,
+        email,
+        message,
+        followup
+      }
+
+      const templateParams={
+        name,
+        email,
+        message,
+        followup:followup? "Yes":"No"
+      }
+
+      try{
+        await axios.post(`http://localhost:5000/api/contact`,contactData)
+       
+
+        await emailjs.send(
+          "service_uaepcta",
+          "template_lu0jwgx",
+          templateParams,
+          "giAR8ssqYinULRtBK"
+        )
+
+        showSuccess("Message Forwarded!")
+      }
+      catch(err)
+      {
+        console.log(err);
+        showFail("Message failed to send.")
+      }
+    }
    
   return(
     <>
@@ -299,13 +352,16 @@ export default function Home() {
           Contact Us!
         </h2>
 
-        <form className="flex flex-col lg:gap-4 gap-2">
+        <form className="flex flex-col lg:gap-4 gap-2"
+        onSubmit={handleSubmit}>
 
           {/* Full Name */}
           <div className="flex flex-col gap-2">
             <label className="text-black">Full Name</label>
             <input
               type="text"
+              value={name}
+              onChange={(e)=>setName(e.target.value)}
               className="p-3 rounded-lg bg-white/60 text-black outline-none focus:ring-2 focus:ring-white"
             />
           </div>
@@ -315,6 +371,8 @@ export default function Home() {
             <label className="text-black">Email</label>
             <input
               type="email"
+              value={email}
+              onChange={(e)=>setEmail(e.target.value)}
               className="p-3 rounded-lg bg-white/60 text-black outline-none focus:ring-2 focus:ring-white"
             />
           </div>
@@ -324,6 +382,8 @@ export default function Home() {
             <label className="text-black">Message</label>
             <textarea
               rows="4"
+              value={message}
+              onChange={(e)=>setMessage(e.target.value)}
               className="p-3 rounded-lg bg-white/80 text-black outline-none focus:ring-2 focus:ring-white resize-none"
             ></textarea>
           </div>
