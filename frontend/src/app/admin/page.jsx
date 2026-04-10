@@ -8,24 +8,37 @@ import BlogAdmin from "@/components/blogAdmin";
 import OrderAdmin from "@/components/orderAdmin";
 import ContactAdmin from "@/components/contactAdmin";
 import CategoryAdmin from "@/components/categoryAdmin";
+import { useAuth } from "@/context/AuthContext";
 
 export default function Admin()
-{
+{  
     const router= useRouter();
-    const [authorized,setAuthorized]=useState(false);
-
-     useEffect(() => {
-        const token = localStorage.getItem("token");
-
-        if (!token) {
-        router.push("/login");
-        }
-        else{
-            setAuthorized(true);
-        }
-    }, []);
-
+    const {isAuthenticated,loading}=useAuth();
     const [activeTab,setActiveTab]=useState("products");
+      console.log("TOKEN:", localStorage.getItem("token"));
+    console.log("isAuthenticated:", isAuthenticated);
+    console.log("loading:", loading);
+
+
+   useEffect(()=>{
+     if(!loading && !isAuthenticated)
+    {
+        router.push("/login")
+    }
+    
+   },[loading,isAuthenticated])
+
+    if(loading)
+    {
+        return <div>Checking Authentication...</div>;
+    }
+
+   
+    if(!isAuthenticated){
+        return null;
+    }
+
+   
 
     const tabs=[
         {id:"products",label:"Products"},
@@ -36,13 +49,10 @@ export default function Admin()
          {id:"category",label:"Category"}
     ];
 
-
-    if(!authorized)
-    {
-        return <div>Checking Authentication...</div>;
-    }
+   
+   
     return(
-       <section className="p-6 max-w-[1440px] mt-40">
+       <section className="p-6 max-w-[1440px] mt-40 flex flex-col items-center">
             {/*Tabs Header*/}
             <div className="flex flex-row gap-5">
                     {

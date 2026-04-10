@@ -3,7 +3,7 @@
 import {useEffect,useState} from "react";
 import axios from "axios"
 import { useToast } from "@/context/ToastContext";
-import { div } from "framer-motion/client";
+
 
 export default function ProductAdmin()
 {
@@ -32,6 +32,10 @@ export default function ProductAdmin()
     const [addDescription,setAddDescription]=useState("");
     const [addPhotos,setAddPhotos]=useState([]);
     const [addPreviewPhotos,setAddPreviewPhotos]=useState([]);
+
+    //delete states
+    const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+    const [deleteId, setDeleteId] = useState(null);
 
 
     //pagination states
@@ -71,6 +75,32 @@ export default function ProductAdmin()
         setPhotos(item.photos?.map(p=>p.imagePath)|| [""]);
 
     }
+
+    const handleAddClick=()=>{
+        setShowAddForm(true);
+    }
+
+    const handleDeleteClick = (id) => {
+    setDeleteId(id);
+    setShowDeleteDialog(true);
+    };
+    
+    const confirmDelete = async () => {
+    try {
+        await axios.delete(`http://localhost:5000/api/products/${deleteId}`);
+        showSuccess("Deleted Successfully");
+        setShowDeleteDialog(false);
+        setUpdate(prev => !prev);
+            } catch (err) {
+                console.log(err);
+                showFail("Delete failed!");
+            }
+        };
+
+        const cancelDelete = () => {
+            setShowDeleteDialog(false);
+            setDeleteId(null);
+        };
 
     const handlePhotoChange= (e,index)=>{
        const file=e.target.files[0];
@@ -195,53 +225,66 @@ export default function ProductAdmin()
     };
 
 
-    const handleAddClick=(item)=>{
-        setShowAddForm(true);
-    }
+
+
+
+    
 
 
     return(
-        <section className="mt-20 mb-10 p-10">
-            <table className="border-1 border-gray-300">
+        <section className="mt-20 mb-10 p-10 max-w-[1440px]">
+            <div className="oveflow-x-auto">
+            <table className="border-1 border-gray-300  min-w-[900px]">
              <thead>
                 <tr className="border-1 border-gray-300">
-                    <th>Id</th>
-                    <th>Category ID</th>
-                    <th>Product Name</th>
-                    <th className="p-2">Quantity</th>
-                    <th className="p-2">Price</th>
-                    <th>Description</th>
-                    <th>Created At</th>
-                    <th>Updated At</th>
-                    <th>Photos</th>
-                    <th>Update</th>
+                    <th className="border-1 p-1">Id</th>
+                    <th className="border-1 p-1">Category ID</th>
+                    <th className="border-1 p-1">Product Name</th>
+                    <th className="border-1 p-1">Quantity</th>
+                    <th className="border-1 p-1">Price</th>
+                    <th className="border-1 p-1">Description</th>
+                    <th className="border-1 p-1">Created At</th>
+                    <th className="border-1 p-1">Updated At</th>
+                    <th className="border-1 p-1">Photos</th>
+                    <th className="border-1 p-1">Update</th>
+                    <th className="border-1 p-1">Delete</th>
                 </tr>
               </thead>
               <tbody>
                 {
                     currentProducts.map((product,index)=>(
                         <tr key={index} className="border-1 border-gray-300">
-                            <td>{product.id}</td>
-                            <td className="ps-8">{product.categoryId}</td>
-                            <td>{product.productName}</td>
-                            <td className="ps-8">{product.quantity}</td>
-                            <td>{product.price}</td>
-                            <td>{product.description}</td>
-                            <td>{product.createdAt}</td>
-                            <td>{product.updatedAt}</td>
-                            <td>{product.photos?.map((image,index)=>(
+                            <td className="border-1 p-1 text-center">{product.id}</td>
+                            <td className="border-1 p-1 text-center">{product.categoryId}</td>
+                            <td className="border-1 p-1 text-center ">{product.productName}</td>
+                            <td className="border-1 p-1 text-center">{product.quantity}</td>
+                            <td className="border-1 p-1 text-center">{product.price}</td>
+                            <td className="border-1 p-1 text-center">{product.description}</td>
+                            <td className="border-1 p-1 text-center">{product.createdAt.slice(0,10)}</td>
+                            <td className="border-1 p-1 text-center">{product.updatedAt.slice(0,10)}</td>
+                            <td className="border-1 p-1 text-center">{product.photos?.map((image,index)=>(
                                 <img
                                 key={index} src={`http://localhost:5000/${image.imagePath}`} className="w-16 h-16 object-cover"></img>
                             ))}</td>
-                            <td><button 
+                            <td className="border-1 p-1 text-center"><button 
                             className="bg-[#609647] p-2 hover:bg-[#93C553] hover:cursor-pointer m-3 "
                             onClick={()=>handleUpdateClick(product)}>Update</button></td>
+
+                            <td className="border-1 p-1 text-center">
+                        <button 
+                            className="bg-red-500 p-2 hover:bg-red-700 text-white cursor-pointer m-3"
+                            onClick={() => handleDeleteClick(product.id)}
+                        >
+                            Delete
+                        </button>
+                    </td>
                         </tr>
 
                     ))
                 }
               </tbody>
             </table>
+            </div>
 
             <div className="flex gap-10">
                 <div className="flex gap-2 mt-4">
@@ -527,6 +570,35 @@ export default function ProductAdmin()
                 )
             }
 
+                                {
+                        showDeleteDialog && (
+                            <div className="fixed inset-0 bg-black/40 flex justify-center items-center z-50">
+                                <div className="bg-white p-6 rounded-xl shadow-xl w-[400px] text-center">
+                                    
+                                    <h2 className="text-lg font-bold mb-4">
+                                        Are you sure you want to delete this product?
+                                    </h2>
+
+                                    <div className="flex justify-center gap-4">
+                                        <button
+                                            onClick={confirmDelete}
+                                            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700"
+                                        >
+                                            Yes, Delete
+                                        </button>
+
+                                        <button
+                                            onClick={cancelDelete}
+                                            className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400"
+                                        >
+                                            Cancel
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        )
+                    }
             
         </section>
     )

@@ -8,6 +8,7 @@ export default function BlogAdmin()
 {
     const [blogs,setBlogs]=useState([]);
     const [showForm,setShowForm]=useState(false);
+    const[showAddForm,setShowAddForm]=useState(false);
     const [selected,setSelected]=useState(0);
 
     const {showSuccess,showFail}=useToast();
@@ -21,6 +22,16 @@ export default function BlogAdmin()
     const [photos,setPhotos]=useState([]);
     const [previewPhotos,setPreviewPhotos]=useState([]);
     const [update,setUpdate]=useState(false);
+
+
+    //add form data(adding api)
+    const [addTitle,setAddTitle]=useState("");
+    const [addSlug,setAddSlug]=useState("");
+    const [addIntroduction,setAddIntroduction]=useState("");
+    const [addContent,setAddContent]=useState("");
+    const [addPhotos,setAddPhotos]=useState([]);
+    const [addPreviewPhotos,setAddPreviewPhotos]=useState([]);
+   
 
     //pagination states
     const [currentPage,setCurrentPage]=useState(1);
@@ -59,6 +70,10 @@ export default function BlogAdmin()
 
     }
 
+     const handleAddClick=()=>{
+        setShowAddForm(true);
+    }
+
     const handlePhotoChange= (e,index)=>{
        const file=e.target.files[0];
        if(!file) return;
@@ -73,13 +88,37 @@ export default function BlogAdmin()
        setPreviewPhotos(updatedPreview);
     }
 
+     const handleAddPhotoChange= (e,index)=>{
+       const file=e.target.files[0];
+       if(!file) return;
+
+       const updatedPhotos=[...addPhotos];
+       updatedPhotos[index]=file;
+       setAddPhotos(updatedPhotos);
+
+       //preview
+       const updatedPreview=[...addPreviewPhotos];
+       updatedPreview[index]=URL.createObjectURL(file); //creates a url without passing to server
+       setAddPreviewPhotos(updatedPreview);
+    }
+
+
     const addPhotoField=()=>{
         setPhotos([...photos,""]);
+    }
+
+    const addAddPhotoField=()=>{
+        setAddPhotos([...addPhotos,""]);
     }
 
     const removePhotoField=(index)=>{
         const updated=photos.filter((_,i)=>i !== index);
         setPhotos(updated);
+    }
+
+     const addRemovePhotoField=(index)=>{
+        const updated=addPhotos.filter((_,i)=>i !== index);
+        setAddPhotos(updated);
     }
 
     const handleSubmit= async (e)=>{
@@ -120,38 +159,76 @@ export default function BlogAdmin()
         }
     };
 
+    const handleAddSubmit= async (e)=>{
+        e.preventDefault();
+
+        //sending files must be done through form data
+        const formData= new FormData();
+
+        formData.append("title",addTitle);
+        formData.append("slug",addSlug);
+        formData.append("introduction",addIntroduction);
+        formData.append("content",addContent);
+        
+
+        addPhotos.forEach((photo)=>{
+            if(photo){
+                formData.append("photos",photo);
+            }
+        })
+
+        try{
+            await axios.post(`http://localhost:5000/api/blogs`,formData,
+                {
+                    headers:{
+                        "Content-Type":"multipart/form-data"
+                    },
+                }
+            )
+
+            showSuccess("Updated Successfully");
+            setShowAddForm(false);
+            setUpdate(prev=>!prev);
+        }
+        catch(err)
+        {
+            console.log(err);
+            showFail("Update failed!");
+        }
+    };
+
 
     return(
         <section className="mt-20 mb-10 p-10">
             <table className="border-1 border-gray-300">
              <thead>
                 <tr className="border-1 border-gray-300">
-                    <th>Id</th>
-                    <th>Title</th>
-                    <th className="break-words max-w-[200px]">Slug</th>
-                    <th className="break-words max-w-[200px]">Introduction</th>
-                    <th className="break-words max-w-[200px]">Content</th>
-                    <th>Created At</th>
-                    <th>Photos</th>
-                    <th>Update</th>
+                    <th className="border-1 p-1 text-center">Id</th>
+                    <th className="border-1 p-1 text-center">Title</th>
+                    <th className=" border-1 p-1 text-center break-words max-w-[200px]">Slug</th>
+                    <th className="border-1 p-1 text-center break-words max-w-[200px]">Introduction</th>
+                    <th className=" border-1 p-1 text-center break-words max-w-[200px]">Content</th>
+                    <th className="border-1 p-1 text-center">Created At</th>
+                    <th className="border-1 p-1 text-center">Photos</th>
+                    <th className="border-1 p-1 text-center">Update</th>
                 </tr>
               </thead>
               <tbody>
                 {
                     currentBlogs.map((blog,index)=>(
                         <tr key={index} className="border-1 border-gray-300">
-                            <td>{blog.id}</td>
+                            <td className="border-1 p-1 text-center">{blog.id}</td>
                             
-                            <td>{blog.title}</td>
-                            <td className="break-words max-w-[200px]">{blog.slug}</td>
-                            <td className="break-words max-w-[200px]">{blog.introduction}</td>
-                            <td className="break-words max-w-[200px]">{blog.content}</td>
-                            <td>{blog.createdAt}</td>
-                            <td>{blog.photos?.map((image,index)=>(
+                            <td className="border-1 p-1 text-center">{blog.title}</td>
+                            <td className="break-words max-w-[200px] border-1 p-1 text-center">{blog.slug}</td>
+                            <td className="break-words max-w-[200px] border-1 p-1 text-center">{blog.introduction}</td>
+                            <td className="break-words max-w-[200px] border-1 p-1 text-center">{blog.content}</td>
+                            <td className="border-1 p-1 text-center">{blog.createdAt.slice(0,10)}</td>
+                            <td className="border-1 p-1 text-center flex flex-col gap-2">{blog.photos?.map((image,index)=>(
                                 <img
                                 key={index} src={`http://localhost:5000/${image.imagePath}`} className="w-16 h-16 object-cover"></img>
                             ))}</td>
-                            <td><button 
+                            <td className="border-1 p-1 text-center"><button 
                             className="bg-[#609647] p-2 hover:bg-[#93C553] hover:cursor-pointer m-3 "
                             onClick={()=>handleUpdateClick(blog)}>Update</button></td>
                         </tr>
@@ -161,7 +238,8 @@ export default function BlogAdmin()
               </tbody>
             </table>
 
-            <div className="flex gap-2 mt-4">
+            <div className="flex gap-10">
+                <div className="flex gap-2 mt-4">
             {[...Array(totalPages)].map((_, index) => (
                 <button
                 key={index}
@@ -177,6 +255,10 @@ export default function BlogAdmin()
             ))}
             </div>
 
+            <div>
+                <button className="mt-4  bg-[#609647] text-white py-2 px-2 rounded-2xl font-bold hover:bg-[#93C553] hover:cursor-pointer transition-all shadow-lg shadow-indigo-200 active:scale-[0.98]" onClick={handleAddClick}>Add Blog</button>
+            </div>                 
+            </div>
             {
                 showForm && (
 
@@ -288,6 +370,127 @@ export default function BlogAdmin()
                             className="mt-4  bg-[#609647] text-white py-4 rounded-2xl font-bold hover:bg-[#93C553] hover:cursor-pointer transition-all shadow-lg shadow-indigo-200 active:scale-[0.98]"
                         >
                             Update
+                        </button>
+                    </form>
+
+                    </div>
+                </div>
+                )
+            }
+
+
+
+            {
+                showAddForm && (
+
+                    <div className="fixed inset-0 bg-black/40 flex justify-center items-center z-50">
+    
+                            <div className="bg-white p-8 rounded-2xl w-[500px] max-h-[90vh] overflow-y-auto shadow-2xl">
+                            
+                            {/* Close Button */}
+                            <button
+                                onClick={() => setShowAddForm(false)}
+                                className="float-right text-red-500 font-bold"
+                            >
+                                X
+                            </button>
+
+                    <form onSubmit={handleAddSubmit} className="flex flex-col gap-5">
+
+                        <div className="flex flex-col gap-1.5">
+                            <label className="text-sm font-bold text-gray-700 ml-1">Title</label>
+                            <input 
+                                type="text" 
+                                id='title' 
+                                className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#93C553] focus:bg-white outline-none transition-all text-gray-800"
+                                value={addTitle} 
+                                onChange={(e) => setAddTitle(e.target.value)} 
+                                required 
+                            />
+                        </div>
+
+                        <div className="flex flex-col gap-1.5">
+                            <label className="text-sm font-bold text-gray-700 ml-1">Slug</label>
+                            <input 
+                                type="text" 
+                                id='slug' 
+                                className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#93C553] focus:bg-white outline-none transition-all text-gray-800"
+                                value={addSlug} 
+                                onChange={(e) => setAddSlug(e.target.value)} 
+                                required 
+                            />
+                        </div>
+
+                        <div className="flex flex-col gap-1.5">
+                            <label className="text-sm font-bold text-gray-700 ml-1">Introduction</label>
+                            <input 
+                                type="text" 
+                                id='introduction' 
+                                className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#93C553] focus:bg-white outline-none transition-all text-gray-800 break-words max-w-[500px]"
+                                value={addIntroduction} 
+                                onChange={(e) => setAddIntroduction(e.target.value)} 
+                                required 
+                            />
+                        </div>
+
+                        <div className="flex flex-col gap-1.5">
+                            <label className="text-sm font-bold text-gray-700 ml-1">Content</label>
+                            <input 
+                                type="text" 
+                                id='content' 
+                                className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#93C553] focus:bg-white outline-none transition-all text-gray-800 break-words max-w-[500px]"
+                                value={addContent} 
+                                onChange={(e) => setAddContent(e.target.value)} 
+                                required 
+                            />
+                        </div>
+
+                        <div className="flex flex-col gap-2">
+                        <label className="text-sm font-bold text-gray-700 ml-1">Photos</label>
+
+                        {addPhotos.map((_, index) => (
+                            <div key={index} className="flex gap-2">
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={(e) => handleAddPhotoChange(e,index)}
+                                className="p-4 bg-gray-50 border border-gray-200 rounded-2xl w-full"
+                            />
+
+                            {
+                                addPreviewPhotos[index] && (
+                                    <img 
+                                    src={addPreviewPhotos[index]}
+                                    className="w-16 h-16 rounded object-cover"
+                                    />
+                                )
+                            }
+
+                            <button
+                                type="button"
+                                onClick={() => addRemovePhotoField(index)}
+                                className="bg-red-400 px-3 rounded-xl"
+                            >
+                                X
+                            </button>
+                            </div>
+                        ))}
+
+                        <button
+                            type="button"
+                            onClick={addAddPhotoField}
+                            className="bg-gray-300 p-2 rounded-xl"
+                        >
+                            + Add Photo
+                        </button>
+                        </div>
+
+
+                        <button 
+                            type='submit' 
+                            className="mt-4  bg-[#609647] text-white py-4 rounded-2xl font-bold hover:bg-[#93C553] hover:cursor-pointer transition-all shadow-lg shadow-indigo-200 active:scale-[0.98]"
+                        >
+                            Add
                         </button>
                     </form>
 

@@ -4,12 +4,14 @@ import { useEffect,useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/context/ToastContext";
+import { useAuth } from "@/context/AuthContext";
 
 export default function Login()
 {
     const [username,setUsername] =useState("");
     const [password,setPassword] = useState("");
      const { showSuccess, showFail } = useToast();
+     const {setIsAuthenticated}=useAuth();
 
     const router=useRouter();
 
@@ -30,6 +32,7 @@ export default function Login()
 
             const token=response.data.token;
             localStorage.setItem("token",token);
+            setIsAuthenticated(true);
             router.push("/admin");
         }
         catch(error)

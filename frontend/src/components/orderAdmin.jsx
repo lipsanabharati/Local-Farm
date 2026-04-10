@@ -51,12 +51,6 @@ export default function OrderAdmin()
         setSelected(item);
 
         //prefilling form
-        setCustomerName(item.customerName);
-        setCustomerPhone(item.customerPhone);
-        setCustomerEmail(item.customerEmail);
-        setCustomerAddress(item.customerAddress);
-        setOrderStatus(item.orderStatus);
-        setItems(item.items);
         setOrderStatus(item.orderStatus);
     }
 
@@ -66,16 +60,11 @@ export default function OrderAdmin()
         e.preventDefault();
 
         const data={
-            customerName,
-            customerPhone,
-            customerEmail,
-            customerAddress,
             "status":orderStatus,
-            items
         }
 
         try{
-            await axios.put(`http://localhost:5000/api/orders/${selected.id}`,data
+            await axios.patch(`http://localhost:5000/api/orders/${selected.id}`,data
             )
 
             showSuccess("Updated Successfully");
@@ -95,41 +84,57 @@ export default function OrderAdmin()
             <table className="border-1 border-gray-300">
              <thead>
                 <tr className="border-1 border-gray-300">
-                    <th>Id</th>
-                    <th>Customer Name</th>
-                    <th className="pe-2">Customer Phone</th>
-                    <th className="pe-2">Customer Address</th>
-                    <th className="pe-2">Total Price</th>
-                    <th>Order Status</th>
-                    <th>Created At</th>
-                    <th>Updated At</th>
+                    <th className="border-1 p-1 text-center">Id</th>
+                    <th className="border-1 p-1 text-center">Customer Name</th>
+                    <th className="border-1 p-1 text-center">Customer Phone</th>
+                    <th className="border-1 p-1 text-center">Customer Address</th>
+                    <th className="border-1 p-1 text-center">Total Price</th>
+                    <th className="border-1 p-1 text-center">Order Status</th>
+                    <th className="border-1 p-1 text-center">Created At</th>
+                    <th className="border-1 p-1 text-center">Updated At</th>
+                    <th className="border-1 p-1 text-center">Items</th>
+                     <th className="border-1 p-1 text-center">Update</th>
                 </tr>
               </thead>
               <tbody>
                 {
                     currentOrders.map((order,index)=>(
                         <tr key={index} className="border-1 border-gray-300">
-                            <td>{order.id}</td>
+                            <td className="border-1 p-1 text-center">{order.id}</td>
                             
-                            <td>{order.customerName}</td>
-                            <td className="pe-2">{order.customerPhone}</td>
-                            <td className="pe-2">{order.customerAddress}</td>
-                            <td className="pe-2">{order.totalPrice}</td>
-                            <td className="pe-2">{order.orderStatus}</td>
-                            <td>{order.createdAt}</td>
-                            <td>{order.updatedAt}</td>
-                            <td>{order.items?.map((item,index)=>(
-                               <table key={index} >
+                            <td className="border-1 p-1 text-center">{order.customerName}</td>
+                            <td className="border-1 p-1 text-center">{order.customerPhone}</td>
+                            <td className="border-1 p-1 text-center">{order.customerAddress}</td>
+                            <td className="border-1 p-1 text-center">{order.totalPrice}</td>
+                            <td className="border-1 p-1 text-center">{order.orderStatus}</td>
+                            <td className="border-1 p-1 text-center">{order.createdAt.slice(0,10)}</td>
+                            <td className="border-1 p-1 text-center">{order.updatedAt.slice(0,10)}</td>
+                            <td className="border-1 p-1 text-center flex flex-col gap-2">{order.items?.map((item,index)=>(
+                               <table key={index} cellSpacing="10" >
+                                <thead>
                                 <tr>
-                                <td>{item.id} </td>
-                                <td>{item.orderId}</td>
-                                <td>{item.productId}</td>
-                                <td>{item.price}</td>
-                                <td>{item.quantity}</td>
-                                <td>{item.totalPrice}</td>
-                                <td>{item.createdAt}</td>
-                                <td>{item.updatedAt}</td>
+                                <th className="border-1 p-1 text-center" >Id </th>
+                                <th className="border-1 p-1 text-center">Order Id</th>
+                                <th className="border-1 p-1 text-center">Product ID</th>
+                                <th className="border-1 p-1 text-center">Price</th>
+                                <th className="border-1 p-1 text-center">Quantity</th>
+                                <th className="border-1 p-1 text-center">TotalPrice</th>
+                                <th className="border-1 p-1 text-center">createdAt</th>
+                                <th className="border-1 p-1 text-center">updatedAt</th>
                                 </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                <td className="border-1 p-1 text-center">{item.id} </td>
+                                <td className="border-1 p-1 text-center">{item.orderId}</td>
+                                <td className="border-1 p-1 text-center">{item.productId}</td>
+                                <td className="border-1 p-1 text-center">{item.price}</td>
+                                <td className="border-1 p-1 text-center">{item.quantity}</td>
+                                <td className="border-1 p-1 text-center">{item.totalPrice}</td>
+                                <td className="border-1 p-1 text-center">{item.createdAt.slice(0,10)}</td>
+                                <td className="border-1 p-1 text-center">{item.updatedAt.slice(0,10)}</td>
+                                </tr>
+                                </tbody>
                                </table>
                             ))}</td>
                             <td><button 

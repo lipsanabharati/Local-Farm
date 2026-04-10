@@ -7,11 +7,13 @@ import CartProvider from "@/context/CartContext";
 import { ToastProvider } from "@/context/ToastContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AuthProvider } from "@/context/AuthContext";
 
 export default function RootLayout({children}) {
   return (
     <html lang="en">
       <body className="bg-[#F2F6E8] ">
+     <AuthProvider >
       <ToastProvider >
         <ToastContainer />
        <CartProvider>
@@ -26,6 +28,7 @@ export default function RootLayout({children}) {
         
        </CartProvider>
        </ToastProvider >
+       </AuthProvider>
       </body>
     </html>
   );

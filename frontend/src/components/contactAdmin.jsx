@@ -80,29 +80,29 @@ export default function ContactAdmin()
             <table className="border-1 border-gray-300">
              <thead>
                 <tr className="border-1 border-gray-300">
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th className="break-words max-w-[200px]">Email</th>
-                    <th className="break-words max-w-[200px]">Message</th>
-                    <th className="break-words max-w-[200px]">Follow Up</th>
-                    <th>Created At</th>
-                    <th>Updated At</th>
-                    <th>Update</th>
+                    <th className="border-1 p-1 text-center">Id</th>
+                    <th className="border-1 p-1 text-center">Name</th>
+                    <th className="border-1 p-1 text-center">Email</th>
+                    <th className="border-1 p-1 text-center">Message</th>
+                    <th className="border-1 p-1 text-center">Follow Up</th>
+                    <th className="border-1 p-1 text-center">Created At</th>
+                    <th className="border-1 p-1 text-center">Updated At</th>
+                    <th className="border-1 p-1 text-center">Update</th>
                 </tr>
               </thead>
               <tbody>
                 {
                    currentContacts.map((contact,index)=>(
                         <tr key={index} className="border-1 border-gray-300">
-                            <td>{contact.id}</td>
+                            <td className="border-1 p-1 text-center">{contact.id}</td>
                             
-                            <td>{contact.name}</td>
-                            <td className="break-words max-w-[200px]">{contact.email}</td>
-                            <td className="break-words max-w-[200px]">{contact.message}</td>
-                            <td className="break-words max-w-[200px]">{contact.followUp? "Yes":"No"}</td>
-                            <td>{contact.createdAt}</td>
-                            <td>{contact.updatedAt}</td>
-                            <td><button 
+                            <td className="border-1 p-1 text-center">{contact.name}</td>
+                            <td className="border-1 p-1 text-center">{contact.email}</td>
+                            <td className="border-1 p-1 text-center">{contact.message}</td>
+                            <td className="border-1 p-1 text-center">{contact.followUp? "Yes":"No"}</td>
+                            <td className="border-1 p-1 text-center">{contact.createdAt.slice(0,10)}</td>
+                            <td className="border-1 p-1 text-center">{contact.updatedAt.slice(0,10)}</td>
+                            <td className="border-1 p-1 text-center"><button 
                             className="bg-[#609647] p-2 hover:bg-[#93C553] hover:cursor-pointer m-3 "
                             onClick={()=>handleUpdateClick(contact)}>Update</button></td>
                         </tr>

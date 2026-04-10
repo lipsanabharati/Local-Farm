@@ -8,6 +8,8 @@ export default function EventAdmin()
 {
     const [events,setEvents]=useState([]);
     const [showForm,setShowForm]=useState(false);
+    const [showAddForm,setShowAddForm]=useState(false);
+
     const [selected,setSelected]=useState(0);
 
     const {showSuccess,showFail}=useToast();
@@ -16,11 +18,20 @@ export default function EventAdmin()
     const [id,setId]=useState(0);
     const [eventTitle,setEventTitle]=useState("");
     const [eventDescription,setEventDescription]=useState("");
-    const [isupcoming,setIsupcoming]=useState(false);
+    const [isUpcoming,setIsUpcoming]=useState(false);
     const [date,setDate]=useState("");
-    const [photos,setPhotos]=useState(null);
+    const [photos,setPhotos]=useState([]);
      const [previewPhotos,setPreviewPhotos]=useState([]);
     const [update,setUpdate]=useState(false);
+
+    //adding api data
+    const [addEventTitle,setAddEventTitle]=useState("");
+    const [addEventDescription,setAddEventDescription]=useState("");
+    const [addIsupcoming,setAddIsupcoming]=useState(false);
+    const [addDate,setAddDate]=useState("");
+    const [addPhotos,setAddPhotos]=useState(null);
+     const [addPreviewPhotos,setAddPreviewPhotos]=useState([]);
+   
 
     //pagination states
         const [currentPage,setCurrentPage]=useState(1);
@@ -50,37 +61,42 @@ export default function EventAdmin()
         setSelected(item);
 
         //prefilling form
-        setId(item.id);
         setEventTitle(item.eventTitle);
-        setIsupcoming(item.isupcoming);
+        setIsUpcoming(item.isUpcoming);
         setEventDescription(item.eventDescription);
         setDate(item.date.slice(0, 10));
-
-        setPhotos(item.photos[0].imagePath);
+        setPhotos(item.photos?.map(p=>p.imagePath)||[""]);
 
     }
 
-   const handlePhotoChange=()=>{
+     const handleAddClick=()=>{
+        setShowAddForm(true);
+
+    }
+
+   const handlePhotoChange=(e,index)=>{
        const file=e.target.files[0];
        if(!file) return;
 
-       
-       setPhotos(file);
+       const updatedPhotos=[...photos];
+       updatedPhotos[index]=file;
+       setPhotos(updatedPhotos);
 
        //preview
-        //creates a url without passing to server
-       setPreviewPhotos([URL.createObjectURL(file)]);
+       const updatedPreview=[...previewPhotos];
+       updatedPreview[index]=URL.createObjectURL(file); //creates a url without passing to server
+       setPreviewPhotos(updatedPreview);
     }
 
 
-    // const addPhotoField=()=>{
-    //     setPhotos([...photos,""]);
-    // }
+    const addPhotoField=()=>{
+        setPhotos([...photos,""]);
+    }
 
-    // const removePhotoField=(index)=>{
-    //     const updated=photos.filter((_,i)=>i !== index);
-    //     setPhotos(updated);
-    // }
+    const removePhotoField=(index)=>{
+        const updated=photos.filter((_,i)=>i !== index);
+        setPhotos(updated);
+    }
 
     const handleSubmit= async (e)=>{
         e.preventDefault();
@@ -89,24 +105,22 @@ export default function EventAdmin()
         const formData= new FormData();
 
         formData.append("eventTitle",eventTitle);
-        console.log(typeof(eventTitle));
         formData.append("eventDescription",eventDescription);
         formData.append("date",date);
-        formData.append("isUpcoming",isupcoming);
+        formData.append("isUpcoming",isUpcoming?true:false);
         
 
-       if(photos){
-        formData.append("image",photos[0].imagePath);
-       }
+       photos.forEach((photo)=>{
+            if(photo){
+                formData.append("Photos",photo);
+            }
+        })
+
        
 
         try{
             await axios.put(`http://localhost:5000/api/events/${selected.id}`,formData,
-                {
-                    headers:{
-                        "Content-Type":"multipart/form-data"
-                    },
-                }
+
             )
 
             showSuccess("Updated Successfully");
@@ -127,15 +141,15 @@ export default function EventAdmin()
             <table className="border-1 border-gray-300">
              <thead>
                 <tr className="border-1 border-gray-300">
-                    <th>Id</th>
-                    <th>Event Title</th>
-                    <th>Event Description</th>
-                    <th className="p-2">Is Upcoming</th>
-                    <th className="p-2">Date</th>
-                    <th>Created At</th>
-                    <th>Updated At</th>
-                    <th>Photos</th>
-                    <th>Update</th>
+                    <th className="border-1 p-1 text-center">Id</th>
+                    <th className="border-1 p-1 text-center">Event Title</th>
+                    <th className="border-1 p-1 text-center">Event Description</th>
+                    <th className="border-1 p-1 text-center">Is Upcoming</th>
+                    <th className="border-1 p-1 text-center">Date</th>
+                    <th className="border-1 p-1 text-center">Created At</th>
+                    <th className="border-1 p-1 text-center">Updated At</th>
+                    <th className="border-1 p-1 text-center">Photos</th>
+                    <th className="border-1 p-1 text-center">Update</th>
                 </tr>
               </thead>
               <tbody>
@@ -143,18 +157,18 @@ export default function EventAdmin()
                     currentEvents.map((event,index)=> {
                         return (
                         <tr key={index} className="border-1 border-gray-300">
-                            <td>{event.id}</td>
-                            <td className="ps-8">{event.eventTitle}</td>
-                            <td>{event.eventDescription}</td>
-                            <td className="ps-8">{(event.isupcoming?"Yes":"No")}</td>
-                            <td>{event.date}</td>
-                            <td>{event.createdAt}</td>
-                            <td>{event.updatedAt}</td>
-                             <td>
+                            <td className="border-1 p-1 text-center">{event.id}</td>
+                            <td className="border-1 p-1 text-center">{event.eventTitle}</td>
+                            <td className="border-1 p-1 text-center">{event.eventDescription}</td>
+                            <td className="border-1 p-1 text-center">{(event.isUpcoming?"Yes":"No")}</td>
+                            <td className="border-1 p-1 text-center">{event.date}</td>
+                            <td className="border-1 p-1 text-center">{event.createdAt.slice(0,10)}</td>
+                            <td className="border-1 p-1 text-center">{event.updatedAt.slice(0,10)}</td>
+                             <td className="border-1 p-1 text-center">
                                 <img
                                 key={index} src={`http://localhost:5000/${event.photos[0].imagePath}`} className="w-16 h-16 object-cover"></img>
                             </td>
-                            <td><button 
+                            <td className="border-1 p-1 text-center"><button 
                             className="bg-[#609647] p-2 hover:bg-[#93C553] hover:cursor-pointer m-3 "
                             onClick={()=>handleUpdateClick(event)}>Update</button></td>
                         </tr>
@@ -227,8 +241,8 @@ export default function EventAdmin()
                                 type="checkbox" 
                                 id='is-upcoming' 
                                 className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#93C553] focus:bg-white outline-none transition-all text-gray-800"
-                                checked={isupcoming} 
-                                onChange={(e) => setIsupcoming(e.target.checked)} 
+                                checked={isUpcoming} 
+                                onChange={(e) => setIsUpcoming(e.target.checked)} 
                                 
                             />
                         </div>
@@ -249,41 +263,42 @@ export default function EventAdmin()
                        <div className="flex flex-col gap-2">
                         <label className="text-sm font-bold text-gray-700 ml-1">Photos</label>
 
-                        <input
+                        {photos.map((_, index) => (
+                            <div key={index} className="flex gap-2">
+                            <input
                                 type="file"
                                 accept="image/*"
-                                onChange={handlePhotoChange}
+                                onChange={(e) => handlePhotoChange(e,index)}
                                 className="p-4 bg-gray-50 border border-gray-200 rounded-2xl w-full"
                             />
 
                             {
-                                previewPhotos[0] && (
+                                previewPhotos[index] && (
                                     <img 
-                                    src={previewPhotos[0]}
+                                    src={previewPhotos[index]}
                                     className="w-16 h-16 rounded object-cover"
                                     />
                                 )
                             }
 
-                            {/* <button
+                            <button
                                 type="button"
                                 onClick={() => removePhotoField(index)}
                                 className="bg-red-400 px-3 rounded-xl"
                             >
                                 X
-                            </button> */}
-                            
-                       
+                            </button>
+                            </div>
+                        ))}
 
-                        {/* <button
+                        <button
                             type="button"
                             onClick={addPhotoField}
                             className="bg-gray-300 p-2 rounded-xl"
                         >
                             + Add Photo
-                        </button> */}
+                        </button>
                         </div>
-
 
 
                         <button 
