@@ -102,12 +102,12 @@ console.log(categories)
       <div className="lg:py-20 py-10">
 
         {/* Category Tabs */}
-        <div className="flex justify-center lg:gap-10 gap-5 lg:text-lg text-sm lg:mb-40 mb-40">
+        <div className="flex justify-center lg:gap-10 gap-5 lg:text-lg text-sm lg:mb-20 mb-20">
           {categories.map((category) => (
             <button
               key={category.id}
               onClick={() => setActiveCategory(category)}
-              className={`pb-2 p-1 transition-all duration-300 hover:cursor-pointer text-lg ${
+              className={`pb-2 p-1 transition-all duration-300 hover:cursor-pointer text-sm md:text-lg ${
                 activeCategory?.id === category.id
                   ? "text-[#93C553] border-b-2 border-black bg-[#EDF2E0]"
                   : "text-gray-600 hover:text-[#93C553]"

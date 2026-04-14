@@ -1,8 +1,9 @@
 "use client";
 
-import {useEffect,useState} from "react";
+import {useEffect,useState,useRef} from "react";
 import axios from "axios"
 import { useToast } from "@/context/ToastContext";
+import "quill/dist/quill.snow.css";
 
 
 export default function ProductAdmin()
@@ -214,7 +215,7 @@ export default function ProductAdmin()
             )
 
             showSuccess("Updated Successfully");
-            setShowForm(false);
+            setShowAddForm(false);
             setUpdate(prev=>!prev);
         }
         catch(err)
@@ -222,10 +223,85 @@ export default function ProductAdmin()
             console.log(err);
             showFail("Update failed!");
         }
+        finally{
+            setAddCategoryId(0);
+            setAddProductName("");
+            setAddQuantity(0);
+            setAddPrice(0);
+            setAddDescription("");
+            setAddPhotos([]);
+            setAddPreviewPhotos([]);
+        }
     };
 
 
+    const quillRef=useRef(null);
+    const editorRef=useRef(null);
 
+   useEffect(() => {
+    if (!editorRef.current || quillRef.current) return;
+
+    const loadQuill = async () => {
+        const Quill = (await import("quill")).default;
+
+        quillRef.current = new Quill(editorRef.current, {
+            theme: "snow",
+        });
+
+        // set initial value
+        quillRef.current.root.innerHTML = description;
+
+        // listen for changes
+        quillRef.current.on("text-change", () => {
+            setDescription(quillRef.current.root.innerHTML);
+        });
+    };
+
+    if (showForm) {
+                loadQuill();
+            }
+    }, [showForm]);//runs when form opens
+
+    useEffect(()=>{
+        if(!showForm){
+            quillRef.current=null;
+        }
+    },[showForm]);
+
+        //quill for add form
+        const addQuillRef = useRef(null);
+        const addEditorRef = useRef(null);
+
+        useEffect(()=>{
+            if(!addEditorRef.current||addQuillRef.current) return;
+
+            const loadQuill=async ()=>{
+                const Quill=(await import("quill")).default;
+
+                addQuillRef.current=new Quill(addEditorRef.current,{
+                    theme:"snow",
+                });
+
+                //set initial value
+                addQuillRef.current.root.innerHTML=addDescription;
+
+                //listen for changes
+                addQuillRef.current.on("text-change",()=>{
+                    setAddDescription(addQuillRef.current.root.innerHTML);
+                });
+            };
+
+            if(showAddForm)
+            {
+                loadQuill();
+            }
+        },[showAddForm]);
+
+       useEffect(()=>{
+        if(!showAddForm){
+            addQuillRef.current=null;
+        }
+       },[showAddForm]);
 
 
     
@@ -234,7 +310,7 @@ export default function ProductAdmin()
     return(
         <section className="mt-20 mb-10 p-10 max-w-[1440px]">
             <div className="oveflow-x-auto">
-            <table className="border-1 border-gray-300  min-w-[900px]">
+            <table className="border-1 border-gray-300 ">
              <thead>
                 <tr className="border-1 border-gray-300">
                     <th className="border-1 p-1">Id</th>
@@ -256,13 +332,16 @@ export default function ProductAdmin()
                         <tr key={index} className="border-1 border-gray-300">
                             <td className="border-1 p-1 text-center">{product.id}</td>
                             <td className="border-1 p-1 text-center">{product.categoryId}</td>
-                            <td className="border-1 p-1 text-center ">{product.productName}</td>
+                            <td className="border-1 p-1 text-center">{product.productName}</td>
                             <td className="border-1 p-1 text-center">{product.quantity}</td>
                             <td className="border-1 p-1 text-center">{product.price}</td>
-                            <td className="border-1 p-1 text-center">{product.description}</td>
-                            <td className="border-1 p-1 text-center">{product.createdAt.slice(0,10)}</td>
-                            <td className="border-1 p-1 text-center">{product.updatedAt.slice(0,10)}</td>
-                            <td className="border-1 p-1 text-center">{product.photos?.map((image,index)=>(
+                           <td
+                            className="line-clamp-3 max-w-[250px]"
+                            dangerouslySetInnerHTML={{ __html: product.description }}
+                            />
+                            <td className="border-1 p-1 text-center ">{product.createdAt.slice(0,10)}</td>
+                            <td className="border-1 p-1 text-center ">{product.updatedAt.slice(0,10)}</td>
+                            <td className="border-1 p-1 text-center ">{product.photos?.map((image,index)=>(
                                 <img
                                 key={index} src={`http://localhost:5000/${image.imagePath}`} className="w-16 h-16 object-cover"></img>
                             ))}</td>
@@ -374,14 +453,13 @@ export default function ProductAdmin()
                         </div>
 
                         <div className="flex flex-col gap-1.5">
-                            <label className="text-sm font-bold text-gray-700 ml-1">Description</label>
-                            <input 
-                                type="text" 
-                                id='description' 
-                                className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#93C553] focus:bg-white outline-none transition-all text-gray-800"
-                                value={description} 
-                                onChange={(e) => setDescription(e.target.value)} 
-                                required 
+                            <label className="text-sm font-bold text-gray-700 ml-1">
+                                Description
+                            </label>
+
+                            <div
+                                ref={editorRef}
+                                className="bg-white rounded-xl h-[150px]"
                             />
                         </div>
 
@@ -505,14 +583,13 @@ export default function ProductAdmin()
                         </div>
 
                         <div className="flex flex-col gap-1.5">
-                            <label className="text-sm font-bold text-gray-700 ml-1">Description</label>
-                            <input 
-                                type="text" 
-                                id='description' 
-                                className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#93C553] focus:bg-white outline-none transition-all text-gray-800"
-                                value={addDescription} 
-                                onChange={(e) => setAddDescription(e.target.value)} 
-                                required 
+                            <label className="text-sm font-bold text-gray-700 ml-1">
+                                Description
+                            </label>
+
+                            <div
+                                ref={addEditorRef}
+                                className="bg-white rounded-xl h-[150px]"
                             />
                         </div>
 

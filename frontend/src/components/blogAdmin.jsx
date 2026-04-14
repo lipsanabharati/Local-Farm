@@ -1,8 +1,9 @@
 "use client";
 
-import {useEffect,useState} from "react";
+import {useEffect,useState,useRef} from "react";
 import axios from "axios"
 import { useToast } from "@/context/ToastContext";
+import "quill/dist/quill.snow.css";
 
 export default function BlogAdmin()
 {
@@ -198,9 +199,114 @@ export default function BlogAdmin()
     };
 
 
+    const introEditorRef = useRef(null);
+    const contentEditorRef = useRef(null);
+
+    const introQuillRef = useRef(null);
+    const contentQuillRef = useRef(null);
+
+    useEffect(() => {
+    if (!showForm) return;
+
+    const loadQuill = async () => {
+        const Quill = (await import("quill")).default;
+
+        // INTRODUCTION EDITOR
+        if (introEditorRef.current && !introQuillRef.current) {
+            introQuillRef.current = new Quill(introEditorRef.current, {
+                theme: "snow",
+            });
+
+            introQuillRef.current.root.innerHTML = introduction;
+
+            introQuillRef.current.on("text-change", () => {
+                setIntroduction(introQuillRef.current.root.innerHTML);
+            });
+        }
+
+        // CONTENT EDITOR
+        if (contentEditorRef.current && !contentQuillRef.current) {
+            contentQuillRef.current = new Quill(contentEditorRef.current, {
+                theme: "snow",
+            });
+
+            contentQuillRef.current.root.innerHTML = content;
+
+            contentQuillRef.current.on("text-change", () => {
+                setContent(contentQuillRef.current.root.innerHTML);
+            });
+        }
+    };
+    if(showForm)
+    {
+        loadQuill();
+    }
+    }, [showForm]);
+
+    useEffect(() => {
+    if (!showForm) {
+        introQuillRef.current = null;
+        contentQuillRef.current = null;
+    }
+    }, [showForm]);
+
+
+    //add quill refs
+     const introAddEditorRef = useRef(null);
+    const contentAddEditorRef = useRef(null);
+
+    const introAddQuillRef = useRef(null);
+    const contentAddQuillRef = useRef(null);
+
+    useEffect(() => {
+    if (!showAddForm) return;
+
+    const loadQuill = async () => {
+        const Quill = (await import("quill")).default;
+
+        // INTRODUCTION EDITOR
+        if (introAddEditorRef.current && !introAddQuillRef.current) {
+            introAddQuillRef.current = new Quill(introAddEditorRef.current, {
+                theme: "snow",
+            });
+
+            introAddQuillRef.current.root.innerHTML = addIntroduction;
+
+            introAddQuillRef.current.on("text-change", () => {
+                setAddIntroduction(introAddQuillRef.current.root.innerHTML);
+            });
+        }
+
+        // CONTENT EDITOR
+        if (contentAddEditorRef.current && !contentAddQuillRef.current) {
+            contentAddQuillRef.current = new Quill(contentAddEditorRef.current, {
+                theme: "snow",
+            });
+
+            contentAddQuillRef.current.root.innerHTML = addContent;
+
+            contentAddQuillRef.current.on("text-change", () => {
+                setAddContent(contentAddQuillRef.current.root.innerHTML);
+            });
+        }
+    };
+    if(showAddForm)
+    {
+        loadQuill();
+    }
+    }, [showAddForm]);
+
+    useEffect(() => {
+    if (!showAddForm) {
+        introAddQuillRef.current = null;
+        contentAddQuillRef.current = null;
+    }
+    }, [showAddForm]);
+
+
     return(
-        <section className="mt-20 mb-10 p-10">
-            <table className="border-1 border-gray-300">
+        <section className="mt-20 mb-10 p-10 ">
+            <table className="border-1 border-gray-300 table-fixed">
              <thead>
                 <tr className="border-1 border-gray-300">
                     <th className="border-1 p-1 text-center">Id</th>
@@ -221,8 +327,12 @@ export default function BlogAdmin()
                             
                             <td className="border-1 p-1 text-center">{blog.title}</td>
                             <td className="break-words max-w-[200px] border-1 p-1 text-center">{blog.slug}</td>
-                            <td className="break-words max-w-[200px] border-1 p-1 text-center">{blog.introduction}</td>
-                            <td className="break-words max-w-[200px] border-1 p-1 text-center">{blog.content}</td>
+                            <td className="break-words max-w-[200px] border-1 p-1 text-center">
+                                <div className="line-clamp-3 overflow-hidden text-left"  dangerouslySetInnerHTML={{ __html: blog.introduction }} />
+                            </td>
+                            <td className="break-words w-[200px] border-1 p-1 text-center"> 
+                                <div className="line-clamp-3 overflow-hidden text-left"  dangerouslySetInnerHTML={{ __html: blog.content }} />
+                               </td>
                             <td className="border-1 p-1 text-center">{blog.createdAt.slice(0,10)}</td>
                             <td className="border-1 p-1 text-center flex flex-col gap-2">{blog.photos?.map((image,index)=>(
                                 <img
@@ -300,30 +410,23 @@ export default function BlogAdmin()
                             />
                         </div>
 
-                        <div className="flex flex-col gap-1.5">
-                            <label className="text-sm font-bold text-gray-700 ml-1">Introduction</label>
-                            <input 
-                                type="text" 
-                                id='introduction' 
-                                className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#93C553] focus:bg-white outline-none transition-all text-gray-800 break-words max-w-[500px]"
-                                value={introduction} 
-                                onChange={(e) => setIntroduction(e.target.value)} 
-                                required 
+                         <div className="flex flex-col gap-1.5">
+                            <label>Introduction</label>
+                            <div
+                                ref={introEditorRef}
+                                className="bg-white rounded-xl h-[150px]"
                             />
                         </div>
 
                         <div className="flex flex-col gap-1.5">
-                            <label className="text-sm font-bold text-gray-700 ml-1">Content</label>
-                            <input 
-                                type="text" 
-                                id='content' 
-                                className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#93C553] focus:bg-white outline-none transition-all text-gray-800 break-words max-w-[500px]"
-                                value={content} 
-                                onChange={(e) => setContent(e.target.value)} 
-                                required 
+                            <label>Content</label>
+                            <div
+                                ref={contentEditorRef}
+                                className="bg-white rounded-xl h-[200px]"
                             />
                         </div>
 
+                        
                         <div className="flex flex-col gap-2">
                         <label className="text-sm font-bold text-gray-700 ml-1">Photos</label>
 
@@ -422,28 +525,21 @@ export default function BlogAdmin()
                         </div>
 
                         <div className="flex flex-col gap-1.5">
-                            <label className="text-sm font-bold text-gray-700 ml-1">Introduction</label>
-                            <input 
-                                type="text" 
-                                id='introduction' 
-                                className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#93C553] focus:bg-white outline-none transition-all text-gray-800 break-words max-w-[500px]"
-                                value={addIntroduction} 
-                                onChange={(e) => setAddIntroduction(e.target.value)} 
-                                required 
+                            <label>Introduction</label>
+                            <div
+                                ref={introAddEditorRef}
+                                className="bg-white rounded-xl h-[150px]"
                             />
                         </div>
 
                         <div className="flex flex-col gap-1.5">
-                            <label className="text-sm font-bold text-gray-700 ml-1">Content</label>
-                            <input 
-                                type="text" 
-                                id='content' 
-                                className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#93C553] focus:bg-white outline-none transition-all text-gray-800 break-words max-w-[500px]"
-                                value={addContent} 
-                                onChange={(e) => setAddContent(e.target.value)} 
-                                required 
+                            <label>Content</label>
+                            <div
+                                ref={contentAddEditorRef}
+                                className="bg-white rounded-xl h-[200px]"
                             />
                         </div>
+
 
                         <div className="flex flex-col gap-2">
                         <label className="text-sm font-bold text-gray-700 ml-1">Photos</label>

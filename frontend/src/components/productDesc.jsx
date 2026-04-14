@@ -34,7 +34,7 @@ export default function ProductDesc({id})
         {product && (
        <div className="flex flex-row justify-center w-screen px-20 md:p-20 lg:px-30 m-20 ">
 
-            <div className="flex md:flex-row  flex-col justify-center gap-5 lg:gap-10 w-full lg:w-[60%]">
+            <div className="flex md:flex-row  flex-col justify-center gap-5 lg:gap-10 w-full lg:w-[80%]">
                 {/*Images*/}
                 <div className="flex flex-col md:w-1/2 w-full  items-start justify-start gap-4">
                     <div className="bg-[#EFEAE6] p-5 w-full flex flex-row items-center justify-center">
@@ -42,7 +42,7 @@ export default function ProductDesc({id})
                         ? `http://localhost:5000/${product.photos[0].imagePath}`
                         : "/error.png"}
                         alt={product.productName}
-                        className="w-20 md:w-30"/>
+                        className="w-[70%] lg:w-[80%]"/>
                     </div>
                     {
                         product.photos?.length>1 && (
@@ -67,7 +67,7 @@ export default function ProductDesc({id})
                 <div className="flex flex-col justify-start md:w-1/2 w-full gap-2">
                     <h1 className="text-2xl lg:text-3xl font-bold text-[#609647]">{product.productName}</h1>
                     <p className="text-md lg:text-lg text-[#93C553]">Rs {product.price}</p>
-                    <p className="text-sm lg:text-lg">{product.description}</p>
+                    <p className="text-sm lg:text-lg" dangerouslySetInnerHTML={{__html:product.description}}></p>
 
 
                     <fieldset className="border border-[#93C553] rounded-xl px-2 pb-2 mb-3">
@@ -83,7 +83,7 @@ export default function ProductDesc({id})
                     <button 
                     className="w-full bg-[#93C553] text-white py-2 rounded-xl text-md font-medium hover:opacity-90 transition hover:cursor-pointer hover:bg-[#609647]"
                     onClick={()=>addToCartNum(product,product.id,quantity)}
-                    >Add to Cart</button>
+                    >Buy</button>
                 </div>
             </div>
        </div>

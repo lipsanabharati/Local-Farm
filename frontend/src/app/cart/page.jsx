@@ -4,6 +4,7 @@ import { useContext, useState } from "react"
 import { CartContext } from "@/context/CartContext"
 import axios from "axios"
 import { useToast } from "@/context/ToastContext"
+import emailjs from "@emailjs/browser"
 
 export default function Cart()
  {
@@ -13,7 +14,7 @@ export default function Cart()
 
     const [customerName,setCustomerName]=useState("");
     const [customerAddress,setCustomerAddress]=useState("");
-    const [customerPhone,setCustomerPhone]=useState(0);
+    const [customerPhone,setCustomerPhone]=useState("");
     const [customerEmail,setCustomerEmail]=useState("");
 
 
@@ -51,25 +52,65 @@ export default function Cart()
             items,
         };
 
+       const emailItems = items.map((item, index) =>
+        `${index + 1}. ${item.productName} - Qty: ${item.quantity} - Rs. ${item.price}`
+        );
+
+         const templateParams={
+                customerName,
+                        customerPhone,
+                        customerEmail,
+                        customerAddress,
+                        items:emailItems.join("\n"),
+                }
+
+
         try {
             setLoading(true);
             setSuccess("");
             setError("");
 
             const res = await axios.post("http://localhost:5000/api/orders", orderData);
+
+            for (const item of cart)
+            {
+                const newQuantity=item.quantity-item.amount;
+
+                if(newQuantity<0)
+                {
+                    showFail(`Sorry!${item.productName} out of stock`);
+                    return;
+                }
+
+                await axios.put(`http://localhost:5000/api/products/${item.id}`,{
+                    quantity:newQuantity,
+                });
+            }
+
+            await emailjs.send(
+                      "service_uaepcta",
+                      "template_qe6pxnb",
+                      templateParams,
+                      "giAR8ssqYinULRtBK"
+                    )
+
             setSuccess("Order placed successfully!");
             clearCart();
         } catch (error) {
             setError("Something went wrong. Please try again.");
         } finally {
             setLoading(false);
+            setCustomerAddress("");
+            setCustomerEmail("");
+            setCustomerName("");
+            setCustomerPhone("");
         }
 
     };
 
 
     return(
-        <section className="max-w-[1440px] flex flex-col lg:flex lg:flex-row justify-center md:justify-start mt-40 p-5 md:p-10 w-full">
+        <section className="max-w-[1440px] flex flex-col lg:flex lg:flex-row justify-center md:justify-start mt-40 p-5 md:p-10 w-full overflow-hidden">
             
             <div className="flex flex-col lg:w-1/2 lg:ms-50">
             {/*Heading*/}
@@ -142,7 +183,7 @@ export default function Cart()
             className="w-full bg-[#93C553] text-white py-3 rounded-xl text-lg font-medium hover:opacity-90 transition hover:cursor-pointer hover:bg-[#609647]"
             onClick={handleCheckout}
             >
-           {loading ? "Placing Order..." : "Place Order"}
+           {loading ? "Placing Order..." : "Cash on Delivery"}
             </button>
           </div>
 

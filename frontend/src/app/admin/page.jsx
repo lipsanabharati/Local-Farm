@@ -15,7 +15,12 @@ export default function Admin()
     const router= useRouter();
     const {isAuthenticated,loading}=useAuth();
     const [activeTab,setActiveTab]=useState("products");
-      console.log("TOKEN:", localStorage.getItem("token"));
+
+    //localstorage can only be accessed in the client
+      useEffect(() => {
+    console.log("TOKEN:", localStorage.getItem("token"));
+        }, []);
+        
     console.log("isAuthenticated:", isAuthenticated);
     console.log("loading:", loading);
 
@@ -52,7 +57,7 @@ export default function Admin()
    
    
     return(
-       <section className="p-6 max-w-[1440px] mt-40 flex flex-col items-center">
+       <section className="p-6 max-w-[1440px] mt-40 flex flex-col items-center overflow-hidden">
             {/*Tabs Header*/}
             <div className="flex flex-row gap-5">
                     {

@@ -39,7 +39,7 @@ export default function Carousel()
         >
 
             {/*Slide*/}
-            <div className="flex lg:flex-row flex-col  lg:gap-5 md:gap-10 gap-5 bg-[#FFAA00]/10 ">
+            <div className="flex lg:flex-row flex-col  lg:gap-5 md:gap-10 gap-5 bg-[#f4eac3] ">
 
                 {/*Image*/}
                <div
@@ -55,12 +55,10 @@ export default function Carousel()
 
                 {/*Text*/}
                 <div className="lg:w-1/2 flex flex-col gap-3 px-10 py-5">
-                    <h2 className="md:text-4xl text-2xl text-[#609647] font-bold">
-                        {blogs[current].title}
+                    <h2 className="md:text-4xl text-2xl text-[#609647] font-bold"  dangerouslySetInnerHTML={{ __html: blogs[current].title }}>
                     </h2>
 
-                    <p className="text-gray-600 md:text-lg text-sm">
-                         {blogs[current].introduction}
+                    <p className="text-gray-600 md:text-lg text-sm" dangerouslySetInnerHTML={{ __html: blogs[current].introduction }}>
                     </p>
 
                     <Link 

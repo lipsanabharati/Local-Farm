@@ -6,7 +6,7 @@ import EventCard from "@/components/eventCard"
 export default function Event()
 {
     return(
-       <section className="flex flex-col max-w-[1440px] mt-20">
+       <section className="flex flex-col max-w-[1440px] mt-20 overflow-hidden">
 
         {/*Hero Section*/}
         <div className="flex flex-row justify-center items-center mb-10">

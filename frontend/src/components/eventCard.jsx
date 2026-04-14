@@ -72,8 +72,7 @@ export default function EventCard()
                </div>       
              </div>
 
-             <div className="text-lg">
-               {event.eventDescription}
+             <div className="text-lg" dangerouslySetInnerHTML={{__html:event.eventDescription}}>
              </div>
             </div>
 

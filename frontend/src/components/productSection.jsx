@@ -105,7 +105,7 @@ console.log("Cart",cart);
 }
 
   return (
-      <div className="h-150 md:h-150 lg:h-200">
+      <div className="h-150 md:h-150 lg:h-200 flex flex-col">
 
         {/* Category Tabs */}
         <div className="flex justify-center lg:gap-10 gap-5 lg:text-lg text-sm lg:mb-30 mb-20">
@@ -139,7 +139,7 @@ console.log("Cart",cart);
               key={product.id}
               whileHover="hover"
               animate="rest"
-              className="relative bg-[#779768]/10 rounded-xl shadow-xl shadow-[#C4DBBA] py-10 text-center"
+              className="relative bg-[#779768]/10 rounded-xl shadow-xl shadow-[#C4DBBA] py-10 text-center md:w-50 lg:w-60"
               style={{height:260}}
               variants={{
                 rest: { height:260,top: 0 },
@@ -147,19 +147,19 @@ console.log("Cart",cart);
                 }}
             >
               {/* Image */}
-                <div className="flex justify-center -mt-20">
+                <div className="flex justify-center -mt-30">
                   <img
                   src={product.photos?.[0]?.imagePath
                         ? `http://localhost:5000/${product.photos[0].imagePath}`
                         : "/error.png"
                     }
                   alt={product.productName}
-                  className="h-48 object-contain drop-shadow-xl relative"
+                  className="h-60 object-contain drop-shadow-xl relative"
                 />
                 </div>
 
               {/* Title */}
-              <h3 className="text-xl font-medium mt-4">
+              <h3 className="text-xl font-medium mt-4 ">
                 {product.productName}
               </h3>
 
@@ -197,7 +197,7 @@ console.log("Cart",cart);
         {/* Products Grid Mobile */}
         {
           products[0] && (
-            <div className="grid grid-cols-1 lg:grid-cols-3 md:gap-30 gap-20 md:hidden block">
+            <div className="grid grid-cols-1 lg:grid-cols-3 md:gap-30 gap-20 md:hidden block mt-25 w-[60%]">
          
             <motion.div
               key={products[0].id}
@@ -211,7 +211,7 @@ console.log("Cart",cart);
                 }}
             >
               {/* Image */}
-                <div className="flex justify-center -mt-20">
+                <div className="flex justify-center -mt-45">
                     <img
                   src={
                         products[0].photos?.[0]?.imagePath
@@ -219,12 +219,12 @@ console.log("Cart",cart);
                       : "/error.png"
                   }
                   alt={products[0].productName}
-                  className="h-48 object-contain drop-shadow-xl relative"
+                  className=" w-full object-contain drop-shadow-xl relative"
                 />
                 </div>
 
               {/* Title */}
-              <h3 className="text-xl font-medium mt-4">
+              <h3 className="text-xl font-medium -mt-3">
                 {products[0].productName}
               </h3>
 

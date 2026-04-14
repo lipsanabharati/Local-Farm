@@ -50,7 +50,7 @@ export default function About()
         }
     ];
     return(
-     <section className="flex flex-col items-center p-10 m-10 mt-30 gap-5 max-w-[1440px]">
+     <section className="flex flex-col items-center p-10 m-10 mt-30 gap-5 max-w-[1440px] overflow-hidden">
 
         <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold text-[#609647] mt-10">About Us</h1>
 

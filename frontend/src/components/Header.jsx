@@ -20,24 +20,24 @@ export default function Header()
             {/*Mobile Menu*/}
             <div className="lg:hidden">
               <button onClick={toggleMenu} className="text-3xl hover:cursor-pointer">
-                    ☰
+                   {open? "X":"☰"}
               </button>
             </div>
 
             {/*Logo*/}
-            <div className="lg:ms-[30%]">
+            <Link href="/" className="lg:ms-[30%]">
               <img src="/logo.svg" className="h-[45px] w-[170px]"/>
-            </div>
+            </Link>
 
 
             {/*Items*/}
             <div className=" hidden font-heading lg:flex lg:flex-row gap-10 items-center justify-center">
-                <Link href="/">Home</Link>
-                <Link href="/about">About</Link>
-                <Link href="/blog/benefits-of-mad-honey">Blog</Link>
-                <Link href="/shop">Shops</Link>
-                <Link href="/cart">Cart</Link>
-                <Link href="/event">Events</Link>
+                <Link href="/" className="hover:text-[#609647]">Home</Link>
+                <Link href="/about" className="hover:text-[#609647]" >About</Link>
+                <Link href="/blog/benefits-of-mad-honey" className="hover:text-[#609647]">Blog</Link>
+                <Link href="/shop" className="hover:text-[#609647]">Shops</Link>
+                <Link href="/cart" className="hover:text-[#609647]">Cart</Link>
+                <Link href="/event" className="hover:text-[#609647]">Events</Link>
             </div>
 
             
@@ -48,14 +48,14 @@ export default function Header()
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 1 }}
-                className="p-2 absolute top-15 left-15 w-[100px] bg-white/20 flex flex-col gap-2 items-start lg:hidden rounded-lg backdrop-blur-sm z-50"
+                className="p-2 absolute top-15 left-0 w-full bg-white/20 flex flex-col gap-2 items-start lg:hidden rounded-lg backdrop-blur-sm z-50 ps-5"
             >
-                 <Link href="/">Home</Link>
-                <Link href="/about">About</Link>
-                <Link href="/blog/benefits-of-mad-honey">Blog</Link>
-                <Link href="/shop">Shops</Link>
-                <Link href="/cart">Cart</Link>
-                <Link href="/event">Events</Link>
+                 <Link href="/" onClick={toggleMenu} className="hover:text-[#609647]">Home</Link>
+                <Link href="/about" onClick={toggleMenu} className="hover:text-[#609647]">About</Link>
+                <Link href="/blog/benefits-of-mad-honey" className="hover:text-[#609647]" onClick={toggleMenu}>Blog</Link>
+                <Link href="/shop" className="hover:text-[#609647]" onClick={toggleMenu}>Shops</Link>
+                <Link href="/cart" className="hover:text-[#609647]" onClick={toggleMenu}>Cart</Link>
+                <Link href="/event" className="hover:text-[#609647]" onClick={toggleMenu}>Events</Link>
             </motion.div>
             )}
 

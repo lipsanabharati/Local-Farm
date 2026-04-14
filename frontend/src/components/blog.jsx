@@ -23,7 +23,7 @@ export default function Blog({slug})
     return(
         <div className="flex flex-col gap-3 md:gap-8 px-5 md:px-10 lg:px-50">
 
-            <h1 className="text-2xl lg:text-3xl font-bold text-[#609647]">{blog.title}</h1>
+            <h1 className="text-2xl lg:text-3xl font-bold text-[#609647]" dangerouslySetInnerHTML={{ __html:blog.title }}></h1>
 
             <div className="flex flex-col lg:flex-row gap-3 lg:gap-8">
                     <div className="bg-[#EFEAE6] w-full flex flex-row items-center justify-center lg:w-1/2">
@@ -34,14 +34,12 @@ export default function Blog({slug})
                             className="w-full"/>
                 </div>
 
-                <div className="text-lg lg:w-1/2">
-                    {blog.introduction}
+                <div className="text-lg lg:w-1/2" dangerouslySetInnerHTML={{__html:blog.introduction}}>
                 </div>
                 
             </div>
 
-            <div className="text-lg">
-                {blog.content}
+            <div className="text-lg" dangerouslySetInnerHTML={{__html:blog.content}}>
             </div>
              
 

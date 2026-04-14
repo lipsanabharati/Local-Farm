@@ -49,7 +49,7 @@ export default function Login()
     };
 
     return(
-        <section className="flex flex-col items-center px-4 py-12 mt-40 mb-40">
+        <section className="flex flex-col items-center px-4 py-12 mt-40 mb-40 overflow-hidden">
                 <div className="bg-white p-10 rounded-3xl shadow-xl shadow-indigo-100/50 w-full max-w-md border border-gray-100">
                     <h2 className="text-2xl font-black text-gray-900 mb-2 text-center">
                         Welcome Back

@@ -14,7 +14,7 @@ export default function Shop()
     return(
         <>
         {/*Hero Section*/}
-        <section className="flex flex-col gap-5 max-w-[1440px]">
+        <section className="flex flex-col gap-5 max-w-[1440px] overflow-hidden">
             {/*Drip Image */}
             <motion.div 
              initial={{ y: -300 }}
@@ -31,13 +31,10 @@ export default function Shop()
                         <h1 className="font-bold text-2xl lg:text-5xl w-[80%] md:w-[70%]">
                         NATURE'S SECRET TO TIMELESS ENERGY.
                     </h1>
-                    <button
-                    onClick={scrollToProducts} 
-                    className="py-2 px-3 bg-[#609647] rounded-xl font-heading font-bold  w-[40%] md:w-[30%] lg:text-lg md:text-md text-sm text-white hover:cursor-pointer hover:bg-[#93C553] transition z-10">Discover More</button>
                     </div>
                 </div>
 
-                <div className="flex justify-center lg:justify-end lg:-mt-[10%]">
+                <div className="flex justify-center lg:justify-end lg:-mt-[5%]">
                     <img src="shop-hero.png" className="">
                     </img>
                 </div>
