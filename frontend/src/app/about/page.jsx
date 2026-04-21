@@ -4,51 +4,68 @@ import {Swiper,SwiperSlide} from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import {Autoplay,Pagination} from "swiper/modules";
+import axios from "axios";
+
+import { useState,useEffect } from "react";
 
 export default function About()
 {
-    const team=[
-        {
-            name:"John Doe",
-            post:"Manager",
-            photo:"pfp.jpg",
-        },
-        {
-            name:"John Doe",
-            post:"Manager",
-            photo:"pfp.jpg",
-        },
-        {
-            name:"John Doe",
-            post:"Manager",
-            photo:"pfp.jpg",
-        },
-        {
-            name:"John Doe",
-            post:"Manager",
-            photo:"pfp.jpg",
-        },
-        {
-            name:"John Doe",
-            post:"Manager",
-            photo:"pfp.jpg",
-        },
-        {
-            name:"John Doe",
-            post:"Manager",
-            photo:"pfp.jpg",
-        },
-         {
-            name:"John Doe",
-            post:"Manager",
-            photo:"pfp.jpg",
-        },
-         {
-            name:"John Doe",
-            post:"Manager",
-            photo:"pfp.jpg",
-        }
-    ];
+    // const team=[
+    //     {
+    //         name:"John Doe",
+    //         post:"Manager",
+    //         photo:"pfp.jpg",
+    //     },
+    //     {
+    //         name:"John Doe",
+    //         post:"Manager",
+    //         photo:"pfp.jpg",
+    //     },
+    //     {
+    //         name:"John Doe",
+    //         post:"Manager",
+    //         photo:"pfp.jpg",
+    //     },
+    //     {
+    //         name:"John Doe",
+    //         post:"Manager",
+    //         photo:"pfp.jpg",
+    //     },
+    //     {
+    //         name:"John Doe",
+    //         post:"Manager",
+    //         photo:"pfp.jpg",
+    //     },
+    //     {
+    //         name:"John Doe",
+    //         post:"Manager",
+    //         photo:"pfp.jpg",
+    //     },
+    //      {
+    //         name:"John Doe",
+    //         post:"Manager",
+    //         photo:"pfp.jpg",
+    //     },
+    //      {
+    //         name:"John Doe",
+    //         post:"Manager",
+    //         photo:"pfp.jpg",
+    //     }
+    // ];
+    const [staffs,setStaffs]=useState();
+
+     useEffect(()=>{
+        axios.get(`http://localhost:5000/api/staff`)
+        .then((res)=>{
+            setStaffs(res.data);
+            console.log(res.data);
+        })
+        .catch((err)=>{
+            console.error(err);
+            setStaffs([]);
+        })
+    },[])
+
     return(
      <section className="flex flex-col items-center p-10 m-10 mt-30 gap-5 max-w-[1440px] overflow-hidden">
 
@@ -163,16 +180,16 @@ export default function About()
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-20 md:gap-20 lg:gap-30 mt-10 lg:mb-20">
 
             {
-                team.map((person,index)=>(
+                staffs?.map((staff,index)=>(
                 <div key={index} className="flex flex-col gap-2 items-center">
                     <div 
                     className="rounded-full w-25 h-25 lg:w-40 lg:h-40 bg-cover bg-no-repeat"  
-                    style={{ backgroundImage: `url(/${person.photo})`}}>
+                    style={{ backgroundImage: `url(http://localhost:5000/${staff.imagePath})`}}>
                     </div>
 
                     <div>
-                        <p className="text-[#93C553] text-lg">{person.name}</p>
-                        <p className="text-gray-600 text-xl -mt-1">{person.post}</p>
+                        <p className="text-[#93C553] text-lg">{staff.name}</p>
+                        <p className="text-gray-600 text-xl -mt-1">{staff.position}</p>
                     </div>
                 </div>
                 ))

@@ -10,9 +10,15 @@ export default function Login()
 {
     const [username,setUsername] =useState("");
     const [password,setPassword] = useState("");
-     const { showSuccess, showFail } = useToast();
-     const {setIsAuthenticated}=useAuth();
+    const {showSuccess, showFail } = useToast();
+    const {setIsAuthenticated,setToken}=useAuth();
+    const [showForm,setShowForm]=useState(false);
 
+    //change password 
+    const [currentPassword,setCurrentPassword]=useState("");
+    const [newPassword,setNewPassword]=useState("");
+    const [confirmPassword,setConfirmPassword]=useState("");
+     
     const router=useRouter();
 
     const handleSubmit= async (e) =>{
@@ -32,6 +38,7 @@ export default function Login()
 
             const token=response.data.token;
             localStorage.setItem("token",token);
+            setToken(token);
             setIsAuthenticated(true);
             router.push("/admin");
         }
@@ -48,6 +55,38 @@ export default function Login()
         }
     };
 
+    const handlePasswordChangeClick=()=>{
+        setShowForm(true);
+    }
+
+    const handleChangePasswordSubmit= async (e)=>{
+        e.preventDefault();
+
+         try
+        {
+            const response=await axios.put("http://localhost:5000/api/admin/change-password",{
+               currentPassword,
+               newPassword,
+               confirmPassword
+            });
+
+            showSuccess("Password Changed Successfull!");
+            showForm(false);
+        }
+        catch(error)
+        {
+            if(error.response)
+            {
+                showFail(error.response.data.message);
+            }
+            else
+            {
+                showFail("Server Error");
+            }
+        }
+        
+    }
+
     return(
         <section className="flex flex-col items-center px-4 py-12 mt-40 mb-40 overflow-hidden">
                 <div className="bg-white p-10 rounded-3xl shadow-xl shadow-indigo-100/50 w-full max-w-md border border-gray-100">
@@ -62,7 +101,7 @@ export default function Login()
                             <input 
                                 type="text" 
                                 id='username' 
-                                className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#93C553]
+                                className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-green-400
                                  focus:bg-white outline-none transition-all text-gray-800"
                                 value={username} 
                                 onChange={(e) => setUsername(e.target.value)} 
@@ -75,7 +114,7 @@ export default function Login()
                             <input 
                                 type="password" 
                                 id='password' 
-                                className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#93C553] focus:bg-white outline-none transition-all text-gray-800"
+                                className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-green-400 focus:bg-white outline-none transition-all text-gray-800"
                                 value={password} 
                                 onChange={(e) => setPassword(e.target.value)} 
                                 required 
@@ -90,7 +129,10 @@ export default function Login()
                         </button>
                     </form>
                     
+                   
                 </div>
+
+                
             </section>
     )
 

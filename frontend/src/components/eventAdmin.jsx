@@ -285,7 +285,7 @@ export default function EventAdmin() {
                 <td className="border-1 p-1 text-center">
                   {event.isUpcoming ? "Yes" : "No"}
                 </td>
-                <td className="border-1 p-1 text-center">{event.date}</td>
+                <td className="border-1 p-1 text-center">{event.date.slice(0,10)}</td>
                 <td className="border-1 p-1 text-center">
                   {event.createdAt.slice(0, 10)}
                 </td>

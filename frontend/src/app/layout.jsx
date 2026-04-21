@@ -8,8 +8,10 @@ import { ToastProvider } from "@/context/ToastContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthProvider } from "@/context/AuthContext";
+import { usePathname } from "next/navigation";
 
 export default function RootLayout({children}) {
+  const pathname=usePathname();
   return (
     <html lang="en">
       <body className="bg-[#F2F6E8] ">
@@ -22,7 +24,7 @@ export default function RootLayout({children}) {
         <div className="flex flex-col items-center scroll-smooth">
          
         {children}
-        <Footer />
+        {!pathname.startsWith("/admin") && <Footer />}
         </div>
         
         
