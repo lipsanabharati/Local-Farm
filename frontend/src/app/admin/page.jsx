@@ -10,6 +10,7 @@ import ContactAdmin from "@/components/contactAdmin";
 import CategoryAdmin from "@/components/categoryAdmin";
 import MainAdmin from "@/components/mainAdmin";
 import StaffAdmin from "@/components/staffAdmin";
+import FaqAdmin from "@/components/faqAdmin";
 import { useAuth } from "@/context/AuthContext";
 
 export default function Admin(){  
@@ -54,7 +55,8 @@ export default function Admin(){
         {id:"event",label:"Event"},
         {id:"contact",label:"Contact"},
          {id:"category",label:"Category"},
-         {id:"staff",label:"Staff"}
+         {id:"staff",label:"Staff"},
+         {id:"faq",label:"FAQS"}
     ];
 
    
@@ -103,6 +105,9 @@ export default function Admin(){
                 </div>}
                  {activeTab === "staff" && <div>
                  <StaffAdmin />
+                </div>}
+                 {activeTab === "faq" && <div>
+                 <FaqAdmin />
                 </div>}
             </div>
        </section>
