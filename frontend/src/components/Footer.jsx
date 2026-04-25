@@ -3,7 +3,7 @@
 export default function Footer()
 {
     return(
-        <footer className="text-white xl:-mt-30 -mt-10 md:-mt-20 max-w-screen">
+        <footer className="text-white xl:-mt-30 -mt-30 md:-mt-20 max-w-screen">
 
             <svg width="2467" height="272" viewBox="0 0 2467 272" fill="none" xmlns="http://www.w3.org/2000/svg" className="xl:flex md:hidden lg:hidden hidden max-w-screen">
             <path d="M855.741 14.0779C624.981 -3.78355 123.272 -15.6231 0 49.3263V271.123H2467V48.0491C2307.94 25.9409 1828 0.121094 1552.97 30.5948C1277.95 61.0686 1086.5 31.9393 855.741 14.0779Z" fill="#344304"/>

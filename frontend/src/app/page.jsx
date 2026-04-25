@@ -9,6 +9,8 @@ import Link from "next/link";
 import { useToast } from "@/context/ToastContext";
 import axios from "axios";
 import emailjs from "@emailjs/browser"
+import Faq from "@/components/faq";
+import Global from "@/components/global";
 
 
 
@@ -342,6 +344,16 @@ export default function Home() {
          <Carousel />
       </section>
 
+      <section>
+         <Faq/>
+      </section>
+
+    
+        <section>
+         <Global/>
+      </section>
+     
+
       <section 
       className="w-full py-20 md:px-20 -mb-10"
       style={{
@@ -407,6 +419,8 @@ export default function Home() {
       </div>
      </div>
       </section>
+
+     
     </>
   )
 }

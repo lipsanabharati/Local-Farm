@@ -105,7 +105,7 @@ console.log("Cart",cart);
 }
 
   return (
-      <div className="h-150 md:h-150 lg:h-200 flex flex-col">
+      <div className="h-150 md:h-150 lg:h-200 flex flex-col items-center">
 
         {/* Category Tabs */}
         <div className="flex justify-center lg:gap-10 gap-5 lg:text-lg text-sm lg:mb-30 mb-20">
@@ -197,7 +197,7 @@ console.log("Cart",cart);
         {/* Products Grid Mobile */}
         {
           products[0] && (
-            <div className="grid grid-cols-1 lg:grid-cols-3 md:gap-30 gap-20 md:hidden block mt-25 w-[60%]">
+            <div className="grid grid-cols-1 lg:grid-cols-3 md:gap-30 gap-20 md:hidden block mt-10 w-[80%]">
          
             <motion.div
               key={products[0].id}
@@ -211,7 +211,7 @@ console.log("Cart",cart);
                 }}
             >
               {/* Image */}
-                <div className="flex justify-center -mt-45">
+                <div className="flex justify-center -mt-35">
                     <img
                   src={
                         products[0].photos?.[0]?.imagePath
