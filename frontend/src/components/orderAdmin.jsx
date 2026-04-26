@@ -39,10 +39,10 @@ export default function OrderAdmin()
         axios.get(`http://localhost:5000/api/orders`)
         .then((res)=>{
             setOrders(res.data);
-            console.log(res.data);
+            //console.log(res.data);
         })
         .catch((err)=>{
-            console.error(err);
+            //console.error(err);
             setOrders([]);
         })
     },[update])
@@ -74,7 +74,7 @@ export default function OrderAdmin()
         }
         catch(err)
         {
-            console.log(err);
+            //console.log(err);
             showFail("Update failed!");
         }
     };

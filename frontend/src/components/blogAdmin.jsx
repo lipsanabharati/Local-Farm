@@ -49,10 +49,10 @@ export default function BlogAdmin()
         axios.get(`http://localhost:5000/api/blogs`)
         .then((res)=>{
             setBlogs(res.data);
-            console.log(res.data);
+            // console.log(res.data);
         })
         .catch((err)=>{
-            console.error(err);
+            //console.error(err);
             setBlogs([]);
         })
     },[update])
@@ -155,7 +155,7 @@ export default function BlogAdmin()
         }
         catch(err)
         {
-            console.log(err);
+            //console.log(err);
             showFail("Update failed!");
         }
     };
@@ -193,7 +193,7 @@ export default function BlogAdmin()
         }
         catch(err)
         {
-            console.log(err);
+           // console.log(err);
             showFail("Update failed!");
         }
     };

@@ -46,10 +46,10 @@ export default function FaqAdmin()
         axios.get(`http://localhost:5000/api/faqs`)
         .then((res)=>{
             setFaqs(res.data);
-            console.log(res.data);
+            //console.log(res.data);
         })
         .catch((err)=>{
-            console.error(err);
+            //console.error(err);
             setFaqs([]);
         })
     },[update])
@@ -84,7 +84,7 @@ export default function FaqAdmin()
         setShowDeleteDialog(false);
         setUpdate(prev => !prev);
             } catch (err) {
-                console.log(err);
+                //console.log(err);
                 showFail("Delete failed!");
             }
         };
@@ -119,7 +119,7 @@ export default function FaqAdmin()
         }
         catch(err)
         {
-            console.log(err);
+            //console.log(err);
             showFail("Update failed!");
         }
     };
@@ -145,7 +145,7 @@ export default function FaqAdmin()
         }
         catch(err)
         {
-            console.log(err);
+            //console.log(err);
             showFail("Update failed!");
         }
     };

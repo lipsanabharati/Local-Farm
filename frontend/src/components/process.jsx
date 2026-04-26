@@ -5,17 +5,17 @@ export default function OurProcess() {
     {
       number: 1,
       title: "Step One",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do",
+      description: "We carefully collect raw ingredients directly from trusted local farmers, ensuring they are grown naturally without harmful chemicals.",
     },
     {
       number: 2,
       title: "Step Two",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do",
+      description: "The ingredients are gently cleaned and processed using traditional and hygienic methods to preserve their natural nutrients and quality.",
     },
     {
       number: 3,
       title: "Step Three",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do",
+      description: "Products are securely packaged to maintain freshness and delivered to customers, supporting both health and local farming communities.",
     },
   ];
 

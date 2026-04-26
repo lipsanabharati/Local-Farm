@@ -14,16 +14,16 @@ export default function ProductDesc({id})
         axios.get(`http://localhost:5000/api/products/${id}`)
         .then((res)=>{
              setProduct(res.data);
-             console.log(res.data);
+            //  console.log(res.data);
         })
         .catch((err)=>{
-             console.error(err);
+            //  console.error(err);
              setProduct({});
         })
     },[id]);
     
 
-    console.log(product);
+    // console.log(product);
 
      const {addToCartNum}=useContext(CartContext);
      const [quantity,setQuantity]=useState(0);

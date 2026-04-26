@@ -14,11 +14,11 @@ export default function Carousel()
       .then(
         (res)=>{
           setBlogs(res.data);
-          console.log(res.data);
+          // console.log(res.data);
         }
       )
       .catch((err)=>{
-        console.error(err);
+        //console.error(err);
       });
      },[]
     );

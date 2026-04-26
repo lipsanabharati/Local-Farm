@@ -14,7 +14,7 @@ export default function Faq() {
         setFaqs(res.data);
       })
       .catch((err) => {
-        console.error(err);
+        //console.error(err);
         setFaqs([]);
       });
   }, []);

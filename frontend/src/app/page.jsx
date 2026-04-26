@@ -65,7 +65,7 @@ export default function Home() {
       }
       catch(err)
       {
-        console.log(err);
+        // console.log(err);
         showFail("Message failed to send.")
       }
       finally
@@ -139,11 +139,7 @@ export default function Home() {
         src="a3.png">
         </motion.img>
         <div className="text-[#4D641E] w-1/2 lg:w-[33%] text-xs lg:text-xl">
-          LocalFarm Nepal is your go-to organic food store 
-            located in Maharajgunj, Nepal. We proudly offer a diverse range
-            of organically sourced products, including Shilajit, Honey, Powders, 
-            and Pickles, directly from local farmers.LocalFarm 
-            Nepal is your go-to organic food store located in Maharajgunj, Nepal.
+          LocalFarm Nepal is your trusted destination for organic foods in Maharajgunj. We offer a carefully curated selection of naturally sourced products—ranging from Shilajit and pure honey to nutritious powders and traditional pickles—directly sourced from local farmers. By connecting you with fresh, authentic produce, we support both your well-being and the livelihoods of our farming communities.
         </div>
       </div>
     </motion.section>
@@ -172,8 +168,7 @@ export default function Home() {
           transition={{ duration: 2, ease: "easeOut" }}
           className="text-xs lg:text-lg"
           >
-          Locally produced,straight from the farms.
-          Lorem ipsum dolor sit amet, consectetur
+         Rich in nutrients, bee pollen from LocalFarm is packed with vitamins, minerals, and antioxidants.
           </motion.p>
           <img src="arrow1.svg" className="absolute right-[-30px] lg:right-[-40px] lg:bottom-[-40px] lg:w-[20px]"></img>
         </div>
@@ -197,8 +192,7 @@ export default function Home() {
            whileInView={{y:0 }}
           transition={{ duration: 2, ease: "easeOut" }}
           className="text-xs lg:text-lg">
-            Locally produced,straight from the farms.
-            Lorem ipsum dolor sit amet, consectetur
+            Sourced naturally from local beekeepers to ensure purity and freshness.
           </motion.p>
         </div>
 
@@ -211,8 +205,7 @@ export default function Home() {
            whileInView={{x:0 }}
           transition={{ duration: 2, ease: "easeOut" }}
           className="text-xs lg:text-lg">
-            Locally produced,straight from the farms.
-            Lorem ipsum dolor sit amet, consectetur
+            Supports energy levels and overall wellness in your daily routine.
           </motion.p>
         </div>
       </div>
@@ -256,7 +249,7 @@ export default function Home() {
           <h1 className="font-heading md:text-3xl text-xl font-bold text-start text-[#609647]">"SUSTAINABLE FARMING THE LOCAL FARM"-ECS Media</h1>
 
           <div className="md:text-xl text-sm">
-            Local Farm serves as an inspiration for aspiringentrepreneurs and a reminder to consumers about the value of supporting local bussinesses. As Birat Bikram Shah and histeam continue their journey, they’re not just growing a business; they’re nurturing the seeds of change in Nepal’s agricultural landscape.
+           Local Farm stands as both an inspiration for aspiring entrepreneurs and a powerful reminder of the importance of supporting local businesses. As Birat Bikram Shah and his team continue their journey, they are doing more than just building a brand—they are cultivating meaningful change and helping shape a more sustainable future for Nepal’s agricultural landscape.
           </div>
 
         </motion.div>
@@ -301,11 +294,11 @@ export default function Home() {
         transition={{ duration: 2, ease: "easeOut" }} 
           className="lg:w-70 lg:h-70 md:w-50 md:h-50 w-45 h-45 rounded-full bg-[#609647] z-0 flex flex-col items-center gap-2 md:-me-10">
             <h2 className="text-white lg:text-xl md:text-md text-xs text-center font-bold lg:mt-20 lg:w-50 mt-10 mt-10 w-30">
-              Locally Produced, Straight from the Farms.
+              100% Organic & Natural
              </h2>
 
               <p className="text-white lg:text-sm text-xs text-center lg:w-40 w-30">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                Our products are free from harmful chemicals, ensuring pure, safe, and natural goodness in every bite.
               </p>
           </motion.div>
 
@@ -315,11 +308,11 @@ export default function Home() {
         transition={{ duration: 2, ease: "easeOut" }} 
           className="lg:w-100 lg:h-100 md:w-70 md:h-70 w-60 h-60 rounded-full bg-[#344304] z-3 flex flex-col items-center md:gap-5 gap-2 -mt-5">
              <h2 className="text-white lg:text-2xl md:text-xl text-lg  text-center font-bold lg:mt-30 md:mt-20 mt-10 lg:w-70 md:w-60 w-40">
-              Locally Produced, Straight from the Farms.
+              Directly From Local Farmers
              </h2>
 
               <p className="text-white md:text-sm lg:text-xl text-xs text-center md:w-70 w-40">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+               We source directly from Nepali farmers, ensuring freshness while supporting local communities and livelihoods.
               </p>
           </motion.div>
 
@@ -329,11 +322,11 @@ export default function Home() {
         transition={{ duration: 2, ease: "easeOut" }} 
           className="lg:w-70 lg:h-70 md:w-50 md:h-50 w-45 h-45 rounded-full bg-[#93C553] z-0 flex flex-col items-center gap-2 md:-ms-10 -mt-5">
             <h2 className="text-white lg:text-xl md:text-md text-xs text-center font-bold lg:mt-20 lg:w-50 mt-10 mt-10 w-30">
-              Locally Produced, Straight from the Farms.
+              Freshness You Can Trust
              </h2>
 
               <p className="text-white lg:text-sm text-xs text-center lg:w-40 w-30">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                Carefully processed and packed to preserve nutrients, flavor, and the true essence of natural food.
               </p>
           </motion.div>
           </div>

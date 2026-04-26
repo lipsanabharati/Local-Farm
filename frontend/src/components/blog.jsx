@@ -12,10 +12,10 @@ export default function Blog({slug})
         axios.get(`http://localhost:5000/api/blogs/${slug}`)
         .then((res)=>{
              setBlog(res.data);
-             console.log(res.data);
+            //  console.log(res.data);
         })
         .catch((err)=>{
-             console.error(err);
+            //  console.error(err);
              setBlog({});
         })
     },[]);

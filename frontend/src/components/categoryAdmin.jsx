@@ -38,10 +38,10 @@ export default function CategoryAdmin()
         axios.get(`http://localhost:5000/api/product-categories`)
         .then((res)=>{
             setCategories(res.data);
-            console.log(res.data);
+            //console.log(res.data);
         })
         .catch((err)=>{
-            console.error(err);
+            //console.error(err);
             setCategories([]);
         })
     },[update])
@@ -77,7 +77,7 @@ export default function CategoryAdmin()
         }
         catch(err)
         {
-            console.log(err);
+            //console.log(err);
             showFail("Update failed!");
         }
     };
@@ -98,7 +98,7 @@ export default function CategoryAdmin()
         }
         catch(err)
         {
-            console.log(err);
+            //console.log(err);
             showFail("Update failed!");
         }
     };

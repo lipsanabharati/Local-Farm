@@ -19,12 +19,12 @@ export default function Admin(){
     const [activeTab,setActiveTab]=useState("admin");
 
     //localstorage can only be accessed in the client
-      useEffect(() => {
-    console.log("TOKEN:", localStorage.getItem("token"));
-        }, []);
+    //   useEffect(() => {
+    // console.log("TOKEN:", localStorage.getItem("token"));
+    //     }, []);
         
-    console.log("isAuthenticated:", isAuthenticated);
-    console.log("loading:", loading);
+    // console.log("isAuthenticated:", isAuthenticated);
+    // console.log("loading:", loading);
 
 
    useEffect(()=>{

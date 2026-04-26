@@ -13,16 +13,16 @@ export default function EventCard()
       .then(
         (res)=>{
           setEvents(res.data);
-          console.log(res.data);
+          // console.log(res.data);
         }
       )
       .catch((err)=>{
-        console.error(err);
+        // console.error(err);
       });
      },[]
     );
 
-    console.log(events);
+    // console.log(events);
   return(
     <div className="flex flex-col gap-30 justify-center items-center mt-20 mb-30 w-full">
     { events.length>0 && (

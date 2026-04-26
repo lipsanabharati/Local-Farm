@@ -25,7 +25,7 @@ export default function MainAdmin(){
 
     const {token,setToken}=useAuth();
 
-    console.log("token",token);
+    //console.log("token",token);
      
     const handlePasswordChangeClick=()=>{
             setShowForm(true);
@@ -56,7 +56,7 @@ export default function MainAdmin(){
             );
     
                 showSuccess("Password Changed Successfull!");
-                console.log("success hit");
+                //console.log("success hit");
             }
             catch(error)
             {
@@ -64,7 +64,7 @@ export default function MainAdmin(){
                 {
                     showFail(error.response.data.message);
                 }
-                console.log("error hit");
+                //console.log("error hit");
             }
             finally{
                 setSubmitting(false);

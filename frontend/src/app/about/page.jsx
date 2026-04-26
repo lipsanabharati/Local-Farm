@@ -58,20 +58,20 @@ export default function About()
         axios.get(`http://localhost:5000/api/staff`)
         .then((res)=>{
             setStaffs(res.data);
-            console.log(res.data);
+            // console.log(res.data);
         })
         .catch((err)=>{
-            console.error(err);
+            // console.error(err);
             setStaffs([]);
         })
     },[])
 
     return(
-     <section className="flex flex-col items-center p-10 m-10 mt-30 gap-5 max-w-[1440px] overflow-hidden">
+     <section className="flex flex-col items-center  m-10 mt-30 gap-5 max-w-[1440px] overflow-hidden">
 
         <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold text-[#609647] mt-10">About Us</h1>
 
-        <div className="flex flex-row justify-center items-center bg-[url('/blogBg.svg')] bg-no-repeat  lg:bg-contain bg-cover bg-position-[center_bottom_0rem] lg:bg-position-[center_bottom_0rem] md:bg-position-[center_bottom_0rem] p-1 md:p-15 w-screen max-w-[1440px]  lg:h-150 h-100 mySwiper">
+        <div className="w-full flex flex-row justify-center items-center bg-[url('/blogBg.svg')] bg-no-repeat  lg:bg-contain bg-cover bg-position-[center_bottom_0rem] lg:bg-position-[center_bottom_0rem] md:bg-position-[center_bottom_0rem] p-1 md:p-15 w-screen max-w-[1440px]  lg:h-150 h-100 mySwiper">
 
             <Swiper
             modules={[Autoplay,Pagination]}
@@ -95,11 +95,11 @@ export default function About()
         </div>
 
         <div className="text-md px-5 md:px-15 lg:px-30 lg:text-xl">
-            Local Farm serves as an inspiration for aspiring entrepreneurs and a reminder to consumers about the value of supporting local bussinesses. As Birat Bikram Shah and his team continue their journey, they’re not just growing a  business; they’re nurturing the seeds of change in Nepal’s agricultural landscape.
+           Local Farm Nepal was built with a simple vision—to reconnect people with pure, natural food while uplifting the farmers who grow it. What started as a small initiative has grown into a trusted platform that brings high-quality organic products directly from local farms to your home.
         </div>
 
         <div className="text-md px-5 md:px-15 lg:px-30 lg:text-xl">
-            Local Farm serves as an inspiration for aspiring entrepreneurs and a reminder to consumers about the value of supporting local bussinesses
+         Our journey is rooted in sustainability, transparency, and community impact. Every product you choose supports local farmers, preserves traditional practices, and promotes a healthier lifestyle for everyone.
         </div>
 
         <div className="w-full flex flex-row justify-start px-5 md:px-15 lg:px-30">
@@ -113,7 +113,7 @@ export default function About()
         </div>
 
         <div className="text-md px-5 md:px-15 text-end md:hidden">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed d.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed d.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sedLorem ipsum dolor sit amet.
+           We work closely with farmers across Nepal, creating fair opportunities and ensuring they receive the value they deserve. By choosing Local Farm, you directly contribute to strengthening rural livelihoods and preserving agricultural traditions.
         </div>
 
         <div className="flex flex-row gap-8 justify-center px-5 md:px-15 mt-10 md:hidden">
@@ -122,17 +122,17 @@ export default function About()
         </div>
 
         <div className="text-md px-5 md:hidden">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed d.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed d.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sedLorem ipsum dolor sit amet.
+           Our products are carefully sourced, naturally processed, and quality-checked to maintain their authenticity. From farm to packaging, we ensure everything meets the highest standards of purity and freshness.
         </div>
         
 
          <div className="flex flex-row gap-8 justify-center px-5 mt-10 md:hidden">
             <img src="/a3.png" className="w-1/3" />
-            <h1 className="text-2xl lg:text-3xl font-bold text-[#609647] mt-5 text-end">Supporting Local Farmers all over Nepal</h1>
+            <h1 className="text-2xl lg:text-3xl font-bold text-[#609647] mt-5 text-end">Committed to Sustainable Living</h1>
         </div>
 
         <div className="text-md text-end px-5 md:hidden">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed d.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed d.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sedLorem ipsum dolor sit amet.
+            We believe in responsible farming and eco-friendly practices that protect both people and the planet. By promoting organic methods and reducing harmful chemicals, we are building a healthier future for generations to come.
         </div>
 
         {/*Medium and above screens */}
@@ -142,7 +142,7 @@ export default function About()
             <div className="flex flex-col w-[50%]">
                  <h1 className="text-2xl text-end md:text-3xl lg:text-5xl font-bold text-[#609647] mt-5">Supporting Local Farmers all over Nepal</h1>
                  <div className="text-md text-end lg:text-xl lg:mt-10">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed d.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed d.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sedLorem ipsum dolor sit amet.
+                    We work closely with farmers across Nepal, creating fair opportunities and ensuring they receive the value they deserve. By choosing Local Farm, you directly contribute to strengthening rural livelihoods and preserving agricultural traditions.
                 </div>
             </div>
         </div>
@@ -152,9 +152,9 @@ export default function About()
             
 
             <div className="flex flex-col w-[65%]">
-                 <h1 className="text-2xl text-end lg:text-3xl lg:text-5xl font-bold text-[#609647] mt-5">Supporting Local Farmers all over Nepal</h1>
+                 <h1 className="text-2xl text-end lg:text-3xl lg:text-5xl font-bold text-[#609647] mt-5">Providing Quality Products</h1>
                  <div className="text-md text-end lg:text-xl lg:mt-10">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed d.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed d.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sedLorem ipsum dolor sit amet.
+                     Our products are carefully sourced, naturally processed, and quality-checked to maintain their authenticity. From farm to packaging, we ensure everything meets the highest standards of purity and freshness.
                 </div>
             </div>
 
@@ -165,9 +165,9 @@ export default function About()
              <img src="/a3.png" className="w-[25%]" />
 
             <div className="flex flex-col w-[75%]">
-                 <h1 className="text-2xl text-end md:text-3xl lg:text-5xl font-bold text-[#609647] mt-5">Supporting Local Farmers all over Nepal</h1>
+                 <h1 className="text-2xl text-end md:text-3xl lg:text-5xl font-bold text-[#609647] mt-5 mb-6">Committed to Sustainable Living</h1>
                  <div className="text-md text-end lg:text-xl">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed d.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed d.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sedLorem ipsum dolor sit amet.
+                    We believe in responsible farming and eco-friendly practices that protect both people and the planet. By promoting organic methods and reducing harmful chemicals, we are building a healthier future for generations to come.
                 </div>
             </div>
         </div>

@@ -54,10 +54,10 @@ export default function ProductAdmin()
         axios.get(`http://localhost:5000/api/products`)
         .then((res)=>{
             setProducts(res.data);
-            console.log(res.data);
+            //console.log(res.data);
         })
         .catch((err)=>{
-            console.error(err);
+            //console.error(err);
             setProducts([]);
         })
     },[update])
@@ -93,7 +93,7 @@ export default function ProductAdmin()
         setShowDeleteDialog(false);
         setUpdate(prev => !prev);
             } catch (err) {
-                console.log(err);
+                //console.log(err);
                 showFail("Delete failed!");
             }
         };
@@ -182,7 +182,7 @@ export default function ProductAdmin()
         }
         catch(err)
         {
-            console.log(err);
+            //console.log(err);
             showFail("Update failed!");
         }
     };
@@ -220,7 +220,7 @@ export default function ProductAdmin()
         }
         catch(err)
         {
-            console.log(err);
+            //console.log(err);
             showFail("Update failed!");
         }
         finally{

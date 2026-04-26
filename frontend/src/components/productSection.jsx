@@ -50,7 +50,7 @@ export default function ProductsSection() {
       setActiveCategory(res.data[0]);
     } catch (err) {
       setCategories([]);
-      console.log(err);
+      //console.log(err);
     }
     
   };
@@ -83,7 +83,7 @@ export default function ProductsSection() {
       }
     })
     .catch((err) => {
-      console.error(err);
+      //console.error(err);
       setProducts([]);
       setMessage("No products found.");
     });
@@ -93,12 +93,12 @@ export default function ProductsSection() {
   
 
   useEffect(()=>{
-  console.log(products);
+  //console.log(products);
 },[products]);
 
 const {cart,addToCart}=useContext(CartContext);
 
-console.log("Cart",cart);
+//console.log("Cart",cart);
 
  if (!activeCategory) {
   return <p className="text-center text-gray-300">Loading...</p>;

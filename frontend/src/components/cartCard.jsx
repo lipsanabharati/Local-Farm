@@ -6,7 +6,7 @@ import  {CartContext}  from "@/context/CartContext";
 export default function CartCard()
 {
     const {cart,addToCart,removeFromCart,clearCart,increaseAmount,decreaseAmount,itemAmount,total}=useContext(CartContext);
-    console.log("Cart",cart);
+    //console.log("Cart",cart);
 
     
     return(

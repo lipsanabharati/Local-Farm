@@ -50,10 +50,10 @@ export default function StaffAdmin()
         axios.get(`http://localhost:5000/api/staff`)
         .then((res)=>{
             setStaffs(res.data);
-            console.log(res.data);
+            //console.log(res.data);
         })
         .catch((err)=>{
-            console.error(err);
+            //console.error(err);
             setStaffs([]);
         })
     },[update])
@@ -91,7 +91,7 @@ export default function StaffAdmin()
         setShowDeleteDialog(false);
         setUpdate(prev => !prev);
             } catch (err) {
-                console.log(err);
+                //console.log(err);
                 showFail("Delete failed!");
             }
         };
@@ -176,7 +176,7 @@ export default function StaffAdmin()
         }
         catch(err)
         {
-            console.log(err);
+            //console.log(err);
             showFail("Update failed!");
         }
     };
@@ -212,7 +212,7 @@ export default function StaffAdmin()
         }
         catch(err)
         {
-            console.log(err);
+            //console.log(err);
             showFail("Update failed!");
         }
         finally{

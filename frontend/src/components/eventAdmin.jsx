@@ -47,10 +47,10 @@ export default function EventAdmin() {
       .get(`http://localhost:5000/api/events`)
       .then((res) => {
         setEvents(res.data);
-        console.log(res.data);
+        //console.log(res.data);
       })
       .catch((err) => {
-        console.error(err);
+        //console.error(err);
         setEvents([]);
       });
   }, [update]);
@@ -135,7 +135,7 @@ export default function EventAdmin() {
       }
     });
 
-    console.log([...formData]);
+    //console.log([...formData]);
 
     try {
       await axios.put(
@@ -147,7 +147,7 @@ export default function EventAdmin() {
       setShowForm(false);
       setUpdate((prev) => !prev);
     } catch (err) {
-      console.log(err);
+      //console.log(err);
       showFail("Update failed!");
     }
   };
@@ -170,7 +170,7 @@ export default function EventAdmin() {
       }
     });
 
-    console.log([...formData]);
+    //console.log([...formData]);
 
     try {
       await axios.post(
@@ -182,7 +182,7 @@ export default function EventAdmin() {
       setShowAddForm(false);
       setUpdate((prev) => !prev);
     } catch (err) {
-      console.log(err);
+      //console.log(err);
       showFail("Update failed!");
     }
   };

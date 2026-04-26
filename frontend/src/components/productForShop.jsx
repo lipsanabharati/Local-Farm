@@ -42,12 +42,12 @@ export default function ProductForShop() {
     try {
       const res = await axios.get(`http://localhost:5000/api/product-categories`);
       setCategories(res.data);
-      console.log(res.data);
+      // console.log(res.data);
       // set default category here
       setActiveCategory(res.data[0]);
     } catch (err) {
       setCategories([]);
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -79,7 +79,7 @@ export default function ProductForShop() {
       }
     })
     .catch((err) => {
-      console.error(err);
+      // console.error(err);
       setProducts([]);
       setMessage("No products found.");
     });
@@ -87,14 +87,14 @@ export default function ProductForShop() {
 }, [activeCategory]);
 
   
-console.log(categories)
+// console.log(categories)
   
 
   const {cart,addToCart,removeFromCart,clearCart,increaseAmount,decreaseAmount,itemAmount,total}=useContext(CartContext);
   
- useEffect(()=>{
-  console.log("Cart",cart);
-},[cart]);
+//  useEffect(()=>{
+//   console.log("Cart",cart);
+// },[cart]);
 
 
 
