@@ -4,7 +4,7 @@ import {useState,useEffect} from "react";
 import axios from "axios";
 import Link from "next/link";
 
-export default function Carousel()
+export default function Carousel({transparent})
 {
   const [blogs,setBlogs]=useState([]);
   const [current,setCurrent]=useState(0);
@@ -39,7 +39,7 @@ export default function Carousel()
         >
 
             {/*Slide*/}
-            <div className="flex lg:flex-row flex-col  lg:gap-5 md:gap-10 gap-5 bg-[#f4eac3] ">
+            <div className={`flex lg:flex-row flex-col  lg:gap-5 md:gap-10 gap-5  ${transparent?"bg-transparent":"bg-[#f4eac3]"} `}>
 
                 {/*Image*/}
                <div

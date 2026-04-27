@@ -334,7 +334,7 @@ export default function Home() {
       </section>
 
       <section className="max-w-[1440px] mb-30">
-         <Carousel />
+         <Carousel transparent={false} />
       </section>
 
       <section>

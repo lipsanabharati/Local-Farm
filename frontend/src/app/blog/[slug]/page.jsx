@@ -10,7 +10,7 @@ export default async function BlogPage({params})
          <Blog slug={slug}/>
          
          <div className="md:mt-10 md:mb-20">
-            <Carousel />
+            <Carousel transparent={false} />
         </div>
        </section>
     )

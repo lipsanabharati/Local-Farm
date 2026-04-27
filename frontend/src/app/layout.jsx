@@ -24,7 +24,7 @@ export default function RootLayout({children}) {
         <div className="flex flex-col items-center scroll-smooth">
          
         {children}
-        {!pathname.startsWith("/admin") && <Footer />}
+        {(!pathname.startsWith("/admin")&&!pathname.startsWith("/login")) && <Footer />}
         </div>
         
         

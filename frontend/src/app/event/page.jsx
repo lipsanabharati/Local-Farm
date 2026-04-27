@@ -21,7 +21,7 @@ export default function Event()
         </div>
 
         <div>
-            <EventCarousel />
+            <EventCarousel transparent={true} />
         </div>
 
         <div>
