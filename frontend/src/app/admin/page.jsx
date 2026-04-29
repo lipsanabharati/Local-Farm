@@ -11,12 +11,13 @@ import CategoryAdmin from "@/components/categoryAdmin";
 import MainAdmin from "@/components/mainAdmin";
 import StaffAdmin from "@/components/staffAdmin";
 import FaqAdmin from "@/components/faqAdmin";
+import Logout from "@/components/logout";
 import { useAuth } from "@/context/AuthContext";
 
 export default function Admin(){  
     const router= useRouter();
     const {isAuthenticated,loading}=useAuth();
-    const [activeTab,setActiveTab]=useState("admin");
+    const [activeTab,setActiveTab]=useState("products");
 
     //localstorage can only be accessed in the client
     //   useEffect(() => {
@@ -48,7 +49,6 @@ export default function Admin(){
    
 
     const tabs=[
-        {id:"admin",label:"Admin"},
         {id:"products",label:"Products"},
         {id:"orders",label:"Orders"},
         {id:"blog",label:"Blog"},
@@ -56,7 +56,8 @@ export default function Admin(){
         {id:"contact",label:"Contact"},
          {id:"category",label:"Category"},
          {id:"staff",label:"Staff"},
-         {id:"faq",label:"FAQS"}
+         {id:"faq",label:"FAQS"},
+         {id:"changePass",label:"Change Password"}
     ];
 
    
@@ -75,12 +76,13 @@ export default function Admin(){
                         </button>
                     ))
                 }
+                <Logout />
             </div>
 
            
 
              <div className="mt-6">
-                 {activeTab === "admin" && (<div>
+                 {activeTab === "changePass" && (<div>
                  <MainAdmin />
                 </div>)}
             {activeTab === "products" && 

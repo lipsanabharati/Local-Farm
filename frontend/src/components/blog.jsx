@@ -12,16 +12,16 @@ export default function Blog({slug})
         axios.get(`http://localhost:5000/api/blogs/${slug}`)
         .then((res)=>{
              setBlog(res.data);
-            //  console.log(res.data);
+             console.log(res.data);
         })
         .catch((err)=>{
-            //  console.error(err);
+             console.error(err);
              setBlog({});
         })
     },[]);
 
     return(
-        <div className="flex flex-col gap-3 md:gap-8 px-5 md:px-10 lg:px-50">
+        <div className="flex flex-col gap-3 md:gap-8 px-5 md:px-10 lg:px-50 mb-20">
 
             <h1 className="text-2xl lg:text-3xl font-bold text-[#609647]" dangerouslySetInnerHTML={{ __html:blog.title }}></h1>
 

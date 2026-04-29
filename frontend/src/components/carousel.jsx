@@ -4,11 +4,29 @@ import {useState,useEffect} from "react";
 import axios from "axios";
 import Link from "next/link";
 
-export default function Carousel({transparent})
+export default function Carousel({transparent,categoryId})
 {
   const [blogs,setBlogs]=useState([]);
   const [current,setCurrent]=useState(0);
+  if(categoryId){
   useEffect(
+     ()=>{
+      axios.get(`http://localhost:5000/api/blogs/category/${categoryId}`)
+      .then(
+        (res)=>{
+          setBlogs(res.data);
+          // console.log(res.data);
+        }
+      )
+      .catch((err)=>{
+        //console.error(err);
+      });
+     },[]
+    );
+  }
+  else
+  {
+     useEffect(
      ()=>{
       axios.get(`http://localhost:5000/api/blogslp`)
       .then(
@@ -22,6 +40,7 @@ export default function Carousel({transparent})
       });
      },[]
     );
+  }
   
   const nextSlide=()=>{
     setCurrent((current+1)%blogs.length);
@@ -30,6 +49,7 @@ export default function Carousel({transparent})
   const prevSlide=()=>{
     setCurrent((current-1+blogs.length)%blogs.length);
   };
+
 
   return(
     
@@ -58,7 +78,7 @@ export default function Carousel({transparent})
                     <h2 className="md:text-4xl text-2xl text-[#609647] font-bold"  dangerouslySetInnerHTML={{ __html: blogs[current].title }}>
                     </h2>
 
-                    <p className="text-gray-600 md:text-lg text-sm" dangerouslySetInnerHTML={{ __html: blogs[current].introduction }}>
+                    <p className="text-gray-600 md:text-lg text-sm line-clamp-6" dangerouslySetInnerHTML={{ __html: blogs[current].introduction }}>
                     </p>
 
                     <Link 

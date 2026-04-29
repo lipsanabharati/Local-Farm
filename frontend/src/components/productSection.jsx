@@ -219,7 +219,7 @@ const {cart,addToCart}=useContext(CartContext);
                       : "/error.png"
                   }
                   alt={products[0].productName}
-                  className=" w-full object-contain drop-shadow-xl relative"
+                  className=" w-[60%] object-contain drop-shadow-xl relative"
                 />
                 </div>
 

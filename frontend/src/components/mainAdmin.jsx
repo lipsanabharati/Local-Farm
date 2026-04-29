@@ -14,22 +14,20 @@ import { Router } from "next/router";
 export default function MainAdmin(){
 
     const {showSuccess, showFail } = useToast();
-    const [showForm,setShowForm]=useState(false);
-     //change password 
+    // const [showForm,setShowForm]=useState(true);
+    // change password 
     const [currentPassword,setCurrentPassword]=useState("");
     const [newPassword,setNewPassword]=useState("");
     const [confirmPassword,setConfirmPassword]=useState("");
     const [submitting,setSubmitting]=useState(false);
 
-    const router=useRouter();
-
-    const {token,setToken}=useAuth();
+   
 
     //console.log("token",token);
      
-    const handlePasswordChangeClick=()=>{
-            setShowForm(true);
-        }
+    // const handlePasswordChangeClick=()=>{
+    //         setShowForm(true);
+    //     }
     
         const handleChangePasswordSubmit= async (e)=>{
             e.preventDefault();
@@ -73,32 +71,21 @@ export default function MainAdmin(){
             
         }
 
-        const handleLogout=()=>{
-            setToken(null);
-            localStorage.clear();
-            router.push("/login");
-        }
+        // const handleLogout=()=>{
+        //     setToken(null);
+        //     localStorage.clear();
+        //     router.push("/login");
+        // }
 
     return (
        <section className="p-40">
-         <div className="flex flex-row gap-3 mt-5">
-            <button onClick={handlePasswordChangeClick} className="bg-[#609647] hover:bg-[#93c553] hover:cursor-pointer p-3 rounded-xl text-white">Change Password</button>
-             <button onClick={handleLogout} className="bg-red-400 hover:bg-red-300 hover:cursor-pointer p-3 rounded-xl text-white">Logout</button>
-         </div>
-
-         {
-                    showForm &&(
-                        <div className="fixed inset-0 bg-black/40 flex justify-center items-center z-50">
+        
+             
     
-                            <div className="bg-white p-8 rounded-2xl w-[500px] max-h-[90vh] overflow-y-auto shadow-2xl">
                             
-                            {/* Close Button */}
-                            <button
-                                onClick={() => setShowForm(false)}
-                                className="float-right text-red-500 font-bold"
-                            >
-                                X
-                            </button>
+                            
+                           
+                
 
                     <form onSubmit={handleChangePasswordSubmit} className="flex flex-col gap-5">
 
@@ -146,10 +133,9 @@ export default function MainAdmin(){
                         </button>
                     </form>
 
-                    </div>
-                </div>
-                    )
-                }
+               
+               
+
         </section>
     )
 }

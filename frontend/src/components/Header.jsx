@@ -34,7 +34,7 @@ export default function Header()
             <div className=" hidden font-heading lg:flex lg:flex-row gap-10 items-center justify-center">
                 <Link href="/" className="hover:text-[#609647]">Home</Link>
                 <Link href="/about" className="hover:text-[#609647]" >About</Link>
-                <Link href="/blog/benefits-of-mad-honey" className="hover:text-[#609647]">Blog</Link>
+                <Link href="/blog/local-farm-bee-pollen" className="hover:text-[#609647]">Blog</Link>
                 <Link href="/shop" className="hover:text-[#609647]">Shops</Link>
                 <Link href="/cart" className="hover:text-[#609647]">Cart</Link>
                 <Link href="/event" className="hover:text-[#609647]">Events</Link>
@@ -52,7 +52,7 @@ export default function Header()
             >
                  <Link href="/" onClick={toggleMenu} className="hover:text-[#609647]">Home</Link>
                 <Link href="/about" onClick={toggleMenu} className="hover:text-[#609647]">About</Link>
-                <Link href="/blog/benefits-of-mad-honey" className="hover:text-[#609647]" onClick={toggleMenu}>Blog</Link>
+                <Link href="/blog/local-farm-bee-pollen" className="hover:text-[#609647]" onClick={toggleMenu}>Blog</Link>
                 <Link href="/shop" className="hover:text-[#609647]" onClick={toggleMenu}>Shops</Link>
                 <Link href="/cart" className="hover:text-[#609647]" onClick={toggleMenu}>Cart</Link>
                 <Link href="/event" className="hover:text-[#609647]" onClick={toggleMenu}>Events</Link>

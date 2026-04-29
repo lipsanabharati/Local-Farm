@@ -156,30 +156,30 @@ export default function FaqAdmin()
             <table className="border-1 border-gray-300">
              <thead>
                 <tr className="border-1 border-gray-300">
-                    <th className="border-1 p-1 text-center">Id</th>
-                    <th className="border-1 p-1 text-center">Question</th>
-                    <th className="border-1 p-1 text-center">Answer</th>
-                    <th className="border-1 p-1 text-center">Created At</th>
-                    <th className="border-1 p-1 text-center">Updated At</th>
-                    <th className="border-1 p-1 text-center">Update</th>
-                    <th className="border-1 p-1 text-center">Delete</th>
+                    <th className="border-1 p-2 text-center">Id</th>
+                    <th className="border-1 p-2 text-center">Question</th>
+                    <th className="border-1 p-2 text-center">Answer</th>
+                    <th className="border-1 p-2 text-center">Created At</th>
+                    <th className="border-1 p-2 text-center">Updated At</th>
+                    <th className="border-1 p-2 text-center">Update</th>
+                    <th className="border-1 p-2 text-center">Delete</th>
                 </tr>
               </thead>
               <tbody>
                 {
                    currentFaqs.map((faq,index)=>(
                         <tr key={index} className="border-1 border-gray-300">
-                            <td className="border-1 p-1 text-center">{faq.id}</td>
+                            <td className="border-1 p-2 text-center">{faq.id}</td>
                             
-                            <td className="border-1 p-1 text-center">{faq.question}</td>
-                            <td className="border-1 p-1 text-center">{faq.answer}</td>
+                            <td className="border-1 p-2 text-center">{faq.question}</td>
+                            <td className="border-1 p-2 text-center">{faq.answer}</td>
                             
-                            <td className="border-1 p-1 text-center">{faq.createdAt.slice(0,10)}</td>
-                            <td className="border-1 p-1 text-center">{faq.updatedAt.slice(0,10)}</td>
-                            <td className="border-1 p-1 text-center"><button 
+                            <td className="border-1 p-2 text-center">{faq.createdAt.slice(0,10)}</td>
+                            <td className="border-1 p-2 text-center">{faq.updatedAt.slice(0,10)}</td>
+                            <td className="border-1 p-2 text-center"><button 
                             className="bg-[#609647] p-2 hover:bg-[#93C553] hover:cursor-pointer m-3 "
                             onClick={()=>handleUpdateClick(faq)}>Update</button></td>
-                            <td className="border-1 p-1 text-center"><button 
+                            <td className="border-1 p-2 text-center"><button 
                             className="bg-red-400 p-2 hover:bg-red-300 hover:cursor-pointer m-3 "
                             onClick={()=>handleDeleteClick(faq.id)}>Delete</button></td>
                         </tr>
