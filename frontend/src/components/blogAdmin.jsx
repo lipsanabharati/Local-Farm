@@ -4,6 +4,7 @@ import {useEffect,useState,useRef} from "react";
 import axios from "axios"
 import { useToast } from "@/context/ToastContext";
 import "quill/dist/quill.snow.css";
+import { useAuth } from "@/context/AuthContext";
 
 export default function BlogAdmin()
 {
@@ -23,6 +24,8 @@ export default function BlogAdmin()
     const [photos,setPhotos]=useState([]);
     const [previewPhotos,setPreviewPhotos]=useState([]);
     const [update,setUpdate]=useState(false);
+    const [categoryId,setCategoryId]=useState(null);
+   
 
 
     //add form data(adding api)
@@ -32,6 +35,7 @@ export default function BlogAdmin()
     const [addContent,setAddContent]=useState("");
     const [addPhotos,setAddPhotos]=useState([]);
     const [addPreviewPhotos,setAddPreviewPhotos]=useState([]);
+    const [addCategoryId,setAddCategoryId]=useState(null);
    
 
     //pagination states
@@ -45,14 +49,20 @@ export default function BlogAdmin()
 
     const totalPages= Math.ceil(blogs.length/itemsPerPage);
 
+    //auth
+    const {token}=useAuth();
+
+    //category
+    const [categories,setCategories]=useState([]);
+
     useEffect(()=>{
         axios.get(`http://localhost:5000/api/blogs`)
         .then((res)=>{
             setBlogs(res.data);
-            // console.log(res.data);
+            console.log(res.data);
         })
         .catch((err)=>{
-            //console.error(err);
+            console.error(err);
             setBlogs([]);
         })
     },[update])
@@ -132,6 +142,7 @@ export default function BlogAdmin()
         formData.append("slug",slug);
         formData.append("introduction",introduction);
         formData.append("content",content);
+        formData.append("categoryId",categoryId);
         
 
         photos.forEach((photo)=>{
@@ -144,7 +155,7 @@ export default function BlogAdmin()
             await axios.put(`http://localhost:5000/api/blogs/${selected.id}`,formData,
                 {
                     headers:{
-                        "Content-Type":"multipart/form-data"
+                        Authorization:`Bearer ${token}`
                     },
                 }
             )
@@ -170,6 +181,7 @@ export default function BlogAdmin()
         formData.append("slug",addSlug);
         formData.append("introduction",addIntroduction);
         formData.append("content",addContent);
+        formData.append("categoryId",addCategoryId);
         
 
         addPhotos.forEach((photo)=>{
@@ -182,7 +194,7 @@ export default function BlogAdmin()
             await axios.post(`http://localhost:5000/api/blogs`,formData,
                 {
                     headers:{
-                        "Content-Type":"multipart/form-data"
+                        Authorization:`Bearer ${token}`
                     },
                 }
             )
@@ -193,7 +205,7 @@ export default function BlogAdmin()
         }
         catch(err)
         {
-           // console.log(err);
+           console.log(err);
             showFail("Update failed!");
         }
     };
@@ -304,12 +316,27 @@ export default function BlogAdmin()
     }, [showAddForm]);
 
 
+     //getting categories
+    useEffect(()=>{
+        axios.get(`http://localhost:5000/api/product-categories`)
+        .then(
+            (res)=>{
+                console.log(res.data);
+                setCategories(res.data);
+            }
+        )
+        .catch((err)=>{
+            console.log(err);
+        })
+    },[])
+
     return(
         <section className="mt-20 mb-10 p-10 ">
             <table className="border-1 border-gray-300 table-fixed">
              <thead>
                 <tr className="border-1 border-gray-300">
                     <th className="border-1 p-1 text-center">Id</th>
+                      <th className="border-1 p-1 text-center">Category Id</th>
                     <th className="border-1 p-1 text-center">Title</th>
                     <th className=" border-1 p-1 text-center break-words max-w-[200px]">Slug</th>
                     <th className="border-1 p-1 text-center break-words max-w-[200px]">Introduction</th>
@@ -324,7 +351,7 @@ export default function BlogAdmin()
                     currentBlogs.map((blog,index)=>(
                         <tr key={index} className="border-1 border-gray-300">
                             <td className="border-1 p-1 text-center">{blog.id}</td>
-                            
+                             <td className="border-1 p-1 text-center">{blog.categoryId}</td>
                             <td className="border-1 p-1 text-center">{blog.title}</td>
                             <td className="break-words max-w-[200px] border-1 p-1 text-center">{blog.slug}</td>
                             <td className="break-words max-w-[200px] border-1 p-1 text-center">
@@ -385,6 +412,28 @@ export default function BlogAdmin()
                             </button>
 
                     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+
+                        <div className="flex flex-col gap-1.5">
+                        <label className="text-sm font-bold text-gray-700 ml-1">
+                            Category
+                        </label>
+
+                        <select
+                            id="category"
+                            className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#93C553] focus:bg-white outline-none transition-all text-gray-800"
+                            value={categoryId}
+                            onChange={(e) => setCategoryId(Number(e.target.value))}
+                            required
+                        >
+                            <option value="">Select category</option>
+
+                            {categories.map((cat) => (
+                                <option key={cat.id} value={cat.id}>
+                                    {cat.categoryName}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
 
                         <div className="flex flex-col gap-1.5">
                             <label className="text-sm font-bold text-gray-700 ml-1">Title</label>
@@ -499,6 +548,28 @@ export default function BlogAdmin()
                             </button>
 
                     <form onSubmit={handleAddSubmit} className="flex flex-col gap-5">
+
+                        <div className="flex flex-col gap-1.5">
+                        <label className="text-sm font-bold text-gray-700 ml-1">
+                            Category
+                        </label>
+
+                        <select
+                            id="category"
+                            className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#93C553] focus:bg-white outline-none transition-all text-gray-800"
+                            value={addCategoryId}
+                            onChange={(e) => setAddCategoryId(Number(e.target.value))}
+                            required
+                        >
+                            <option value="">Select category</option>
+
+                            {categories.map((cat) => (
+                                <option key={cat.id} value={cat.id}>
+                                    {cat.categoryName}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
 
                         <div className="flex flex-col gap-1.5">
                             <label className="text-sm font-bold text-gray-700 ml-1">Title</label>

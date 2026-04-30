@@ -4,6 +4,7 @@ import {useEffect,useState,useRef} from "react";
 import axios from "axios"
 import { useToast } from "@/context/ToastContext";
 import "quill/dist/quill.snow.css";
+import { useAuth } from "@/context/AuthContext";
 
 
 export default function ProductAdmin()
@@ -31,7 +32,7 @@ export default function ProductAdmin()
     const [addQuantity,setAddQuantity]=useState(0);
     const [addPrice,setAddPrice]=useState(0);
     const [addDescription,setAddDescription]=useState("");
-    const [addPhotos,setAddPhotos]=useState([]);
+    const [addPhotos,setAddPhotos]=useState([""]);
     const [addPreviewPhotos,setAddPreviewPhotos]=useState([]);
 
     //delete states
@@ -49,6 +50,12 @@ export default function ProductAdmin()
     const currentProducts=products.slice(indexOfFirstItem,indexOfLastItem);
 
     const totalPages= Math.ceil(products.length/itemsPerPage);
+
+    //auth
+    const {token,setToken}=useAuth();
+
+    //category
+    const [categories,setCategories]=useState([]);
 
     useEffect(()=>{
         axios.get(`http://localhost:5000/api/products`)
@@ -79,6 +86,7 @@ export default function ProductAdmin()
 
     const handleAddClick=()=>{
         setShowAddForm(true);
+      
     }
 
     const handleDeleteClick = (id) => {
@@ -88,7 +96,14 @@ export default function ProductAdmin()
     
     const confirmDelete = async () => {
     try {
-        await axios.delete(`http://localhost:5000/api/products/${deleteId}`);
+        await axios.delete(`http://localhost:5000/api/products/${deleteId}`,
+            {
+                headers:
+                {
+                    Authorization:`Bearer ${token}`
+                }
+            }
+        );
         showSuccess("Deleted Successfully");
         setShowDeleteDialog(false);
         setUpdate(prev => !prev);
@@ -128,6 +143,7 @@ export default function ProductAdmin()
        //preview
        const updatedPreview=[...addPreviewPhotos];
        updatedPreview[index]=URL.createObjectURL(file); //creates a url without passing to server
+       console.log(updatedPreview);
        setAddPreviewPhotos(updatedPreview);
     }
 
@@ -162,7 +178,7 @@ export default function ProductAdmin()
         formData.append("description",description);
 
         photos.forEach((photo)=>{
-            if(photo){
+            if(photo instanceof File){
                 formData.append("photos",photo);
             }
         })
@@ -171,7 +187,7 @@ export default function ProductAdmin()
             await axios.put(`http://localhost:5000/api/products/${selected.id}`,formData,
                 {
                     headers:{
-                        "Content-Type":"multipart/form-data"
+                        Authorization:`Bearer ${token}`
                     },
                 }
             )
@@ -200,7 +216,7 @@ export default function ProductAdmin()
         formData.append("description",addDescription);
 
         addPhotos.forEach((photo)=>{
-            if(photo){
+            if(photo instanceof File){
                 formData.append("photos",photo);
             }
         })
@@ -209,7 +225,7 @@ export default function ProductAdmin()
             await axios.post(`http://localhost:5000/api/products`,formData,
                 {
                     headers:{
-                        "Content-Type":"multipart/form-data"
+                       Authorization:`Bearer ${token}`
                     },
                 }
             )
@@ -229,7 +245,7 @@ export default function ProductAdmin()
             setAddQuantity(0);
             setAddPrice(0);
             setAddDescription("");
-            setAddPhotos([]);
+            setAddPhotos([""]);
             setAddPreviewPhotos([]);
         }
     };
@@ -304,7 +320,19 @@ export default function ProductAdmin()
        },[showAddForm]);
 
 
-    
+    //getting categories
+    useEffect(()=>{
+        axios.get(`http://localhost:5000/api/product-categories`)
+        .then(
+            (res)=>{
+                console.log(res.data);
+                setCategories(res.data);
+            }
+        )
+        .catch((err)=>{
+            console.log(err);
+        })
+    },[])
 
 
     return(
@@ -403,18 +431,27 @@ export default function ProductAdmin()
                             </button>
 
                     <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-                        <div className="flex flex-col gap-1.5">
-                            <label  className="text-sm font-bold text-gray-700 ml-1">Category ID</label>
-                            <input 
-                                type="number" 
-                                id='category' 
-                                className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#93C553]
-                                 focus:bg-white outline-none transition-all text-gray-800"
-                                value={categoryId} 
-                                onChange={(e) => setCategoryId(e.target.value)} 
-                                required 
-                            />
-                        </div>
+                       <div className="flex flex-col gap-1.5">
+                        <label className="text-sm font-bold text-gray-700 ml-1">
+                            Category
+                        </label>
+
+                        <select
+                            id="category"
+                            className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#93C553] focus:bg-white outline-none transition-all text-gray-800"
+                            value={categoryId}
+                            onChange={(e) => setCategoryId(Number(e.target.value))}
+                            required
+                        >
+                            <option value="">Select category</option>
+
+                            {categories.map((cat) => (
+                                <option key={cat.id} value={cat.id}>
+                                    {cat.categoryName}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
 
                         <div className="flex flex-col gap-1.5">
                             <label className="text-sm font-bold text-gray-700 ml-1">Product Name</label>
@@ -534,16 +571,24 @@ export default function ProductAdmin()
 
                     <form onSubmit={addHandleSubmit} className="flex flex-col gap-5">
                         <div className="flex flex-col gap-1.5">
-                            <label  className="text-sm font-bold text-gray-700 ml-1">Category ID</label>
-                            <input 
+                            <label  className="text-sm font-bold text-gray-700 ml-1">Category</label>
+                            <select
                                 type="number" 
                                 id='category' 
                                 className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#93C553]
                                  focus:bg-white outline-none transition-all text-gray-800"
                                 value={addCategoryId} 
-                                onChange={(e) => setAddCategoryId(e.target.value)} 
+                                onChange={(e) => setAddCategoryId(Number(e.target.value))} 
                                 required 
-                            />
+                            >
+                                <option value="">Select Category</option>
+
+                                {
+                                 categories.map((cat)=>(
+                                    <option key={cat.id} value={cat.id}>{cat.categoryName}</option>
+                                 ))
+                                }
+                            </select>
                         </div>
 
                         <div className="flex flex-col gap-1.5">
@@ -638,7 +683,7 @@ export default function ProductAdmin()
                             type='submit' 
                             className="mt-4  bg-[#609647] text-white py-4 rounded-2xl font-bold hover:bg-[#93C553] hover:cursor-pointer transition-all shadow-lg shadow-indigo-200 active:scale-[0.98]"
                         >
-                            add
+                            Add
                         </button>
                     </form>
 

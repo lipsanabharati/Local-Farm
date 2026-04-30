@@ -3,6 +3,7 @@
 import {useEffect,useState} from "react";
 import axios from "axios"
 import { useToast } from "@/context/ToastContext";
+import { useAuth } from "@/context/AuthContext";
 
 export default function ContactAdmin()
 {
@@ -31,14 +32,17 @@ export default function ContactAdmin()
 
     const totalPages= Math.ceil(contacts.length/itemsPerPage);
 
+    //auth
+    const {token}=useAuth();
+
     useEffect(()=>{
         axios.get(`http://localhost:5000/api/contact`)
         .then((res)=>{
             setContacts(res.data);
-            //console.log(res.data);
+            console.log(res.data);
         })
         .catch((err)=>{
-            //console.error(err);
+            console.error(err);
             setContacts([]);
         })
     },[update])
@@ -60,7 +64,11 @@ export default function ContactAdmin()
             followUp
         }
         try{
-            await axios.patch(`http://localhost:5000/api/contact/${selected.id}`,formData
+            await axios.patch(`http://localhost:5000/api/contact/${selected.id}`,formData,{
+                headers:{
+                    Authorization:`Bearer ${token}`
+                }
+            }
             )
 
             showSuccess("Updated Successfully");

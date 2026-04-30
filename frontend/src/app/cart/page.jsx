@@ -72,32 +72,34 @@ export default function Cart()
 
             const res = await axios.post("http://localhost:5000/api/orders", orderData);
 
-            for (const item of cart)
-            {
-                const newQuantity=item.quantity-item.amount;
+            // for (const item of cart)
+            // {
+            //     const newQuantity=item.quantity-item.amount;
 
-                if(newQuantity<0)
-                {
-                    showFail(`Sorry!${item.productName} out of stock`);
-                    return;
-                }
+            //     if(newQuantity<0)
+            //     {
+            //         showFail(`Sorry!${item.productName} out of stock`);
+            //         return;
+            //     }
 
-                await axios.put(`http://localhost:5000/api/products/${item.id}`,{
-                    quantity:newQuantity,
-                });
-            }
+            //     await axios.put(`http://localhost:5000/api/products/${item.id}`,{
+            //         quantity:newQuantity,
+            //     });
+            // }
 
             await emailjs.send(
-                      "service_uaepcta",
-                      "template_qe6pxnb",
+                      "service_otzi5fa",
+                      "template_tcchlni",
                       templateParams,
-                      "giAR8ssqYinULRtBK"
+                      "rfkYhs7TsWdRZUZu8"
                     )
 
             setSuccess("Order placed successfully!");
             clearCart();
         } catch (error) {
+            console.log("order error",error);
             setError("Something went wrong. Please try again.");
+            
         } finally {
             setLoading(false);
             setCustomerAddress("");
@@ -120,8 +122,8 @@ export default function Cart()
             </div>
 
             {/*Form*/}
-           <div className="flex flex-col items-center justify-center bg-[#f3f6ee] m-5 md:m-10 lg:w-1/2">
-             <div className="bg-white w-[380px] p-8 rounded-3xl shadow-xl">
+           <div className="flex flex-col items-center justify-center bg-[#f3f6ee] m-10 md:m-10 lg:w-1/2">
+             <div className="bg-white md:w-[380px] w-[300px] p-8 rounded-3xl shadow-xl">
 
            
             <h2 className="text-2xl font-semibold text-[#93C553] mb-4">Your Order</h2>

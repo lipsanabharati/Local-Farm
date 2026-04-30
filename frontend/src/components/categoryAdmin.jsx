@@ -3,6 +3,7 @@
 import {useEffect,useState} from "react";
 import axios from "axios"
 import { useToast } from "@/context/ToastContext";
+import { useAuth } from "@/context/AuthContext";
 
 export default function CategoryAdmin()
 {
@@ -33,6 +34,9 @@ export default function CategoryAdmin()
     const currentCategories=categories.slice(indexOfFirstItem,indexOfLastItem);
 
     const totalPages= Math.ceil(categories.length/itemsPerPage);
+
+    //auth
+    const {token}=useAuth();
 
     useEffect(()=>{
         axios.get(`http://localhost:5000/api/product-categories`)
@@ -68,7 +72,12 @@ export default function CategoryAdmin()
            categoryName 
         }
         try{
-            await axios.patch(`http://localhost:5000/api/product-categories/${selected.id}`,formData
+            await axios.patch(`http://localhost:5000/api/product-categories/${selected.id}`,formData,
+                {
+                    headers:{
+                        Authorization:`Bearer ${token}`
+                    }
+                }
             )
 
             showSuccess("Updated Successfully");
@@ -89,7 +98,11 @@ export default function CategoryAdmin()
            "categoryName":addCategoryName 
         }
         try{
-            await axios.post(`http://localhost:5000/api/product-categories`,formData
+            await axios.post(`http://localhost:5000/api/product-categories`,formData,{
+                headers:{
+                    Authorization:`Bearer ${token}`
+                }
+            }
             )
 
             showSuccess("Updated Successfully");

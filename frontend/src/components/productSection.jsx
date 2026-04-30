@@ -211,7 +211,7 @@ const {cart,addToCart}=useContext(CartContext);
                 }}
             >
               {/* Image */}
-                <div className="flex justify-center -mt-35">
+                <div className="flex justify-center -mt-30">
                     <img
                   src={
                         products[0].photos?.[0]?.imagePath
@@ -219,7 +219,7 @@ const {cart,addToCart}=useContext(CartContext);
                       : "/error.png"
                   }
                   alt={products[0].productName}
-                  className=" w-[60%] object-contain drop-shadow-xl relative"
+                  className=" w-[75%] object-contain drop-shadow-xl relative"
                 />
                 </div>
 

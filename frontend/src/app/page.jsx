@@ -55,10 +55,10 @@ export default function Home() {
        
 
         await emailjs.send(
-          "service_uaepcta",
-          "template_lu0jwgx",
+          "service_otzi5fa",
+          "template_cl2wv73",
           templateParams,
-          "giAR8ssqYinULRtBK"
+          "rfkYhs7TsWdRZUZu8"
         )
 
         showSuccess("Message Forwarded!")
@@ -297,8 +297,8 @@ export default function Home() {
               100% Organic & Natural
              </h2>
 
-              <p className="text-white lg:text-sm text-xs text-center lg:w-40 w-30">
-                Our products are free from harmful chemicals, ensuring pure, safe, and natural goodness in every bite.
+              <p className="text-white text-sm text-center lg:w-40 w-30">
+                 Pure, chemical-free products.
               </p>
           </motion.div>
 
@@ -311,8 +311,8 @@ export default function Home() {
               Directly From Local Farmers
              </h2>
 
-              <p className="text-white md:text-sm lg:text-xl text-xs text-center md:w-70 w-40">
-               We source directly from Nepali farmers, ensuring freshness while supporting local communities and livelihoods.
+              <p className="text-white text-md text-center md:w-70 w-40">
+                Fresh products supporting Nepali farmers.
               </p>
           </motion.div>
 
@@ -325,8 +325,8 @@ export default function Home() {
               Freshness You Can Trust
              </h2>
 
-              <p className="text-white lg:text-sm text-xs text-center lg:w-40 w-30">
-                Carefully processed and packed to preserve nutrients, flavor, and the true essence of natural food.
+              <p className="text-white text-sm text-center lg:w-40 w-30">
+                 Carefully packed to keep quality.
               </p>
           </motion.div>
           </div>

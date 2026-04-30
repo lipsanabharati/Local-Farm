@@ -5,6 +5,7 @@ import axios from "axios";
 import { useState,useEffect } from "react";
 import { useContext } from "react";
 import { CartContext } from "@/context/CartContext";
+import Link from "next/link";
 
 export default function ProductDesc({id})
 {
@@ -80,10 +81,11 @@ export default function ProductDesc({id})
                     />
                     </fieldset>
 
-                    <button 
-                    className="w-full bg-[#93C553] text-white py-2 rounded-xl text-md font-medium hover:opacity-90 transition hover:cursor-pointer hover:bg-[#609647]"
+                    <Link 
+                    href="/cart"
+                    className="w-full bg-[#93C553] text-white text-center py-2 rounded-xl text-md font-medium hover:opacity-90 transition hover:cursor-pointer hover:bg-[#609647]"
                     onClick={()=>addToCartNum(product,product.id,quantity)}
-                    >Buy</button>
+                    >Buy</Link>
                 </div>
             </div>
        </div>

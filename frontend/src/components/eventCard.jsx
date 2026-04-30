@@ -24,21 +24,21 @@ export default function EventCard()
 
     // console.log(events);
   return(
-    <div className="flex flex-col gap-30 justify-center items-center mt-20 mb-30 w-full">
+    <div className="flex flex-col gap-30 justify-center items-center mt-20 mb-30 md:w-[600px] w-[250px] ">
     { events.length>0 && (
 
         events.map((event,index)=>{
 
             const isEven=(index%2===0)?true:false;
             const path = isEven
-                ? "M 80 0 Q 350 150 200 400"
-                : "M 250 0 Q 50 150 200 400";
+                ? "M 80 0 Q 400 250 150 400"
+                : "M 230 0 Q 50 250 150 400";
            return (
     <div key={index} 
-    className={`flex flex-col ${isEven? "items-end" : "items-start"} w-full px-30 md:px-100 lg:px-100 `}>
+    className={`flex flex-col ${isEven? "items-end" : "items-start"} w-full md:px-10 `}>
         {/*Thread*/}
-        <div className={`flex ${isEven? "justify-end" : "justify-start"} -mt-60 -mb-20`}>
-        <svg className=" w-full h-[350px] -z-2">
+        <div className={` flex ${isEven? "justify-end" : "justify-start"} -mt-60 -mb-20 w-screen`}>
+        <svg className=" h-[400px] -z-10">
             <path
                 d={path}
                 stroke="#F59E0B"
@@ -48,7 +48,7 @@ export default function EventCard()
             </svg>
         </div> 
 
-        <div className={`flex flex-col gap-4 bg-white rounded-2xl p-5 w-70 lg:w-90 shadow-2xl ${isEven? "rotate-[8deg]":"rotate-[-10deg]"} z-10`}
+        <div className={`flex flex-col gap-4 bg-white rounded-2xl p-5 md:w-70 lg:w-90 shadow-2xl ${isEven? "rotate-[8deg]":"rotate-[-15deg]"} z-10`}
         >
 
         <div className="flex justify-center">

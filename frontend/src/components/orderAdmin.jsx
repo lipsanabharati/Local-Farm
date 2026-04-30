@@ -3,6 +3,7 @@
 import {useEffect,useState} from "react";
 import axios from "axios"
 import { useToast } from "@/context/ToastContext";
+import { useAuth } from "@/context/AuthContext";
 
 
 export default function OrderAdmin()
@@ -35,6 +36,9 @@ export default function OrderAdmin()
 
     const totalPages= Math.ceil(orders.length/itemsPerPage);
 
+    //auth
+    const {token}=useAuth();
+
     useEffect(()=>{
         axios.get(`http://localhost:5000/api/orders`)
         .then((res)=>{
@@ -65,7 +69,11 @@ export default function OrderAdmin()
         }
 
         try{
-            await axios.patch(`http://localhost:5000/api/orders/${selected.id}`,data
+            await axios.patch(`http://localhost:5000/api/orders/${selected.id}`,data,{
+                headers:{
+                    Authorization:`Bearer ${token}`
+                }
+            }
             )
 
             showSuccess("Updated Successfully");
@@ -183,18 +191,22 @@ export default function OrderAdmin()
 
                         
 
-                        <div className="flex flex-col gap-1.5">
-                            <label className="text-sm font-bold text-gray-700 ml-1">Order Status</label>
-                            <input 
-                                type="text" 
-                                id='order-status' 
-                                className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#93C553] focus:bg-white outline-none transition-all text-gray-800 break-words max-w-[500px]"
-                                value={orderStatus} 
-                                onChange={(e) => setOrderStatus(e.target.value)} 
-                                required 
-                            />
-                        </div>
+                       <div className="flex flex-col gap-1.5">
+                        <label className="text-sm font-bold text-gray-700 ml-1">
+                            Order Status
+                        </label>
 
+                        <select
+                            id="order-status"
+                            className="p-4 bg-gray-50 border border-gray-200 rounded-2xl focus:ring-2 focus:ring-[#93C553] focus:bg-white outline-none transition-all text-gray-800 max-w-[500px]"
+                            value={orderStatus}
+                            onChange={(e) => setOrderStatus(e.target.value)}
+                            required
+                        >
+                            <option value="approved">Approved</option>
+                            <option value="pending">Pending</option>
+                        </select>
+                    </div>
                         
 
                         <button 

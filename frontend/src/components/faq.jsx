@@ -28,13 +28,13 @@ export default function Faq() {
           <div className="flex flex-row bg-white rounded-full p-5 py-3 shadow-md shadow-[#779768]/40">
             <div className="w-[80%] md:w-[90%] flex justify-start items-center text-[#4D641E] font-semibold lg:text-lg text-md ">{faq.question}</div>
             <button onClick={() => setOpened(opened === index ? null : index)}
-                className={` w-10 h-10 flex items-center justify-center transition-transform duration-300 hover:cursor-pointer ${opened===index? "rotate-180": ""}`}>
+                className={` w-10 h-10 flex items-center justify-center transition-transform duration-800 hover:cursor-pointer ${opened===index? "rotate-180": ""}`}>
                 <ChevronDown className="text-[#93C553] lg:w-10 lg:h-10 w-8 h-8 "/>
             </button>
           </div>
           { opened==index && (
         <div className="flex flex-row w-full justify-center">
-          <div className="bg-white rounded-md text-center p-4 mx-5 text-[#444444] lg:w-150 w-100 lg:text-lg text-md">{opened === index ? faq.answer : ""}</div>
+          <div className="bg-white rounded-md text-center p-4 mx-5 text-[#444444] w-[70%] lg:text-lg text-md">{opened === index ? faq.answer : ""}</div>
           </div>
           )}
           </div>

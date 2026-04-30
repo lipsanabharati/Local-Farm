@@ -5,17 +5,17 @@ export default function OurProcess() {
     {
       number: 1,
       title: "Step One",
-      description: "We carefully collect raw ingredients directly from trusted local farmers, ensuring they are grown naturally without harmful chemicals.",
+      description: "We source natural ingredients from trusted local farmers.",
     },
     {
       number: 2,
       title: "Step Two",
-      description: "The ingredients are gently cleaned and processed using traditional and hygienic methods to preserve their natural nutrients and quality.",
+      description: "Ingredients are cleaned and processed to retain quality.",
     },
     {
       number: 3,
       title: "Step Three",
-      description: "Products are securely packaged to maintain freshness and delivered to customers, supporting both health and local farming communities.",
+      description: "Products are packaged fresh and delivered to customers.",
     },
   ];
 

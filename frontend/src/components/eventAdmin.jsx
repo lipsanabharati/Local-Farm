@@ -3,6 +3,7 @@
 import { useEffect, useState,useRef } from "react";
 import axios from "axios";
 import { useToast } from "@/context/ToastContext";
+import { useAuth } from "@/context/AuthContext";
 
 export default function EventAdmin() {
   const [events, setEvents] = useState([]);
@@ -41,6 +42,9 @@ export default function EventAdmin() {
   const currentEvents = events.slice(indexOfFirstItem, indexOfLastItem);
 
   const totalPages = Math.ceil(events.length / itemsPerPage);
+
+  //auth
+  const {token}=useAuth();
 
   useEffect(() => {
     axios
@@ -140,7 +144,12 @@ export default function EventAdmin() {
     try {
       await axios.put(
         `http://localhost:5000/api/events/${selected.id}`,
-        formData,
+        formData,{
+          headers:
+          {
+            Authorization:`Bearer ${token}`
+          }
+        }
       );
 
       showSuccess("Updated Successfully");
@@ -175,7 +184,11 @@ export default function EventAdmin() {
     try {
       await axios.post(
         `http://localhost:5000/api/events`,
-        formData,
+        formData,{
+          headers:{
+            Authorization:`Bearer ${token}`
+          }
+        }
       );
 
       showSuccess("Updated Successfully");

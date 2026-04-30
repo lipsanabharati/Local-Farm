@@ -21,7 +21,7 @@ export default function MainAdmin(){
     const [confirmPassword,setConfirmPassword]=useState("");
     const [submitting,setSubmitting]=useState(false);
 
-   
+   const {token}=useAuth();
 
     //console.log("token",token);
      
@@ -66,7 +66,7 @@ export default function MainAdmin(){
             }
             finally{
                 setSubmitting(false);
-                setShowForm(false);
+                // setShowForm(false);
             }
             
         }
