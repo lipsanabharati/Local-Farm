@@ -86,11 +86,12 @@ export default function About()
             }}
             className="w-full flex flex-col gap-3 items-center justify-center -mb-10"
             >
-               <SwiperSlide
-               ><img src="/farm1.png" className="w-[80%] mx-10 mb-10" /></SwiperSlide>
-               <SwiperSlide ><img src="/farm1.png" className="w-[80%] mx-10 mb-10" /></SwiperSlide>
-               <SwiperSlide ><img src="/farm1.png" className="w-[80%] mx-10 mb-10" /></SwiperSlide>
-               <SwiperSlide ><img src="/farm1.png" className="w-[80%] mx-10 mb-10" /></SwiperSlide>
+               {/* <SwiperSlide
+               ><img src="/farm1.png" className="w-[80%] mx-10 mb-10" /></SwiperSlide> */}
+               <SwiperSlide ><img src="/aboutC2.jpg" className="w-[80%] mx-10 mb-10" /></SwiperSlide>
+               <SwiperSlide ><img src="/aboutC4.jpg" className="w-[80%] mx-10 mb-10" /></SwiperSlide>
+               <SwiperSlide ><img src="/aboutC8.jpg" className="w-[80%] mx-10 mb-10" /></SwiperSlide>
+               <SwiperSlide ><img src="/aboutC11.jpg" className="w-[80%] mx-10 mb-10" /></SwiperSlide>
             </Swiper>
         </div>
 
@@ -177,7 +178,7 @@ export default function About()
             <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold text-[#609647] mt-5">Our Team</h1>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-20 md:gap-20 lg:gap-30 mt-10 lg:mb-20">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-20 md:gap-20 lg:gap-30 mt-10 mb-20 p-10">
 
             {
                 staffs?.map((staff,index)=>(
@@ -187,9 +188,9 @@ export default function About()
                     style={{ backgroundImage: `url(http://localhost:5000/${staff.imagePath})`}}>
                     </div>
 
-                    <div>
-                        <p className="text-[#93C553] text-lg">{staff.name}</p>
-                        <p className="text-gray-600 text-xl -mt-1">{staff.position}</p>
+                    <div className="">
+                        <p className="text-[#93C553] text-lg text-center">{staff.name}</p>
+                        <p className="text-gray-600 text-xl -mt-1 text-center">{staff.position}</p>
                     </div>
                 </div>
                 ))

@@ -249,7 +249,7 @@ export default function Home() {
           <h1 className="font-heading md:text-3xl text-xl font-bold text-start text-[#609647]">"SUSTAINABLE FARMING THE LOCAL FARM"-ECS Media</h1>
 
           <div className="md:text-xl text-sm">
-           Local Farm stands as both an inspiration for aspiring entrepreneurs and a powerful reminder of the importance of supporting local businesses. As Birat Bikram Shah and his team continue their journey, they are doing more than just building a brand—they are cultivating meaningful change and helping shape a more sustainable future for Nepal’s agricultural landscape.
+           Local Farm stands as both an inspiration for aspiring entrepreneurs and a powerful reminder of the importance of supporting local businesses. As Birat Bikram Shah,Srijan Subedi and their team continue their journey, they are doing more than just building a brand—they are cultivating meaningful change and helping shape a more sustainable future for Nepal’s agricultural landscape.
           </div>
 
         </motion.div>

@@ -248,8 +248,8 @@ export default function StaffAdmin()
                             <td className="border-1 p-1 text-center">{staff.id}</td>
                             <td className="border-1 p-1 text-center">{staff.name}</td>
                             <td className="border-1 p-1 text-center">{staff.position}</td>
-                            <td className="border-1 p-1 text-center ">{staff.createdAt.slice(0,10)}</td>
-                            <td className="border-1 p-1 text-center ">{staff.updatedAt.slice(0,10)}</td>
+                            <td className="border-1 p-1 text-center ">{staff.createdAt?.slice(0,10)}</td>
+                            <td className="border-1 p-1 text-center ">{staff.updatedAt?.slice(0,10)}</td>
                             <td className="border-1 p-1 text-center">
                   <img
                     key={index}
