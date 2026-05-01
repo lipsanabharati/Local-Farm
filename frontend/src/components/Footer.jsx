@@ -1,5 +1,7 @@
 "use client";
 
+import { FaInstagram } from "react-icons/fa";
+
 export default function Footer() {
   return (
     <footer className="text-white xl:-mt-5 -mt-30 md:-mt-20 lg:-mt-5 w-screen">
@@ -71,11 +73,15 @@ export default function Footer() {
             <div className="flex flex-col w-[200px]">
               <p>9802512888, 9840298608,01-4373154</p>{" "}
               <p>localfarmnepal@gmail.com</p>
+              <div className="flex flex-row gap-2">
+                <FaInstagram size={20} color="#FFFFFF"></FaInstagram>
+                <p>localfarm.nepal</p>
+              </div>
             </div>
           </div>
         </div>
 
-        <img src="/logo-white.svg" className="" />
+        <img src="/logo-white.svg" className="w-50" />
       </div>
     </footer>
   );

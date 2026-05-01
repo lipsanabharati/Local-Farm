@@ -24,11 +24,11 @@ export default function EventCarousel()
     );
   
   const nextSlide=()=>{
-    setCurrent((current+1)%blogs.length);
+    setCurrent((current+1)%events.length);
   };
 
   const prevSlide=()=>{
-    setCurrent((current-1+blogs.length)%blogs.length);
+    setCurrent((current-1+events.length)%events.length);
   };
 
     return(
@@ -71,9 +71,10 @@ export default function EventCarousel()
                </div>       
              </div>
 
-             <div className="text-lg">
-                {events[current].eventDescription}
-             </div>
+             <div
+              className="text-lg"
+              dangerouslySetInnerHTML={{ __html: events[current]?.eventDescription }}
+            ></div>
             </div>
         </div>
        </div>
@@ -83,7 +84,7 @@ export default function EventCarousel()
             {events.map((_, index) => (
                 <button
                 key={index}
-                onClick={() => setCurrent(index)}
+                onClick={() => nextSlide()}
                 className={`hover:cursor-pointer w-3 h-3 rounded-full transition-all ${
                     current === index
                     ? "bg-[#93C553] scale-125"

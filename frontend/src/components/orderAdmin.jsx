@@ -83,7 +83,7 @@ export default function OrderAdmin()
         catch(err)
         {
             //console.log(err);
-            showFail("Update failed!");
+            showFail(err.response.data.message);
         }
     };
 

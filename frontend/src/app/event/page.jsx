@@ -21,7 +21,7 @@ export default function Event()
         </div>
 
         <div>
-            <EventCarousel transparent={true} />
+            <EventCarousel  />
         </div>
 
         <div className="w-screen max-w-[1440px] flex justify-center">
