@@ -54,7 +54,7 @@ export default function Carousel({transparent,categoryId})
   return(
     
       blogs.length>0 && (
-        <div className="flex flex-col items-center justify-center bg-transparent py-5 px-10 w-screen">
+        <div className="flex flex-col items-center justify-center bg-transparent py-5 px-10 w-screen max-w-[1440px]">
         <div className="flex flex-col w-[90%]"
         >
 
