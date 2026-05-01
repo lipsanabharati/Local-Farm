@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState,useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useToast } from "@/context/ToastContext";
 import { useAuth } from "@/context/AuthContext";
@@ -44,11 +44,11 @@ export default function EventAdmin() {
   const totalPages = Math.ceil(events.length / itemsPerPage);
 
   //auth
-  const {token}=useAuth();
+  const { token } = useAuth();
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/events`)
+      .get(`http://app.localfarmnepal.com/api/events`)
       .then((res) => {
         setEvents(res.data);
         //console.log(res.data);
@@ -111,7 +111,6 @@ export default function EventAdmin() {
     setAddPhotos([...addPhotos, ""]);
   };
 
-
   const removePhotoField = (index) => {
     const updated = photos.filter((_, i) => i !== index);
     setPhotos(updated);
@@ -143,13 +142,13 @@ export default function EventAdmin() {
 
     try {
       await axios.put(
-        `http://localhost:5000/api/events/${selected.id}`,
-        formData,{
-          headers:
-          {
-            Authorization:`Bearer ${token}`
-          }
-        }
+        `http://app.localfarmnepal.com/api/events/${selected.id}`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
       );
 
       showSuccess("Updated Successfully");
@@ -160,7 +159,6 @@ export default function EventAdmin() {
       showFail("Update failed!");
     }
   };
-
 
   const handleAddSubmit = async (e) => {
     e.preventDefault();
@@ -182,14 +180,11 @@ export default function EventAdmin() {
     //console.log([...formData]);
 
     try {
-      await axios.post(
-        `http://localhost:5000/api/events`,
-        formData,{
-          headers:{
-            Authorization:`Bearer ${token}`
-          }
-        }
-      );
+      await axios.post(`http://app.localfarmnepal.com/api/events`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       showSuccess("Updated Successfully");
       setShowAddForm(false);
@@ -200,74 +195,72 @@ export default function EventAdmin() {
     }
   };
 
+  const quillRef = useRef(null);
+  const editorRef = useRef(null);
 
-  const quillRef=useRef(null);
-  const editorRef=useRef(null);
-  
-     useEffect(() => {
-      if (!editorRef.current || quillRef.current) return;
-  
-      const loadQuill = async () => {
-          const Quill = (await import("quill")).default;
-  
-          quillRef.current = new Quill(editorRef.current, {
-              theme: "snow",
-          });
-  
-          // set initial value
-          quillRef.current.root.innerHTML = eventDescription;
-  
-          // listen for changes
-          quillRef.current.on("text-change", () => {
-              setEventDescription(quillRef.current.root.innerHTML);
-          });
-      };
-  
-      if (showForm) {
-                  loadQuill();
-              }
-      }, [showForm]);//runs when form opens
-  
-      useEffect(()=>{
-          if(!showForm){
-              quillRef.current=null;
-          }
-      },[showForm]);
+  useEffect(() => {
+    if (!editorRef.current || quillRef.current) return;
 
+    const loadQuill = async () => {
+      const Quill = (await import("quill")).default;
 
-      //adding form quill
-      const quillAddRef=useRef(null);
-  const editorAddRef=useRef(null);
-  
-     useEffect(() => {
-      if (!editorAddRef.current || quillAddRef.current) return;
-  
-      const loadQuill = async () => {
-          const Quill = (await import("quill")).default;
-  
-          quillAddRef.current = new Quill(editorAddRef.current, {
-              theme: "snow",
-          });
-  
-          // set initial value
-          quillAddRef.current.root.innerHTML = addEventDescription;
-  
-          // listen for changes
-          quillAddRef.current.on("text-change", () => {
-              setAddEventDescription(quillAddRef.current.root.innerHTML);
-          });
-      };
-  
-      if (showAddForm) {
-                  loadQuill();
-              }
-      }, [showAddForm]);//runs when form opens
-  
-      useEffect(()=>{
-          if(!showAddForm){
-              quillAddRef.current=null;
-          }
-      },[showAddForm]);
+      quillRef.current = new Quill(editorRef.current, {
+        theme: "snow",
+      });
+
+      // set initial value
+      quillRef.current.root.innerHTML = eventDescription;
+
+      // listen for changes
+      quillRef.current.on("text-change", () => {
+        setEventDescription(quillRef.current.root.innerHTML);
+      });
+    };
+
+    if (showForm) {
+      loadQuill();
+    }
+  }, [showForm]); //runs when form opens
+
+  useEffect(() => {
+    if (!showForm) {
+      quillRef.current = null;
+    }
+  }, [showForm]);
+
+  //adding form quill
+  const quillAddRef = useRef(null);
+  const editorAddRef = useRef(null);
+
+  useEffect(() => {
+    if (!editorAddRef.current || quillAddRef.current) return;
+
+    const loadQuill = async () => {
+      const Quill = (await import("quill")).default;
+
+      quillAddRef.current = new Quill(editorAddRef.current, {
+        theme: "snow",
+      });
+
+      // set initial value
+      quillAddRef.current.root.innerHTML = addEventDescription;
+
+      // listen for changes
+      quillAddRef.current.on("text-change", () => {
+        setAddEventDescription(quillAddRef.current.root.innerHTML);
+      });
+    };
+
+    if (showAddForm) {
+      loadQuill();
+    }
+  }, [showAddForm]); //runs when form opens
+
+  useEffect(() => {
+    if (!showAddForm) {
+      quillAddRef.current = null;
+    }
+  }, [showAddForm]);
 
   return (
     <section className="mt-20 mb-10 p-10">
@@ -292,13 +285,15 @@ export default function EventAdmin() {
                 <td className="border-1 p-1 text-center">{event.id}</td>
                 <td className="border-1 p-1 text-center">{event.eventTitle}</td>
                 <td
-                className="line-clamp-3 max-w-[250px]"
-                dangerouslySetInnerHTML={{ __html: event.eventDescription }}
+                  className="line-clamp-3 max-w-[250px]"
+                  dangerouslySetInnerHTML={{ __html: event.eventDescription }}
                 />
                 <td className="border-1 p-1 text-center">
                   {event.isUpcoming ? "Yes" : "No"}
                 </td>
-                <td className="border-1 p-1 text-center">{event.date.slice(0,10)}</td>
+                <td className="border-1 p-1 text-center">
+                  {event.date.slice(0, 10)}
+                </td>
                 <td className="border-1 p-1 text-center">
                   {event.createdAt.slice(0, 10)}
                 </td>
@@ -308,7 +303,7 @@ export default function EventAdmin() {
                 <td className="border-1 p-1 text-center">
                   <img
                     key={index}
-                    src={`http://localhost:5000/${event.photos[0].imagePath}`}
+                    src={`http://app.localfarmnepal.com/${event.photos[0].imagePath}`}
                     className="w-16 h-16 object-cover"
                   ></img>
                 </td>
@@ -327,26 +322,31 @@ export default function EventAdmin() {
       </table>
 
       <div className="flex gap-10">
-                <div className="flex gap-2 mt-4">
-            {[...Array(totalPages)].map((_, index) => (
-                <button
-                key={index}
-                onClick={() => setCurrentPage(index + 1)}
-                className={`px-3 py-1 border rounded hover:cursor-pointer ${
-                    currentPage === index + 1
-                    ? "bg-[#609647] text-white"
-                    : "bg-white"
-                }`}
-                >
-                {index + 1}
-                </button>
-            ))}
-            </div>
+        <div className="flex gap-2 mt-4">
+          {[...Array(totalPages)].map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentPage(index + 1)}
+              className={`px-3 py-1 border rounded hover:cursor-pointer ${
+                currentPage === index + 1
+                  ? "bg-[#609647] text-white"
+                  : "bg-white"
+              }`}
+            >
+              {index + 1}
+            </button>
+          ))}
+        </div>
 
-            <div>
-                <button className="mt-4  bg-[#609647] text-white py-2 px-2 rounded-2xl font-bold hover:bg-[#93C553] hover:cursor-pointer transition-all shadow-lg shadow-indigo-200 active:scale-[0.98]" onClick={handleAddClick}>Add Event</button>
-            </div>                 
-            </div>
+        <div>
+          <button
+            className="mt-4  bg-[#609647] text-white py-2 px-2 rounded-2xl font-bold hover:bg-[#93C553] hover:cursor-pointer transition-all shadow-lg shadow-indigo-200 active:scale-[0.98]"
+            onClick={handleAddClick}
+          >
+            Add Event
+          </button>
+        </div>
+      </div>
 
       {showForm && (
         <div className="fixed inset-0 bg-black/40 flex justify-center items-center z-50">
@@ -375,17 +375,16 @@ export default function EventAdmin() {
                 />
               </div>
 
-              
-                        <div className="flex flex-col gap-1.5">
-                            <label className="text-sm font-bold text-gray-700 ml-1">
-                                Event Description
-                            </label>
+              <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-bold text-gray-700 ml-1">
+                  Event Description
+                </label>
 
-                            <div
-                                ref={editorRef}
-                                className="bg-white rounded-xl h-[150px]"
-                            />
-                        </div>
+                <div
+                  ref={editorRef}
+                  className="bg-white rounded-xl h-[150px]"
+                />
+              </div>
 
               <div className="flex flex-col gap-1.5">
                 <label className="text-sm font-bold text-gray-700 ml-1">
@@ -465,7 +464,6 @@ export default function EventAdmin() {
         </div>
       )}
 
-
       {showAddForm && (
         <div className="fixed inset-0 bg-black/40 flex justify-center items-center z-50">
           <div className="bg-white p-8 rounded-2xl w-[500px] max-h-[90vh] overflow-y-auto shadow-2xl">
@@ -493,17 +491,16 @@ export default function EventAdmin() {
                 />
               </div>
 
-              
-                        <div className="flex flex-col gap-1.5">
-                            <label className="text-sm font-bold text-gray-700 ml-1">
-                                Event Description
-                            </label>
+              <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-bold text-gray-700 ml-1">
+                  Event Description
+                </label>
 
-                            <div
-                                ref={editorAddRef}
-                                className="bg-white rounded-xl h-[150px]"
-                            />
-                        </div>
+                <div
+                  ref={editorAddRef}
+                  className="bg-white rounded-xl h-[150px]"
+                />
+              </div>
 
               <div className="flex flex-col gap-1.5">
                 <label className="text-sm font-bold text-gray-700 ml-1">
