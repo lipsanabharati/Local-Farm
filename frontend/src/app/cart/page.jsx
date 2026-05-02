@@ -95,7 +95,7 @@ export default function Cart() {
       setSuccess("Order placed successfully!");
       clearCart();
     } catch (error) {
-      console.log("order error", error);
+      // console.log("order error", error);
       setError("Something went wrong. Please try again.");
     } finally {
       setLoading(false);

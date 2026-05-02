@@ -117,6 +117,7 @@ export default function Home() {
             variants={imgVariants}
             initial="hidden"
             whileInView="visible"
+            viewport={{ once: true }}
             transition={{ duration: 2, ease: "easeOut" }}
             className="w-1/2 lg:w-1/3"
             src="a1.svg"
@@ -125,6 +126,7 @@ export default function Home() {
             variants={imgVariants}
             initial="hidden"
             whileInView="visible"
+            viewport={{ once: true }}
             transition={{ duration: 2, ease: "easeOut" }}
             className="w-1/2 lg:w-1/3"
             src="a2.svg"
@@ -136,6 +138,7 @@ export default function Home() {
             variants={imgVariants}
             initial="hidden"
             whileInView="visible"
+             viewport={{ once: true }}
             transition={{ duration: 2, ease: "easeOut" }}
             className=" w-1/2 lg:w-1/3"
             src="a3.png"
@@ -170,6 +173,7 @@ export default function Home() {
                 <motion.p
                   initial={{ x: -100 }}
                   whileInView={{ x: 0 }}
+                  viewport={{ once: true }}
                   transition={{ duration: 2, ease: "easeOut" }}
                   className="text-xs lg:text-lg"
                 >
@@ -202,6 +206,7 @@ export default function Home() {
                 <motion.p
                   initial={{ y: 200 }}
                   whileInView={{ y: 0 }}
+                   viewport={{ once: true }}
                   transition={{ duration: 2, ease: "easeOut" }}
                   className="text-xs lg:text-lg"
                 >
@@ -220,6 +225,7 @@ export default function Home() {
                 <motion.p
                   initial={{ x: 200 }}
                   whileInView={{ x: 0 }}
+                   viewport={{ once: true }}
                   transition={{ duration: 2, ease: "easeOut" }}
                   className="text-xs lg:text-lg"
                 >
@@ -270,6 +276,7 @@ export default function Home() {
         <motion.div
           whileInView={{ x: 0 }}
           initial={{ x: -100 }}
+           viewport={{ once: true }}
           transition={{ duration: 2, ease: "easeOut" }}
           className="flex flex-col lg:gap-10 md:gap-5 gap-3 md:w-1/2 w-full"
         >
@@ -291,6 +298,7 @@ export default function Home() {
         <motion.div
           whileInView={{ x: 0 }}
           initial={{ x: 100 }}
+           viewport={{ once: true }}
           transition={{ duration: 2, ease: "easeOut" }}
           className=" md:w-1/2 w-full flex flex-row justify-center"
         >
@@ -325,6 +333,7 @@ export default function Home() {
           <motion.div
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
+             viewport={{ once: true }}
             transition={{ duration: 2, ease: "easeOut" }}
             className="lg:w-70 lg:h-70 md:w-50 md:h-50 w-45 h-45 rounded-full bg-[#609647] z-0 flex flex-col items-center gap-2 md:-me-10"
           >
@@ -340,6 +349,7 @@ export default function Home() {
           <motion.div
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
+             viewport={{ once: true }}
             transition={{ duration: 2, ease: "easeOut" }}
             className="lg:w-100 lg:h-100 md:w-70 md:h-70 w-60 h-60 rounded-full bg-[#344304] z-3 flex flex-col items-center md:gap-5 gap-2 -mt-5"
           >
@@ -355,6 +365,7 @@ export default function Home() {
           <motion.div
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
+             viewport={{ once: true }}
             transition={{ duration: 2, ease: "easeOut" }}
             className="lg:w-70 lg:h-70 md:w-50 md:h-50 w-45 h-45 rounded-full bg-[#93C553] z-0 flex flex-col items-center gap-2 md:-ms-10 -mt-5"
           >

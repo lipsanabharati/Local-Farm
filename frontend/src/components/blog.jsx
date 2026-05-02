@@ -11,10 +11,10 @@ export default function Blog({ slug }) {
       .get(`http://app.localfarmnepal.com/api/blogs/${slug}`)
       .then((res) => {
         setBlog(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((err) => {
-        console.error(err);
+        // console.error(err);
         setBlog({});
       });
   }, []);

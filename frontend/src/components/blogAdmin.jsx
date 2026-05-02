@@ -56,10 +56,10 @@ export default function BlogAdmin() {
       .get(`http://app.localfarmnepal.com/api/blogs`)
       .then((res) => {
         setBlogs(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((err) => {
-        console.error(err);
+        // console.error(err);
         setBlogs([]);
       });
   }, [update]);
@@ -194,7 +194,7 @@ export default function BlogAdmin() {
       setShowAddForm(false);
       setUpdate((prev) => !prev);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       showFail("Update failed!");
     }
   };
@@ -305,11 +305,11 @@ export default function BlogAdmin() {
     axios
       .get(`http://app.localfarmnepal.com/api/product-categories`)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setCategories(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   }, []);
 
