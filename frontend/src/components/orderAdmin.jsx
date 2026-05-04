@@ -39,7 +39,7 @@ export default function OrderAdmin() {
 
   useEffect(() => {
     axios
-      .get(`http://app.localfarmnepal.com/api/orders`)
+      .get(`http://localhost:5000/api/orders`)
       .then((res) => {
         setOrders(res.data);
         //console.log(res.data);
@@ -67,7 +67,7 @@ export default function OrderAdmin() {
 
     try {
       await axios.patch(
-        `http://app.localfarmnepal.com/api/orders/${selected.id}`,
+        `http://localhost:5000/api/orders/${selected.id}`,
         data,
         {
           headers: {
@@ -170,6 +170,8 @@ export default function OrderAdmin() {
                 <button
                   className="bg-[#609647] p-2 hover:bg-[#93C553] hover:cursor-pointer m-3 "
                   onClick={() => handleUpdateClick(order)}
+              aria-label="update button"
+
                 >
                   Update
                 </button>
@@ -187,6 +189,8 @@ export default function OrderAdmin() {
             className={`px-3 py-1 border rounded hover:cursor-pointer ${
               currentPage === index + 1 ? "bg-[#609647] text-white" : "bg-white"
             }`}
+              aria-label={`page ${index+1}`}
+
           >
             {index + 1}
           </button>
@@ -200,13 +204,15 @@ export default function OrderAdmin() {
             <button
               onClick={() => setShowForm(false)}
               className="float-right text-red-500 font-bold"
+              aria-label="close button"
+
             >
               X
             </button>
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1">
+                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="order-status">
                   Order Status
                 </label>
 
@@ -225,6 +231,8 @@ export default function OrderAdmin() {
               <button
                 type="submit"
                 className="mt-4  bg-[#609647] text-white py-4 rounded-2xl font-bold hover:bg-[#93C553] hover:cursor-pointer transition-all shadow-lg shadow-indigo-200 active:scale-[0.98]"
+              aria-label="update button"
+
               >
                 Update
               </button>

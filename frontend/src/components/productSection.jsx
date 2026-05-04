@@ -39,7 +39,7 @@ export default function ProductsSection() {
     const fetchCategories = async () => {
       try {
         const res = await axios.get(
-          `http://app.localfarmnepal.com/api/product-categories`,
+          `http://localhost:5000/api/product-categories`,
         );
         setCategories(res.data);
 
@@ -59,8 +59,8 @@ export default function ProductsSection() {
 
     const url =
       activeCategory.id > 0
-        ? `http://app.localfarmnepal.com/api/products/category/three/${activeCategory.id}`
-        : `http://app.localfarmnepal.com/api/products/three`;
+        ? `http://localhost:5000/api/products/category/three/${activeCategory.id}`
+        : `http://localhost:5000/api/products/three`;
 
     axios
       .get(url)
@@ -81,7 +81,7 @@ export default function ProductsSection() {
   }, [activeCategory]);
 
   useEffect(() => {
-    //console.log(products);
+    // console.log(products);
   }, [products]);
 
   const { cart, addToCart } = useContext(CartContext);
@@ -105,6 +105,8 @@ export default function ProductsSection() {
                 ? "text-[#93C553] border-b-2 border-black bg-[#EDF2E0]"
                 : "text-gray-600 hover:text-[#93C553]"
             }`}
+              aria-label="category button"
+
           >
             {category.categoryName}
           </button>
@@ -138,8 +140,8 @@ export default function ProductsSection() {
                 <img
                   src={
                     product.photos?.[0]?.imagePath
-                      ? `http://app.localfarmnepal.com/${product.photos[0].imagePath}`
-                      : "/error.png"
+                      ? `http://localhost:5000/${product.photos[0].imagePath}`
+                      : "/error.webp"
                   }
                   alt={product.productName}
                   className="h-60 object-contain drop-shadow-xl relative"
@@ -166,6 +168,7 @@ export default function ProductsSection() {
                 <Link
                   href={`/product/${product.id}`}
                   className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg hover:cursor-pointer hover:bg-[#93C553]"
+                  aria-label="order now"
                 >
                   Order Now
                 </Link>
@@ -173,6 +176,8 @@ export default function ProductsSection() {
                 <button
                   onClick={() => addToCart(product, product.id)}
                   className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg hover:cursor-pointer hover:bg-[#93C553]"
+              aria-label="add to cart button"
+
                 >
                   Add to Cart
                 </button>
@@ -201,8 +206,8 @@ export default function ProductsSection() {
               <img
                 src={
                   products[0].photos?.[0]?.imagePath
-                    ? `http://app.localfarmnepal.com/${products[0].photos[0].imagePath}`
-                    : "/error.png"
+                    ? `http://localhost:5000/${products[0].photos[0].imagePath}`
+                    : "/error.webp"
                 }
                 alt={products[0].productName}
                 className=" w-[75%] object-contain drop-shadow-xl relative"
@@ -229,6 +234,7 @@ export default function ProductsSection() {
               <Link
                 href={`/product/${products[0].id}`}
                 className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg hover:cursor-pointer hover:bg-[#93C553] "
+                aria-label="order now"
               >
                 Order Now
               </Link>
@@ -236,6 +242,8 @@ export default function ProductsSection() {
               <button
                 onClick={() => addToCart(products[0], products[0].id)}
                 className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg hover:cursor-pointer hover:bg-[#93C553]"
+              aria-label="add to cart button"
+
               >
                 Add to Cart
               </button>

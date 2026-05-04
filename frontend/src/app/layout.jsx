@@ -14,6 +14,14 @@ export default function RootLayout({children}) {
   const pathname=usePathname();
   return (
     <html lang="en">
+      <head>
+        <title>Local Farm Nepal</title>
+        <meta
+          name="description"
+          content="Local Farm Nepal connects farmers and buyers with fresh agricultural products and fair trade opportunities."
+         
+        />
+      </head>
       <body className="bg-[#F2F6E8] ">
      <AuthProvider >
       <ToastProvider >

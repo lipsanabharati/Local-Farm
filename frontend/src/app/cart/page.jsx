@@ -66,7 +66,7 @@ export default function Cart() {
       setError("");
 
       const res = await axios.post(
-        "http://app.localfarmnepal.com/api/orders",
+        "http://localhost:5000/api/orders",
         orderData,
       );
 
@@ -80,7 +80,7 @@ export default function Cart() {
       //         return;
       //     }
 
-      //     await axios.put(`http://app.localfarmnepal.com/api/products/${item.id}`,{
+      //     await axios.put(`http://localhost:5000/api/products/${item.id}`,{
       //         quantity:newQuantity,
       //     });
       // }
@@ -171,6 +171,7 @@ export default function Cart() {
           <button
             className="w-full bg-[#93C553] text-white py-3 rounded-xl text-lg font-medium hover:opacity-90 transition hover:cursor-pointer hover:bg-[#609647]"
             onClick={handleCheckout}
+            aria-label="Cash on Delivery Button"
           >
             {loading ? "Placing Order..." : "Cash on Delivery"}
           </button>

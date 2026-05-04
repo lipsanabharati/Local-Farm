@@ -120,7 +120,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <img src="/logo-white.svg" className="w-60" />
+        <img src="/logo-white.svg" className="w-60" alt="logo image" />
       </div>
     </footer>
   );

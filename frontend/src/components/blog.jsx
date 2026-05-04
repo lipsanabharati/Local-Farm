@@ -8,7 +8,7 @@ export default function Blog({ slug }) {
 
   useEffect(() => {
     axios
-      .get(`http://app.localfarmnepal.com/api/blogs/${slug}`)
+      .get(`http://localhost:5000/api/blogs/${slug}`)
       .then((res) => {
         setBlog(res.data);
         // console.log(res.data);
@@ -31,8 +31,8 @@ export default function Blog({ slug }) {
           <img
             src={
               blog.photos?.[0]?.imagePath
-                ? `http://app.localfarmnepal.com/${blog.photos[0].imagePath}`
-                : "/error.png"
+                ? `http://localhost:5000/${blog.photos[0].imagePath}`
+                : "/error.webp"
             }
             alt={blog.title}
             className="w-full"

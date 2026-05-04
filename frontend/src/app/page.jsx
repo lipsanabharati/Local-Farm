@@ -11,6 +11,7 @@ import axios from "axios";
 import emailjs from "@emailjs/browser";
 import Faq from "@/components/faq";
 import Global from "@/components/global";
+import Image from "next/image";
 
 export default function Home() {
   const imgVariants = {
@@ -50,7 +51,7 @@ export default function Home() {
 
     try {
       await axios.post(
-        `http://app.localfarmnepal.com/api/contact`,
+        `http://localhost:5000/api/contact`,
         contactData,
       );
 
@@ -75,7 +76,16 @@ export default function Home() {
   return (
     <>
       {/*Hero section */}
-      <section className="bg-[url('/landing-bg.svg')] bg-center bg-cover  h-screen w-screen flex flex-row lg:justify-start justify-center lg:items-center items-end lg:ps-30 lg:pt-30 lg:pb-0 pb-30 overflow-hidden">
+      <section className="  h-screen w-screen flex flex-row lg:justify-start justify-center lg:items-center items-end lg:ps-30 lg:pt-30 lg:pb-0 pb-30 overflow-hidden">
+
+       <Image
+          src="/landing-bg.svg"
+          alt="background"
+          fill
+          priority
+          className="object-cover"
+        />
+
         <motion.div
           initial={{ x: 100, y: 300 }}
           animate={{ x: 0, y: 0 }}
@@ -89,11 +99,13 @@ export default function Home() {
             transition={{ duration: 2, ease: "easeOut" }}
             src="akabare.svg"
             className="absolute -top-[30%]"
+            alt="akabare"
           ></motion.img>
 
           <Link
             href={`/shop`}
             className=" md:py-3 md:px-8 py-2 px-3 bg-[#609647] rounded-xl font-heading font-bold md:text-lg text-xs hover:cursor-pointer hover:bg-[#93C553]"
+            aria-label="go to shop"
           >
             Shop Now
           </Link>
@@ -121,6 +133,7 @@ export default function Home() {
             transition={{ duration: 2, ease: "easeOut" }}
             className="w-1/2 lg:w-1/3"
             src="a1.svg"
+            alt="about image"
           ></motion.img>
           <motion.img
             variants={imgVariants}
@@ -130,6 +143,7 @@ export default function Home() {
             transition={{ duration: 2, ease: "easeOut" }}
             className="w-1/2 lg:w-1/3"
             src="a2.svg"
+            alt="about image"
           ></motion.img>
         </div>
 
@@ -141,7 +155,8 @@ export default function Home() {
              viewport={{ once: true }}
             transition={{ duration: 2, ease: "easeOut" }}
             className=" w-1/2 lg:w-1/3"
-            src="a3.png"
+            src="a3.webp"
+           alt="about image"
           ></motion.img>
           <div className="text-[#4D641E] w-1/2 lg:w-[33%] text-xs lg:text-xl">
             LocalFarm Nepal is your trusted destination for organic foods in
@@ -155,7 +170,7 @@ export default function Home() {
       </motion.section>
 
       {/*We prioritize quality*/}
-      <section className="md:bg-[url('/ribbon.svg')] bg-[url('/ribbonMob.png')] bg-center bg-contain bg-no-repeat lg:bg-position-[center_bottom_1rem]  md:bg-position-[center_top_0rem] bg-position-[center_top_5rem] md:p-0 p-5">
+      <section className="md:bg-[url('/ribbon.svg')] bg-[url('/ribbonMob.webp')] bg-center bg-contain bg-no-repeat lg:bg-position-[center_bottom_1rem]  md:bg-position-[center_top_0rem] bg-position-[center_top_5rem] md:p-0 p-5">
         <div className="flex flex-col lg:py-10 w-full max-w-[1440px] justify-items-center">
           {/*Heading*/}
           <div className="flex flex-row justify-end relative md:px-[8%] h-[10%] md:h-[2%]">
@@ -183,16 +198,17 @@ export default function Home() {
                 <img
                   src="arrow1.svg"
                   className="absolute right-[-30px] lg:right-[-40px] lg:bottom-[-40px] lg:w-[20px]"
+                  alt="arrow"
                 ></img>
               </div>
             </div>
 
             <div className="md:hidden flex flex-row justify-center -mt-5">
-              <img src="beePollenMob.png" className=" w-[60%]"></img>
+              <img src="beePollenMob.webp" className=" w-[60%]" alt="bee pollen"></img>
             </div>
 
             <div className="hidden md:flex justify-center lg:-mt-40 md:-mt-30">
-              <img src="beePollen.png" className=" w-[80%]"></img>
+              <img src="beePollen.webp" className=" w-[80%]" alt="bee pollen"></img>
             </div>
 
             <div className="flex flex-row justify-start gap-[40%] md:gap-[45%] lg:ms-[10%] md:ms-[12%] md:-mt-25 -mt-10">
@@ -202,6 +218,7 @@ export default function Home() {
                   src="arrow3.svg"
                   className="absolute lg:right-[-40px]
          lg:top-[-40px] lg:w-[20px] right-[-40px]"
+         alt="arrow"
                 ></img>
                 <motion.p
                   initial={{ y: 200 }}
@@ -221,6 +238,7 @@ export default function Home() {
                   src="arrow2.svg"
                   className="absolute lg:left-[-40px]
          lg:top-[-40px] lg:w-[20px] left-[-40px]"
+           alt="arrow"
                 ></img>
                 <motion.p
                   initial={{ x: 200 }}
@@ -302,7 +320,13 @@ export default function Home() {
           transition={{ duration: 2, ease: "easeOut" }}
           className=" md:w-1/2 w-full flex flex-row justify-center"
         >
-          <img src="dai.png" className="object-contain"></img>
+          <Image
+            src="/dai.webp"
+            width={500}
+            height={800}
+            alt="Dai"
+            className="object-contain"
+          />
         </motion.div>
       </section>
 
@@ -322,7 +346,7 @@ export default function Home() {
           <p className="font-heading md:text-5xl text-2xl text-[#93C553] font-bold text-start">
             Why
           </p>
-          <img src="logo.svg" className="md:w-full w-[60%]"></img>
+          <img src="logo.svg" className="md:w-full w-[60%]"   alt="logo"></img>
           <p className="font-heading md:text-5xl text-2xl text-[#93C553]  font-bold text-start">
             ?
           </p>
@@ -413,8 +437,9 @@ export default function Home() {
             >
               {/* Full Name */}
               <div className="flex flex-col gap-2">
-                <label className="text-black">Full Name</label>
+                <label className="text-black" htmlFor="name">Full Name</label>
                 <input
+                  id="name"
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
@@ -424,8 +449,9 @@ export default function Home() {
 
               {/* Email */}
               <div className="flex flex-col gap-2">
-                <label className="text-black">Email</label>
+                <label className="text-black" htmlFor="email"> Email</label>
                 <input
+                  id="email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -435,8 +461,9 @@ export default function Home() {
 
               {/* Message */}
               <div className="flex flex-col gap-2">
-                <label className="text-black">Message</label>
+                <label className="text-black" htmlFor="message">Message</label>
                 <textarea
+                  id="message"
                   rows="4"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
@@ -448,6 +475,7 @@ export default function Home() {
               <button
                 type="submit"
                 className="mt-2 bg-[#609647] text-black font-semibold py-3 rounded-lg transition hover:cursor-pointer hover:bg-[#93C553]"
+                aria-label="Send Message Button"
               >
                 Send Message
               </button>

@@ -11,7 +11,7 @@ export default function Event()
         {/*Hero Section*/}
         <div className="flex flex-row justify-center items-center mb-10">
 
-            <img src="/event-bg.png" className="w-1/2 lg:w-full" />
+            <img src="/event-bg.webp" className="w-1/2 lg:w-full"  alt="event image"/>
 
             <h1 className="text-3xl md:text-3xl lg:text-6xl font-bold text-gray-600 mt-10 text-end pe-12 md:me-25 lg:me-40 w-1/2 lg:w-auto ">Join us as we grow together.</h1>
         </div>

@@ -48,7 +48,7 @@ export default function EventAdmin() {
 
   useEffect(() => {
     axios
-      .get(`http://app.localfarmnepal.com/api/events`)
+      .get(`http://localhost:5000/api/events`)
       .then((res) => {
         setEvents(res.data);
         //console.log(res.data);
@@ -142,7 +142,7 @@ export default function EventAdmin() {
 
     try {
       await axios.put(
-        `http://app.localfarmnepal.com/api/events/${selected.id}`,
+        `http://localhost:5000/api/events/${selected.id}`,
         formData,
         {
           headers: {
@@ -180,7 +180,7 @@ export default function EventAdmin() {
     //console.log([...formData]);
 
     try {
-      await axios.post(`http://app.localfarmnepal.com/api/events`, formData, {
+      await axios.post(`http://localhost:5000/api/events`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -303,14 +303,17 @@ export default function EventAdmin() {
                 <td className="border-1 p-1 text-center">
                   <img
                     key={index}
-                    src={`http://app.localfarmnepal.com/${event.photos[0].imagePath}`}
+                    src={`http://localhost:5000/${event.photos[0].imagePath}`}
                     className="w-16 h-16 object-cover"
+                      alt="event image"
                   ></img>
                 </td>
                 <td className="border-1 p-1 text-center">
                   <button
                     className="bg-[#609647] p-2 hover:bg-[#93C553] hover:cursor-pointer m-3 "
                     onClick={() => handleUpdateClick(event)}
+              aria-label="update button"
+
                   >
                     Update
                   </button>
@@ -332,6 +335,7 @@ export default function EventAdmin() {
                   ? "bg-[#609647] text-white"
                   : "bg-white"
               }`}
+              aria-label={`page ${index+1}`}
             >
               {index + 1}
             </button>
@@ -342,6 +346,8 @@ export default function EventAdmin() {
           <button
             className="mt-4  bg-[#609647] text-white py-2 px-2 rounded-2xl font-bold hover:bg-[#93C553] hover:cursor-pointer transition-all shadow-lg shadow-indigo-200 active:scale-[0.98]"
             onClick={handleAddClick}
+              aria-label="add button"
+
           >
             Add Event
           </button>
@@ -355,13 +361,15 @@ export default function EventAdmin() {
             <button
               onClick={() => setShowForm(false)}
               className="float-right text-red-500 font-bold"
+              aria-label="close button"
+
             >
               X
             </button>
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1">
+                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="event-title">
                   Event Title
                 </label>
                 <input
@@ -376,18 +384,19 @@ export default function EventAdmin() {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1">
+                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="desc">
                   Event Description
                 </label>
 
                 <div
                   ref={editorRef}
                   className="bg-white rounded-xl h-[150px]"
+                  id="desc"
                 />
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1">
+                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="is-upcoming">
                   Is Upcoming
                 </label>
                 <input
@@ -400,7 +409,7 @@ export default function EventAdmin() {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1">
+                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="date">
                   Date
                 </label>
                 <input
@@ -414,7 +423,7 @@ export default function EventAdmin() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label className="text-sm font-bold text-gray-700 ml-1">
+                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="photos">
                   Photos
                 </label>
 
@@ -425,12 +434,15 @@ export default function EventAdmin() {
                       accept="image/*"
                       onChange={(e) => handlePhotoChange(e, index)}
                       className="p-4 bg-gray-50 border border-gray-200 rounded-2xl w-full"
+                      id="photos"
                     />
 
                     {previewPhotos[index] && (
                       <img
                         src={previewPhotos[index]}
                         className="w-16 h-16 rounded object-cover"
+                      alt="event image"
+
                       />
                     )}
 
@@ -438,6 +450,8 @@ export default function EventAdmin() {
                       type="button"
                       onClick={() => removePhotoField(index)}
                       className="bg-red-400 px-3 rounded-xl"
+              aria-label="close button"
+
                     >
                       X
                     </button>
@@ -448,6 +462,8 @@ export default function EventAdmin() {
                   type="button"
                   onClick={addPhotoField}
                   className="bg-gray-300 p-2 rounded-xl"
+              aria-label="add button"
+
                 >
                   + Add Photo
                 </button>
@@ -456,6 +472,8 @@ export default function EventAdmin() {
               <button
                 type="submit"
                 className="mt-4  bg-[#609647] text-white py-4 rounded-2xl font-bold hover:bg-[#93C553] hover:cursor-pointer transition-all shadow-lg shadow-indigo-200 active:scale-[0.98]"
+              aria-label="update button"
+
               >
                 Update
               </button>
@@ -471,13 +489,15 @@ export default function EventAdmin() {
             <button
               onClick={() => setShowAddForm(false)}
               className="float-right text-red-500 font-bold"
+              aria-label="close button"
+
             >
               X
             </button>
 
             <form onSubmit={handleAddSubmit} className="flex flex-col gap-5">
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1">
+                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="event-title">
                   Event Title
                 </label>
                 <input
@@ -492,18 +512,19 @@ export default function EventAdmin() {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1">
+                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="desc">
                   Event Description
                 </label>
 
                 <div
                   ref={editorAddRef}
+                  id="desc"
                   className="bg-white rounded-xl h-[150px]"
                 />
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1">
+                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="is-upcoming">
                   Is Upcoming
                 </label>
                 <input
@@ -516,7 +537,7 @@ export default function EventAdmin() {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1">
+                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="date">
                   Date
                 </label>
                 <input
@@ -530,7 +551,7 @@ export default function EventAdmin() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label className="text-sm font-bold text-gray-700 ml-1">
+                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="photos">
                   Photos
                 </label>
 
@@ -541,12 +562,15 @@ export default function EventAdmin() {
                       accept="image/*"
                       onChange={(e) => handleAddPhotoChange(e, index)}
                       className="p-4 bg-gray-50 border border-gray-200 rounded-2xl w-full"
+                      id="photos"
                     />
 
                     {addPreviewPhotos[index] && (
                       <img
                         src={addPreviewPhotos[index]}
                         className="w-16 h-16 rounded object-cover"
+                      alt="event image"
+
                       />
                     )}
 
@@ -554,6 +578,8 @@ export default function EventAdmin() {
                       type="button"
                       onClick={() => addRemovePhotoField(index)}
                       className="bg-red-400 px-3 rounded-xl"
+              aria-label="close button"
+
                     >
                       X
                     </button>
@@ -564,6 +590,8 @@ export default function EventAdmin() {
                   type="button"
                   onClick={addAddPhotoField}
                   className="bg-gray-300 p-2 rounded-xl"
+              aria-label="add button"
+
                 >
                   + Add Photo
                 </button>
@@ -572,6 +600,8 @@ export default function EventAdmin() {
               <button
                 type="submit"
                 className="mt-4  bg-[#609647] text-white py-4 rounded-2xl font-bold hover:bg-[#93C553] hover:cursor-pointer transition-all shadow-lg shadow-indigo-200 active:scale-[0.98]"
+              aria-label="add button"
+
               >
                 Add
               </button>

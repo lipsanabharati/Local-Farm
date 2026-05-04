@@ -43,7 +43,7 @@ export default function FaqAdmin() {
 
   useEffect(() => {
     axios
-      .get(`http://app.localfarmnepal.com/api/faqs`)
+      .get(`http://localhost:5000/api/faqs`)
       .then((res) => {
         setFaqs(res.data);
         //console.log(res.data);
@@ -74,7 +74,7 @@ export default function FaqAdmin() {
 
   const confirmDelete = async () => {
     try {
-      await axios.delete(`http://app.localfarmnepal.com/api/faqs/${deleteId}`, {
+      await axios.delete(`http://localhost:5000/api/faqs/${deleteId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -103,7 +103,7 @@ export default function FaqAdmin() {
 
     try {
       await axios.put(
-        `http://app.localfarmnepal.com/api/faqs/${selected.id}`,
+        `http://localhost:5000/api/faqs/${selected.id}`,
         formData,
         {
           headers: {
@@ -129,7 +129,7 @@ export default function FaqAdmin() {
       answer: addAnswer,
     };
     try {
-      await axios.post(`http://app.localfarmnepal.com/api/faqs`, formData, {
+      await axios.post(`http://localhost:5000/api/faqs`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -176,6 +176,8 @@ export default function FaqAdmin() {
                 <button
                   className="bg-[#609647] p-2 hover:bg-[#93C553] hover:cursor-pointer m-3 "
                   onClick={() => handleUpdateClick(faq)}
+              aria-label="update button"
+
                 >
                   Update
                 </button>
@@ -184,6 +186,8 @@ export default function FaqAdmin() {
                 <button
                   className="bg-red-400 p-2 hover:bg-red-300 hover:cursor-pointer m-3 "
                   onClick={() => handleDeleteClick(faq.id)}
+              aria-label="delete button"
+
                 >
                   Delete
                 </button>
@@ -204,6 +208,8 @@ export default function FaqAdmin() {
                   ? "bg-[#609647] text-white"
                   : "bg-white"
               }`}
+              aria-label={`page ${index+1}`}
+
             >
               {index + 1}
             </button>
@@ -214,6 +220,8 @@ export default function FaqAdmin() {
           <button
             className="mt-4  bg-[#609647] text-white py-2 px-2 rounded-2xl font-bold hover:bg-[#93C553] hover:cursor-pointer transition-all shadow-lg shadow-indigo-200 active:scale-[0.98]"
             onClick={handleAddClick}
+              aria-label="add button"
+
           >
             Add Category
           </button>
@@ -227,13 +235,15 @@ export default function FaqAdmin() {
             <button
               onClick={() => setShowForm(false)}
               className="float-right text-red-500 font-bold"
+              aria-label="close button"
+
             >
               X
             </button>
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1">
+                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="question">
                   Question
                 </label>
                 <input
@@ -246,7 +256,7 @@ export default function FaqAdmin() {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1">
+                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="question">
                   Answer
                 </label>
                 <input
@@ -261,6 +271,8 @@ export default function FaqAdmin() {
               <button
                 type="submit"
                 className="mt-4  bg-[#609647] text-white py-4 rounded-2xl font-bold hover:bg-[#93C553] hover:cursor-pointer transition-all shadow-lg shadow-indigo-200 active:scale-[0.98]"
+              aria-label="update button"
+
               >
                 Update
               </button>
@@ -276,13 +288,16 @@ export default function FaqAdmin() {
             <button
               onClick={() => setShowAddForm(false)}
               className="float-right text-red-500 font-bold"
+              aria-label="close button"
+              
+
             >
               X
             </button>
 
             <form onSubmit={handleAddSubmit} className="flex flex-col gap-5">
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1">
+                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="add=question">
                   Question
                 </label>
                 <input
@@ -295,7 +310,7 @@ export default function FaqAdmin() {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1">
+                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="add-answer">
                   Answer
                 </label>
                 <input
@@ -310,6 +325,8 @@ export default function FaqAdmin() {
               <button
                 type="submit"
                 className="mt-4  bg-[#609647] text-white py-4 rounded-2xl font-bold hover:bg-[#93C553] hover:cursor-pointer transition-all shadow-lg shadow-indigo-200 active:scale-[0.98]"
+              aria-label="add button"
+
               >
                 Add
               </button>
@@ -329,6 +346,8 @@ export default function FaqAdmin() {
               <button
                 onClick={confirmDelete}
                 className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700"
+              aria-label="yes button"
+
               >
                 Yes, Delete
               </button>
@@ -336,6 +355,8 @@ export default function FaqAdmin() {
               <button
                 onClick={cancelDelete}
                 className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400"
+              aria-label="cancel button"
+
               >
                 Cancel
               </button>

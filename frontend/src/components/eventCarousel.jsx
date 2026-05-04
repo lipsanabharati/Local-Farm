@@ -9,7 +9,7 @@ export default function EventCarousel() {
   const [current, setCurrent] = useState(0);
   useEffect(() => {
     axios
-      .get(`http://app.localfarmnepal.com/api/upcomingevents`)
+      .get(`http://localhost:5000/api/upcomingevents`)
       .then((res) => {
         setEvents(res.data);
         // console.log(res.data);
@@ -33,7 +33,7 @@ export default function EventCarousel() {
         <div className="flex flex-col">
           {/*PIN Image */}
           <div className="flex justify-end -mb-25 z-10">
-            <img src="pin.png" className="w-30" />
+            <img src="pin.webp" className="w-30" alt="thumpin image" />
           </div>
           {/*Slide*/}
           <div className="flex flex-col md:flex-row gap-4 bg-white rounded-2xl p-5 w-80 md:w-150 lg:w-200">
@@ -43,8 +43,8 @@ export default function EventCarousel() {
               style={{
                 backgroundImage: `url(${
                   events[current]?.photos?.[0]?.imagePath
-                    ? `http://app.localfarmnepal.com/${events[current].photos[0].imagePath}`
-                    : "/error.png"
+                    ? `http://localhost:5000/${events[current].photos[0].imagePath}`
+                    : "/error.webp"
                 })`,
               }}
             ></div>
@@ -85,6 +85,8 @@ export default function EventCarousel() {
               className={`hover:cursor-pointer w-3 h-3 rounded-full transition-all ${
                 current === index ? "bg-[#93C553] scale-125" : "bg-[#609647]"
               }`}
+              aria-label="carousel dots"
+
             ></button>
           ))}
         </div>

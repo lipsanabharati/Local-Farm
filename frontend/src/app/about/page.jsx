@@ -13,49 +13,49 @@ export default function About() {
   //     {
   //         name:"John Doe",
   //         post:"Manager",
-  //         photo:"pfp.jpg",
+  //         photo:"pfp.webp",
   //     },
   //     {
   //         name:"John Doe",
   //         post:"Manager",
-  //         photo:"pfp.jpg",
+  //         photo:"pfp.webp",
   //     },
   //     {
   //         name:"John Doe",
   //         post:"Manager",
-  //         photo:"pfp.jpg",
+  //         photo:"pfp.webp",
   //     },
   //     {
   //         name:"John Doe",
   //         post:"Manager",
-  //         photo:"pfp.jpg",
+  //         photo:"pfp.webp",
   //     },
   //     {
   //         name:"John Doe",
   //         post:"Manager",
-  //         photo:"pfp.jpg",
+  //         photo:"pfp.webp",
   //     },
   //     {
   //         name:"John Doe",
   //         post:"Manager",
-  //         photo:"pfp.jpg",
+  //         photo:"pfp.webp",
   //     },
   //      {
   //         name:"John Doe",
   //         post:"Manager",
-  //         photo:"pfp.jpg",
+  //         photo:"pfp.webp",
   //     },
   //      {
   //         name:"John Doe",
   //         post:"Manager",
-  //         photo:"pfp.jpg",
+  //         photo:"pfp.webp",
   //     }
   // ];
   const [staffs, setStaffs] = useState();
 
   useEffect(() => {
     axios
-      .get(`http://app.localfarmnepal.com/api/staff`)
+      .get(`http://localhost:5000/api/staff`)
       .then((res) => {
         setStaffs(res.data);
         // console.log(res.data);
@@ -87,18 +87,18 @@ export default function About() {
           className="w-full flex flex-col gap-3 items-center justify-center -mb-10"
         >
           {/* <SwiperSlide
-               ><img src="/farm1.png" className="w-[80%] mx-10 mb-10" /></SwiperSlide> */}
+               ><img src="/farm1.webp" className="w-[80%] mx-10 mb-10" /></SwiperSlide> */}
           <SwiperSlide>
-            <img src="/aboutC2.jpg" className="w-[80%] mx-10 mb-10" />
+            <img src="/aboutC2.webp" className="w-[80%] mx-10 mb-10" alt="about image" />
           </SwiperSlide>
           <SwiperSlide>
-            <img src="/aboutC4.jpg" className="w-[80%] mx-10 mb-10" />
+            <img src="/aboutC4.webp" className="w-[80%] mx-10 mb-10" alt="about image"/>
           </SwiperSlide>
           <SwiperSlide>
-            <img src="/aboutC8.jpg" className="w-[80%] mx-10 mb-10" />
+            <img src="/aboutC8.webp" className="w-[80%] mx-10 mb-10" alt="about image" />
           </SwiperSlide>
           <SwiperSlide>
-            <img src="/aboutC11.jpg" className="w-[80%] mx-10 mb-10" />
+            <img src="/aboutC11.webp" className="w-[80%] mx-10 mb-10" alt="about image" />
           </SwiperSlide>
         </Swiper>
       </div>
@@ -124,7 +124,7 @@ export default function About() {
 
       {/*Small screens */}
       <div className="flex flex-row gap-8 justify-center px-5 md:px-15 md:hidden">
-        <img src="/a1.svg" className="w-1/3 md:w-1/5" />
+        <img src="/a1.svg" className="w-1/3 md:w-1/5" alt="about image"/>
         <h1 className="text-2xl text-end lg:text-3xl font-bold text-[#609647] mt-5">
           Supporting Local Farmers all over Nepal
         </h1>
@@ -141,7 +141,7 @@ export default function About() {
         <h1 className="text-2xl lg:text-3xl font-bold text-[#609647] mt-5">
           Providing Quality Products
         </h1>
-        <img src="/a2.svg" className="w-1/3 md:w-1/5" />
+        <img src="/a2.svg" className="w-1/3 md:w-1/5" alt="about image" />
       </div>
 
       <div className="text-md px-5 md:hidden">
@@ -152,7 +152,7 @@ export default function About() {
       </div>
 
       <div className="flex flex-row gap-8 justify-center px-5 mt-10 md:hidden">
-        <img src="/a3.png" className="w-1/3" />
+        <img src="/a3.webp" className="w-1/3" alt="about image" />
         <h1 className="text-2xl lg:text-3xl font-bold text-[#609647] mt-5 text-end">
           Committed to Sustainable Living
         </h1>
@@ -167,7 +167,7 @@ export default function About() {
 
       {/*Medium and above screens */}
       <div className="hidden md:flex md:flex-row justify-center gap-10 px-15 lg:mt-20 lg:px-30">
-        <img src="/a1.svg" className="w-[50%]" />
+        <img src="/a1.svg" className="w-[50%]" alt="about image" />
 
         <div className="flex flex-col w-[50%]">
           <h1 className="text-2xl text-end md:text-3xl lg:text-5xl font-bold text-[#609647] mt-5">
@@ -195,11 +195,11 @@ export default function About() {
           </div>
         </div>
 
-        <img src="/a2.svg" className="w-[35%]" />
+        <img src="/a2.svg" className="w-[35%]" alt="about image"/>
       </div>
 
       <div className="hidden md:flex md:flex-row justify-center gap-10 px-15 lg:px-30 lg:mt-20">
-        <img src="/a3.png" className="w-[25%]" />
+        <img src="/a3.webp" className="w-[25%]" alt="about image" />
 
         <div className="flex flex-col w-[75%]">
           <h1 className="text-2xl text-end md:text-3xl lg:text-5xl font-bold text-[#609647] mt-5 mb-6">
@@ -226,7 +226,7 @@ export default function About() {
             <div
               className="rounded-full w-25 h-25 lg:w-40 lg:h-40 bg-cover bg-no-repeat"
               style={{
-                backgroundImage: `url(http://app.localfarmnepal.com/${staff.imagePath})`,
+                backgroundImage: `url(http://localhost:5000/${staff.imagePath})`,
               }}
             ></div>
 

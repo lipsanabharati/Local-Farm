@@ -71,7 +71,8 @@ export default function Admin(){
                         <button
                             key={tab.id}
                             onClick={()=>setActiveTab(tab.id)}
-                            className={`pb-2 text-lg transition ${activeTab===tab.id? "border-b-2 border-[#609647] text-[##93C553] hover:cursor-pointer" :"text-gray-500 hover:cursor-pointer hover:text-black"}`}>
+                            className={`pb-2 text-lg transition ${activeTab===tab.id? "border-b-2 border-[#609647] text-[##93C553] hover:cursor-pointer" :"text-gray-500 hover:cursor-pointer hover:text-black"}`}
+                            aria-label={tab.label}>
                                 {tab.label}
                         </button>
                     ))

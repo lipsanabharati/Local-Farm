@@ -12,7 +12,7 @@ export default function ProductDesc({ id }) {
 
   useEffect(() => {
     axios
-      .get(`http://app.localfarmnepal.com/api/products/${id}`)
+      .get(`http://localhost:5000/api/products/${id}`)
       .then((res) => {
         setProduct(res.data);
         //  console.log(res.data);
@@ -39,8 +39,8 @@ export default function ProductDesc({ id }) {
                 <img
                   src={
                     product.photos?.[0]?.imagePath
-                      ? `http://app.localfarmnepal.com/${product.photos[0].imagePath}`
-                      : "/error.png"
+                      ? `http://localhost:5000/${product.photos[0].imagePath}`
+                      : "/error.webp"
                   }
                   alt={product.productName}
                   className="w-[70%] lg:w-[80%]"
@@ -53,8 +53,8 @@ export default function ProductDesc({ id }) {
                       <img
                         src={
                           photo.imagePath
-                            ? `http://app.localfarmnepal.com/${photo.imagePath}`
-                            : "/error.png"
+                            ? `http://localhost:5000/${photo.imagePath}`
+                            : "/error.webp"
                         }
                         alt={product.productName}
                         className="w-20 md:w-30"
@@ -92,6 +92,7 @@ export default function ProductDesc({ id }) {
                 href="/cart"
                 className="w-full bg-[#93C553] text-white text-center py-2 rounded-xl text-md font-medium hover:opacity-90 transition hover:cursor-pointer hover:bg-[#609647]"
                 onClick={() => addToCartNum(product, product.id, quantity)}
+                aria-label="go to cart"
               >
                 Buy
               </Link>
