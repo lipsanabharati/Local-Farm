@@ -2,16 +2,59 @@
 
 import {useEffect,useState} from "react";
 import {useRouter} from "next/navigation";
+
 import ProductAdmin from "@/components/productAdmin"
-import EventAdmin from "@/components/eventAdmin";
-import BlogAdmin from "@/components/blogAdmin";
-import OrderAdmin from "@/components/orderAdmin";
-import ContactAdmin from "@/components/contactAdmin";
-import CategoryAdmin from "@/components/categoryAdmin";
-import MainAdmin from "@/components/mainAdmin";
-import StaffAdmin from "@/components/staffAdmin";
-import FaqAdmin from "@/components/faqAdmin";
-import Logout from "@/components/logout";
+import dynamic from "next/dynamic";
+
+
+// import EventAdmin from "@/components/eventAdmin";
+const EventAdmin = dynamic(() => import("@/components/eventAdmin"), {
+  loading: () => <p>Loading...</p>,
+});
+
+// import BlogAdmin from "@/components/blogAdmin";
+const BlogAdmin = dynamic(() => import("@/components/blogAdmin"), {
+  loading: () => <p>Loading...</p>,
+});
+
+// import OrderAdmin from "@/components/orderAdmin";
+const OrderAdmin = dynamic(() => import("@/components/orderAdmin"), {
+  loading: () => <p>Loading...</p>,
+});
+
+
+// import ContactAdmin from "@/components/contactAdmin";
+const  ContactAdmin = dynamic(() => import("@/components/contactAdmin"), {
+  loading: () => <p>Loading...</p>,
+});
+
+// import CategoryAdmin from "@/components/categoryAdmin";
+const  CategoryAdmin = dynamic(() => import("@/components/categoryAdmin"), {
+  loading: () => <p>Loading...</p>,
+});
+
+
+// import MainAdmin from "@/components/mainAdmin";
+const  MainAdmin = dynamic(() => import("@/components/mainAdmin"), {
+  loading: () => <p>Loading...</p>,
+});
+
+// import StaffAdmin from "@/components/staffAdmin";
+const  StaffAdmin = dynamic(() => import("@/components/staffAdmin"), {
+  loading: () => <p>Loading...</p>,
+});
+
+// import FaqAdmin from "@/components/faqAdmin";
+const   FaqAdmin  = dynamic(() => import("@/components/faqAdmin"), {
+  loading: () => <p>Loading...</p>,
+});
+
+// import Logout from "@/components/logout";
+const   Logout  = dynamic(() => import("@/components/logout"), {
+  loading: () => <p>Loading...</p>,
+});
+
+
 import { useAuth } from "@/context/AuthContext";
 
 export default function Admin(){  

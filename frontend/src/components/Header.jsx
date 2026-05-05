@@ -3,6 +3,7 @@
 import {motion} from "framer-motion";
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Header()
 {
@@ -14,7 +15,7 @@ export default function Header()
         className="lg:grid lg:grid-cols-2 lg:gap-[0%] lg:my-10 lg:mx-10 lg:p-2 w-full flex flex-row gap-15 my-5 mx-5 md:gap-65 max-w-[1440px] z-32 "
         initial={{ y:-100 }}
         animate={{ y:0}}
-        transition={{ duration: 2 }}
+        transition={{ duration: 0.5 }}
         >
 
             {/*Mobile Menu*/}
@@ -28,7 +29,7 @@ export default function Header()
 
             {/*Logo*/}
             <Link href="/" className="lg:ms-[30%]">
-              <img src="/logo.svg" className="h-[45px] w-[170px]" alt="logo image"/>
+              <Image src="/logo.svg" className="" width={170} height={45} alt="logo image" priority/>
             </Link>
 
 

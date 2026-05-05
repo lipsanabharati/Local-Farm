@@ -1,7 +1,11 @@
 "use client"
-
+import dynamic from "next/dynamic";
 import EventCarousel from "@/components/eventCarousel"
-import EventCard from "@/components/eventCard"
+// import EventCard from "@/components/eventCard"
+const EventCard  = dynamic(() => import("@/components/eventCard"), {
+  loading: () => <p>Loading...</p>,
+});
+
 
 export default function Event()
 {

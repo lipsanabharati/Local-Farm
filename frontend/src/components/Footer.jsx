@@ -2,6 +2,8 @@
 
 import { FaFacebook, FaInstagram, FaTiktok, FaWhatsapp } from "react-icons/fa";
 
+
+
 export default function Footer() {
   return (
     <footer className="text-white xl:-mt-5 -mt-30 md:-mt-20 lg:-mt-5 w-screen">

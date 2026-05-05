@@ -1,5 +1,11 @@
 import ProductDesc from "@/components/productDesc";
-import Carousel from "@/components/carousel";
+
+import dynamic from "next/dynamic";
+
+// import Carousel from "@/components/carousel";
+const Carousel = dynamic(() => import("@/components/carousel"), {
+  loading: () => <p>Loading...</p>,
+});
 
 export default async function ProductPage({ params }) {
   const { id } = await params;

@@ -1,44 +1,18 @@
-"use client";
 
-import Header from "../components/Header"
-import Footer from "../components/Footer"
-import "./globals.css"
-import CartProvider from "@/context/CartContext";
-import { ToastProvider } from "@/context/ToastContext";
-import { ToastContainer } from "react-toastify";
+import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
-import { AuthProvider } from "@/context/AuthContext";
-import { usePathname } from "next/navigation";
+import Providers from "./providers";
 
-export default function RootLayout({children}) {
-  const pathname=usePathname();
+export const metadata = {
+  title: "Local Farm Nepal",
+  description: "Local Farm Nepal connects farmers and buyers with fresh agricultural products and fair trade opportunities.",
+};
+
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
-        <title>Local Farm Nepal</title>
-        <meta
-          name="description"
-          content="Local Farm Nepal connects farmers and buyers with fresh agricultural products and fair trade opportunities."
-         
-        />
-      </head>
-      <body className="bg-[#F2F6E8] ">
-     <AuthProvider >
-      <ToastProvider >
-        <ToastContainer />
-       <CartProvider>
-        
-        <Header />
-        <div className="flex flex-col items-center scroll-smooth">
-         
-        {children}
-        {(!pathname.startsWith("/admin")&&!pathname.startsWith("/login")) && <Footer />}
-        </div>
-        
-        
-       </CartProvider>
-       </ToastProvider >
-       </AuthProvider>
+      <body className="bg-[#F2F6E8]">
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

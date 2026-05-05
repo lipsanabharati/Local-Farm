@@ -1,16 +1,16 @@
 "use client";
 import { motion } from "framer-motion";
-import ProductForShop from "@/components/productForShop";
-import { useRef } from "react";
+import dynamic from "next/dynamic";
+
+// import ProductForShop from "@/components/productForShop";
+const ProductForShop = dynamic(() => import("@/components/productForShop"), {
+  loading: () => <p>Loading...</p>,
+});
+
 
 export default function Shop()
 {
-    const productsRef = useRef(null); //reference to a dom element
-
-  const scrollToProducts = () => { //supposed to make scrolling smooth
-    productsRef.current.scrollIntoView({ behavior: "smooth" });
-  };
-
+    
     return(
         <>
         {/*Hero Section*/}
@@ -40,7 +40,7 @@ export default function Shop()
                 </div>
             </div>
 
-            <div ref={productsRef}>
+            <div >
                 <ProductForShop/>
             </div>
         </section>
