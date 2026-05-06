@@ -10,11 +10,7 @@ export default function Carousel({ transparent, categoryId }) {
   if (categoryId) {
     useEffect(() => {
       axios
-<<<<<<< HEAD
         .get(`http://localhost:5000/api/blogs/category/${categoryId}`)
-=======
-        .get(`http://localhost:5000/api/blogs/category/${categoryId}`)
->>>>>>> 37605131041d4f12ce2f13376362ea9038737947
         .then((res) => {
           setBlogs(res.data);
           // console.log(res.data);
@@ -26,11 +22,7 @@ export default function Carousel({ transparent, categoryId }) {
   } else {
     useEffect(() => {
       axios
-<<<<<<< HEAD
         .get(`http://localhost:5000/api/blogslp`)
-=======
-        .get(`http://localhost:5000/api/blogslp`)
->>>>>>> 37605131041d4f12ce2f13376362ea9038737947
         .then((res) => {
           setBlogs(res.data);
           // console.log(res.data);
@@ -63,13 +55,8 @@ export default function Carousel({ transparent, categoryId }) {
               style={{
                 backgroundImage: `url(${
                   blogs[current]?.photos?.[0]?.imagePath
-<<<<<<< HEAD
-                    ? `http://localhost:5000/${blogs[current].photos[0].imagePath}`
-                    : "/error.png"
-=======
                     ? `http://localhost:5000/${blogs[current].photos[0].imagePath}`
                     : "/error.webp"
->>>>>>> 37605131041d4f12ce2f13376362ea9038737947
                 })`,
               }}
             ></div>

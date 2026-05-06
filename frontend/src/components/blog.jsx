@@ -8,11 +8,7 @@ export default function Blog({ slug }) {
 
   useEffect(() => {
     axios
-<<<<<<< HEAD
       .get(`http://localhost:5000/api/blogs/${slug}`)
-=======
-      .get(`http://localhost:5000/api/blogs/${slug}`)
->>>>>>> 37605131041d4f12ce2f13376362ea9038737947
       .then((res) => {
         setBlog(res.data);
         // console.log(res.data);
@@ -35,13 +31,8 @@ export default function Blog({ slug }) {
           <img
             src={
               blog.photos?.[0]?.imagePath
-<<<<<<< HEAD
-                ? `http://localhost:5000/${blog.photos[0].imagePath}`
-                : "/error.png"
-=======
                 ? `http://localhost:5000/${blog.photos[0].imagePath}`
                 : "/error.webp"
->>>>>>> 37605131041d4f12ce2f13376362ea9038737947
             }
             alt={blog.title}
             className="w-full"
