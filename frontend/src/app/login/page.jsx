@@ -28,10 +28,13 @@ export default function Login() {
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/api/login", {
-        username: username,
-        password: password,
-      });
+      const response = await axios.post(
+        "http://api.localfarmnepal.com/api/login",
+        {
+          username: username,
+          password: password,
+        },
+      );
 
       const token = response.data.token;
       localStorage.setItem("token", token);
@@ -56,7 +59,7 @@ export default function Login() {
 
     try {
       const response = await axios.put(
-        "http://localhost:5000/api/admin/change-password",
+        "http://api.localfarmnepal.com/api/admin/change-password",
         {
           currentPassword,
           newPassword,

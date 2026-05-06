@@ -48,7 +48,7 @@ export default function EventAdmin() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/events`)
+      .get(`http://api.localfarmnepal.com/api/events`)
       .then((res) => {
         setEvents(res.data);
         //console.log(res.data);
@@ -142,7 +142,7 @@ export default function EventAdmin() {
 
     try {
       await axios.put(
-        `http://localhost:5000/api/events/${selected.id}`,
+        `http://api.localfarmnepal.com/api/events/${selected.id}`,
         formData,
         {
           headers: {
@@ -180,7 +180,7 @@ export default function EventAdmin() {
     //console.log([...formData]);
 
     try {
-      await axios.post(`http://localhost:5000/api/events`, formData, {
+      await axios.post(`http://api.localfarmnepal.com/api/events`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -303,7 +303,7 @@ export default function EventAdmin() {
                 <td className="border-1 p-1 text-center">
                   <img
                     key={index}
-                    src={`http://localhost:5000/${event.photos[0].imagePath}`}
+                    src={`http://api.localfarmnepal.com/${event.photos[0].imagePath}`}
                     className="w-16 h-16 object-cover"
                     alt="event image"
                   ></img>

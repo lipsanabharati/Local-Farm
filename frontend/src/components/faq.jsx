@@ -10,7 +10,7 @@ export default function Faq() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/faqs`)
+      .get(`http://api.localfarmnepal.com/api/faqs`)
       .then((res) => {
         setFaqs(res.data);
       })

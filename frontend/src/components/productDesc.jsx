@@ -12,7 +12,7 @@ export default function ProductDesc({ id }) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/products/${id}`)
+      .get(`http://api.localfarmnepal.com/api/products/${id}`)
       .then((res) => {
         setProduct(res.data);
         //  console.log(res.data);
@@ -39,7 +39,7 @@ export default function ProductDesc({ id }) {
                 <img
                   src={
                     product.photos?.[0]?.imagePath
-                      ? `http://localhost:5000/${product.photos[0].imagePath}`
+                      ? `http://api.localfarmnepal.com/${product.photos[0].imagePath}`
                       : "/error.webp"
                   }
                   alt={product.productName}
@@ -53,7 +53,7 @@ export default function ProductDesc({ id }) {
                       <img
                         src={
                           photo.imagePath
-                            ? `http://localhost:5000/${photo.imagePath}`
+                            ? `http://api.localfarmnepal.com/${photo.imagePath}`
                             : "/error.webp"
                         }
                         alt={product.productName}

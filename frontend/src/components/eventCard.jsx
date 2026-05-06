@@ -8,7 +8,7 @@ export default function EventCard() {
   const [events, setEvents] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/events`)
+      .get(`http://api.localfarmnepal.com/api/events`)
       .then((res) => {
         setEvents(res.data);
         // console.log(res.data);
@@ -81,7 +81,7 @@ export default function EventCard() {
                   style={{
                     backgroundImage: `url(${
                       event?.photos?.[0]?.imagePath
-                        ? `http://localhost:5000/${event.photos[0].imagePath}`
+                        ? `http://api.localfarmnepal.com/${event.photos[0].imagePath}`
                         : "/error.webp"
                     })`,
                   }}

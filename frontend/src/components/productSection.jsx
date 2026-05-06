@@ -39,7 +39,7 @@ export default function ProductsSection() {
     const fetchCategories = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/product-categories`,
+          `http://api.localfarmnepal.com/api/product-categories`,
         );
         setCategories(res.data);
 
@@ -59,8 +59,8 @@ export default function ProductsSection() {
 
     const url =
       activeCategory.id > 0
-        ? `http://localhost:5000/api/products/category/three/${activeCategory.id}`
-        : `http://localhost:5000/api/products/three`;
+        ? `http://api.localfarmnepal.com/api/products/category/three/${activeCategory.id}`
+        : `http://api.localfarmnepal.com/api/products/three`;
 
     axios
       .get(url)
@@ -139,7 +139,7 @@ export default function ProductsSection() {
                 <img
                   src={
                     product.photos?.[0]?.imagePath
-                      ? `http://localhost:5000/${product.photos[0].imagePath}`
+                      ? `http://api.localfarmnepal.com/${product.photos[0].imagePath}`
                       : "/error.webp"
                   }
                   alt={product.productName}
@@ -204,7 +204,7 @@ export default function ProductsSection() {
               <img
                 src={
                   products[0].photos?.[0]?.imagePath
-                    ? `http://localhost:5000/${products[0].photos[0].imagePath}`
+                    ? `http://api.localfarmnepal.com/${products[0].photos[0].imagePath}`
                     : "/error.webp"
                 }
                 alt={products[0].productName}

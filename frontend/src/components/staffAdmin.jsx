@@ -45,7 +45,7 @@ export default function StaffAdmin() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/staff`)
+      .get(`http://api.localfarmnepal.com/api/staff`)
       .then((res) => {
         setStaffs(res.data);
         //console.log(res.data);
@@ -78,11 +78,14 @@ export default function StaffAdmin() {
 
   const confirmDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5000/api/staff/${deleteId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      await axios.delete(
+        `http://api.localfarmnepal.com/api/staff/${deleteId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         },
-      });
+      );
       showSuccess("Deleted Successfully");
       setShowDeleteDialog(false);
       setUpdate((prev) => !prev);
@@ -159,7 +162,7 @@ export default function StaffAdmin() {
     });
     try {
       await axios.put(
-        `http://localhost:5000/api/staff/${selected.id}`,
+        `http://api.localfarmnepal.com/api/staff/${selected.id}`,
         formData,
         {
           headers: {
@@ -193,7 +196,7 @@ export default function StaffAdmin() {
     });
 
     try {
-      await axios.post(`http://localhost:5000/api/staff`, formData, {
+      await axios.post(`http://api.localfarmnepal.com/api/staff`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -243,7 +246,7 @@ export default function StaffAdmin() {
                 <td className="border-1 p-1 text-center">
                   <img
                     key={index}
-                    src={`http://localhost:5000/${staff.imagePath}`}
+                    src={`http://api.localfarmnepal.com/${staff.imagePath}`}
                     className="w-16 h-16 object-cover"
                     alt="staff image"
                   ></img>

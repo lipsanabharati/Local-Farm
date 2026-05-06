@@ -10,7 +10,7 @@ export default function Carousel({ transparent, categoryId }) {
   if (categoryId) {
     useEffect(() => {
       axios
-        .get(`http://localhost:5000/api/blogs/category/${categoryId}`)
+        .get(`http://api.localfarmnepal.com/api/blogs/category/${categoryId}`)
         .then((res) => {
           setBlogs(res.data);
           // console.log(res.data);
@@ -22,7 +22,7 @@ export default function Carousel({ transparent, categoryId }) {
   } else {
     useEffect(() => {
       axios
-        .get(`http://localhost:5000/api/blogslp`)
+        .get(`http://api.localfarmnepal.com/api/blogslp`)
         .then((res) => {
           setBlogs(res.data);
           // console.log(res.data);
@@ -55,7 +55,7 @@ export default function Carousel({ transparent, categoryId }) {
               style={{
                 backgroundImage: `url(${
                   blogs[current]?.photos?.[0]?.imagePath
-                    ? `http://localhost:5000/${blogs[current].photos[0].imagePath}`
+                    ? `http://api.localfarmnepal.com/${blogs[current].photos[0].imagePath}`
                     : "/error.webp"
                 })`,
               }}
@@ -79,7 +79,6 @@ export default function Carousel({ transparent, categoryId }) {
                 className="py-3 px-4 bg-[#93C553] text-white rounded-xl text-md font-medium hover:opacity-90 transition hover:cursor-pointer hover:bg-[#609647] w-30"
                 href={`/blog/${blogs[current].slug}`}
                 aria-label="go to blog"
-
               >
                 Read More
               </Link>

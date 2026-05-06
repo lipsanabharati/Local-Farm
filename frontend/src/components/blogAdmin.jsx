@@ -53,7 +53,7 @@ export default function BlogAdmin() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/blogs`)
+      .get(`http://api.localfarmnepal.com/api/blogs`)
       .then((res) => {
         setBlogs(res.data);
         // console.log(res.data);
@@ -147,7 +147,7 @@ export default function BlogAdmin() {
 
     try {
       await axios.put(
-        `http://localhost:5000/api/blogs/${selected.id}`,
+        `http://api.localfarmnepal.com/api/blogs/${selected.id}`,
         formData,
         {
           headers: {
@@ -184,7 +184,7 @@ export default function BlogAdmin() {
     });
 
     try {
-      await axios.post(`http://localhost:5000/api/blogs`, formData, {
+      await axios.post(`http://api.localfarmnepal.com/api/blogs`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -303,7 +303,7 @@ export default function BlogAdmin() {
   //getting categories
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/product-categories`)
+      .get(`http://api.localfarmnepal.com/api/product-categories`)
       .then((res) => {
         // console.log(res.data);
         setCategories(res.data);
@@ -363,7 +363,7 @@ export default function BlogAdmin() {
                 {blog.photos?.map((image, index) => (
                   <img
                     key={index}
-                    src={`http://localhost:5000/${image.imagePath}`}
+                    src={`http://api.localfarmnepal.com/${image.imagePath}`}
                     className="w-16 h-16 object-cover"
                     alt="blog image"
                   ></img>
@@ -394,7 +394,7 @@ export default function BlogAdmin() {
                   ? "bg-[#609647] text-white"
                   : "bg-white"
               }`}
-              aria-label={`PAGE ${index+1}`}
+              aria-label={`PAGE ${index + 1}`}
             >
               {index + 1}
             </button>
@@ -425,7 +425,10 @@ export default function BlogAdmin() {
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="category"> 
+                <label
+                  className="text-sm font-bold text-gray-700 ml-1"
+                  htmlFor="category"
+                >
                   Category
                 </label>
 
@@ -447,7 +450,10 @@ export default function BlogAdmin() {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="title">
+                <label
+                  className="text-sm font-bold text-gray-700 ml-1"
+                  htmlFor="title"
+                >
                   Title
                 </label>
                 <input
@@ -461,7 +467,10 @@ export default function BlogAdmin() {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="slug">
+                <label
+                  className="text-sm font-bold text-gray-700 ml-1"
+                  htmlFor="slug"
+                >
                   Slug
                 </label>
                 <input
@@ -493,7 +502,10 @@ export default function BlogAdmin() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="photos">
+                <label
+                  className="text-sm font-bold text-gray-700 ml-1"
+                  htmlFor="photos"
+                >
                   Photos
                 </label>
 
@@ -511,7 +523,7 @@ export default function BlogAdmin() {
                       <img
                         src={previewPhotos[index]}
                         className="w-16 h-16 rounded object-cover"
-                          alt="blog image"
+                        alt="blog image"
                       />
                     )}
 
@@ -519,7 +531,7 @@ export default function BlogAdmin() {
                       type="button"
                       onClick={() => removePhotoField(index)}
                       className="bg-red-400 px-3 rounded-xl"
-                       aria-label="Close Button"
+                      aria-label="Close Button"
                     >
                       X
                     </button>
@@ -530,7 +542,7 @@ export default function BlogAdmin() {
                   type="button"
                   onClick={addPhotoField}
                   className="bg-gray-300 p-2 rounded-xl"
-                   aria-label="Add Photo Button"
+                  aria-label="Add Photo Button"
                 >
                   + Add Photo
                 </button>
@@ -539,7 +551,7 @@ export default function BlogAdmin() {
               <button
                 type="submit"
                 className="mt-4  bg-[#609647] text-white py-4 rounded-2xl font-bold hover:bg-[#93C553] hover:cursor-pointer transition-all shadow-lg shadow-indigo-200 active:scale-[0.98]"
-                 aria-label="Update Button"
+                aria-label="Update Button"
               >
                 Update
               </button>
@@ -555,14 +567,17 @@ export default function BlogAdmin() {
             <button
               onClick={() => setShowAddForm(false)}
               className="float-right text-red-500 font-bold"
-               aria-label="Close Button"
+              aria-label="Close Button"
             >
               X
             </button>
 
             <form onSubmit={handleAddSubmit} className="flex flex-col gap-5">
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="category">
+                <label
+                  className="text-sm font-bold text-gray-700 ml-1"
+                  htmlFor="category"
+                >
                   Category
                 </label>
 
@@ -584,7 +599,10 @@ export default function BlogAdmin() {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="title">
+                <label
+                  className="text-sm font-bold text-gray-700 ml-1"
+                  htmlFor="title"
+                >
                   Title
                 </label>
                 <input
@@ -598,7 +616,10 @@ export default function BlogAdmin() {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="slug">
+                <label
+                  className="text-sm font-bold text-gray-700 ml-1"
+                  htmlFor="slug"
+                >
                   Slug
                 </label>
                 <input
@@ -630,7 +651,10 @@ export default function BlogAdmin() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="photos">
+                <label
+                  className="text-sm font-bold text-gray-700 ml-1"
+                  htmlFor="photos"
+                >
                   Photos
                 </label>
 
@@ -648,7 +672,7 @@ export default function BlogAdmin() {
                       <img
                         src={addPreviewPhotos[index]}
                         className="w-16 h-16 rounded object-cover"
-                          alt="blog image"
+                        alt="blog image"
                       />
                     )}
 
@@ -656,7 +680,7 @@ export default function BlogAdmin() {
                       type="button"
                       onClick={() => addRemovePhotoField(index)}
                       className="bg-red-400 px-3 rounded-xl"
-                       aria-label="Close Button"
+                      aria-label="Close Button"
                     >
                       X
                     </button>
@@ -667,7 +691,7 @@ export default function BlogAdmin() {
                   type="button"
                   onClick={addAddPhotoField}
                   className="bg-gray-300 p-2 rounded-xl"
-                   aria-label="Add Photo Button"
+                  aria-label="Add Photo Button"
                 >
                   + Add Photo
                 </button>
@@ -676,7 +700,7 @@ export default function BlogAdmin() {
               <button
                 type="submit"
                 className="mt-4  bg-[#609647] text-white py-4 rounded-2xl font-bold hover:bg-[#93C553] hover:cursor-pointer transition-all shadow-lg shadow-indigo-200 active:scale-[0.98]"
-                 aria-label="Add Button"
+                aria-label="Add Button"
               >
                 Add
               </button>
