@@ -90,7 +90,7 @@ export default function Login() {
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           <div className="flex flex-col gap-1.5">
-            <label className="text-sm font-bold text-gray-700 ml-1">
+            <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="username">
               Username
             </label>
             <input
@@ -124,6 +124,7 @@ export default function Login() {
           <button
             type="submit"
             className="mt-4  bg-[#609647] text-white py-4 rounded-2xl font-bold hover:bg-[#93C553] hover:cursor-pointer transition-all shadow-lg shadow-indigo-200 active:scale-[0.98]"
+            aria-label="Login Button"
           >
             Login
           </button>

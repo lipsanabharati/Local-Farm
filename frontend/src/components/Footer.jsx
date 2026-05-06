@@ -2,6 +2,8 @@
 
 import { FaFacebook, FaInstagram, FaTiktok, FaWhatsapp } from "react-icons/fa";
 
+
+
 export default function Footer() {
   return (
     <footer className="text-white xl:-mt-5 -mt-30 md:-mt-20 lg:-mt-5 w-screen">
@@ -120,7 +122,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <img src="/logo-white.svg" className="w-60" />
+        <img src="/logo-white.svg" className="w-60" alt="logo image" />
       </div>
     </footer>
   );

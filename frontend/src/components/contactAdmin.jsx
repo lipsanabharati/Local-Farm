@@ -39,10 +39,10 @@ export default function ContactAdmin() {
       .get(`http://api.localfarmnepal.com/api/contact`)
       .then((res) => {
         setContacts(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((err) => {
-        console.error(err);
+        // console.error(err);
         setContacts([]);
       });
   }, [update]);
@@ -117,6 +117,8 @@ export default function ContactAdmin() {
                 <button
                   className="bg-[#609647] p-2 hover:bg-[#93C553] hover:cursor-pointer m-3 "
                   onClick={() => handleUpdateClick(contact)}
+              aria-label="update button"
+
                 >
                   Update
                 </button>
@@ -134,6 +136,8 @@ export default function ContactAdmin() {
             className={`px-3 py-1 border rounded hover:cursor-pointer ${
               currentPage === index + 1 ? "bg-[#609647] text-white" : "bg-white"
             }`}
+              aria-label={`page ${index+1}`}
+
           >
             {index + 1}
           </button>
@@ -147,13 +151,15 @@ export default function ContactAdmin() {
             <button
               onClick={() => setShowForm(false)}
               className="float-right text-red-500 font-bold"
+              aria-label="close button"
+
             >
               X
             </button>
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1">
+                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="follow-up">
                   Follow Up
                 </label>
                 <input
@@ -168,6 +174,8 @@ export default function ContactAdmin() {
               <button
                 type="submit"
                 className="mt-4  bg-[#609647] text-white py-4 rounded-2xl font-bold hover:bg-[#93C553] hover:cursor-pointer transition-all shadow-lg shadow-indigo-200 active:scale-[0.98]"
+              aria-label="update button"
+
               >
                 Update
               </button>

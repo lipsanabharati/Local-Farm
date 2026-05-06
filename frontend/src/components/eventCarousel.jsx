@@ -33,7 +33,7 @@ export default function EventCarousel() {
         <div className="flex flex-col">
           {/*PIN Image */}
           <div className="flex justify-end -mb-25 z-10">
-            <img src="pin.png" className="w-30" />
+            <img src="pin.webp" className="w-30" alt="thumpin image" />
           </div>
           {/*Slide*/}
           <div className="flex flex-col md:flex-row gap-4 bg-white rounded-2xl p-5 w-80 md:w-150 lg:w-200">
@@ -44,7 +44,7 @@ export default function EventCarousel() {
                 backgroundImage: `url(${
                   events[current]?.photos?.[0]?.imagePath
                     ? `http://api.localfarmnepal.com/${events[current].photos[0].imagePath}`
-                    : "/error.png"
+                    : "/error.webp"
                 })`,
               }}
             ></div>
@@ -85,6 +85,8 @@ export default function EventCarousel() {
               className={`hover:cursor-pointer w-3 h-3 rounded-full transition-all ${
                 current === index ? "bg-[#93C553] scale-125" : "bg-[#609647]"
               }`}
+              aria-label="carousel dots"
+
             ></button>
           ))}
         </div>

@@ -1,16 +1,16 @@
 "use client";
 import { motion } from "framer-motion";
-import ProductForShop from "@/components/productForShop";
-import { useRef } from "react";
+import dynamic from "next/dynamic";
+
+// import ProductForShop from "@/components/productForShop";
+const ProductForShop = dynamic(() => import("@/components/productForShop"), {
+  loading: () => <p>Loading...</p>,
+});
+
 
 export default function Shop()
 {
-    const productsRef = useRef(null); //reference to a dom element
-
-  const scrollToProducts = () => { //supposed to make scrolling smooth
-    productsRef.current.scrollIntoView({ behavior: "smooth" });
-  };
-
+    
     return(
         <>
         {/*Hero Section*/}
@@ -21,7 +21,7 @@ export default function Shop()
              animate={{ y: 0 }}
              transition={{ duration: 2, ease: "easeOut" }}
             className= "flex flex-row justify-end lg:justify-start w-full z-0 pointer-events-none">
-                <img src="drip.png" className="h-1/3 md:h-1/2 lg:h-110"></img>
+                <img src="drip.webp" className="h-1/3 md:h-1/2 lg:h-110" alt="drip image"></img>
             </motion.div>
 
             <div className="flex flex-col -mt-10 lg:-mt-50">
@@ -35,12 +35,12 @@ export default function Shop()
                 </div>
 
                 <div className="flex justify-center lg:justify-end lg:-mt-[5%]">
-                    <img src="shop-hero.png" className="">
+                    <img src="shop-hero.webp" className="" alt="hero image">
                     </img>
                 </div>
             </div>
 
-            <div ref={productsRef}>
+            <div >
                 <ProductForShop/>
             </div>
         </section>

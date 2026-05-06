@@ -171,6 +171,7 @@ export default function Cart() {
           <button
             className="w-full bg-[#93C553] text-white py-3 rounded-xl text-lg font-medium hover:opacity-90 transition hover:cursor-pointer hover:bg-[#609647]"
             onClick={handleCheckout}
+            aria-label="Cash on Delivery Button"
           >
             {loading ? "Placing Order..." : "Cash on Delivery"}
           </button>

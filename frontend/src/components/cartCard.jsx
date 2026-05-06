@@ -36,7 +36,7 @@ export default function CartCard() {
                 src={
                   product.photos?.[0]?.imagePath
                     ? `http://api.localfarmnepal.com/${product.photos[0].imagePath}`
-                    : "/error.png"
+                    : "/error.webp"
                 }
                 alt={product.productName}
               ></img>
@@ -57,6 +57,8 @@ export default function CartCard() {
                     increaseAmount(product.id);
                   }}
                   className="bg-black text-white w-1/3 flex justify-center hover:cursor-pointer hover:bg-gray-600"
+              aria-label="increase amount button"
+
                 >
                   +
                 </button>
@@ -68,6 +70,8 @@ export default function CartCard() {
                     decreaseAmount(product.id);
                   }}
                   className="bg-black text-white w-1/3 flex justify-center hover:cursor-pointer hover:bg-gray-600"
+              aria-label="decrease amount button"
+
                 >
                   -
                 </button>

@@ -40,7 +40,7 @@ export default function ProductDesc({ id }) {
                   src={
                     product.photos?.[0]?.imagePath
                       ? `http://api.localfarmnepal.com/${product.photos[0].imagePath}`
-                      : "/error.png"
+                      : "/error.webp"
                   }
                   alt={product.productName}
                   className="w-[70%] lg:w-[80%]"
@@ -54,7 +54,7 @@ export default function ProductDesc({ id }) {
                         src={
                           photo.imagePath
                             ? `http://api.localfarmnepal.com/${photo.imagePath}`
-                            : "/error.png"
+                            : "/error.webp"
                         }
                         alt={product.productName}
                         className="w-20 md:w-30"
@@ -92,6 +92,7 @@ export default function ProductDesc({ id }) {
                 href="/cart"
                 className="w-full bg-[#93C553] text-white text-center py-2 rounded-xl text-md font-medium hover:opacity-90 transition hover:cursor-pointer hover:bg-[#609647]"
                 onClick={() => addToCartNum(product, product.id, quantity)}
+                aria-label="go to cart"
               >
                 Buy
               </Link>

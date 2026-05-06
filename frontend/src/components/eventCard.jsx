@@ -45,7 +45,8 @@ export default function EventCard() {
                 className={`flex flex-col gap-4 bg-white rounded-2xl p-5 md:w-70 lg:w-90 shadow-2xl ${isEven ? "rotate-[8deg]" : "rotate-[-15deg]"} z-10`}
               >
                 <div className="flex justify-center">
-                  <img src="/thumbpin.png" className="-mt-12" />
+                  
+                  <img src="/thumbpin.webp" className="-mt-12"     alt="thumpin image"  />
                 </div>
 
                 <div className="flex flex-col gap-4">
@@ -78,7 +79,7 @@ export default function EventCard() {
                     backgroundImage: `url(${
                       event?.photos?.[0]?.imagePath
                         ? `http://api.localfarmnepal.com/${event.photos[0].imagePath}`
-                        : "/error.png"
+                        : "/error.webp"
                     })`,
                   }}
                 ></div>

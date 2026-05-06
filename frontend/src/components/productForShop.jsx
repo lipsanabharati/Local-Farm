@@ -110,6 +110,8 @@ export default function ProductForShop() {
                 ? "text-[#93C553] border-b-2 border-black bg-[#EDF2E0]"
                 : "text-gray-600 hover:text-[#93C553]"
             }`}
+              aria-label="category button"
+
           >
             {category.categoryName}
           </button>
@@ -144,7 +146,7 @@ export default function ProductForShop() {
                     src={
                       product.photos?.[0]?.imagePath
                         ? `http://api.localfarmnepal.com/${product.photos[0].imagePath}`
-                        : "/error.png"
+                        : "/error.webp"
                     }
                     alt={product.productName}
                     className="h-48 object-contain drop-shadow-xl relative"
@@ -171,6 +173,7 @@ export default function ProductForShop() {
                   <Link
                     href={`/product/${product.id}`}
                     className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg hover:cursor-pointer hover:bg-[#93C553]"
+                    aria-label="order now"
                   >
                     Order Now
                   </Link>
@@ -178,6 +181,8 @@ export default function ProductForShop() {
                   <button
                     onClick={() => addToCart(product, product.id)}
                     className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg hover:cursor-pointer hover:bg-[#93C553]"
+              aria-label="add to cart button"
+
                   >
                     Add to Cart
                   </button>
@@ -209,7 +214,7 @@ export default function ProductForShop() {
                     src={
                       product.photos?.[0]?.imagePath
                         ? `http://api.localfarmnepal.com/${product.photos[0].imagePath}`
-                        : "/error.png"
+                        : "/error.webp"
                     }
                     alt={product.productName}
                     className="h-48 object-contain drop-shadow-xl relative"
@@ -236,6 +241,7 @@ export default function ProductForShop() {
                   <Link
                     href={`/product/${product.id}`}
                     className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg"
+                    aria-label="order now"
                   >
                     Order Now
                   </Link>
@@ -243,6 +249,8 @@ export default function ProductForShop() {
                   <button
                     onClick={() => addToCart(product, product.id)}
                     className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg"
+              aria-label="add to cart button"
+
                   >
                     Add to Cart
                   </button>

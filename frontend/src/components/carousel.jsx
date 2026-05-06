@@ -10,7 +10,11 @@ export default function Carousel({ transparent, categoryId }) {
   if (categoryId) {
     useEffect(() => {
       axios
+<<<<<<< HEAD
         .get(`http://api.localfarmnepal.com/api/blogs/category/${categoryId}`)
+=======
+        .get(`http://api.localfarmnepal.com/api/blogs/category/${categoryId}`)
+>>>>>>> 37605131041d4f12ce2f13376362ea9038737947
         .then((res) => {
           setBlogs(res.data);
           // console.log(res.data);
@@ -22,7 +26,11 @@ export default function Carousel({ transparent, categoryId }) {
   } else {
     useEffect(() => {
       axios
+<<<<<<< HEAD
         .get(`http://api.localfarmnepal.com/api/blogslp`)
+=======
+        .get(`http://api.localfarmnepal.com/api/blogslp`)
+>>>>>>> 37605131041d4f12ce2f13376362ea9038737947
         .then((res) => {
           setBlogs(res.data);
           // console.log(res.data);
@@ -55,8 +63,13 @@ export default function Carousel({ transparent, categoryId }) {
               style={{
                 backgroundImage: `url(${
                   blogs[current]?.photos?.[0]?.imagePath
+<<<<<<< HEAD
                     ? `http://api.localfarmnepal.com/${blogs[current].photos[0].imagePath}`
                     : "/error.png"
+=======
+                    ? `http://api.localfarmnepal.com/${blogs[current].photos[0].imagePath}`
+                    : "/error.webp"
+>>>>>>> 37605131041d4f12ce2f13376362ea9038737947
                 })`,
               }}
             ></div>
@@ -78,6 +91,8 @@ export default function Carousel({ transparent, categoryId }) {
               <Link
                 className="py-3 px-4 bg-[#93C553] text-white rounded-xl text-md font-medium hover:opacity-90 transition hover:cursor-pointer hover:bg-[#609647] w-30"
                 href={`/blog/${blogs[current].slug}`}
+                aria-label="go to blog"
+
               >
                 Read More
               </Link>
@@ -94,6 +109,7 @@ export default function Carousel({ transparent, categoryId }) {
               className={`hover:cursor-pointer w-3 h-3 rounded-full transition-all ${
                 current === index ? "bg-[#93C553] scale-125" : "bg-[#609647]"
               }`}
+              aria-label="carousel dots"
             ></button>
           ))}
         </div>

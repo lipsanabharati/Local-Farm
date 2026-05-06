@@ -21,7 +21,9 @@ export default function Logout()
 
         return(
             <div className="p-4">
-                 <button onClick={handleLogout} className="bg-red-400 hover:bg-red-300 hover:cursor-pointer p-3 rounded-xl text-white">Logout</button>
+                 <button onClick={handleLogout} className="bg-red-400 hover:bg-red-300 hover:cursor-pointer p-3 rounded-xl text-white" 
+              aria-label="close button"
+                 >Logout</button>
             </div>
         )
 }
