@@ -9,7 +9,7 @@ export default function EventCarousel() {
   const [current, setCurrent] = useState(0);
   useEffect(() => {
     axios
-      .get(`http://app.localfarmnepal.com/api/upcomingevents`)
+      .get(`http://api.localfarmnepal.com/api/upcomingevents`)
       .then((res) => {
         setEvents(res.data);
         // console.log(res.data);
@@ -43,7 +43,7 @@ export default function EventCarousel() {
               style={{
                 backgroundImage: `url(${
                   events[current]?.photos?.[0]?.imagePath
-                    ? `http://app.localfarmnepal.com/${events[current].photos[0].imagePath}`
+                    ? `http://api.localfarmnepal.com/${events[current].photos[0].imagePath}`
                     : "/error.png"
                 })`,
               }}

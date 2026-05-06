@@ -10,7 +10,7 @@ export default function Carousel({ transparent, categoryId }) {
   if (categoryId) {
     useEffect(() => {
       axios
-        .get(`http://app.localfarmnepal.com/api/blogs/category/${categoryId}`)
+        .get(`http://api.localfarmnepal.com/api/blogs/category/${categoryId}`)
         .then((res) => {
           setBlogs(res.data);
           // console.log(res.data);
@@ -22,7 +22,7 @@ export default function Carousel({ transparent, categoryId }) {
   } else {
     useEffect(() => {
       axios
-        .get(`http://app.localfarmnepal.com/api/blogslp`)
+        .get(`http://api.localfarmnepal.com/api/blogslp`)
         .then((res) => {
           setBlogs(res.data);
           // console.log(res.data);
@@ -55,7 +55,7 @@ export default function Carousel({ transparent, categoryId }) {
               style={{
                 backgroundImage: `url(${
                   blogs[current]?.photos?.[0]?.imagePath
-                    ? `http://app.localfarmnepal.com/${blogs[current].photos[0].imagePath}`
+                    ? `http://api.localfarmnepal.com/${blogs[current].photos[0].imagePath}`
                     : "/error.png"
                 })`,
               }}

@@ -35,7 +35,7 @@ export default function CartCard() {
                 className="object-contain"
                 src={
                   product.photos?.[0]?.imagePath
-                    ? `http://app.localfarmnepal.com/${product.photos[0].imagePath}`
+                    ? `http://api.localfarmnepal.com/${product.photos[0].imagePath}`
                     : "/error.png"
                 }
                 alt={product.productName}

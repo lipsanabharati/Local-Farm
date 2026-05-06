@@ -12,7 +12,7 @@ export default function ProductDesc({ id }) {
 
   useEffect(() => {
     axios
-      .get(`http://app.localfarmnepal.com/api/products/${id}`)
+      .get(`http://api.localfarmnepal.com/api/products/${id}`)
       .then((res) => {
         setProduct(res.data);
         //  console.log(res.data);
@@ -39,7 +39,7 @@ export default function ProductDesc({ id }) {
                 <img
                   src={
                     product.photos?.[0]?.imagePath
-                      ? `http://app.localfarmnepal.com/${product.photos[0].imagePath}`
+                      ? `http://api.localfarmnepal.com/${product.photos[0].imagePath}`
                       : "/error.png"
                   }
                   alt={product.productName}
@@ -53,7 +53,7 @@ export default function ProductDesc({ id }) {
                       <img
                         src={
                           photo.imagePath
-                            ? `http://app.localfarmnepal.com/${photo.imagePath}`
+                            ? `http://api.localfarmnepal.com/${photo.imagePath}`
                             : "/error.png"
                         }
                         alt={product.productName}

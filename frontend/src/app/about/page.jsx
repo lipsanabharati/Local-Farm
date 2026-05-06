@@ -55,7 +55,7 @@ export default function About() {
 
   useEffect(() => {
     axios
-      .get(`http://app.localfarmnepal.com/api/staff`)
+      .get(`http://api.localfarmnepal.com/api/staff`)
       .then((res) => {
         setStaffs(res.data);
         // console.log(res.data);
@@ -226,7 +226,7 @@ export default function About() {
             <div
               className="rounded-full w-25 h-25 lg:w-40 lg:h-40 bg-cover bg-no-repeat"
               style={{
-                backgroundImage: `url(http://app.localfarmnepal.com/${staff.imagePath})`,
+                backgroundImage: `url(http://api.localfarmnepal.com/${staff.imagePath})`,
               }}
             ></div>
 
