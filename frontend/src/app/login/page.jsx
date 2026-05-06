@@ -28,13 +28,10 @@ export default function Login() {
     }
 
     try {
-      const response = await axios.post(
-        "http://api.localfarmnepal.com/api/login",
-        {
-          username: username,
-          password: password,
-        },
-      );
+      const response = await axios.post("http://localhost:5000/api/login", {
+        username: username,
+        password: password,
+      });
 
       const token = response.data.token;
       localStorage.setItem("token", token);
@@ -59,7 +56,7 @@ export default function Login() {
 
     try {
       const response = await axios.put(
-        "http://api.localfarmnepal.com/api/admin/change-password",
+        "http://localhost:5000/api/admin/change-password",
         {
           currentPassword,
           newPassword,
@@ -90,7 +87,10 @@ export default function Login() {
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           <div className="flex flex-col gap-1.5">
-            <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="username">
+            <label
+              className="text-sm font-bold text-gray-700 ml-1"
+              htmlFor="username"
+            >
               Username
             </label>
             <input

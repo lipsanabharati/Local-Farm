@@ -54,9 +54,9 @@ export default function BlogAdmin() {
   useEffect(() => {
     axios
 <<<<<<< HEAD
-      .get(`http://api.localfarmnepal.com/api/blogs`)
+      .get(`http://localhost:5000/api/blogs`)
 =======
-      .get(`http://api.localfarmnepal.com/api/blogs`)
+      .get(`http://localhost:5000/api/blogs`)
 >>>>>>> 37605131041d4f12ce2f13376362ea9038737947
       .then((res) => {
         setBlogs(res.data);
@@ -152,9 +152,9 @@ export default function BlogAdmin() {
     try {
       await axios.put(
 <<<<<<< HEAD
-        `http://api.localfarmnepal.com/api/blogs/${selected.id}`,
+        `http://localhost:5000/api/blogs/${selected.id}`,
 =======
-        `http://api.localfarmnepal.com/api/blogs/${selected.id}`,
+        `http://localhost:5000/api/blogs/${selected.id}`,
 >>>>>>> 37605131041d4f12ce2f13376362ea9038737947
         formData,
         {
@@ -193,9 +193,9 @@ export default function BlogAdmin() {
 
     try {
 <<<<<<< HEAD
-      await axios.post(`http://api.localfarmnepal.com/api/blogs`, formData, {
+      await axios.post(`http://localhost:5000/api/blogs`, formData, {
 =======
-      await axios.post(`http://api.localfarmnepal.com/api/blogs`, formData, {
+      await axios.post(`http://localhost:5000/api/blogs`, formData, {
 >>>>>>> 37605131041d4f12ce2f13376362ea9038737947
         headers: {
           Authorization: `Bearer ${token}`,
@@ -316,9 +316,9 @@ export default function BlogAdmin() {
   useEffect(() => {
     axios
 <<<<<<< HEAD
-      .get(`http://api.localfarmnepal.com/api/product-categories`)
+      .get(`http://localhost:5000/api/product-categories`)
 =======
-      .get(`http://api.localfarmnepal.com/api/product-categories`)
+      .get(`http://localhost:5000/api/product-categories`)
 >>>>>>> 37605131041d4f12ce2f13376362ea9038737947
       .then((res) => {
         // console.log(res.data);
@@ -380,9 +380,9 @@ export default function BlogAdmin() {
                   <img
                     key={index}
 <<<<<<< HEAD
-                    src={`http://api.localfarmnepal.com/${image.imagePath}`}
+                    src={`http://localhost:5000/${image.imagePath}`}
 =======
-                    src={`http://api.localfarmnepal.com/${image.imagePath}`}
+                    src={`http://localhost:5000/${image.imagePath}`}
 >>>>>>> 37605131041d4f12ce2f13376362ea9038737947
                     className="w-16 h-16 object-cover"
                     alt="blog image"

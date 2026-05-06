@@ -10,7 +10,7 @@ export default function Faq() {
 
   useEffect(() => {
     axios
-      .get(`http://api.localfarmnepal.com/api/faqs`)
+      .get(`http://localhost:5000/api/faqs`)
       .then((res) => {
         setFaqs(res.data);
       })
@@ -39,8 +39,7 @@ export default function Faq() {
               <button
                 onClick={() => setOpened(opened === index ? null : index)}
                 className={` w-10 h-10 flex items-center justify-center transition-transform duration-800 hover:cursor-pointer ${opened === index ? "rotate-180" : ""}`}
-              aria-label="show button"
-
+                aria-label="show button"
               >
                 <ChevronDown className="text-[#93C553] lg:w-10 lg:h-10 w-8 h-8 " />
               </button>

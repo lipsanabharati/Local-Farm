@@ -11,9 +11,9 @@ export default function Carousel({ transparent, categoryId }) {
     useEffect(() => {
       axios
 <<<<<<< HEAD
-        .get(`http://api.localfarmnepal.com/api/blogs/category/${categoryId}`)
+        .get(`http://localhost:5000/api/blogs/category/${categoryId}`)
 =======
-        .get(`http://api.localfarmnepal.com/api/blogs/category/${categoryId}`)
+        .get(`http://localhost:5000/api/blogs/category/${categoryId}`)
 >>>>>>> 37605131041d4f12ce2f13376362ea9038737947
         .then((res) => {
           setBlogs(res.data);
@@ -27,9 +27,9 @@ export default function Carousel({ transparent, categoryId }) {
     useEffect(() => {
       axios
 <<<<<<< HEAD
-        .get(`http://api.localfarmnepal.com/api/blogslp`)
+        .get(`http://localhost:5000/api/blogslp`)
 =======
-        .get(`http://api.localfarmnepal.com/api/blogslp`)
+        .get(`http://localhost:5000/api/blogslp`)
 >>>>>>> 37605131041d4f12ce2f13376362ea9038737947
         .then((res) => {
           setBlogs(res.data);
@@ -64,10 +64,10 @@ export default function Carousel({ transparent, categoryId }) {
                 backgroundImage: `url(${
                   blogs[current]?.photos?.[0]?.imagePath
 <<<<<<< HEAD
-                    ? `http://api.localfarmnepal.com/${blogs[current].photos[0].imagePath}`
+                    ? `http://localhost:5000/${blogs[current].photos[0].imagePath}`
                     : "/error.png"
 =======
-                    ? `http://api.localfarmnepal.com/${blogs[current].photos[0].imagePath}`
+                    ? `http://localhost:5000/${blogs[current].photos[0].imagePath}`
                     : "/error.webp"
 >>>>>>> 37605131041d4f12ce2f13376362ea9038737947
                 })`,

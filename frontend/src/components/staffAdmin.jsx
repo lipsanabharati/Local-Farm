@@ -45,7 +45,7 @@ export default function StaffAdmin() {
 
   useEffect(() => {
     axios
-      .get(`http://api.localfarmnepal.com/api/staff`)
+      .get(`http://localhost:5000/api/staff`)
       .then((res) => {
         setStaffs(res.data);
         //console.log(res.data);
@@ -78,14 +78,11 @@ export default function StaffAdmin() {
 
   const confirmDelete = async () => {
     try {
-      await axios.delete(
-        `http://api.localfarmnepal.com/api/staff/${deleteId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+      await axios.delete(`http://localhost:5000/api/staff/${deleteId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
-      );
+      });
       showSuccess("Deleted Successfully");
       setShowDeleteDialog(false);
       setUpdate((prev) => !prev);
@@ -162,7 +159,7 @@ export default function StaffAdmin() {
     });
     try {
       await axios.put(
-        `http://api.localfarmnepal.com/api/staff/${selected.id}`,
+        `http://localhost:5000/api/staff/${selected.id}`,
         formData,
         {
           headers: {
@@ -196,7 +193,7 @@ export default function StaffAdmin() {
     });
 
     try {
-      await axios.post(`http://api.localfarmnepal.com/api/staff`, formData, {
+      await axios.post(`http://localhost:5000/api/staff`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -246,17 +243,16 @@ export default function StaffAdmin() {
                 <td className="border-1 p-1 text-center">
                   <img
                     key={index}
-                    src={`http://api.localfarmnepal.com/${staff.imagePath}`}
+                    src={`http://localhost:5000/${staff.imagePath}`}
                     className="w-16 h-16 object-cover"
-                     alt="staff image"
+                    alt="staff image"
                   ></img>
                 </td>
                 <td className="border-1 p-1 text-center">
                   <button
                     className="bg-[#609647] p-2 hover:bg-[#93C553] hover:cursor-pointer m-3 "
                     onClick={() => handleUpdateClick(staff)}
-              aria-label="update button"
-
+                    aria-label="update button"
                   >
                     Update
                   </button>
@@ -266,8 +262,7 @@ export default function StaffAdmin() {
                   <button
                     className="bg-red-500 p-2 hover:bg-red-700 text-white cursor-pointer m-3"
                     onClick={() => handleDeleteClick(staff.id)}
-              aria-label="delete button"
-
+                    aria-label="delete button"
                   >
                     Delete
                   </button>
@@ -289,8 +284,7 @@ export default function StaffAdmin() {
                   ? "bg-[#609647] text-white"
                   : "bg-white"
               }`}
-              aria-label={`page ${index+1}`}
-
+              aria-label={`page ${index + 1}`}
             >
               {index + 1}
             </button>
@@ -301,8 +295,7 @@ export default function StaffAdmin() {
           <button
             className="mt-4  bg-[#609647] text-white py-2 px-2 rounded-2xl font-bold hover:bg-[#93C553] hover:cursor-pointer transition-all shadow-lg shadow-indigo-200 active:scale-[0.98]"
             onClick={handleAddClick}
-              aria-label="add button"
-
+            aria-label="add button"
           >
             Add Staff
           </button>
@@ -317,14 +310,16 @@ export default function StaffAdmin() {
               onClick={() => setShowForm(false)}
               className="float-right text-red-500 font-bold"
               aria-label="close button"
-
             >
               X
             </button>
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="name">
+                <label
+                  className="text-sm font-bold text-gray-700 ml-1"
+                  htmlFor="name"
+                >
                   Name
                 </label>
                 <input
@@ -339,7 +334,10 @@ export default function StaffAdmin() {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="position">
+                <label
+                  className="text-sm font-bold text-gray-700 ml-1"
+                  htmlFor="position"
+                >
                   Position
                 </label>
                 <input
@@ -353,7 +351,10 @@ export default function StaffAdmin() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="photos">
+                <label
+                  className="text-sm font-bold text-gray-700 ml-1"
+                  htmlFor="photos"
+                >
                   Photos
                 </label>
 
@@ -371,7 +372,7 @@ export default function StaffAdmin() {
                       <img
                         src={previewPhotos[index]}
                         className="w-16 h-16 rounded object-cover"
-                         alt="staff image"
+                        alt="staff image"
                       />
                     )}
                   </div>
@@ -381,8 +382,7 @@ export default function StaffAdmin() {
               <button
                 type="submit"
                 className="mt-4  bg-[#609647] text-white py-4 rounded-2xl font-bold hover:bg-[#93C553] hover:cursor-pointer transition-all shadow-lg shadow-indigo-200 active:scale-[0.98]"
-              aria-label="update button"
-
+                aria-label="update button"
               >
                 Update
               </button>
@@ -399,14 +399,16 @@ export default function StaffAdmin() {
               onClick={() => setShowAddForm(false)}
               className="float-right text-red-500 font-bold"
               aria-label="close button"
-
             >
               X
             </button>
 
             <form onSubmit={addHandleSubmit} className="flex flex-col gap-5">
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="name">
+                <label
+                  className="text-sm font-bold text-gray-700 ml-1"
+                  htmlFor="name"
+                >
                   Name
                 </label>
                 <input
@@ -421,7 +423,10 @@ export default function StaffAdmin() {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="position">
+                <label
+                  className="text-sm font-bold text-gray-700 ml-1"
+                  htmlFor="position"
+                >
                   Position
                 </label>
                 <input
@@ -435,7 +440,10 @@ export default function StaffAdmin() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="photos">
+                <label
+                  className="text-sm font-bold text-gray-700 ml-1"
+                  htmlFor="photos"
+                >
                   Photos
                 </label>
 
@@ -453,8 +461,7 @@ export default function StaffAdmin() {
                       <img
                         src={addPreviewPhotos[index]}
                         className="w-16 h-16 rounded object-cover"
-                         alt="staff image"
-
+                        alt="staff image"
                       />
                     )}
                   </div>
@@ -464,8 +471,7 @@ export default function StaffAdmin() {
               <button
                 type="submit"
                 className="mt-4  bg-[#609647] text-white py-4 rounded-2xl font-bold hover:bg-[#93C553] hover:cursor-pointer transition-all shadow-lg shadow-indigo-200 active:scale-[0.98]"
-              aria-label="add button"
-
+                aria-label="add button"
               >
                 Add
               </button>
@@ -485,8 +491,7 @@ export default function StaffAdmin() {
               <button
                 onClick={confirmDelete}
                 className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700"
-              aria-label="yes button"
-
+                aria-label="yes button"
               >
                 Yes, Delete
               </button>
@@ -494,8 +499,7 @@ export default function StaffAdmin() {
               <button
                 onClick={cancelDelete}
                 className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400"
-              aria-label="cancel button"
-              
+                aria-label="cancel button"
               >
                 Cancel
               </button>

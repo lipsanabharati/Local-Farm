@@ -39,7 +39,7 @@ export default function ProductForShop() {
     const fetchCategories = async () => {
       try {
         const res = await axios.get(
-          `http://api.localfarmnepal.com/api/product-categories`,
+          `http://localhost:5000/api/product-categories`,
         );
         setCategories(res.data);
         // console.log(res.data);
@@ -59,8 +59,8 @@ export default function ProductForShop() {
 
     const url =
       activeCategory.id > 0
-        ? `http://api.localfarmnepal.com/api/products/category/${activeCategory.id}`
-        : `http://api.localfarmnepal.com/api/products`;
+        ? `http://localhost:5000/api/products/category/${activeCategory.id}`
+        : `http://localhost:5000/api/products`;
 
     axios
       .get(url)
@@ -110,8 +110,7 @@ export default function ProductForShop() {
                 ? "text-[#93C553] border-b-2 border-black bg-[#EDF2E0]"
                 : "text-gray-600 hover:text-[#93C553]"
             }`}
-              aria-label="category button"
-
+            aria-label="category button"
           >
             {category.categoryName}
           </button>
@@ -145,7 +144,7 @@ export default function ProductForShop() {
                   <img
                     src={
                       product.photos?.[0]?.imagePath
-                        ? `http://api.localfarmnepal.com/${product.photos[0].imagePath}`
+                        ? `http://localhost:5000/${product.photos[0].imagePath}`
                         : "/error.webp"
                     }
                     alt={product.productName}
@@ -181,8 +180,7 @@ export default function ProductForShop() {
                   <button
                     onClick={() => addToCart(product, product.id)}
                     className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg hover:cursor-pointer hover:bg-[#93C553]"
-              aria-label="add to cart button"
-
+                    aria-label="add to cart button"
                   >
                     Add to Cart
                   </button>
@@ -213,7 +211,7 @@ export default function ProductForShop() {
                   <img
                     src={
                       product.photos?.[0]?.imagePath
-                        ? `http://api.localfarmnepal.com/${product.photos[0].imagePath}`
+                        ? `http://localhost:5000/${product.photos[0].imagePath}`
                         : "/error.webp"
                     }
                     alt={product.productName}
@@ -249,8 +247,7 @@ export default function ProductForShop() {
                   <button
                     onClick={() => addToCart(product, product.id)}
                     className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg"
-              aria-label="add to cart button"
-
+                    aria-label="add to cart button"
                   >
                     Add to Cart
                   </button>

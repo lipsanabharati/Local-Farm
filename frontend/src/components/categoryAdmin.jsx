@@ -38,7 +38,7 @@ export default function CategoryAdmin() {
 
   useEffect(() => {
     axios
-      .get(`http://api.localfarmnepal.com/api/product-categories`)
+      .get(`http://localhost:5000/api/product-categories`)
       .then((res) => {
         setCategories(res.data);
         //console.log(res.data);
@@ -69,7 +69,7 @@ export default function CategoryAdmin() {
     };
     try {
       await axios.patch(
-        `http://api.localfarmnepal.com/api/product-categories/${selected.id}`,
+        `http://localhost:5000/api/product-categories/${selected.id}`,
         formData,
         {
           headers: {
@@ -95,7 +95,7 @@ export default function CategoryAdmin() {
     };
     try {
       await axios.post(
-        `http://api.localfarmnepal.com/api/product-categories`,
+        `http://localhost:5000/api/product-categories`,
         formData,
         {
           headers: {
@@ -144,8 +144,7 @@ export default function CategoryAdmin() {
                 <button
                   className="bg-[#609647] p-2 hover:bg-[#93C553] hover:cursor-pointer m-3 "
                   onClick={() => handleUpdateClick(category)}
-              aria-label="update button"
-
+                  aria-label="update button"
                 >
                   Update
                 </button>
@@ -166,8 +165,7 @@ export default function CategoryAdmin() {
                   ? "bg-[#609647] text-white"
                   : "bg-white"
               }`}
-              aria-label={`page ${index+1}`}
-
+              aria-label={`page ${index + 1}`}
             >
               {index + 1}
             </button>
@@ -178,8 +176,7 @@ export default function CategoryAdmin() {
           <button
             className="mt-4  bg-[#609647] text-white py-2 px-2 rounded-2xl font-bold hover:bg-[#93C553] hover:cursor-pointer transition-all shadow-lg shadow-indigo-200 active:scale-[0.98]"
             onClick={handleAddClick}
-              aria-label="add button"
-
+            aria-label="add button"
           >
             Add Category
           </button>
@@ -194,14 +191,16 @@ export default function CategoryAdmin() {
               onClick={() => setShowForm(false)}
               className="float-right text-red-500 font-bold"
               aria-label="close button"
-
             >
               X
             </button>
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="category-name">
+                <label
+                  className="text-sm font-bold text-gray-700 ml-1"
+                  htmlFor="category-name"
+                >
                   Category Name
                 </label>
                 <input
@@ -216,8 +215,7 @@ export default function CategoryAdmin() {
               <button
                 type="submit"
                 className="mt-4  bg-[#609647] text-white py-4 rounded-2xl font-bold hover:bg-[#93C553] hover:cursor-pointer transition-all shadow-lg shadow-indigo-200 active:scale-[0.98]"
-              aria-label="update button"
-
+                aria-label="update button"
               >
                 Update
               </button>
@@ -234,14 +232,16 @@ export default function CategoryAdmin() {
               onClick={() => setShowAddForm(false)}
               className="float-right text-red-500 font-bold"
               aria-label="close button"
-
             >
               X
             </button>
 
             <form onSubmit={handleAddSubmit} className="flex flex-col gap-5">
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="category-name">
+                <label
+                  className="text-sm font-bold text-gray-700 ml-1"
+                  htmlFor="category-name"
+                >
                   Category Name
                 </label>
                 <input
@@ -256,8 +256,7 @@ export default function CategoryAdmin() {
               <button
                 type="submit"
                 className="mt-4  bg-[#609647] text-white py-4 rounded-2xl font-bold hover:bg-[#93C553] hover:cursor-pointer transition-all shadow-lg shadow-indigo-200 active:scale-[0.98]"
-              aria-label="add button"
-
+                aria-label="add button"
               >
                 Add
               </button>

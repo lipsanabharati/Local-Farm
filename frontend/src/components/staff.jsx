@@ -9,7 +9,7 @@ export default function Staff() {
 
   useEffect(() => {
     axios
-      .get(`http://api.localfarmnepal.com/api/staff`)
+      .get(`http://localhost:5000/api/staff`)
       .then((res) => {
         setStaffs(res.data);
         // console.log(res.data);
@@ -26,7 +26,7 @@ export default function Staff() {
           <div
             className="rounded-full w-25 h-25 lg:w-40 lg:h-40 bg-cover bg-no-repeat"
             style={{
-              backgroundImage: `url(http://api.localfarmnepal.com/${staff.imagePath})`,
+              backgroundImage: `url(http://localhost:5000/${staff.imagePath})`,
             }}
           ></div>
 

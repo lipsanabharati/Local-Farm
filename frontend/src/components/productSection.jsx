@@ -39,7 +39,7 @@ export default function ProductsSection() {
     const fetchCategories = async () => {
       try {
         const res = await axios.get(
-          `http://api.localfarmnepal.com/api/product-categories`,
+          `http://localhost:5000/api/product-categories`,
         );
         setCategories(res.data);
 
@@ -59,8 +59,8 @@ export default function ProductsSection() {
 
     const url =
       activeCategory.id > 0
-        ? `http://api.localfarmnepal.com/api/products/category/three/${activeCategory.id}`
-        : `http://api.localfarmnepal.com/api/products/three`;
+        ? `http://localhost:5000/api/products/category/three/${activeCategory.id}`
+        : `http://localhost:5000/api/products/three`;
 
     axios
       .get(url)
@@ -105,8 +105,7 @@ export default function ProductsSection() {
                 ? "text-[#93C553] border-b-2 border-black bg-[#EDF2E0]"
                 : "text-gray-600 hover:text-[#93C553]"
             }`}
-              aria-label="category button"
-
+            aria-label="category button"
           >
             {category.categoryName}
           </button>
@@ -140,7 +139,7 @@ export default function ProductsSection() {
                 <img
                   src={
                     product.photos?.[0]?.imagePath
-                      ? `http://api.localfarmnepal.com/${product.photos[0].imagePath}`
+                      ? `http://localhost:5000/${product.photos[0].imagePath}`
                       : "/error.webp"
                   }
                   alt={product.productName}
@@ -176,8 +175,7 @@ export default function ProductsSection() {
                 <button
                   onClick={() => addToCart(product, product.id)}
                   className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg hover:cursor-pointer hover:bg-[#93C553]"
-              aria-label="add to cart button"
-
+                  aria-label="add to cart button"
                 >
                   Add to Cart
                 </button>
@@ -206,7 +204,7 @@ export default function ProductsSection() {
               <img
                 src={
                   products[0].photos?.[0]?.imagePath
-                    ? `http://api.localfarmnepal.com/${products[0].photos[0].imagePath}`
+                    ? `http://localhost:5000/${products[0].photos[0].imagePath}`
                     : "/error.webp"
                 }
                 alt={products[0].productName}
@@ -242,8 +240,7 @@ export default function ProductsSection() {
               <button
                 onClick={() => addToCart(products[0], products[0].id)}
                 className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg hover:cursor-pointer hover:bg-[#93C553]"
-              aria-label="add to cart button"
-
+                aria-label="add to cart button"
               >
                 Add to Cart
               </button>

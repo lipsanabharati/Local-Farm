@@ -9,9 +9,9 @@ export default function Blog({ slug }) {
   useEffect(() => {
     axios
 <<<<<<< HEAD
-      .get(`http://api.localfarmnepal.com/api/blogs/${slug}`)
+      .get(`http://localhost:5000/api/blogs/${slug}`)
 =======
-      .get(`http://api.localfarmnepal.com/api/blogs/${slug}`)
+      .get(`http://localhost:5000/api/blogs/${slug}`)
 >>>>>>> 37605131041d4f12ce2f13376362ea9038737947
       .then((res) => {
         setBlog(res.data);
@@ -36,10 +36,10 @@ export default function Blog({ slug }) {
             src={
               blog.photos?.[0]?.imagePath
 <<<<<<< HEAD
-                ? `http://api.localfarmnepal.com/${blog.photos[0].imagePath}`
+                ? `http://localhost:5000/${blog.photos[0].imagePath}`
                 : "/error.png"
 =======
-                ? `http://api.localfarmnepal.com/${blog.photos[0].imagePath}`
+                ? `http://localhost:5000/${blog.photos[0].imagePath}`
                 : "/error.webp"
 >>>>>>> 37605131041d4f12ce2f13376362ea9038737947
             }

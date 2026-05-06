@@ -56,7 +56,7 @@ export default function ProductAdmin() {
 
   useEffect(() => {
     axios
-      .get(`http://api.localfarmnepal.com/api/products`)
+      .get(`http://localhost:5000/api/products`)
       .then((res) => {
         setProducts(res.data);
         //console.log(res.data);
@@ -92,14 +92,11 @@ export default function ProductAdmin() {
 
   const confirmDelete = async () => {
     try {
-      await axios.delete(
-        `http://api.localfarmnepal.com/api/products/${deleteId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+      await axios.delete(`http://localhost:5000/api/products/${deleteId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
-      );
+      });
       showSuccess("Deleted Successfully");
       setShowDeleteDialog(false);
       setUpdate((prev) => !prev);
@@ -181,7 +178,7 @@ export default function ProductAdmin() {
 
     try {
       await axios.put(
-        `http://api.localfarmnepal.com/api/products/${selected.id}`,
+        `http://localhost:5000/api/products/${selected.id}`,
         formData,
         {
           headers: {
@@ -218,7 +215,7 @@ export default function ProductAdmin() {
     });
 
     try {
-      await axios.post(`http://api.localfarmnepal.com/api/products`, formData, {
+      await axios.post(`http://localhost:5000/api/products`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -311,7 +308,7 @@ export default function ProductAdmin() {
   //getting categories
   useEffect(() => {
     axios
-      .get(`http://api.localfarmnepal.com/api/product-categories`)
+      .get(`http://localhost:5000/api/product-categories`)
       .then((res) => {
         // console.log(res.data);
         setCategories(res.data);
@@ -366,7 +363,7 @@ export default function ProductAdmin() {
                   {product.photos?.map((image, index) => (
                     <img
                       key={index}
-                      src={`http://api.localfarmnepal.com/${image.imagePath}`}
+                      src={`http://localhost:5000/${image.imagePath}`}
                       className="w-16 h-16 object-cover"
                       alt="product image"
                     ></img>
@@ -376,8 +373,7 @@ export default function ProductAdmin() {
                   <button
                     className="bg-[#609647] p-2 hover:bg-[#93C553] hover:cursor-pointer m-3 "
                     onClick={() => handleUpdateClick(product)}
-              aria-label="update button"
-
+                    aria-label="update button"
                   >
                     Update
                   </button>
@@ -387,8 +383,7 @@ export default function ProductAdmin() {
                   <button
                     className="bg-red-500 p-2 hover:bg-red-700 text-white cursor-pointer m-3"
                     onClick={() => handleDeleteClick(product.id)}
-              aria-label="delete button"
-
+                    aria-label="delete button"
                   >
                     Delete
                   </button>
@@ -410,8 +405,7 @@ export default function ProductAdmin() {
                   ? "bg-[#609647] text-white"
                   : "bg-white"
               }`}
-              aria-label={`page ${index+1}`}
-
+              aria-label={`page ${index + 1}`}
             >
               {index + 1}
             </button>
@@ -422,8 +416,7 @@ export default function ProductAdmin() {
           <button
             className="mt-4  bg-[#609647] text-white py-2 px-2 rounded-2xl font-bold hover:bg-[#93C553] hover:cursor-pointer transition-all shadow-lg shadow-indigo-200 active:scale-[0.98]"
             onClick={handleAddClick}
-              aria-label="add button"
-
+            aria-label="add button"
           >
             Add Product
           </button>
@@ -438,14 +431,16 @@ export default function ProductAdmin() {
               onClick={() => setShowForm(false)}
               className="float-right text-red-500 font-bold"
               aria-label="close button"
-
             >
               X
             </button>
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="category">
+                <label
+                  className="text-sm font-bold text-gray-700 ml-1"
+                  htmlFor="category"
+                >
                   Category
                 </label>
 
@@ -467,7 +462,10 @@ export default function ProductAdmin() {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="productName">
+                <label
+                  className="text-sm font-bold text-gray-700 ml-1"
+                  htmlFor="productName"
+                >
                   Product Name
                 </label>
                 <input
@@ -481,7 +479,10 @@ export default function ProductAdmin() {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="quantity">
+                <label
+                  className="text-sm font-bold text-gray-700 ml-1"
+                  htmlFor="quantity"
+                >
                   Quantity
                 </label>
                 <input
@@ -495,7 +496,10 @@ export default function ProductAdmin() {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="price">
+                <label
+                  className="text-sm font-bold text-gray-700 ml-1"
+                  htmlFor="price"
+                >
                   Price
                 </label>
                 <input
@@ -509,7 +513,10 @@ export default function ProductAdmin() {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="desc">
+                <label
+                  className="text-sm font-bold text-gray-700 ml-1"
+                  htmlFor="desc"
+                >
                   Description
                 </label>
 
@@ -521,7 +528,10 @@ export default function ProductAdmin() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="photos">
+                <label
+                  className="text-sm font-bold text-gray-700 ml-1"
+                  htmlFor="photos"
+                >
                   Photos
                 </label>
 
@@ -539,7 +549,7 @@ export default function ProductAdmin() {
                       <img
                         src={previewPhotos[index]}
                         className="w-16 h-16 rounded object-cover"
-                         alt="product image"
+                        alt="product image"
                       />
                     )}
 
@@ -547,8 +557,7 @@ export default function ProductAdmin() {
                       type="button"
                       onClick={() => removePhotoField(index)}
                       className="bg-red-400 px-3 rounded-xl"
-              aria-label="close button"
-
+                      aria-label="close button"
                     >
                       X
                     </button>
@@ -559,8 +568,7 @@ export default function ProductAdmin() {
                   type="button"
                   onClick={addPhotoField}
                   className="bg-gray-300 p-2 rounded-xl"
-              aria-label="add button"
-
+                  aria-label="add button"
                 >
                   + Add Photo
                 </button>
@@ -569,8 +577,7 @@ export default function ProductAdmin() {
               <button
                 type="submit"
                 className="mt-4  bg-[#609647] text-white py-4 rounded-2xl font-bold hover:bg-[#93C553] hover:cursor-pointer transition-all shadow-lg shadow-indigo-200 active:scale-[0.98]"
-              aria-label="update button"
-
+                aria-label="update button"
               >
                 Update
               </button>
@@ -587,14 +594,16 @@ export default function ProductAdmin() {
               onClick={() => setShowAddForm(false)}
               className="float-right text-red-500 font-bold"
               aria-label="close button"
-
             >
               X
             </button>
 
             <form onSubmit={addHandleSubmit} className="flex flex-col gap-5">
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="category">
+                <label
+                  className="text-sm font-bold text-gray-700 ml-1"
+                  htmlFor="category"
+                >
                   Category
                 </label>
                 <select
@@ -617,7 +626,10 @@ export default function ProductAdmin() {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="productName">
+                <label
+                  className="text-sm font-bold text-gray-700 ml-1"
+                  htmlFor="productName"
+                >
                   Product Name
                 </label>
                 <input
@@ -631,7 +643,10 @@ export default function ProductAdmin() {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="quantity">
+                <label
+                  className="text-sm font-bold text-gray-700 ml-1"
+                  htmlFor="quantity"
+                >
                   Quantity
                 </label>
                 <input
@@ -645,7 +660,10 @@ export default function ProductAdmin() {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="price">
+                <label
+                  className="text-sm font-bold text-gray-700 ml-1"
+                  htmlFor="price"
+                >
                   Price
                 </label>
                 <input
@@ -659,7 +677,10 @@ export default function ProductAdmin() {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="desc">
+                <label
+                  className="text-sm font-bold text-gray-700 ml-1"
+                  htmlFor="desc"
+                >
                   Description
                 </label>
 
@@ -671,7 +692,10 @@ export default function ProductAdmin() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label className="text-sm font-bold text-gray-700 ml-1" htmlFor="photos">
+                <label
+                  className="text-sm font-bold text-gray-700 ml-1"
+                  htmlFor="photos"
+                >
                   Photos
                 </label>
 
@@ -689,7 +713,7 @@ export default function ProductAdmin() {
                       <img
                         src={addPreviewPhotos[index]}
                         className="w-16 h-16 rounded object-cover"
-                         alt="product image"
+                        alt="product image"
                       />
                     )}
 
@@ -697,8 +721,7 @@ export default function ProductAdmin() {
                       type="button"
                       onClick={() => addRemovePhotoField(index)}
                       className="bg-red-400 px-3 rounded-xl"
-              aria-label="close button"
-
+                      aria-label="close button"
                     >
                       X
                     </button>
@@ -709,8 +732,7 @@ export default function ProductAdmin() {
                   type="button"
                   onClick={addAddPhotoField}
                   className="bg-gray-300 p-2 rounded-xl"
-              aria-label="add photo button"
-
+                  aria-label="add photo button"
                 >
                   + Add Photo
                 </button>
@@ -719,8 +741,7 @@ export default function ProductAdmin() {
               <button
                 type="submit"
                 className="mt-4  bg-[#609647] text-white py-4 rounded-2xl font-bold hover:bg-[#93C553] hover:cursor-pointer transition-all shadow-lg shadow-indigo-200 active:scale-[0.98]"
-              aria-label="add button"
-
+                aria-label="add button"
               >
                 Add
               </button>
@@ -740,8 +761,7 @@ export default function ProductAdmin() {
               <button
                 onClick={confirmDelete}
                 className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700"
-              aria-label="yes button"
-
+                aria-label="yes button"
               >
                 Yes, Delete
               </button>
@@ -749,8 +769,7 @@ export default function ProductAdmin() {
               <button
                 onClick={cancelDelete}
                 className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400"
-              aria-label="cancel button"
-
+                aria-label="cancel button"
               >
                 Cancel
               </button>
