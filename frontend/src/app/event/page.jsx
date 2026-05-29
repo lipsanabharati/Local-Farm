@@ -1,8 +1,10 @@
 "use client"
 import dynamic from "next/dynamic";
 import EventCarousel from "@/components/eventCarousel"
+import Image from "next/image";
 // import EventCard from "@/components/eventCard"
 const EventCard  = dynamic(() => import("@/components/eventCard"), {
+ssr:false,
   loading: () => <p>Loading...</p>,
 });
 
@@ -13,9 +15,14 @@ export default function Event()
        <section className="flex flex-col max-w-[1440px] w-screen mt-20 overflow-hidden">
 
         {/*Hero Section*/}
-        <div className="flex flex-row justify-center items-center mb-10">
+        <div className="flex flex-row justify-center items-center mb-10 relative">
 
-            <img src="/event-bg.webp" className="w-1/2 lg:w-full"  alt="event image"/>
+            <Image 
+            src="https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779940061/event-bg_asosbu.webp" 
+            className="w-1/2 lg:w-full"   
+            alt="event image"
+            width={500}
+            height={500}/>
 
             <h1 className="text-3xl md:text-3xl lg:text-6xl font-bold text-gray-600 mt-10 text-end pe-12 md:me-25 lg:me-40 w-1/2 lg:w-auto ">Join us as we grow together.</h1>
         </div>

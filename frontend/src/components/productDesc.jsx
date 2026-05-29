@@ -6,13 +6,14 @@ import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { CartContext } from "@/context/CartContext";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function ProductDesc({ id }) {
   const [product, setProduct] = useState({});
 
   useEffect(() => {
     axios
-      .get(`http://api.localfarmnepal.com/api/products/${id}`)
+      .get(`api.localfarmnepal.com/api/products/${id}`)
       .then((res) => {
         setProduct(res.data);
         //  console.log(res.data);
@@ -36,28 +37,33 @@ export default function ProductDesc({ id }) {
             {/*Images*/}
             <div className="flex flex-col md:w-1/2 w-full  items-start justify-start gap-4">
               <div className="bg-[#EFEAE6] p-5 w-full flex flex-row items-center justify-center">
-                <img
+                <Image
+                  alt={product.productName}
                   src={
                     product.photos?.[0]?.imagePath
-                      ? `http://api.localfarmnepal.com/${product.photos[0].imagePath}`
-                      : "/error.webp"
+                      ? `api.localfarmnepal.com/${product.photos[0].imagePath}`
+                      : "/https://res.cloudinary.com/dpff5cxm3/image/upload/v1779941841/error_pr4qab.webp"
                   }
-                  alt={product.productName}
                   className="w-[70%] lg:w-[80%]"
+                  width={500}
+                  height={500}
+                  unoptimized
                 />
               </div>
               {product.photos?.length > 1 && (
                 <div className="flex flex-row gap-3">
                   {product.photos?.slice(1).map((photo, index) => (
                     <div className="bg-[#EFEAE6] p-5">
-                      <img
+                      <Image
                         src={
                           photo.imagePath
-                            ? `http://api.localfarmnepal.com/${photo.imagePath}`
-                            : "/error.webp"
+                            ? `api.localfarmnepal.com/${photo.imagePath}`
+                            : "/https://res.cloudinary.com/dpff5cxm3/image/upload/v1779941841/error_pr4qab.webp"
                         }
                         alt={product.productName}
                         className="w-20 md:w-30"
+                        width={80}
+                        height={80}
                       />
                     </div>
                   ))}

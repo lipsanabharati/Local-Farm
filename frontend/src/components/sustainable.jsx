@@ -15,11 +15,11 @@ export default function Sustainable()
                   transition={{ duration: 2, ease: "easeOut" }}
                   className="flex flex-col lg:gap-10 md:gap-5 gap-3 md:w-1/2 w-full"
                 >
-                  <h1 className="font-heading md:text-3xl text-xl font-bold text-start text-[#609647]">
+                  <h1 className="font-heading md:text-[46px] text-[36px] font-bold text-start text-[#609647]">
                     "SUSTAINABLE FARMING THE LOCAL FARM"-ECS Media
                   </h1>
         
-                  <div className="md:text-xl text-sm">
+                  <div className="md:text-xl text-[17px]">
                     Local Farm stands as both an inspiration for aspiring entrepreneurs
                     and a powerful reminder of the importance of supporting local
                     businesses. As Birat Bikram Shah,Srijan Subedi and their team
@@ -38,7 +38,7 @@ export default function Sustainable()
                   className=" md:w-1/2 w-full flex flex-row justify-center"
                 >
                   <Image
-                    src="/dai.webp"
+                    src="https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779941636/dai_yopqqo.webp"
                     width={500}
                     height={800}
                     alt="Dai"

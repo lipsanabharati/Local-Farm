@@ -1,6 +1,7 @@
 "use client";
 import { useContext, useState } from "react";
 import { CartContext } from "@/context/CartContext";
+import Image from "next/image";
 
 export default function CartCard() {
   const {
@@ -30,16 +31,18 @@ export default function CartCard() {
             className="flex flex-row justify-start p-5 gap-5 md:gap-10 border-t border-b border-gray-400 m-2 mt-5 lg:mb-10 h-50"
           >
             {/*Image */}
-            <div className=" lg:w-1/2 md:w-1/5 w-1/2  flex justify-center bg-white p-2">
-              <img
+            <div className=" lg:w-1/2 md:w-1/5 w-1/2  flex justify-center bg-white p-2 relative">
+              <Image
                 className="object-contain"
                 src={
                   product.photos?.[0]?.imagePath
-                    ? `http://api.localfarmnepal.com/${product.photos[0].imagePath}`
-                    : "/error.webp"
+                    ? `api.localfarmnepal.com/${product.photos[0].imagePath}`
+                    : "/https://res.cloudinary.com/dpff5cxm3/image/upload/v1779941841/error_pr4qab.webp"
                 }
                 alt={product.productName}
-              ></img>
+                fill
+                unoptimized
+              />
             </div>
 
             {/*Info */}

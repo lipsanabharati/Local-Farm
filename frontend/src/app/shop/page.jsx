@@ -1,9 +1,11 @@
 "use client";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 
 // import ProductForShop from "@/components/productForShop";
 const ProductForShop = dynamic(() => import("@/components/productForShop"), {
+    ssr:false,
   loading: () => <p>Loading...</p>,
 });
 
@@ -21,7 +23,11 @@ export default function Shop()
              animate={{ y: 0 }}
              transition={{ duration: 2, ease: "easeOut" }}
             className= "flex flex-row justify-end lg:justify-start w-full z-0 pointer-events-none">
-                <img src="drip.webp" className="h-1/3 md:h-1/2 lg:h-110" alt="drip image"></img>
+                <Image src="https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779940140/drip_wd9v0z.webp" 
+                width={268}
+                height={440}
+                className="h-60 md:h-80 lg:h-110 w-auto"
+                alt="drip image"></Image>
             </motion.div>
 
             <div className="flex flex-col -mt-10 lg:-mt-50">
@@ -35,8 +41,13 @@ export default function Shop()
                 </div>
 
                 <div className="flex justify-center lg:justify-end lg:-mt-[5%]">
-                    <img src="shop-hero.webp" className="" alt="hero image">
-                    </img>
+                    <Image 
+                    src="https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779940346/shop-hero_pdi5mt.webp" 
+                    className="w-[80%]" 
+                    alt="hero image"
+                    width={500}
+                    height={500}>
+                    </Image>
                 </div>
             </div>
 

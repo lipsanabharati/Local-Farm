@@ -3,12 +3,13 @@
 import { FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Image from "next/image";
 
 export default function EventCard() {
   const [events, setEvents] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://api.localfarmnepal.com/api/events`)
+      .get(`api.localfarmnepal.com/api/events`)
       .then((res) => {
         setEvents(res.data);
         // console.log(res.data);
@@ -42,13 +43,15 @@ export default function EventCard() {
               </div>
 
               <div
-                className={`flex flex-col gap-4 bg-white rounded-2xl p-5 md:w-70 lg:w-90 shadow-2xl ${isEven ? "rotate-[8deg]" : "rotate-[-15deg]"} z-10`}
+                className={`flex flex-col gap-4 bg-white rounded-2xl p-5 md:w-70 lg:w-80 shadow-2xl ${isEven ? "rotate-[8deg]" : "rotate-[-15deg]"} z-10`}
               >
                 <div className="flex justify-center">
-                  <img
-                    src="/thumbpin.webp"
+                  <Image
+                    src="https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779941034/thumbpin_khbbsa.webp"
                     className="-mt-12"
                     alt="thumpin image"
+                     width={64}
+                    height={64}
                   />
                 </div>
 
@@ -77,15 +80,24 @@ export default function EventCard() {
 
                 {/*Image*/}
                 <div
-                  className=" bg-cover bg-center w-full h-45 rounded-2xl "
-                  style={{
-                    backgroundImage: `url(${
-                      event?.photos?.[0]?.imagePath
-                        ? `http://api.localfarmnepal.com/${event.photos[0].imagePath}`
-                        : "/error.webp"
-                    })`,
-                  }}
-                ></div>
+                  className=" bg-cover bg-center w-full h-45 rounded-2xl relative"
+                  // style={{
+                  //   backgroundImage: `url(${
+                  //     event?.photos?.[0]?.imagePath
+                  //       ? `api.localfarmnepal.com/${event.photos[0].imagePath}`
+                  //       : "/https://res.cloudinary.com/dpff5cxm3/image/upload/v1779941841/error_pr4qab.webp"
+                  //   })`,
+                  // }}
+                >
+                  <Image
+                    src={`${event?.photos?.[0]?.imagePath
+                        ? `api.localfarmnepal.com/${event.photos[0].imagePath}`
+                       : "/https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779941841/error_pr4qab.webp"}`}
+                       fill
+                       unoptimized
+                       alt="event image"
+                   />
+                </div>
               </div>
             </div>
           );

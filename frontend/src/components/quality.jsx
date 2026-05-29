@@ -1,11 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function Quality()
 {
     return (
-        <section className="md:bg-[url('/ribbon.svg')] bg-[url('/ribbonMob.webp')] bg-center bg-contain bg-no-repeat lg:bg-position-[center_bottom_1rem]  md:bg-position-[center_top_0rem] bg-position-[center_top_5rem] md:p-0 p-5">
+        <section className="md:bg-[url('/ribbon.webp')] bg-[url('/ribbonMob.webp')] bg-center bg-contain bg-no-repeat lg:bg-position-[center_bottom_1rem]  md:bg-position-[center_top_0rem] bg-position-[center_top_5rem] md:p-0 p-5">
         <div className="flex flex-col lg:py-10 w-full max-w-[1440px] justify-items-center">
           {/*Heading*/}
           <div className="flex flex-row justify-end relative md:px-[8%] h-[10%] md:h-[2%]">
@@ -30,30 +31,34 @@ export default function Quality()
                   Rich in nutrients, bee pollen from LocalFarm is packed with
                   vitamins, minerals, and antioxidants.
                 </motion.p>
-                <img
-                  src="arrow1.svg"
+                <Image
+                  src="https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779941489/arrow1_voqels.webp"
                   className="absolute right-[-30px] lg:right-[-40px] lg:bottom-[-40px] lg:w-[20px]"
                   alt="arrow"
-                ></img>
+                  width={10}
+                  height={10}
+                />
               </div>
             </div>
 
             <div className="md:hidden flex flex-row justify-center -mt-5">
-              <img src="beePollenMob.webp" className=" w-[60%]" alt="bee pollen"></img>
+              <Image src="https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779941412/beePollenMob_odab04.webp" className=" w-[60%]" alt="bee pollen" width={201} height={275}></Image>
             </div>
 
             <div className="hidden md:flex justify-center lg:-mt-40 md:-mt-30">
-              <img src="beePollen.webp" className=" w-[80%]" alt="bee pollen"></img>
+              <Image src="https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779941410/beePollen_q0sdrz.webp" className=" w-[80%]" alt="bee pollen" width={614} height={438}></Image>
             </div>
 
             <div className="flex flex-row justify-start gap-[40%] md:gap-[45%] lg:ms-[10%] md:ms-[12%] md:-mt-25 -mt-10">
               {/*Description*/}
               <div className="lg:w-1/4 w-1/4 md:w-1/5 text-end  text-[#4D641E] relative">
-                <img
-                  src="arrow3.svg"
+                <Image
+                  src="https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779941490/arrow3_wp0awt.webp"
                   className="absolute lg:right-[-40px] lg:top-[-40px] lg:w-[20px] right-[-40px]"
-         alt="arrow"
-                ></img>
+                  alt="arrow"
+                  width={10}
+                  height={10}
+                ></Image>
                 <motion.p
                   initial={{ y: 200 }}
                   whileInView={{ y: 0 }}
@@ -68,11 +73,13 @@ export default function Quality()
 
               {/*Description*/}
               <div className="lg:w-1/4 w-1/4 md:w-1/5 text-start text-[#4D641E] relative">
-                <img
-                  src="arrow2.svg"
+                <Image
+                  src="https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779941489/arrow2_tvg4vk.webp"
                   className="absolute lg:left-[-40px] lg:top-[-40px] lg:w-[20px] left-[-40px]"
-           alt="arrow"
-                ></img>
+                  alt="arrow"
+                  width={10}
+                  height={10}
+                ></Image>
                 <motion.p
                   initial={{ x: 200 }}
                   whileInView={{ x: 0 }}

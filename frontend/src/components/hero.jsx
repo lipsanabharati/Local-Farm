@@ -9,31 +9,37 @@ import Image from "next/image";
 export default function Hero()
 {
     return (
-      <section className="  h-screen w-screen flex flex-row lg:justify-start justify-center lg:items-center items-end lg:ps-30 lg:pt-30 lg:pb-0 pb-30 overflow-hidden">
+      <section className="h-screen w-screen flex flex-row lg:justify-start justify-center lg:items-center items-end lg:ps-30 lg:pt-30 lg:pb-0 pb-30 overflow-hidden relative">
 
        <Image
-          src="/landing-bg.svg"
+          priority
+          src="https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_40/v1779939066/landing-bg_czum44.webp"
           alt="background"
           fill
-          priority
+          sizes="100vw"
           className="object-cover"
         />
 
         <motion.div
-          initial={{ x: 100, y: 300 }}
-          animate={{ x: 0, y: 0 }}
-          transition={{ duration: 2, ease: "easeOut" }}
+          initial={{opacity:0, x: 100 }}
+          animate={{opacity:1, x: 0}}
+          transition={{ duration: 1, ease: "easeOut" }}
           className="lg:w-80 lg:h-80 lg:left-30 lg:top-60 rounded-[11px] bg-white/1 backdrop-blur-sm border border-white/4 w-60 h-60 flex flex-col justify-end items-center pb-4"
         >
           {/*photo */}
-          <motion.img
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 2, ease: "easeOut" }}
-            src="akabare.svg"
-            className="absolute -top-[30%]"
-            alt="akabare"
-          ></motion.img>
+          <motion.div
+  initial={{ scale: 0 }}
+  animate={{ scale: 1 }}
+  transition={{ duration: 1, ease: "easeOut" }}
+  className="absolute -top-[20%]"
+>
+  <Image
+    src="https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_auto/akabare_slaqmh"
+    width={280}
+    height={220}
+    alt="akabare"
+  />
+</motion.div>
 
           <Link
             href={`/shop`}

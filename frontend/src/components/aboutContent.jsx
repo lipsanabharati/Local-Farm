@@ -1,5 +1,5 @@
 
-
+import Image from "next/image"
 
 export default function AboutContent()
 {
@@ -26,7 +26,12 @@ export default function AboutContent()
 
       {/*Small screens */}
       <div className="flex flex-row gap-8 justify-center px-5 md:px-15 md:hidden">
-        <img src="/a1.svg" className="w-1/3 md:w-1/5" alt="about image"/>
+        <Image 
+        src="https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779940393/a1_g60tl3.webp" 
+        className="w-1/3 md:w-1/5" 
+        alt="about image"
+        width={500}
+        height={500}/>
         <h1 className="text-2xl text-end lg:text-3xl font-bold text-[#609647] mt-5">
           Supporting Local Farmers all over Nepal
         </h1>
@@ -43,7 +48,12 @@ export default function AboutContent()
         <h1 className="text-2xl lg:text-3xl font-bold text-[#609647] mt-5">
           Providing Quality Products
         </h1>
-        <img src="/a2.svg" className="w-1/3 md:w-1/5" alt="about image" />
+        <Image 
+        src="https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779940394/a2_ifefk0.webp" 
+        className="w-1/3 md:w-1/5" 
+        alt="about image"
+        width={350}
+        height={350} />
       </div>
 
       <div className="text-md px-5 md:hidden">
@@ -54,7 +64,12 @@ export default function AboutContent()
       </div>
 
       <div className="flex flex-row gap-8 justify-center px-5 mt-10 md:hidden">
-        <img src="/a3.webp" className="w-1/3" alt="about image" />
+        <Image 
+        src="https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779940394/a3_b3qf2p.webp" 
+        className="w-1/3" 
+        alt="about image"
+        width={250}
+        height={250} />
         <h1 className="text-2xl lg:text-3xl font-bold text-[#609647] mt-5 text-end">
           Committed to Sustainable Living
         </h1>
@@ -69,7 +84,13 @@ export default function AboutContent()
 
       {/*Medium and above screens */}
       <div className="hidden md:flex md:flex-row justify-center gap-10 px-15 lg:mt-20 lg:px-30">
-        <img src="/a1.svg" className="w-[50%]" alt="about image" />
+        <Image 
+        src="https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779940393/a1_g60tl3.webp" 
+        className="w-[50%]" 
+        alt="about image"
+         width={500}
+        height={500}
+         />
 
         <div className="flex flex-col w-[50%]">
           <h1 className="text-2xl text-end md:text-3xl lg:text-5xl font-bold text-[#609647] mt-5">
@@ -97,11 +118,21 @@ export default function AboutContent()
           </div>
         </div>
 
-        <img src="/a2.svg" className="w-[35%]" alt="about image"/>
+        <Image 
+        src="https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779940394/a2_ifefk0.webp" 
+        className="w-[35%]" 
+        alt="about image"
+        width={350}
+        height={350}/>
       </div>
 
       <div className="hidden md:flex md:flex-row justify-center gap-10 px-15 lg:px-30 lg:mt-20">
-        <img src="/a3.webp" className="w-[25%]" alt="about image" />
+        <Image 
+        src="https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779940394/a3_b3qf2p.webp" 
+        className="w-[25%]" 
+        alt="about image"
+        width={250}
+        height={250} />
 
         <div className="flex flex-col w-[75%]">
           <h1 className="text-2xl text-end md:text-3xl lg:text-5xl font-bold text-[#609647] mt-5 mb-6">

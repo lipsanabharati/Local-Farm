@@ -1,9 +1,14 @@
+
+
 import Blog from "@/components/blog";
-import dynamic from "next/dynamic";
-// import Carousel from "@/components/carousel";
-const Carousel = dynamic(() => import("@/components/carousel"), {
-  loading: () => <p>Loading...</p>,
-});
+
+// // import Carousel from "@/components/carousel";
+// const Carousel = dynamic(() => import("@/components/carousel"), {
+//   ssr:false,
+//   loading: () => <p>Loading...</p>,
+// });
+
+import CarouselLazy from "@/components/carouselLazy";
 
 
 export default async function BlogPage({params})
@@ -15,7 +20,7 @@ export default async function BlogPage({params})
          <Blog slug={slug}/>
          
          <div className="md:mt-10 md:mb-20">
-            <Carousel transparent={false} />
+            <CarouselLazy transparent={false} />
         </div>
        </section>
     )

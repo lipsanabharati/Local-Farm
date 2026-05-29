@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Carousel({ transparent, categoryId }) {
   const [blogs, setBlogs] = useState([]);
@@ -10,7 +11,7 @@ export default function Carousel({ transparent, categoryId }) {
   if (categoryId) {
     useEffect(() => {
       axios
-        .get(`http://api.localfarmnepal.com/api/blogs/category/${categoryId}`)
+        .get(`api.localfarmnepal.com/api/blogs/category/${categoryId}`)
         .then((res) => {
           setBlogs(res.data);
           // console.log(res.data);
@@ -22,7 +23,7 @@ export default function Carousel({ transparent, categoryId }) {
   } else {
     useEffect(() => {
       axios
-        .get(`http://api.localfarmnepal.com/api/blogslp`)
+        .get(`api.localfarmnepal.com/api/blogslp`)
         .then((res) => {
           setBlogs(res.data);
           // console.log(res.data);
@@ -51,15 +52,26 @@ export default function Carousel({ transparent, categoryId }) {
           >
             {/*Image*/}
             <div
-              className="lg:w-1/2 w-full h-[250px] sm:h-[300px] lg:h-[400px] bg-cover bg-center"
-              style={{
-                backgroundImage: `url(${
-                  blogs[current]?.photos?.[0]?.imagePath
-                    ? `http://api.localfarmnepal.com/${blogs[current].photos[0].imagePath}`
-                    : "/error.webp"
-                })`,
-              }}
-            ></div>
+              className="lg:w-1/2 w-full h-[250px] sm:h-[300px] lg:h-[400px] bg-cover bg-center relative"
+              // style={{
+              //   backgroundImage: `url(${
+              //     blogs[current]?.photos?.[0]?.imagePath
+              //       ? `api.localfarmnepal.com/${blogs[current].photos[0].imagePath}`
+              //       : "/https://res.cloudinary.com/dpff5cxm3/image/upload/v1779941841/error_pr4qab.webp"
+              //   })`,
+              // }}
+            >
+                <Image
+                          src={`${blogs[current]?.photos?.[0]?.imagePath
+                    ? `api.localfarmnepal.com/${blogs[current].photos[0].imagePath}`
+                    : "https://res.cloudinary.com/dpff5cxm3/image/upload/v1779941841/error_pr4qab.webp"}`}
+                          alt="background"
+                          fill
+                          priority
+                          unoptimized
+                          className="object-cover"
+                />
+            </div>
 
             {/*Text*/}
             <div className="lg:w-1/2 flex flex-col gap-3 px-10 py-5">

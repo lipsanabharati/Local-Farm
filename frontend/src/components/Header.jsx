@@ -36,12 +36,12 @@ export default function Header()
             {/*Items*/}
             <div className=" hidden font-heading lg:flex lg:flex-row gap-10 items-center justify-center">
             
-                <Link href="/" className="hover:text-[#609647]" aria-label="go to home"  >Home</Link>
-                <Link href="/about" className="hover:text-[#609647]" aria-label="go to about" >About</Link>
-                <Link href="/blog/local-farm-bee-pollen" className="hover:text-[#609647]" aria-label="go to blog">Blog</Link>
-                <Link href="/shop" className="hover:text-[#609647]" aria-label="go to shop">Shops</Link>
-                <Link href="/cart" className="hover:text-[#609647]" aria-label="go to cart">Cart</Link>
-                <Link href="/event" className="hover:text-[#609647]" aria-label="go to events">Events</Link>
+                <Link href="/" className="hover:text-[#609647] font-heading" aria-label="go to home"  >Home</Link>
+                <Link href="/about" className="hover:text-[#609647] font-heading" aria-label="go to about" >About</Link>
+                <Link href="/blog/local-farm-bee-pollen" className="hover:text-[#609647] font-heading" aria-label="go to blog">Blog</Link>
+                <Link href="/shop" className="hover:text-[#609647] font-heading" aria-label="go to shop">Shops</Link>
+                <Link href="/cart" className="hover:text-[#609647] font-heading" aria-label="go to cart">Cart</Link>
+                <Link href="/event" className="hover:text-[#609647] font-heading" aria-label="go to events">Events</Link>
             </div>
 
             
@@ -54,12 +54,12 @@ export default function Header()
                 transition={{ duration: 1 }}
                 className="p-2 absolute top-15 left-0 w-full bg-white/20 flex flex-col gap-2 items-start lg:hidden rounded-lg backdrop-blur-sm z-50 ps-5"
             >
-                 <Link href="/" onClick={toggleMenu} className="hover:text-[#609647]" aria-label="go to home">Home</Link>
-                <Link href="/about" onClick={toggleMenu} className="hover:text-[#609647]" aria-label="go to about">About</Link>
-                <Link href="/blog/local-farm-bee-pollen" className="hover:text-[#609647]" onClick={toggleMenu} aria-label="go to blog">Blog</Link>
-                <Link href="/shop" className="hover:text-[#609647]" onClick={toggleMenu} aria-label="go to shop">Shops</Link>
-                <Link href="/cart" className="hover:text-[#609647]" onClick={toggleMenu} aria-label="go to cart">Cart</Link>
-                <Link href="/event" className="hover:text-[#609647]" onClick={toggleMenu} aria-label="go to events">Events</Link>
+                 <Link href="/" onClick={toggleMenu} className="hover:text-[#609647] font-heading" aria-label="go to home">Home</Link>
+                <Link href="/about" onClick={toggleMenu} className="hover:text-[#609647] font-heading" aria-label="go to about">About</Link>
+                <Link href="/blog/local-farm-bee-pollen" className="hover:text-[#609647] font-heading" onClick={toggleMenu} aria-label="go to blog">Blog</Link>
+                <Link href="/shop" className="hover:text-[#609647] font-heading" onClick={toggleMenu} aria-label="go to shop">Shops</Link>
+                <Link href="/cart" className="hover:text-[#609647] font-heading" onClick={toggleMenu} aria-label="go to cart">Cart</Link>
+                <Link href="/event" className="hover:text-[#609647] font-heading" onClick={toggleMenu} aria-label="go to events">Events</Link>
             </motion.div>
             )}
 

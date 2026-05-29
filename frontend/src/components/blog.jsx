@@ -2,13 +2,14 @@
 
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Image from "next/image";
 
 export default function Blog({ slug }) {
   const [blog, setBlog] = useState({});
 
   useEffect(() => {
     axios
-      .get(`http://api.localfarmnepal.com/api/blogs/${slug}`)
+      .get(`api.localfarmnepal.com/api/blogs/${slug}`)
       .then((res) => {
         setBlog(res.data);
         // console.log(res.data);
@@ -27,15 +28,17 @@ export default function Blog({ slug }) {
       ></h1>
 
       <div className="flex flex-col lg:flex-row gap-3 lg:gap-8">
-        <div className="bg-[#EFEAE6] w-full flex flex-row items-center justify-center lg:w-1/2">
-          <img
+        <div className="bg-[#EFEAE6] w-full flex flex-row items-center justify-center lg:w-1/2 aspect-[4/3] relative">
+          <Image
+           alt="blog photo"
             src={
               blog.photos?.[0]?.imagePath
-                ? `http://api.localfarmnepal.com/${blog.photos[0].imagePath}`
-                : "/error.webp"
+                ? `api.localfarmnepal.com/${blog.photos[0].imagePath}`
+                : "https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779941841/error_pr4qab.webp"
             }
-            alt={blog.title}
             className="w-full"
+            fill
+            unoptimized
           />
         </div>
 
@@ -53,11 +56,13 @@ export default function Blog({ slug }) {
       {blog.photos?.length > 1 && (
         <div className="bg-[#EFEAE6] w-full flex flex-row items-center justify-center">
           {blog.photos.slice(1).map((photo, index) => (
-            <img
+            <Image
               key={index}
               src={photo.imagePath}
               alt="blog"
               className="w-32 h-32 object-cover"
+              width={300}
+              height={300}
             />
           ))}
         </div>

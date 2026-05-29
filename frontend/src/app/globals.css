@@ -1,14 +1,23 @@
 @import "tailwindcss";
 
-/* @theme
-{
-  --font-body:Poppins,sans-serif;
-  --font-heading:Geologica,sans-serif;
-} */
+@theme {
+  --font-heading: var(--geologica);
+  --font-body: var(--lora);
+}
 
 
 body{
   margin: 0;
+  font-family: var(--lora);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--geologica);
 }
 
 .mySwiper .swiper-pagination-bullet {

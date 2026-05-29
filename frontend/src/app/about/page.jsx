@@ -10,6 +10,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 const Staff =dynamic(()=>import("@/components/staff"),{
+  ssr:false,
   loading:()=> <p>Loading...</p>
 });
 
@@ -18,6 +19,7 @@ const AboutSwiper =dynamic(()=>import("@/components/aboutSwiper"),{
 });
 
 const AboutContent =dynamic(()=>import("@/components/aboutContent"),{
+  ssr:false,
   loading:()=> <p>Loading...</p>
 });
 

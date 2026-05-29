@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import Image from "next/image"
 
 export default function Why()
 {
@@ -11,7 +12,9 @@ export default function Why()
                   <p className="font-heading md:text-5xl text-2xl text-[#93C553] font-bold text-start">
                     Why
                   </p>
-                  <img src="logo.svg" className="md:w-full w-[60%]"   alt="logo"></img>
+                  <Image src="logo.svg" className="md:w-full w-[60%]"   alt="logo"
+                  width={200}
+                  height={200}/>
                   <p className="font-heading md:text-5xl text-2xl text-[#93C553]  font-bold text-start">
                     ?
                   </p>

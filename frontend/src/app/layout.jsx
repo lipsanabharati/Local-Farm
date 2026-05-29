@@ -2,6 +2,19 @@
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import Providers from "./providers";
+import {Geologica, Lora} from "next/font/google"
+
+const geologica=Geologica({
+  subsets:["latin"],
+  variable: "--geologica",
+  display:"swap"
+})
+
+const lora=Lora({
+  subsets:["latin"],
+  variable:"--lora",
+  display:"swap"
+})
 
 export const metadata = {
   title: "Local Farm Nepal",
@@ -11,7 +24,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="bg-[#F2F6E8]">
+      <body className={`bg-[#F2F6E8] ${lora.variable} ${geologica.variable}`}>
         <Providers>{children}</Providers>
       </body>
     </html>

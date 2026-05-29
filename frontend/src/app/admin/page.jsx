@@ -9,48 +9,57 @@ import dynamic from "next/dynamic";
 
 // import EventAdmin from "@/components/eventAdmin";
 const EventAdmin = dynamic(() => import("@/components/eventAdmin"), {
+  ssr:false,
   loading: () => <p>Loading...</p>,
 });
 
 // import BlogAdmin from "@/components/blogAdmin";
 const BlogAdmin = dynamic(() => import("@/components/blogAdmin"), {
+  ssr:false,
   loading: () => <p>Loading...</p>,
 });
 
 // import OrderAdmin from "@/components/orderAdmin";
 const OrderAdmin = dynamic(() => import("@/components/orderAdmin"), {
+  ssr:false,
   loading: () => <p>Loading...</p>,
 });
 
 
 // import ContactAdmin from "@/components/contactAdmin";
 const  ContactAdmin = dynamic(() => import("@/components/contactAdmin"), {
+  ssr:false,
   loading: () => <p>Loading...</p>,
 });
 
 // import CategoryAdmin from "@/components/categoryAdmin";
 const  CategoryAdmin = dynamic(() => import("@/components/categoryAdmin"), {
+  ssr:false,
   loading: () => <p>Loading...</p>,
 });
 
 
 // import MainAdmin from "@/components/mainAdmin";
 const  MainAdmin = dynamic(() => import("@/components/mainAdmin"), {
+  ssr:false,
   loading: () => <p>Loading...</p>,
 });
 
 // import StaffAdmin from "@/components/staffAdmin";
 const  StaffAdmin = dynamic(() => import("@/components/staffAdmin"), {
+  ssr:false,
   loading: () => <p>Loading...</p>,
 });
 
 // import FaqAdmin from "@/components/faqAdmin";
 const   FaqAdmin  = dynamic(() => import("@/components/faqAdmin"), {
+  ssr:false,
   loading: () => <p>Loading...</p>,
 });
 
 // import Logout from "@/components/logout";
 const   Logout  = dynamic(() => import("@/components/logout"), {
+  ssr:false,
   loading: () => <p>Loading...</p>,
 });
 

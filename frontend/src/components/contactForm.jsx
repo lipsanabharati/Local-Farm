@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useToast } from "@/context/ToastContext";
 import axios from "axios";
 import emailjs from "@emailjs/browser";
+import Image from "next/image";
 
 export default function ContactForm() {
   const [name, setName] = useState("");
@@ -38,7 +39,7 @@ export default function ContactForm() {
 
     try {
       await axios.post(
-        `http://api.localfarmnepal.com/api/contact`,
+        `api.localfarmnepal.com/api/contact`,
         contactData,
       );
 
@@ -62,14 +63,22 @@ export default function ContactForm() {
 
   return (
     <section
-      className="w-full py-20 md:px-20 -mb-10"
-      style={{
-        backgroundImage: `url(/formBg.svg)`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
+      className="w-full py-20 md:px-20 -mb-10 relative"
+      // style={{
+      //   backgroundImage: `url(/formBg.webp)`,
+      //   backgroundSize: "cover",
+      //   backgroundPosition: "center",
+      //   backgroundRepeat: "no-repeat",
+      // }}
     >
+      <Image
+                src="https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779940932/formBg_mywn88.webp"
+                alt="background"
+                fill
+                priority
+                className="object-cover -z-10"
+      />
+
       <div className="max-w-[1440px] w-full flex flex-row md:justify-end items-start justify-center">
         <div className="backdrop-blur-lg bg-white/20 border border-white/30 shadow-xl rounded-2xl lg:p-10 p-5 lg:w-[400px] flex flex-col">
           <h2 className="lg:text-3xl text-xl font-bold text-white text-center mb-6">

@@ -66,7 +66,7 @@ export default function Cart() {
       setError("");
 
       const res = await axios.post(
-        "http://api.localfarmnepal.com/api/orders",
+        "api.localfarmnepal.com/api/orders",
         orderData,
       );
 
@@ -80,7 +80,7 @@ export default function Cart() {
       //         return;
       //     }
 
-      //     await axios.put(`http://api.localfarmnepal.com/api/products/${item.id}`,{
+      //     await axios.put(`api.localfarmnepal.com/api/products/${item.id}`,{
       //         quantity:newQuantity,
       //     });
       // }

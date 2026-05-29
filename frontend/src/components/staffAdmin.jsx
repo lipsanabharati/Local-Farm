@@ -5,6 +5,7 @@ import axios from "axios";
 import { useToast } from "@/context/ToastContext";
 import { useAuth } from "@/context/AuthContext";
 import "quill/dist/quill.snow.css";
+import Image from "next/image";
 
 export default function StaffAdmin() {
   const [staffs, setStaffs] = useState([]);
@@ -45,7 +46,7 @@ export default function StaffAdmin() {
 
   useEffect(() => {
     axios
-      .get(`http://api.localfarmnepal.com/api/staff`)
+      .get(`api.localfarmnepal.com/api/staff`)
       .then((res) => {
         setStaffs(res.data);
         //console.log(res.data);
@@ -79,7 +80,7 @@ export default function StaffAdmin() {
   const confirmDelete = async () => {
     try {
       await axios.delete(
-        `http://api.localfarmnepal.com/api/staff/${deleteId}`,
+        `api.localfarmnepal.com/api/staff/${deleteId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -162,7 +163,7 @@ export default function StaffAdmin() {
     });
     try {
       await axios.put(
-        `http://api.localfarmnepal.com/api/staff/${selected.id}`,
+        `api.localfarmnepal.com/api/staff/${selected.id}`,
         formData,
         {
           headers: {
@@ -196,7 +197,7 @@ export default function StaffAdmin() {
     });
 
     try {
-      await axios.post(`http://api.localfarmnepal.com/api/staff`, formData, {
+      await axios.post(`api.localfarmnepal.com/api/staff`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -244,12 +245,15 @@ export default function StaffAdmin() {
                   {staff.updatedAt?.slice(0, 10)}
                 </td>
                 <td className="border-1 p-1 text-center">
-                  <img
+                  <Image
                     key={index}
-                    src={`http://api.localfarmnepal.com/${staff.imagePath}`}
+                    src={`api.localfarmnepal.com/${staff.imagePath}`}
                     className="w-16 h-16 object-cover"
                     alt="staff image"
-                  ></img>
+                     width={64}
+                    height={64}
+                    unoptimized
+                  />
                 </td>
                 <td className="border-1 p-1 text-center">
                   <button
@@ -372,10 +376,13 @@ export default function StaffAdmin() {
                     />
 
                     {previewPhotos[index] && (
-                      <img
+                      <Image
                         src={previewPhotos[index]}
                         className="w-16 h-16 rounded object-cover"
                         alt="staff image"
+                          width={64}
+                    height={64}
+                    unoptimized
                       />
                     )}
                   </div>
@@ -461,10 +468,13 @@ export default function StaffAdmin() {
                     />
 
                     {addPreviewPhotos[index] && (
-                      <img
+                      <Image
                         src={addPreviewPhotos[index]}
                         className="w-16 h-16 rounded object-cover"
                         alt="staff image"
+                          width={64}
+                    height={64}
+                    unoptimized
                       />
                     )}
                   </div>

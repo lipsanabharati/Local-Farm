@@ -6,6 +6,7 @@ import axios from "axios";
 import { useContext } from "react";
 import { CartContext } from "@/context/CartContext";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function ProductForShop() {
   // const categories = [
@@ -39,7 +40,7 @@ export default function ProductForShop() {
     const fetchCategories = async () => {
       try {
         const res = await axios.get(
-          `http://api.localfarmnepal.com/api/product-categories`,
+          `api.localfarmnepal.com/api/product-categories`,
         );
         setCategories(res.data);
         // console.log(res.data);
@@ -59,8 +60,8 @@ export default function ProductForShop() {
 
     const url =
       activeCategory.id > 0
-        ? `http://api.localfarmnepal.com/api/products/category/${activeCategory.id}`
-        : `http://api.localfarmnepal.com/api/products`;
+        ? `api.localfarmnepal.com/api/products/category/${activeCategory.id}`
+        : `api.localfarmnepal.com/api/products`;
 
     axios
       .get(url)
@@ -141,14 +142,17 @@ export default function ProductForShop() {
               >
                 {/* Image */}
                 <div className="flex justify-center -mt-20">
-                  <img
+                  <Image
                     src={
                       product.photos?.[0]?.imagePath
-                        ? `http://api.localfarmnepal.com/${product.photos[0].imagePath}`
-                        : "/error.webp"
+                        ? `api.localfarmnepal.com/${product.photos[0].imagePath}`
+                        : "/https://res.cloudinary.com/dpff5cxm3/image/upload/v1779941841/error_pr4qab.webp"
                     }
                     alt={product.productName}
                     className="h-48 object-contain drop-shadow-xl relative"
+                    width={250}
+                    height={250}
+                    unoptimized
                   />
                 </div>
 
@@ -208,14 +212,17 @@ export default function ProductForShop() {
               >
                 {/* Image */}
                 <div className="flex justify-center -mt-20">
-                  <img
+                  <Image
                     src={
                       product.photos?.[0]?.imagePath
-                        ? `http://api.localfarmnepal.com/${product.photos[0].imagePath}`
-                        : "/error.webp"
+                        ? `api.localfarmnepal.com/${product.photos[0].imagePath}`
+                        : "/https://res.cloudinary.com/dpff5cxm3/image/upload/v1779941841/error_pr4qab.webp"
                     }
                     alt={product.productName}
                     className="h-48 object-contain drop-shadow-xl relative"
+                     width={250}
+                    height={250}
+                    unoptimized
                   />
                 </div>
 

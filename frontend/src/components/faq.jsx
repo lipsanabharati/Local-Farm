@@ -10,7 +10,7 @@ export default function Faq() {
 
   useEffect(() => {
     axios
-      .get(`http://api.localfarmnepal.com/api/faqs`)
+      .get(`api.localfarmnepal.com/api/faqs`)
       .then((res) => {
         setFaqs(res.data);
       })
@@ -46,7 +46,7 @@ export default function Faq() {
             </div>
             {opened == index && (
               <div className="flex flex-row w-full justify-center">
-                <div className="bg-white rounded-md text-center p-4 mx-5 text-[#444444] w-[70%] lg:text-lg text-md">
+                <div className="bg-white rounded-md text-center p-4 mx-5 text-[#444444] w-[70%] lg:text-lg text-[17px]">
                   {opened === index ? faq.answer : ""}
                 </div>
               </div>

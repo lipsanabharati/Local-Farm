@@ -1,6 +1,7 @@
 "use client";
 
 import { FaFacebook, FaInstagram, FaTiktok, FaWhatsapp } from "react-icons/fa";
+import Image from "next/image";
 
 
 
@@ -16,7 +17,7 @@ export default function Footer() {
       >
         <path
           d="M855.741 14.0779C624.981 -3.78355 123.272 -15.6231 0 49.3263V271.123H2467V48.0491C2307.94 25.9409 1828 0.121094 1552.97 30.5948C1277.95 61.0686 1086.5 31.9393 855.741 14.0779Z"
-          fill="#344304"
+          fill="#444444"
         />
       </svg>
 
@@ -30,7 +31,7 @@ export default function Footer() {
       >
         <path
           d="M577.547 7.95513C551.531 4.97122 83.1972 -21.7459 0 43.2035V265H1665V41.9264C1557.65 19.8182 1289.78 8.56484 1048.12 24.4721C806.451 40.3794 603.562 10.939 577.547 7.95513Z"
-          fill="#344304"
+          fill="#444444"
         />
       </svg>
 
@@ -44,11 +45,13 @@ export default function Footer() {
       >
         <path
           d="M257.728 20.8919C205.456 -2.07376 37.1264 -29.88 0 81.1467V460.293H743V78.9635C695.096 41.171 570.936 38.4611 467.718 49.1265C364.5 59.792 310 43.8575 257.728 20.8919Z"
-          fill="#344304"
+          fill="#444444"
         />
       </svg>
 
-      <div className="p-5 lg:p-10 md:-mt-30 -mt-70 md:top-20 left-0 flex flex-col items-start md:items-center justify-center text-white font-body bg-[#344304] w-full gap-5 tracking-wider">
+
+
+      <div className="p-5 lg:p-10 md:-mt-30 -mt-70 md:top-20 left-0 flex flex-col items-start md:items-center justify-center text-white font-body bg-[#444444] w-full gap-5 tracking-wider">
         <div className="md:grid md:grid-cols-3 md:gap-10 lg:gap-60 flex flex-col gap-5">
           {/* Hours */}
           <div className="flex flex-col gap-1 md:gap-2 items-start">
@@ -122,7 +125,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <img src="/logo-white.svg" className="w-60" alt="logo image" />
+        <Image src="/logo-white.svg" className="w-60" alt="logo image" 
+         width={280}
+        height={64}/>
       </div>
     </footer>
   );

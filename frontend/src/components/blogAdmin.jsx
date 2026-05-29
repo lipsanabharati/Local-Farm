@@ -5,6 +5,7 @@ import axios from "axios";
 import { useToast } from "@/context/ToastContext";
 import "quill/dist/quill.snow.css";
 import { useAuth } from "@/context/AuthContext";
+import Image from "next/image";
 
 export default function BlogAdmin() {
   const [blogs, setBlogs] = useState([]);
@@ -53,7 +54,7 @@ export default function BlogAdmin() {
 
   useEffect(() => {
     axios
-      .get(`http://api.localfarmnepal.com/api/blogs`)
+      .get(`api.localfarmnepal.com/api/blogs`)
       .then((res) => {
         setBlogs(res.data);
         // console.log(res.data);
@@ -147,7 +148,7 @@ export default function BlogAdmin() {
 
     try {
       await axios.put(
-        `http://api.localfarmnepal.com/api/blogs/${selected.id}`,
+        `api.localfarmnepal.com/api/blogs/${selected.id}`,
         formData,
         {
           headers: {
@@ -184,7 +185,7 @@ export default function BlogAdmin() {
     });
 
     try {
-      await axios.post(`http://api.localfarmnepal.com/api/blogs`, formData, {
+      await axios.post(`api.localfarmnepal.com/api/blogs`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -303,7 +304,7 @@ export default function BlogAdmin() {
   //getting categories
   useEffect(() => {
     axios
-      .get(`http://api.localfarmnepal.com/api/product-categories`)
+      .get(`api.localfarmnepal.com/api/product-categories`)
       .then((res) => {
         // console.log(res.data);
         setCategories(res.data);
@@ -361,12 +362,15 @@ export default function BlogAdmin() {
               </td>
               <td className="border-1 p-1 text-center flex flex-col gap-2">
                 {blog.photos?.map((image, index) => (
-                  <img
+                  <Image
                     key={index}
-                    src={`http://api.localfarmnepal.com/${image.imagePath}`}
+                    src={`api.localfarmnepal.com/${image.imagePath}`}
                     className="w-16 h-16 object-cover"
+                    width={64}
+                    height={64}
                     alt="blog image"
-                  ></img>
+                    unoptimized
+                  />
                 ))}
               </td>
               <td className="border-1 p-1 text-center">
@@ -520,10 +524,13 @@ export default function BlogAdmin() {
                     />
 
                     {previewPhotos[index] && (
-                      <img
+                      <Image
                         src={previewPhotos[index]}
                         className="w-16 h-16 rounded object-cover"
                         alt="blog image"
+                         width={64}
+                    height={64}
+                    unoptimized
                       />
                     )}
 
@@ -669,10 +676,13 @@ export default function BlogAdmin() {
                     />
 
                     {addPreviewPhotos[index] && (
-                      <img
+                      <Image
                         src={addPreviewPhotos[index]}
                         className="w-16 h-16 rounded object-cover"
                         alt="blog image"
+                         width={64}
+                    height={64}
+                    unoptimized
                       />
                     )}
 
