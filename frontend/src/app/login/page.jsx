@@ -29,7 +29,7 @@ export default function Login() {
 
     try {
       const response = await axios.post(
-        "api.localfarmnepal.com/api/login",
+        "http://api.localfarmnepal.com/api/login",
         {
           username: username,
           password: password,
@@ -59,7 +59,7 @@ export default function Login() {
 
     try {
       const response = await axios.put(
-        "api.localfarmnepal.com/api/admin/change-password",
+        "http://api.localfarmnepal.com/admin/change-password",
         {
           currentPassword,
           newPassword,

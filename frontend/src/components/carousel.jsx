@@ -11,7 +11,7 @@ export default function Carousel({ transparent, categoryId }) {
   if (categoryId) {
     useEffect(() => {
       axios
-        .get(`api.localfarmnepal.com/api/blogs/category/${categoryId}`)
+        .get(`http://api.localfarmnepal.com/api/blogs/category/${categoryId}`)
         .then((res) => {
           setBlogs(res.data);
           // console.log(res.data);
@@ -23,7 +23,7 @@ export default function Carousel({ transparent, categoryId }) {
   } else {
     useEffect(() => {
       axios
-        .get(`api.localfarmnepal.com/api/blogslp`)
+        .get(`http://api.localfarmnepal.com/api/blogslp`)
         .then((res) => {
           setBlogs(res.data);
           // console.log(res.data);
@@ -56,21 +56,23 @@ export default function Carousel({ transparent, categoryId }) {
               // style={{
               //   backgroundImage: `url(${
               //     blogs[current]?.photos?.[0]?.imagePath
-              //       ? `api.localfarmnepal.com/${blogs[current].photos[0].imagePath}`
+              //       ? `http://api.localfarmnepal.com//${blogs[current].photos[0].imagePath}`
               //       : "/https://res.cloudinary.com/dpff5cxm3/image/upload/v1779941841/error_pr4qab.webp"
               //   })`,
               // }}
             >
-                <Image
-                          src={`${blogs[current]?.photos?.[0]?.imagePath
-                    ? `api.localfarmnepal.com/${blogs[current].photos[0].imagePath}`
-                    : "https://res.cloudinary.com/dpff5cxm3/image/upload/v1779941841/error_pr4qab.webp"}`}
-                          alt="background"
-                          fill
-                          priority
-                          unoptimized
-                          className="object-cover"
-                />
+              <Image
+                src={`${
+                  blogs[current]?.photos?.[0]?.imagePath
+                    ? `http://api.localfarmnepal.com/${blogs[current].photos[0].imagePath}`
+                    : "https://res.cloudinary.com/dpff5cxm3/image/upload/v1779941841/error_pr4qab.webp"
+                }`}
+                alt="background"
+                fill
+                priority
+                unoptimized
+                className="object-cover"
+              />
             </div>
 
             {/*Text*/}

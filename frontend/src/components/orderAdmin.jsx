@@ -39,7 +39,7 @@ export default function OrderAdmin() {
 
   useEffect(() => {
     axios
-      .get(`api.localfarmnepal.com/api/orders`)
+      .get(`http://api.localfarmnepal.com/api/orders`)
       .then((res) => {
         setOrders(res.data);
         //console.log(res.data);
@@ -67,7 +67,7 @@ export default function OrderAdmin() {
 
     try {
       await axios.patch(
-        `api.localfarmnepal.com/api/orders/${selected.id}`,
+        `http://api.localfarmnepal.com/api/orders/${selected.id}`,
         data,
         {
           headers: {

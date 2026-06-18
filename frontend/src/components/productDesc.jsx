@@ -13,7 +13,7 @@ export default function ProductDesc({ id }) {
 
   useEffect(() => {
     axios
-      .get(`api.localfarmnepal.com/api/products/${id}`)
+      .get(`http://api.localfarmnepal.com//api/products/${id}`)
       .then((res) => {
         setProduct(res.data);
         //  console.log(res.data);
@@ -41,7 +41,7 @@ export default function ProductDesc({ id }) {
                   alt={product.productName}
                   src={
                     product.photos?.[0]?.imagePath
-                      ? `api.localfarmnepal.com/${product.photos[0].imagePath}`
+                      ? `http://api.localfarmnepal.com/${product.photos[0].imagePath}`
                       : "/https://res.cloudinary.com/dpff5cxm3/image/upload/v1779941841/error_pr4qab.webp"
                   }
                   className="w-[70%] lg:w-[80%]"
@@ -57,7 +57,7 @@ export default function ProductDesc({ id }) {
                       <Image
                         src={
                           photo.imagePath
-                            ? `api.localfarmnepal.com/${photo.imagePath}`
+                            ? `http://api.localfarmnepal.com/${photo.imagePath}`
                             : "/https://res.cloudinary.com/dpff5cxm3/image/upload/v1779941841/error_pr4qab.webp"
                         }
                         alt={product.productName}

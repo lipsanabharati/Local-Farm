@@ -9,7 +9,7 @@ export default function EventCard() {
   const [events, setEvents] = useState([]);
   useEffect(() => {
     axios
-      .get(`api.localfarmnepal.com/api/events`)
+      .get(`http://api.localfarmnepal.com/api/events`)
       .then((res) => {
         setEvents(res.data);
         // console.log(res.data);
@@ -50,7 +50,7 @@ export default function EventCard() {
                     src="https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779941034/thumbpin_khbbsa.webp"
                     className="-mt-12"
                     alt="thumpin image"
-                     width={64}
+                    width={64}
                     height={64}
                   />
                 </div>
@@ -84,19 +84,21 @@ export default function EventCard() {
                   // style={{
                   //   backgroundImage: `url(${
                   //     event?.photos?.[0]?.imagePath
-                  //       ? `api.localfarmnepal.com/${event.photos[0].imagePath}`
+                  //       ? `http://api.localfarmnepal.com/${event.photos[0].imagePath}`
                   //       : "/https://res.cloudinary.com/dpff5cxm3/image/upload/v1779941841/error_pr4qab.webp"
                   //   })`,
                   // }}
                 >
                   <Image
-                    src={`${event?.photos?.[0]?.imagePath
-                        ? `api.localfarmnepal.com/${event.photos[0].imagePath}`
-                       : "/https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779941841/error_pr4qab.webp"}`}
-                       fill
-                       unoptimized
-                       alt="event image"
-                   />
+                    src={`${
+                      event?.photos?.[0]?.imagePath
+                        ? `http://api.localfarmnepal.com/${event.photos[0].imagePath}`
+                        : "/https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779941841/error_pr4qab.webp"
+                    }`}
+                    fill
+                    unoptimized
+                    alt="event image"
+                  />
                 </div>
               </div>
             </div>

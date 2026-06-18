@@ -38,7 +38,7 @@ export default function CategoryAdmin() {
 
   useEffect(() => {
     axios
-      .get(`api.localfarmnepal.com/api/product-categories`)
+      .get(`http://api.localfarmnepal.com/api/product-categories`)
       .then((res) => {
         setCategories(res.data);
         //console.log(res.data);
@@ -69,7 +69,7 @@ export default function CategoryAdmin() {
     };
     try {
       await axios.patch(
-        `api.localfarmnepal.com/api/product-categories/${selected.id}`,
+        `http://api.localfarmnepal.com/api/product-categories/${selected.id}`,
         formData,
         {
           headers: {
@@ -95,7 +95,7 @@ export default function CategoryAdmin() {
     };
     try {
       await axios.post(
-        `api.localfarmnepal.com/api/product-categories`,
+        `http://api.localfarmnepal.com//api/product-categories`,
         formData,
         {
           headers: {

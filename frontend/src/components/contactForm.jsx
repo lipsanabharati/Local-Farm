@@ -39,7 +39,7 @@ export default function ContactForm() {
 
     try {
       await axios.post(
-        `api.localfarmnepal.com/api/contact`,
+        `http://api.localfarmnepal.com/api/contact`,
         contactData,
       );
 
@@ -72,11 +72,11 @@ export default function ContactForm() {
       // }}
     >
       <Image
-                src="https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779940932/formBg_mywn88.webp"
-                alt="background"
-                fill
-                priority
-                className="object-cover -z-10"
+        src="https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779940932/formBg_mywn88.webp"
+        alt="background"
+        fill
+        priority
+        className="object-cover -z-10"
       />
 
       <div className="max-w-[1440px] w-full flex flex-row md:justify-end items-start justify-center">

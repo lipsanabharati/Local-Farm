@@ -48,7 +48,7 @@ export default function EventAdmin() {
 
   useEffect(() => {
     axios
-      .get(`api.localfarmnepal.com/api/events`)
+      .get(`http://api.localfarmnepal.com/api/events`)
       .then((res) => {
         setEvents(res.data);
         //console.log(res.data);
@@ -142,7 +142,7 @@ export default function EventAdmin() {
 
     try {
       await axios.put(
-        `api.localfarmnepal.com/api/events/${selected.id}`,
+        `http://api.localfarmnepal.com/api/events/${selected.id}`,
         formData,
         {
           headers: {
@@ -180,7 +180,7 @@ export default function EventAdmin() {
     //console.log([...formData]);
 
     try {
-      await axios.post(`api.localfarmnepal.com/api/events`, formData, {
+      await axios.post(`http://api.localfarmnepal.com/api/events`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -303,12 +303,12 @@ export default function EventAdmin() {
                 <td className="border-1 p-1 text-center">
                   <Image
                     key={index}
-                    src={`api.localfarmnepal.com/${event.photos[0].imagePath}`}
+                    src={`http://api.localfarmnepal.com/${event.photos[0].imagePath}`}
                     className="w-16 h-16 object-cover"
                     alt="event image"
-                     width={64}
+                    width={64}
                     height={64}
-                     unoptimized
+                    unoptimized
                   />
                 </td>
                 <td className="border-1 p-1 text-center">
@@ -457,9 +457,9 @@ export default function EventAdmin() {
                         src={previewPhotos[index]}
                         className="w-16 h-16 rounded object-cover"
                         alt="event image"
-                         width={64}
-                    height={64}
-                     unoptimized
+                        width={64}
+                        height={64}
+                        unoptimized
                       />
                     )}
 
@@ -598,9 +598,9 @@ export default function EventAdmin() {
                         src={addPreviewPhotos[index]}
                         className="w-16 h-16 rounded object-cover"
                         alt="event image"
-                         width={64}
-                    height={64}
-                    unoptimized
+                        width={64}
+                        height={64}
+                        unoptimized
                       />
                     )}
 

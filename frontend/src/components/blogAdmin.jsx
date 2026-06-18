@@ -54,7 +54,7 @@ export default function BlogAdmin() {
 
   useEffect(() => {
     axios
-      .get(`api.localfarmnepal.com/api/blogs`)
+      .get(`http://api.localfarmnepal.com/api/blogs`)
       .then((res) => {
         setBlogs(res.data);
         // console.log(res.data);
@@ -148,7 +148,7 @@ export default function BlogAdmin() {
 
     try {
       await axios.put(
-        `api.localfarmnepal.com/api/blogs/${selected.id}`,
+        `http://api.localfarmnepal.com/api/blogs/${selected.id}`,
         formData,
         {
           headers: {
@@ -185,7 +185,7 @@ export default function BlogAdmin() {
     });
 
     try {
-      await axios.post(`api.localfarmnepal.com/api/blogs`, formData, {
+      await axios.post(`http://api.localfarmnepal.com/api/blogs`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -304,7 +304,7 @@ export default function BlogAdmin() {
   //getting categories
   useEffect(() => {
     axios
-      .get(`api.localfarmnepal.com/api/product-categories`)
+      .get(`http://api.localfarmnepal.com/api/product-categories`)
       .then((res) => {
         // console.log(res.data);
         setCategories(res.data);
@@ -364,7 +364,7 @@ export default function BlogAdmin() {
                 {blog.photos?.map((image, index) => (
                   <Image
                     key={index}
-                    src={`api.localfarmnepal.com/${image.imagePath}`}
+                    src={`http://api.localfarmnepal.com/${image.imagePath}`}
                     className="w-16 h-16 object-cover"
                     width={64}
                     height={64}
@@ -528,9 +528,9 @@ export default function BlogAdmin() {
                         src={previewPhotos[index]}
                         className="w-16 h-16 rounded object-cover"
                         alt="blog image"
-                         width={64}
-                    height={64}
-                    unoptimized
+                        width={64}
+                        height={64}
+                        unoptimized
                       />
                     )}
 
@@ -680,9 +680,9 @@ export default function BlogAdmin() {
                         src={addPreviewPhotos[index]}
                         className="w-16 h-16 rounded object-cover"
                         alt="blog image"
-                         width={64}
-                    height={64}
-                    unoptimized
+                        width={64}
+                        height={64}
+                        unoptimized
                       />
                     )}
 

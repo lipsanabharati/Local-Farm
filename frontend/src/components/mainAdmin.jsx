@@ -33,7 +33,7 @@ export default function MainAdmin() {
 
     try {
       const response = await axios.put(
-        "api.localfarmnepal.com/api/admin/change-password",
+        "http://api.localfarmnepal.com/api/admin/change-password",
 
         {
           currentPassword,

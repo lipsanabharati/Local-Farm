@@ -13,7 +13,7 @@ import CarouselLazy from "@/components/carouselLazy";
 export default async function ProductPage({ params }) {
   const { id } = await params;
 
-  const res = await fetch(`api.localfarmnepal.com/api/products/${id}`, {
+  const res = await fetch(`http://api.localfarmnepal.com/api/products/${id}`, {
     cache: "no-store",
   });
 
