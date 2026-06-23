@@ -24,7 +24,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`bg-[#F2F6E8] ${lora.variable} ${geologica.variable}`}>
+      <body className={`bg-[#F2F6E8] ${lora.variable} ${geologica.variable} overflow-x-hidden`}>
         <Providers>{children}</Providers>
       </body>
     </html>
