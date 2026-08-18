@@ -3,10 +3,10 @@
 @theme {
   --font-heading: var(--geologica);
   --font-body: var(--lora);
+  /* --breakpoint-xl: 1280px; */
 }
 
-
-body{
+body {
   margin: 0;
   font-family: var(--lora);
 }
@@ -26,7 +26,6 @@ h6 {
 }
 
 .mySwiper .swiper-pagination-bullet-active {
-  background: #93C553;
-  scale:1.5; /* green */
+  background: #93c553;
+  scale: 1.5; /* green */
 }
-

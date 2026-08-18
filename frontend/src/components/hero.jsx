@@ -38,13 +38,13 @@ export default function Hero() {
           />
         </motion.div> */}
 
-      <h1 className="absolute top-20 left-10 md:top-30 md:left-30 lg:top-60 lg:left-40 text-[#609647] font-heading font-bold text-3xl md:text-5xl lg:text-6xl z-10">
+      <h1 className="absolute top-50 left-10 md:top-50 md:left-20 lg:top-40 xl:top-60 lg:left-40  xl:left-40 text-[#609647] font-heading font-bold text-lg md:text-5xl lg:text-4xl xl:text-6xl z-10">
         Discover fresh organic goodness today
       </h1>
 
       <Link
         href={`/shop`}
-        className=" absolute top-40 left-10 md:top-30 md:left-30 lg:top-80 lg:left-40 md:py-3 md:px-8 py-2 px-3 bg-[#609647] rounded-xl font-heading font-bold md:text-lg text-xs hover:cursor-pointer hover:bg-[#93C553]"
+        className=" absolute top-60 left-10 md:top-80 md:left-20 lg:top-60 xl:top-80  lg:left-40 md:py-3 md:px-8 py-2 px-3 bg-[#609647] rounded-xl font-heading font-bold md:text-lg text-xs hover:cursor-pointer hover:bg-[#93C553]"
         aria-label="go to shop"
       >
         Shop Now

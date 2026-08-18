@@ -7,7 +7,8 @@ export default function Global() {
   return (
     <motion.section className="lg:h-screen h-150 h-100  min-w-screen max-w-[1440px]  pb-10 flex flex-col">
       <motion.div
-        className="h-full w-full bg-[url('https://res.cloudinary.com/dpff5cxm3/image/upload/v1779941300/maps_tf8opv.webp')]  bg-contain bg-top bg-no-repeat inset-0"
+        // className="h-full w-full bg-[url('https://res.cloudinary.com/dpff5cxm3/image/upload/v1779941300/maps_tf8opv.webp')]  bg-contain bg-top bg-no-repeat inset-0"
+        className="h-full w-full bg-[url('/maps.svg')] bg-contain bg-top bg-no-repeat inset-0"
         animate={{ y: [0, -10, 0] }}
         transition={{
           duration: 4,
