@@ -7,11 +7,11 @@ export default function Hero() {
   return (
     <section className="h-screen w-screen flex flex-row lg:justify-start justify-center lg:items-center items-end lg:ps-30 lg:pt-30 lg:pb-0 pb-30 overflow-hidden relative">
       <picture>
-        <source media="(min-width: 1024px)" srcSet="/hero.svg" />
+        <source media="(min-width: 1024px)" srcSet="https://res.cloudinary.com/dpff5cxm3/image/upload/v1787108044/hero_j5qpub.svg" />
         <source media="(min-width: 932px)" srcSet="/hero-tablet-lg.svg" />
-        <source media="(min-width: 768px)" srcSet="/hero-tablet.svg" />
+        <source media="(min-width: 768px)" srcSet="https://res.cloudinary.com/dpff5cxm3/image/upload/v1787108051/hero-tablet_ec8wtm.svg" />
         <img
-          src="/hero-mobile.svg"
+          src="https://res.cloudinary.com/dpff5cxm3/image/upload/v1787108051/hero-mobile_j8nymp.svg"
           alt="hero image"
           className="absolute inset-0 w-full h-full object-cover"
         />
