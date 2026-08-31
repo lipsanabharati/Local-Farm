@@ -15,7 +15,7 @@ export default function About()
         <motion.section
         initial="hidden"
         whileInView="visible"
-        className="lg:py-20 py-25 px-10 flex flex-col lg:gap-8 gap-4 font-body overflow-hidden max-w-[1440px]"
+        className="lg:py-20 pb-25 px-10 flex flex-col lg:gap-8 gap-4 font-body overflow-hidden max-w-[1440px]"
       >
         {/*Heading*/}
         <h1 className="lg:text-[56px] text-[36px] font-bold text-center text-[#4D641E]">
@@ -75,7 +75,7 @@ export default function About()
               height={315}
              />
           </motion.div>
-          <div className="text-[#4D641E] w-1/2 text-md lg:text-[17px]">
+          <div className="text-[#4D641E] w-1/2 text-md text-[10px] md:text-[17px]">
             <p className="w-[80%]">
               LocalFarm Nepal is your trusted destination for organic foods in
             Maharajgunj. We offer a carefully curated selection of naturally
