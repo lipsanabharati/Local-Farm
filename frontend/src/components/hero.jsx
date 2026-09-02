@@ -37,7 +37,7 @@ export default function Hero() {
           />
         </motion.div> */}
 
-      <div className="absolute top-40 left-10 md:top-50 md:left-20 lg:top-40 xl:top-40 lg:left-40  xl:left-40 flex flex-col gap-2 md:gap-5 ">
+      <div className="absolute top-40 left-10 md:top-50 md:left-20 lg:top-40 xl:top-40 lg:left-40  xl:left-40 flex flex-col gap-3 md:gap-5 ">
       <h1 className="text-[#609647] font-heading font-bold text-lg md:text-2xl lg:text-4xl xl:text-5xl z-10">
         Discover fresh organic goodness today
       </h1>
