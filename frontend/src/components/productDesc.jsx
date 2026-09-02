@@ -13,7 +13,7 @@ export default function ProductDesc({ id }) {
 
   useEffect(() => {
     axios
-      .get(`http://api.localfarmnepal.com//api/products/${id}`)
+      .get(`http://api.localfarmnepal.com/api/products/${id}`)
       .then((res) => {
         setProduct(res.data);
         //  console.log(res.data);

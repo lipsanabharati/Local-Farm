@@ -46,7 +46,7 @@ export default function StaffAdmin() {
 
   useEffect(() => {
     axios
-      .get(`http://api.localfarmnepal.com//api/staff`)
+      .get(`http://api.localfarmnepal.com/api/staff`)
       .then((res) => {
         setStaffs(res.data);
         //console.log(res.data);

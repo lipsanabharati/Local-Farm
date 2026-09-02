@@ -36,7 +36,7 @@ export default function ContactAdmin() {
 
   useEffect(() => {
     axios
-      .get(`http://api.localfarmnepal.com//api/contact`)
+      .get(`http://api.localfarmnepal.com/api/contact`)
       .then((res) => {
         setContacts(res.data);
         // console.log(res.data);
