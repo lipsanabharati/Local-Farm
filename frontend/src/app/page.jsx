@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 
-import Hero from "@/components/hero";
+import Hero2 from "@/components/hero2";
 import About from "@/components/about";
 import Quality from "@/components/quality";
 
@@ -79,9 +79,9 @@ export default function Home() {
   
 
   return (
-    <>
+    <div className="overflow-hidden">
       {/*Hero section */}
-      <Hero />
+      <Hero2 />
 
       {/*About us*/}
       <About />
@@ -137,6 +137,6 @@ export default function Home() {
 
      {/*Contact form */}
      <ContactFormLazy />
-    </>
+    </div>
   );
 }

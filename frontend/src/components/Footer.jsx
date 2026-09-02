@@ -7,7 +7,7 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="text-white xl:-mt-5 -mt-30 md:-mt-20 lg:-mt-5 w-screen">
+    <footer className="text-white xl:-mt-7 -mt-39 md:-mt-30 lg:-mt-7 w-screen">
       <svg
         // height="272"
         viewBox="0 0 2467 272"
