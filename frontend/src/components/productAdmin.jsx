@@ -57,7 +57,7 @@ export default function ProductAdmin() {
 
   useEffect(() => {
     axios
-      .get(`http://api.localfarmnepal.com/api/products`)
+      .get(`https://api.localfarmnepal.com/api/products`)
       .then((res) => {
         setProducts(res.data);
         //console.log(res.data);
@@ -93,14 +93,11 @@ export default function ProductAdmin() {
 
   const confirmDelete = async () => {
     try {
-      await axios.delete(
-        `http://api.localfarmnepal.com/api/products/${deleteId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+      await axios.delete(`https://api.localfarmnepal.com/api/products/${deleteId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
-      );
+      });
       showSuccess("Deleted Successfully");
       setShowDeleteDialog(false);
       setUpdate((prev) => !prev);
@@ -182,7 +179,7 @@ export default function ProductAdmin() {
 
     try {
       await axios.put(
-        `http://api.localfarmnepal.com/api/products/${selected.id}`,
+        `https://api.localfarmnepal.com/api/products/${selected.id}`,
         formData,
         {
           headers: {
@@ -219,7 +216,7 @@ export default function ProductAdmin() {
     });
 
     try {
-      await axios.post(`http://api.localfarmnepal.com/api/products`, formData, {
+      await axios.post(`https://api.localfarmnepal.com/api/products`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -312,7 +309,7 @@ export default function ProductAdmin() {
   //getting categories
   useEffect(() => {
     axios
-      .get(`http://api.localfarmnepal.com/api/product-categories`)
+      .get(`https://api.localfarmnepal.com/api/product-categories`)
       .then((res) => {
         // console.log(res.data);
         setCategories(res.data);
@@ -367,7 +364,7 @@ export default function ProductAdmin() {
                   {product.photos?.map((image, index) => (
                     <Image
                       key={index}
-                      src={`http://api.localfarmnepal.com/${image.imagePath}`}
+                      src={`https://api.localfarmnepal.com/${image.imagePath}`}
                       className="w-16 h-16 object-cover"
                       alt="product image"
                       width={64}

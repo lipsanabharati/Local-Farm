@@ -6,7 +6,7 @@ import Image from "next/image"
 export default function Why()
 {
     return (
-        <section className="bg-[#F2F6E8] flex flex-col lg:gap-20  md:gap-20 gap-5 items-center lg:py-20 lg:px-20 md:py-10 md:px-10 max-w-[1440px] md:h-auto  pt-10">
+        <section className="bg-[#F2F6E8] flex flex-col lg:gap-20  md:gap-20 gap-5 items-center lg:py-20 lg:px-20 md:py-10 md:px-10 max-w-[1440px] mx-auto md:h-auto  pt-10">
                 {/*Heading*/}
                 <div className="flex flex-row items-center md:gap-3 gap-1">
                   <p className="font-heading md:text-5xl text-2xl text-[#93C553] font-bold text-start">

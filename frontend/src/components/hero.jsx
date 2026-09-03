@@ -6,11 +6,11 @@ export default function Hero() {
   return (
     <section className="w-screen  h-screen flex flex-row lg:justify-start justify-center lg:items-center items-end  pt-200 overflow-hidden relative">
       <picture>
-        <source media="(min-width: 1024px)" srcSet="https://res.cloudinary.com/dpff5cxm3/image/upload/v1787108044/hero_j5qpub.svg" />
-        <source media="(min-width: 932px)" srcSet="https://res.cloudinary.com/dxpp5arsp/image/upload/v1788177706/768X834.svg" />
+        <source media="(min-width: 1024px)" srcSet="hero-desktop2.svg" />
+        <source media="(min-width: 932px)" srcSet="/hero-tablet2.svg" />
         {/* <source media="(min-width: 768px)" srcSet="https://res.cloudinary.com/dpff5cxm3/image/upload/v1787108051/hero-tablet_ec8wtm.svg" /> */}
         <img
-          src="https://res.cloudinary.com/dpff5cxm3/image/upload/v1787108051/hero-mobile_j8nymp.svg"
+          src="/hero-mobile2.svg"
           alt="hero image"
           className="absolute inset-0 w-full h-full object-cover"
         />

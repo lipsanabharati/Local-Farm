@@ -43,7 +43,7 @@ export default function FaqAdmin() {
 
   useEffect(() => {
     axios
-      .get(`http://api.localfarmnepal.com/api/faqs`)
+      .get(`https://api.localfarmnepal.com/api/faqs`)
       .then((res) => {
         setFaqs(res.data);
         //console.log(res.data);
@@ -74,7 +74,7 @@ export default function FaqAdmin() {
 
   const confirmDelete = async () => {
     try {
-      await axios.delete(`http://api.localfarmnepal.com/api/faqs/${deleteId}`, {
+      await axios.delete(`https://api.localfarmnepal.com/api/faqs/${deleteId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -103,7 +103,7 @@ export default function FaqAdmin() {
 
     try {
       await axios.put(
-        `http://api.localfarmnepal.com/api/faqs/${selected.id}`,
+        `https://api.localfarmnepal.com/api/faqs/${selected.id}`,
         formData,
         {
           headers: {
@@ -129,7 +129,7 @@ export default function FaqAdmin() {
       answer: addAnswer,
     };
     try {
-      await axios.post(`http://api.localfarmnepal.com/api/faqs`, formData, {
+      await axios.post(`https://api.localfarmnepal.com/api/faqs`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

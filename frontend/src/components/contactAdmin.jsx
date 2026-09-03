@@ -36,7 +36,7 @@ export default function ContactAdmin() {
 
   useEffect(() => {
     axios
-      .get(`http://api.localfarmnepal.com/api/contact`)
+      .get(`https://api.localfarmnepal.com/api/contact`)
       .then((res) => {
         setContacts(res.data);
         // console.log(res.data);
@@ -63,7 +63,7 @@ export default function ContactAdmin() {
     };
     try {
       await axios.patch(
-        `http://api.localfarmnepal.com/api/contact/${selected.id}`,
+        `https://api.localfarmnepal.com/api/contact/${selected.id}`,
         formData,
         {
           headers: {

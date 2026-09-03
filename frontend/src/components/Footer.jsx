@@ -7,7 +7,7 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="text-white xl:-mt-7 -mt-39 md:-mt-30 lg:-mt-7 w-screen">
+    <footer className="text-white xl:-mt-20 -mt-39  lg:-mt-20 w-screen z-10 ">
       <svg
         // height="272"
         viewBox="0 0 2467 272"
@@ -77,14 +77,16 @@ export default function Footer() {
           </div>
 
           {/* Contact */}
-          <div className="flex flex-col gap-1 items-start leading-8">
-            <div className="font-heading font-bold md:text-center text-start text-xl">
+          <div className="flex flex-col gap-1 items-start md:items-end leading-8 md:text-right">
+            <div className="font-heading font-bold md:text-right text-start text-xl">
               Contact
             </div>
-            <div className="flex flex-col w-[200px] ">
-              <p>9802512888, 9840298608,01-4373154</p>{" "}
+            <div className="flex flex-col w-full gap-1 md:gap-2 md:items-end md:text-right">
+              <p>9802512888 <br />
+                9840298608  <br />
+                01-4373154</p>{" "}
               <p>localfarmnepal@gmail.com</p>
-              <div className="flex flex-row gap-5 mt-2">
+              <div className="flex flex-row gap-5 mt-2 md:justify-end">
                 <FaInstagram
                   size={30}
                   color="#FFFFFF"

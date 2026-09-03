@@ -90,8 +90,8 @@ export default function Home() {
       <Quality />
 
       {/*Product Section*/}
-      <section className="flex flex-col py-10 px-20 lg:gap-10 gap-5 font-body justify-items-center items-center bg-[#F2F6E8] max-w-[1440px]">
-        <h1 className="font-heading lg:text-[56px] md:text-[36px] text-xl font-bold text-start text-[#4D641E] text-center">
+      <section className="flex flex-col py-10 px-20 lg:gap-10 gap-5 font-body justify-items-center items-center bg-[#F2F6E8] max-w-[1440px] mx-auto">
+        <h1 className="font-heading lg:text-[56px] md:text-[36px] text-xl font-bold text-start text-[#4D641E] lg:text-center">
           From Local Farms to Your Home
         </h1>
 
@@ -112,7 +112,7 @@ export default function Home() {
       <SustainableLazy />
 
       {/*Our Process */}
-      <section className="lg:h-[300px] bg-[#F2F6E8] flex flex-col gap-10 items-center max-w-[1440px]">
+      <section className="lg:h-[300px] bg-[#F2F6E8] flex flex-col gap-10 items-center max-w-[1440px] mx-auto">
         <h1 className="font-heading md:text-5xl text-3xl  font-bold  text-[#609647] text-center">
           Our Process
         </h1>
@@ -123,7 +123,7 @@ export default function Home() {
       {/*Why Localfarm?*/}
       <WhyLazy />
 
-      <section className="max-w-[1440px] mb-30">
+      <section className="max-w-[1440px] mx-auto mb-30">
         <CarouselLazy transparent={false} />
       </section>
 

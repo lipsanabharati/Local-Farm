@@ -40,7 +40,7 @@ export default function ProductForShop() {
     const fetchCategories = async () => {
       try {
         const res = await axios.get(
-          `http://api.localfarmnepal.com/api/product-categories`,
+          `https://api.localfarmnepal.com/api/product-categories`,
         );
         setCategories(res.data);
         // console.log(res.data);
@@ -60,8 +60,8 @@ export default function ProductForShop() {
 
     const url =
       activeCategory.id > 0
-        ? `http://api.localfarmnepal.com/api/products/category/${activeCategory.id}`
-        : `http://api.localfarmnepal.com/api/products`;
+        ? `https://api.localfarmnepal.com/api/products/category/${activeCategory.id}`
+        : `https://api.localfarmnepal.com/api/products`;
 
     axios
       .get(url)
@@ -145,7 +145,7 @@ export default function ProductForShop() {
                   <Image
                     src={
                       product.photos?.[0]?.imagePath
-                        ? `http://api.localfarmnepal.com/${product.photos[0].imagePath}`
+                        ? `https://api.localfarmnepal.com/${product.photos[0].imagePath}`
                         : "/https://res.cloudinary.com/dpff5cxm3/image/upload/v1779941841/error_pr4qab.webp"
                     }
                     alt={product.productName}
@@ -215,7 +215,7 @@ export default function ProductForShop() {
                   <Image
                     src={
                       product.photos?.[0]?.imagePath
-                        ? `http://api.localfarmnepal.com/${product.photos[0].imagePath}`
+                        ? `https://api.localfarmnepal.com/${product.photos[0].imagePath}`
                         : "/https://res.cloudinary.com/dpff5cxm3/image/upload/v1779941841/error_pr4qab.webp"
                     }
                     alt={product.productName}

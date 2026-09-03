@@ -38,10 +38,7 @@ export default function ContactForm() {
     };
 
     try {
-      await axios.post(
-        `http://api.localfarmnepal.com/api/contact`,
-        contactData,
-      );
+      await axios.post(`https://api.localfarmnepal.com/api/contact`, contactData);
 
       await emailjs.send(
         "service_otzi5fa",
@@ -63,7 +60,7 @@ export default function ContactForm() {
 
   return (
     <section
-      className="w-full py-20 md:px-20 -mb-10 relative"
+      className="w-full h-[900px] py-20 md:px-20 -mb-10 relative"
       // style={{
       //   backgroundImage: `url(/formBg.webp)`,
       //   backgroundSize: "cover",
