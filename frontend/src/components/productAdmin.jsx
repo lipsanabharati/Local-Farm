@@ -57,7 +57,7 @@ export default function ProductAdmin() {
 
   useEffect(() => {
     axios
-      .get(`https://api.localfarmnepal.com/api/products`)
+      .get(`http://localhost:5000/api/products`)
       .then((res) => {
         setProducts(res.data);
         //console.log(res.data);
@@ -93,7 +93,7 @@ export default function ProductAdmin() {
 
   const confirmDelete = async () => {
     try {
-      await axios.delete(`https://api.localfarmnepal.com/api/products/${deleteId}`, {
+      await axios.delete(`http://localhost:5000/api/products/${deleteId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -179,7 +179,7 @@ export default function ProductAdmin() {
 
     try {
       await axios.put(
-        `https://api.localfarmnepal.com/api/products/${selected.id}`,
+        `http://localhost:5000/api/products/${selected.id}`,
         formData,
         {
           headers: {
@@ -216,7 +216,7 @@ export default function ProductAdmin() {
     });
 
     try {
-      await axios.post(`https://api.localfarmnepal.com/api/products`, formData, {
+      await axios.post(`http://localhost:5000/api/products`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -309,7 +309,7 @@ export default function ProductAdmin() {
   //getting categories
   useEffect(() => {
     axios
-      .get(`https://api.localfarmnepal.com/api/product-categories`)
+      .get(`http://localhost:5000/api/product-categories`)
       .then((res) => {
         // console.log(res.data);
         setCategories(res.data);
@@ -364,7 +364,7 @@ export default function ProductAdmin() {
                   {product.photos?.map((image, index) => (
                     <Image
                       key={index}
-                      src={`https://api.localfarmnepal.com/${image.imagePath}`}
+                      src={`http://localhost:5000/${image.imagePath}`}
                       className="w-16 h-16 object-cover"
                       alt="product image"
                       width={64}

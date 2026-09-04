@@ -66,7 +66,7 @@ export default function Cart() {
       setError("");
 
       const res = await axios.post(
-        "https://api.localfarmnepal.com/api/orders",
+        "http://localhost:5000/api/orders",
         orderData,
       );
 
@@ -80,7 +80,7 @@ export default function Cart() {
       //         return;
       //     }
 
-      //     await axios.put(`https://api.localfarmnepal.com//api/products/${item.id}`,{
+      //     await axios.put(`http://localhost:5000//api/products/${item.id}`,{
       //         quantity:newQuantity,
       //     });
       // }
@@ -107,7 +107,7 @@ export default function Cart() {
   };
 
   return (
-    <section className="max-w-[1440px] flex flex-col lg:flex lg:flex-row justify-center md:justify-start mt-40 p-5 md:p-10 w-full overflow-hidden">
+    <section className="max-w-[1440px] flex flex-col lg:flex lg:flex-row justify-center md:justify-start mt-40 p-5 md:p-10 w-full overflow-hidden mb-10">
       <div className="flex flex-col lg:w-1/2 lg:ms-50">
         {/*Heading*/}
         <h2 className="text-[#93C553] text-2xl">My Cart</h2>

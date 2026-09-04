@@ -12,10 +12,8 @@ export default function About()
   };
 
     return (
-        <motion.section
-        initial="hidden"
-        whileInView="visible"
-        className="lg:py-20 pb-25 px-10 flex flex-col lg:gap-8 gap-4 font-body overflow-hidden max-w-[1440px] mx-auto"
+        <section
+        className="lg:py-20 pb-25 px-10 flex flex-col lg:gap-8 gap-4 font-body overflow-hidden w-screen max-w-[1440px] "
       >
         {/*Heading*/}
         <h1 className="lg:text-[56px] text-[36px] font-bold text-center text-[#4D641E]">
@@ -81,11 +79,9 @@ export default function About()
             Maharajgunj. We offer a carefully curated selection of naturally
             sourced products—ranging from Shilajit and pure honey to nutritious
             powders and traditional pickles—directly sourced from local farmers.
-            By connecting you with fresh, authentic produce, we support both
-            your well-being and the livelihoods of our farming communities.
             </p>
           </div>
         </div>
-      </motion.section>
+      </section>
     )
 }

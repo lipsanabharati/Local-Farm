@@ -10,7 +10,7 @@ export default function Sustainable()
                 {/*Text*/}
                 <motion.div
                   whileInView={{ x: 0 }}
-                  initial={{ x: -100 }}
+                  initial={{ x: -50 }}
                    viewport={{ once: true }}
                   transition={{ duration: 2, ease: "easeOut" }}
                   className="flex flex-col lg:gap-10 md:gap-5 gap-3 md:w-1/2 w-full"
@@ -32,7 +32,7 @@ export default function Sustainable()
                 {/*Image*/}
                 <motion.div
                   whileInView={{ x: 0 }}
-                  initial={{ x: 100 }}
+                  initial={{ x: 50 }}
                    viewport={{ once: true }}
                   transition={{ duration: 2, ease: "easeOut" }}
                   className=" md:w-1/2 w-full flex flex-row justify-center"

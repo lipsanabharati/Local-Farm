@@ -92,7 +92,7 @@ export default function Footer() {
                   color="#FFFFFF"
                   className="cursor-pointer"
                   onClick={() =>
-                    window.open("https://www.instagram.com/localfarm.nepal/")
+                    window.open("http://www.instagram.com/localfarm.nepal/")
                   }
                 ></FaInstagram>
                 <FaFacebook
@@ -100,7 +100,7 @@ export default function Footer() {
                   color="#FFFFFF"
                   className="cursor-pointer"
                   onClick={() =>
-                    window.open("https://www.facebook.com/localfarm.nepal")
+                    window.open("http://www.facebook.com/localfarm.nepal")
                   }
                 ></FaFacebook>
                 <FaTiktok
@@ -108,7 +108,7 @@ export default function Footer() {
                   color="#FFFFFF"
                   className="cursor-pointer"
                   onClick={() =>
-                    window.open("https://www.tiktok.com/@localfarm.nepal")
+                    window.open("http://www.tiktok.com/@localfarm.nepal")
                   }
                 ></FaTiktok>
                 <FaWhatsapp
@@ -117,7 +117,7 @@ export default function Footer() {
                   className="cursor-pointer"
                   onClick={() =>
                     window.open(
-                      "https://wa.me/9779802512888?text=Hello%20LocalFarm%20Nepal!",
+                      "http://wa.me/9779802512888?text=Hello%20LocalFarm%20Nepal!",
                       "_blank",
                     )
                   }

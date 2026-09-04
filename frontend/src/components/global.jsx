@@ -5,10 +5,10 @@ import Image from "next/image";
 
 export default function Global() {
   return (
-    <motion.section className="lg:h-screen h-150 h-100  min-w-screen max-w-[1440px]  pb-10 flex flex-col">
+    <motion.section className=" w-screen max-w-[1440px]  pb-10 flex flex-col ">
       <motion.div
         // className="h-full w-full bg-[url('https://res.cloudinary.com/dpff5cxm3/image/upload/v1779941300/maps_tf8opv.webp')]  bg-contain bg-top bg-no-repeat inset-0"
-        className="h-full w-full bg-[url('https://res.cloudinary.com/dpff5cxm3/image/upload/v1787108200/maps_ld2hmf.svg')] bg-contain bg-top bg-no-repeat inset-0"
+        className=" h-80 md:h-80 w-full bg-[url('https://res.cloudinary.com/dpff5cxm3/image/upload/v1787108200/maps_ld2hmf.svg')] bg-contain bg-top bg-no-repeat inset-0"
         animate={{ y: [0, -10, 0] }}
         transition={{
           duration: 4,
@@ -17,7 +17,7 @@ export default function Global() {
         }}
       ></motion.div>
 
-      <div className="flex flex-col lg:gap-5 gap-3 items-center">
+      <div className="flex flex-col lg:gap-5 gap-3 items-center ">
         {/* <Image src="https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779941223/localfarmGlobal_dg2s1l.webp" className="w-60" alt="logo image" width={60} height={10} /> */}
         <Image
           src="footprint.svg"

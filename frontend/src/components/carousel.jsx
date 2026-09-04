@@ -11,7 +11,7 @@ export default function Carousel({ transparent, categoryId }) {
   if (categoryId) {
     useEffect(() => {
       axios
-        .get(`https://api.localfarmnepal.com/api/blogs/category/${categoryId}`)
+        .get(`http://localhost:5000/api/blogs/category/${categoryId}`)
         .then((res) => {
           setBlogs(res.data);
           // console.log(res.data);
@@ -23,7 +23,7 @@ export default function Carousel({ transparent, categoryId }) {
   } else {
     useEffect(() => {
       axios
-        .get(`https://api.localfarmnepal.com/api/blogslp`)
+        .get(`http://localhost:5000/api/blogslp`)
         .then((res) => {
           setBlogs(res.data);
           // console.log(res.data);
@@ -56,7 +56,7 @@ export default function Carousel({ transparent, categoryId }) {
               // style={{
               //   backgroundImage: `url(${
               //     blogs[current]?.photos?.[0]?.imagePath
-              //       ? `https://api.localfarmnepal.com//${blogs[current].photos[0].imagePath}`
+              //       ? `http://localhost:5000//${blogs[current].photos[0].imagePath}`
               //       : "/https://res.cloudinary.com/dpff5cxm3/image/upload/v1779941841/error_pr4qab.webp"
               //   })`,
               // }}
@@ -64,7 +64,7 @@ export default function Carousel({ transparent, categoryId }) {
               <Image
                 src={`${
                   blogs[current]?.photos?.[0]?.imagePath
-                    ? `https://api.localfarmnepal.com/${blogs[current].photos[0].imagePath}`
+                    ? `http://localhost:5000/${blogs[current].photos[0].imagePath}`
                     : "https://res.cloudinary.com/dpff5cxm3/image/upload/v1779941841/error_pr4qab.webp"
                 }`}
                 alt="background"

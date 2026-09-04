@@ -6,7 +6,7 @@ import Image from "next/image";
 export default function Quality()
 {
     return (
-        <section className="md:bg-[url('/ribbon.webp')] bg-[url('/ribbonMob.webp')] bg-center bg-contain bg-no-repeat lg:bg-position-[center_bottom_1rem]  md:bg-position-[center_top_0rem] bg-position-[center_top_5rem] md:p-0 p-5 overflow-hidden">
+        <section className="md:bg-[url('/ribbon.webp')] bg-[url('/ribbonMob.webp')] bg-center bg-contain bg-no-repeat lg:bg-position-[center_bottom_1rem]  md:bg-position-[center_top_0rem] bg-position-[center_top_5rem] md:p-0 p-5 w-screen">
         <div className="flex flex-col lg:py-10 w-full max-w-[1440px] justify-items-center mx-0 md:mx-auto">
           {/*Heading*/}
           <div className="flex flex-row justify-end relative md:px-[8%] h-[10%] md:h-[2%]">
@@ -22,7 +22,7 @@ export default function Quality()
             <div className="flex flex-row justify-start items-center ms-[10%]">
               <div className="lg:w-1/4 w-1/4 md:w-1/5 text-end text-[#4D641E] relative">
                 <motion.p
-                  initial={{ x: -100 }}
+                  initial={{ x: -50 }}
                   whileInView={{ x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, ease: "easeOut" }}
@@ -60,7 +60,7 @@ export default function Quality()
                   height={10}
                 ></Image>
                 <motion.p
-                  initial={{ y: 200 }}
+                  initial={{ y: 50 }}
                   whileInView={{ y: 0 }}
                    viewport={{ once: true }}
                   transition={{ duration: 0.6, ease: "easeOut" }}
@@ -81,7 +81,7 @@ export default function Quality()
                   height={10}
                 ></Image>
                 <motion.p
-                  initial={{ x: 200 }}
+                  initial={{ x: 50 }}
                   whileInView={{ x: 0 }}
                    viewport={{ once: true }}
                   transition={{ duration: 0.6, ease: "easeOut" }}

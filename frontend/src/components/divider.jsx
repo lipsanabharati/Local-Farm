@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Divider() {
   return (
     <section
-      className="h-[500px] bg-[#F2F6E8] p-20 -mt-50 flex lg:flex-row-reverse lg:items-start lg:justify-start items-end justify-center w-full relative"
+      className="h-[500px] bg-[#F2F6E8] p-20 -mt-50 flex lg:flex-row-reverse lg:items-start lg:justify-start items-end justify-center w-full relative overflow-hidden max-w-screen"
       // style={{
       //   backgroundImage: `url(/bgGrown.webp)`,
       //   backgroundSize: "cover",
@@ -19,7 +19,7 @@ export default function Divider() {
         className="object-cover w-screen"
       />
 
-      <div className="lg:w-1/3 md:w-1/2 h-[140px] lg:mt-30 lg:me-20 p-5 backdrop-blur-sm bg-white/10 border border-white/20 text-white rounded-xl md:text-[17px] text-[17px]">
+      <div className="lg:w-1/3 md:w-1/2 lg:mt-30 lg:me-20 p-5 backdrop-blur-sm bg-white/10 border border-white/20 text-white rounded-xl md:text-[17px] text-[17px]">
         Locally grown,naturally pure-our products carry the care of Nepali
         farmers and the goodness of the soil.
       </div>

@@ -79,7 +79,7 @@ export default function Home() {
   
 
   return (
-    <div className="overflow-hidden">
+    <div className="max-w-screen overflow-hidden">
       {/*Hero section */}
       <Hero2 />
 

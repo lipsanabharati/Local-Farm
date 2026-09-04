@@ -20,7 +20,7 @@ export default function OurProcess() {
   ];
 
   return (
-    <div className="w-full">
+    <div className="w-full p-5 md:p-10">
       <div className="md:flex hidden relative flex justify-between items-start max-w-5xl mx-auto w-full">
         {/* Horizontal connecting line */}
         <div className="absolute top-12 left-[10%] w-[80%] h-[2px] bg-[#609647]/50 z-0"></div>
