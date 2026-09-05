@@ -36,7 +36,7 @@ export default function CartCard() {
                 className="object-contain"
                 src={
                   product.photos?.[0]?.imagePath
-                    ? `http://localhost:5000/${product.photos[0].imagePath}`
+                    ? `https://api.localfarmnepal.com/${product.photos[0].imagePath}`
                     : "/https://res.cloudinary.com/dpff5cxm3/image/upload/v1779941841/error_pr4qab.webp"
                 }
                 alt={product.productName}

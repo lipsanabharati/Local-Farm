@@ -13,7 +13,7 @@ export default function About()
 
     return (
         <section
-        className="lg:py-20 pb-25 px-10 flex flex-col lg:gap-8 gap-4 font-body overflow-hidden w-screen max-w-[1440px] "
+        className="lg:py-20 pb-25 px-10 flex flex-col items-center lg:gap-8 gap-4 font-body overflow-hidden w-screen max-w-[1440px] "
       >
         {/*Heading*/}
         <h1 className="lg:text-[56px] text-[36px] font-bold text-center text-[#4D641E]">

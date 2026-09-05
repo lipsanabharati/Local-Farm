@@ -6,7 +6,7 @@ import Image from "next/image";
 export default function Quality()
 {
     return (
-        <section className="md:bg-[url('/ribbon.webp')] bg-[url('/ribbonMob.webp')] bg-center bg-contain bg-no-repeat lg:bg-position-[center_bottom_1rem]  md:bg-position-[center_top_0rem] bg-position-[center_top_5rem] md:p-0 p-5 w-screen">
+        <section className="md:bg-[url('/ribbon.webp')] bg-[url('/ribbonMob.webp')] bg-center bg-contain bg-no-repeat lg:bg-position-[center_bottom_1rem]  md:bg-position-[center_top_0rem] bg-position-[center_top_5rem] md:p-0 p-5 w-screen max-w-[1440px]">
         <div className="flex flex-col lg:py-10 w-full max-w-[1440px] justify-items-center mx-0 md:mx-auto">
           {/*Heading*/}
           <div className="flex flex-row justify-end relative md:px-[8%] h-[10%] md:h-[2%]">

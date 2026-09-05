@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Divider() {
   return (
     <section
-      className="h-[500px] bg-[#F2F6E8] p-20 -mt-50 flex lg:flex-row-reverse lg:items-start lg:justify-start items-end justify-center w-full relative overflow-hidden max-w-screen"
+      className="h-[500px] bg-[#F2F6E8] p-20 -mt-50 flex lg:flex-row-reverse lg:items-start lg:justify-start items-end justify-center w-full relative overflow-hidden w-screen"
       // style={{
       //   backgroundImage: `url(/bgGrown.webp)`,
       //   backgroundSize: "cover",

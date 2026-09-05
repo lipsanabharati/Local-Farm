@@ -79,7 +79,7 @@ export default function Home() {
   
 
   return (
-    <div className="max-w-screen overflow-hidden">
+    <div className="w-screen overflow-hidden flex flex-col items-center">
       {/*Hero section */}
       <Hero2 />
 

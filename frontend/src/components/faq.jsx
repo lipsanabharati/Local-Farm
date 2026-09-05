@@ -10,7 +10,7 @@ export default function Faq() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/faqs`)
+      .get(`https://api.localfarmnepal.com/api/faqs`)
       .then((res) => {
         setFaqs(res.data);
       })
@@ -21,7 +21,7 @@ export default function Faq() {
   }, []);
 
   return (
-    <section className="p-5 flex flex-col items-center">
+    <section className="p-5 flex flex-col items-center w-screen max-w-[1440px]">
       <h1 className="font-heading lg:text-5xl md:text-4xl text-2xl font-bold text-center text-[#609647] mb-10 lg:mb-20">
         Frequently Asked Questions
       </h1>

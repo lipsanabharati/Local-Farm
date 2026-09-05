@@ -41,7 +41,7 @@ export default function ProductForShop() {
     const fetchCategories = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/product-categories`,
+          `https://api.localfarmnepal.com/api/product-categories`,
         );
         setCategories(res.data);
         // console.log(res.data);
@@ -61,8 +61,8 @@ export default function ProductForShop() {
 
     const url =
       activeCategory.id > 0
-        ? `http://localhost:5000/api/products/category/${activeCategory.id}`
-        : `http://localhost:5000/api/products`;
+        ? `https://api.localfarmnepal.com/api/products/category/${activeCategory.id}`
+        : `https://api.localfarmnepal.com/api/products`;
 
     axios
       .get(url)
@@ -128,7 +128,7 @@ export default function ProductForShop() {
 
       {/* Products Grid Large */}
       {products.length > 0 && (
-        <div className="py-10 hidden lg:grid lg:grid-cols-3 md:grid md:grid-cols-2 gap-10 justify-items-center lg:mx-18 md:mx-10">
+        <div className="py-10 hidden lg:grid lg:grid-cols-3 gap-10 justify-items-center lg:mx-18">
           {products.map((product) => (
             <div key={product.id} style={{ height: 320 }}>
               <motion.div
@@ -146,7 +146,7 @@ export default function ProductForShop() {
                   <Image
                     src={
                       product.photos?.[0]?.imagePath
-                        ? `http://localhost:5000/${product.photos[0].imagePath}`
+                        ? `https://api.localfarmnepal.com/${product.photos[0].imagePath}`
                         : "/https://res.cloudinary.com/dpff5cxm3/image/upload/v1779941841/error_pr4qab.webp"
                     }
                     alt={product.productName}
@@ -196,9 +196,9 @@ export default function ProductForShop() {
         </div>
       )}
 
-      {/* Products Grid Mobile */}
+      {/* Products Grid Mobile and tablet */}
       {products.length > 0 && (
-        <div className="grid grid-cols-1 lg:grid-cols-3 md:gap-30 gap-10 md:hidden block justify-items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 md:gap-10 gap-10 lg:hidden block justify-items-center mb-20">
           {products.map((product) => (
             <div key={product.id} style={{ height: 320 }}>
               <motion.div
@@ -217,7 +217,7 @@ export default function ProductForShop() {
                   <Image
                     src={
                       product.photos?.[0]?.imagePath
-                        ? `http://localhost:5000/${product.photos[0].imagePath}`
+                        ? `https://api.localfarmnepal.com/${product.photos[0].imagePath}`
                         : "/https://res.cloudinary.com/dpff5cxm3/image/upload/v1779941841/error_pr4qab.webp"
                     }
                     alt={product.productName}

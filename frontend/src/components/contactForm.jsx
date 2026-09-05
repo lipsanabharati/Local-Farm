@@ -38,7 +38,7 @@ export default function ContactForm() {
     };
 
     try {
-      await axios.post(`http://localhost:5000/api/contact`, contactData);
+      await axios.post(`https://api.localfarmnepal.com/api/contact`, contactData);
 
       await emailjs.send(
         "service_otzi5fa",

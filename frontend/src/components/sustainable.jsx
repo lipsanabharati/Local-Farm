@@ -6,7 +6,7 @@ import Image from "next/image"
 export default function Sustainable()
 {
     return(
-        <section className="lg:py-30 lg:px-30 md:p-20 p-10 flex md:flex-row flex-col-reverse md:gap-10 lg:gap-20 gap-5 bg-[#F2F6E8] max-w-[1440px] mx-auto overflow-hidden">
+        <section className="lg:py-30 lg:px-30 md:p-20 p-10 flex md:flex-row flex-col-reverse md:gap-10 lg:gap-20 gap-5 bg-[#F2F6E8] w-screen max-w-[1440px] mx-auto overflow-hidden">
                 {/*Text*/}
                 <motion.div
                   whileInView={{ x: 0 }}

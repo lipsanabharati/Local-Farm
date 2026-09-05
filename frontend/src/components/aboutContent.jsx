@@ -126,10 +126,10 @@ export default function AboutContent()
         height={350}/>
       </div>
 
-      <div className="hidden md:flex md:flex-row justify-center gap-10 px-15 lg:px-30 lg:mt-20">
+      <div className="hidden md:flex md:flex-row justify-center gap-10 px-15 lg:px-30 lg:mt-20 ">
         <Image 
         src="https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779940394/a3_b3qf2p.webp" 
-        className="w-[25%]" 
+        className="md:w-[40%] w-[25%]" 
         alt="about image"
         width={250}
         height={250} />

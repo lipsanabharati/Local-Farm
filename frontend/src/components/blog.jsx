@@ -9,7 +9,7 @@ export default function Blog({ slug }) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/blogs/${slug}`)
+      .get(`https://api.localfarmnepal.com/api/blogs/${slug}`)
       .then((res) => {
         setBlog(res.data);
         // console.log(res.data);
@@ -33,7 +33,7 @@ export default function Blog({ slug }) {
             alt="blog photo"
             src={
               blog.photos?.[0]?.imagePath
-                ? `http://localhost:5000/${blog.photos[0].imagePath}`
+                ? `https://api.localfarmnepal.com/${blog.photos[0].imagePath}`
                 : "https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779941841/error_pr4qab.webp"
             }
             className="w-full"
@@ -58,7 +58,7 @@ export default function Blog({ slug }) {
           {blog.photos.slice(1).map((photo, index) => (
             <Image
               key={index}
-              src={`http://localhost:5000/${photo.imagePath}`}
+              src={`https://api.localfarmnepal.com/${photo.imagePath}`}
               alt="blog"
               className="w-32 h-32 object-cover"
               width={300}

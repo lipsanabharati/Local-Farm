@@ -35,13 +35,13 @@ export default function ProductsSection() {
   const [activeCategory, setActiveCategory] = useState(null);
   const [products, setProducts] = useState([]);
   const [message, setMessage] = useState("");
-  const [showButtons,setShowButtons]=useState(false);
+  const [showButtons,setShowButtons]=useState(null);
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/product-categories`,
+          `https://api.localfarmnepal.com/api/product-categories`,
         );
         setCategories(res.data);
 
@@ -61,8 +61,8 @@ export default function ProductsSection() {
 
     const url =
       activeCategory.id > 0
-        ? `http://localhost:5000/api/products/category/three/${activeCategory.id}`
-        : `http://localhost:5000/api/products/three`;
+        ? `https://api.localfarmnepal.com/api/products/category/three/${activeCategory.id}`
+        : `https://api.localfarmnepal.com/api/products/three`;
 
     axios
       .get(url)
@@ -95,7 +95,7 @@ export default function ProductsSection() {
   }
 
   return (
-    <div className="h-150 md:h-150 lg:h-200 flex flex-col items-center max-w-screen">
+    <div className="h-150 md:h-150 lg:h-200 flex flex-col items-center w-screen max-w-[1440px]">
       {/* Category Tabs */}
       <div className="flex justify-center lg:gap-10 gap-5 lg:text-lg text-sm lg:mb-30 mb-20">
         {categories.map((category) => (
@@ -123,7 +123,7 @@ export default function ProductsSection() {
 
       {/* Products Grid Large */}
       {products.length > 0 && (
-        <div className="md:grid md:grid-cols-3 md:gap-10 gap-20 hidden md:block">
+        <div className="lg:grid lg:grid-cols-3 lg:gap-10 gap-20 hidden lg:block">
           {products.map((product) => (
             <motion.div
               key={product.id}
@@ -141,7 +141,7 @@ export default function ProductsSection() {
                 <Image
                   src={
                     product.photos?.[0]?.imagePath
-                      ? `http://localhost:5000/${product.photos[0].imagePath}`
+                      ? `https://api.localfarmnepal.com/${product.photos[0].imagePath}`
                       : "/https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779941841/error_pr4qab.webp"
                   }
                   alt={product.productName}
@@ -190,12 +190,12 @@ export default function ProductsSection() {
         </div>
       )}
 
-      {/* Products Grid Mobile */}
+      {/* Products Grid Mobile and tablet */}
       {products[0] && (
-        <div className="grid grid-cols-1 lg:grid-cols-3 md:gap-30 gap-20 md:hidden block mt-10 w-[80%]">
+        <div className="grid grid-cols-1 lg:grid-cols-3  lg:hidden block mt-10 md:mt-3 md:w-[40%] w-[80%] ">
           <motion.div
             key={products[0].id}
-            onClick={()=>setShowButtons(!showButtons)}
+            onClick={()=>setShowButtons(showButtons===products[0].id? null:products[0].id)}
             // whileHover="hover"
             // animate="rest"
             className="relative bg-[#779768]/10 rounded-xl shadow-[#C4DBBA] py-10 text-center"
@@ -210,7 +210,7 @@ export default function ProductsSection() {
               <Image
                 src={
                   products[0].photos?.[0]?.imagePath
-                    ? `http://localhost:5000/${products[0].photos[0].imagePath}`
+                    ? `https://api.localfarmnepal.com/${products[0].photos[0].imagePath}`
                     : "/https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779941841/error_pr4qab.webp"
                 }
                 alt={products[0].productName}
@@ -237,8 +237,8 @@ export default function ProductsSection() {
               // }}
               // transition={{ duration: 0.2 }}
               initial={{opacity:0}}
-              animate={{opacity:showButtons? 1:0,
-                pointerEvents: showButtons? "auto":"none",
+              animate={{opacity:showButtons===products[0].id? 1:0,
+                pointerEvents: showButtons===products[0].id? "auto":"none",
               }}
               
               transition={{duration:0.2}}
