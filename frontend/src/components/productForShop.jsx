@@ -35,7 +35,7 @@ export default function ProductForShop() {
   const [activeCategory, setActiveCategory] = useState(null);
   const [products, setProducts] = useState([]);
   const [message, setMessage] = useState("");
-  const [showButtons,setShowButtons]=useState(null);
+  // const [showButtons,setShowButtons]=useState(null);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -102,7 +102,7 @@ export default function ProductForShop() {
   return (
     <div className="lg:py-20 py-15">
       {/* Category Tabs */}
-      <div className="flex justify-center lg:gap-10 gap-5 lg:text-lg text-sm lg:mb-20 mb-20">
+      <div className="flex justify-center lg:gap-10 gap-5 lg:text-lg text-sm lg:mb-20 mb-20 ">
         {categories.map((category) => (
           <button
             key={category.id}
@@ -198,11 +198,11 @@ export default function ProductForShop() {
 
       {/* Products Grid Mobile and tablet */}
       {products.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 md:gap-10 gap-10 lg:hidden block justify-items-center mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 md:gap-15 gap-10 lg:hidden block justify-items-center mb-20 w-[80%] mx-auto">
           {products.map((product) => (
             <div key={product.id} style={{ height: 320 }}>
               <motion.div
-                onClick={()=>setShowButtons(showButtons===product.id? null : product.id)}
+                // onClick={()=>setShowButtons(showButtons===product.id? null : product.id)}
                 // whileHover="hover"
                 // animate="rest"
                 className="relative bg-[#779768]/10 rounded-xl shadow-[#C4DBBA] py-10 text-center w-80"
@@ -242,12 +242,12 @@ export default function ProductForShop() {
                   //   rest: { opacity: 0 },
                   //   hover: { opacity: 1 },
                   // }}
-                   initial={{opacity:0}}
-              animate={{opacity:showButtons===product.id? 1:0,
-                pointerEvents: showButtons===product.id? "auto":"none",
-              }}
+              //      initial={{opacity:0}}
+              // animate={{opacity:showButtons===product.id? 1:0,
+              //   pointerEvents: showButtons===product.id? "auto":"none",
+              // }}
               
-                  transition={{ duration: 0.2 }}
+              //     transition={{ duration: 0.2 }}
                   className="flex justify-center gap-4 mt-6 p-2"
                 >
                   <Link

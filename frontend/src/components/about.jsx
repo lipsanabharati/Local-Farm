@@ -13,7 +13,7 @@ export default function About()
 
     return (
         <section
-        className="lg:py-20 pb-25 px-10 flex flex-col items-center lg:gap-8 gap-4 font-body overflow-hidden w-screen max-w-[1440px] "
+        className="lg:py-20 pb-25 px-10 flex flex-col items-center lg:gap-8 gap-2 font-body overflow-hidden w-screen max-w-[1440px] "
       >
         {/*Heading*/}
         <h1 className="lg:text-[56px] text-[36px] font-bold text-center text-[#4D641E]">
@@ -21,7 +21,7 @@ export default function About()
         </h1>
 
         {/*Body*/}
-        <div className="flex flex-row lg:gap-10  gap-3 justify-center items-center">
+        <div className="flex flex-row lg:gap-10  gap-5 justify-center items-center">
           <motion.div
             variants={imgVariants}
             initial="hidden"

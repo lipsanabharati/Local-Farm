@@ -90,7 +90,7 @@ export default function Home() {
       <Quality />
 
       {/*Product Section*/}
-      <section className="flex flex-col py-10 px-20 lg:gap-10 gap-5 font-body justify-items-center items-center bg-[#F2F6E8] max-w-[1440px] mx-auto">
+      <section className="flex flex-col py-10 px-20 lg:gap-10 gap-5 font-body justify-items-center items-center bg-[#F2F6E8] w-screen max-w-[1440px] ">
         <h1 className="font-heading lg:text-[56px] md:text-[36px] text-xl font-bold text-start text-[#4D641E] lg:text-center">
           From Local Farms to Your Home
         </h1>

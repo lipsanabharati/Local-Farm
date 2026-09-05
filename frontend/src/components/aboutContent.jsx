@@ -18,7 +18,7 @@ export default function AboutContent()
         traditional practices, and promotes a healthier lifestyle for everyone.
       </div>
 
-      <div className="w-full flex flex-row justify-start px-5 md:px-15 lg:px-30">
+      <div className="w-full flex flex-row justify-start px-5 md:px-15 lg:px-30 mb-10">
         <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold text-[#609647] mt-5">
           Our Legacy
         </h1>
@@ -83,7 +83,7 @@ export default function AboutContent()
       </div>
 
       {/*Medium and above screens */}
-      <div className="hidden md:flex md:flex-row justify-center gap-10 px-15 lg:mt-20 lg:px-30">
+      <div className="hidden md:flex md:flex-row justify-center gap-10 px-15 lg:mt-20 lg:px-30 mb-10">
         <Image 
         src="https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779940393/a1_g60tl3.webp" 
         className="w-[50%]" 
@@ -105,7 +105,7 @@ export default function AboutContent()
         </div>
       </div>
 
-      <div className="hidden md:flex md:flex-row justify-center gap-10 px-15 lg:px-30 lg:mt-20">
+      <div className="hidden md:flex md:flex-row justify-center gap-10 px-15 lg:px-30 lg:mt-20 mb-10">
         <div className="flex flex-col w-[65%]">
           <h1 className="text-2xl text-end lg:text-3xl lg:text-5xl font-bold text-[#609647] mt-5">
             Providing Quality Products

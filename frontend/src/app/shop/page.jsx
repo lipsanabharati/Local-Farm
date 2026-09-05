@@ -16,7 +16,7 @@ export default function Shop()
     return(
         <>
         {/*Hero Section*/}
-        <section className="flex flex-col gap-5 max-w-[1440px] overflow-hidden">
+        <section className="flex flex-col gap-5 max-w-[1440px] w-screen overflow-hidden">
             {/*Drip Image */}
             <motion.div 
              initial={{ y: -300 }}
@@ -51,7 +51,7 @@ export default function Shop()
                 </div>
             </div>
 
-            <div >
+            <div className="" >
                 <ProductForShop/>
             </div>
         </section>

@@ -35,7 +35,7 @@ export default function ProductsSection() {
   const [activeCategory, setActiveCategory] = useState(null);
   const [products, setProducts] = useState([]);
   const [message, setMessage] = useState("");
-  const [showButtons,setShowButtons]=useState(null);
+  // const [showButtons,setShowButtons]=useState(null);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -195,7 +195,7 @@ export default function ProductsSection() {
         <div className="grid grid-cols-1 lg:grid-cols-3  lg:hidden block mt-10 md:mt-3 md:w-[40%] w-[80%] ">
           <motion.div
             key={products[0].id}
-            onClick={()=>setShowButtons(showButtons===products[0].id? null:products[0].id)}
+            // onClick={()=>setShowButtons(showButtons===products[0].id? null:products[0].id)}
             // whileHover="hover"
             // animate="rest"
             className="relative bg-[#779768]/10 rounded-xl shadow-[#C4DBBA] py-10 text-center"
@@ -236,12 +236,12 @@ export default function ProductsSection() {
               //   hover: { opacity: 1 },
               // }}
               // transition={{ duration: 0.2 }}
-              initial={{opacity:0}}
-              animate={{opacity:showButtons===products[0].id? 1:0,
-                pointerEvents: showButtons===products[0].id? "auto":"none",
-              }}
+              // initial={{opacity:0}}
+              // animate={{opacity:showButtons===products[0].id? 1:0,
+              //   pointerEvents: showButtons===products[0].id? "auto":"none",
+              // }}
               
-              transition={{duration:0.2}}
+              // transition={{duration:0.2}}
 
               className="flex justify-center gap-4 mt-6 p-2"
             >
