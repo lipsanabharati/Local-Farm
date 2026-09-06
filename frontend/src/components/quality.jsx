@@ -49,7 +49,7 @@ export default function Quality()
               <Image src="https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779941410/beePollen_q0sdrz.webp" className=" w-[80%]" alt="bee pollen" width={614} height={438}></Image>
             </div>
 
-            <div className="flex flex-row justify-start gap-[40%] md:gap-[45%] lg:ms-[10%] md:ms-[12%] md:-mt-25 -mt-10">
+            <div className="flex flex-row justify-center gap-[40%] md:gap-[45%] lg:ms-[10%] md:ms-[12%] md:-mt-25 -mt-10">
               {/*Description*/}
               <div className="lg:w-1/4 w-1/4 md:w-1/5 text-end  text-[#4D641E] relative">
                 <Image

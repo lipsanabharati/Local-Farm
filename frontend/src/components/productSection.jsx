@@ -95,7 +95,7 @@ export default function ProductsSection() {
   }
 
   return (
-    <div className="h-150 md:h-150 lg:h-200 flex flex-col items-center w-screen max-w-[1440px]">
+    <div className="h-150 md:h-150 lg:h-200 flex flex-col items-center w-screen max-w-[1440px] px-8">
       {/* Category Tabs */}
       <div className="flex justify-center lg:gap-10 gap-5 lg:text-lg text-sm lg:mb-30 mb-20">
         {categories.map((category) => (
@@ -123,13 +123,13 @@ export default function ProductsSection() {
 
       {/* Products Grid Large */}
       {products.length > 0 && (
-        <div className="lg:grid lg:grid-cols-3 lg:gap-10 gap-20 hidden lg:block">
+        <div className="lg:grid lg:grid-cols-3 lg:gap-10 hidden lg:block">
           {products.map((product) => (
             <motion.div
               key={product.id}
               whileHover="hover"
               animate="rest"
-              className="relative bg-[#779768]/10 rounded-xl shadow-xl shadow-[#C4DBBA] py-10 text-center md:w-50 lg:w-60"
+              className="relative bg-[#779768]/10 rounded-xl shadow-xl shadow-[#C4DBBA] py-10 text-center md:w-[310px] lg:w-[310px]"
               style={{ height: 260 }}
               variants={{
                 rest: { height: 260, top: 0 },
@@ -192,13 +192,13 @@ export default function ProductsSection() {
 
       {/* Products Grid Mobile and tablet */}
       {products[0] && (
-        <div className="grid grid-cols-1 lg:grid-cols-3  lg:hidden block mt-10 md:mt-3 md:w-[40%] w-[80%] ">
+        <div className="grid grid-cols-1 lg:grid-cols-3  lg:hidden block md:mt-3 md:w-[310px] w-[300px] ">
           <motion.div
             key={products[0].id}
             // onClick={()=>setShowButtons(showButtons===products[0].id? null:products[0].id)}
             // whileHover="hover"
             // animate="rest"
-            className="relative bg-[#779768]/10 rounded-xl shadow-[#C4DBBA] py-10 text-center"
+            className="relative bg-[#779768]/10 rounded-xl shadow-[#C4DBBA] py-8 m-1 text-center"
             style={{ height: 260 }}
             // variants={{
             //   rest: { height: 260, top: 0 },

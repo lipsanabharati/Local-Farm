@@ -100,7 +100,7 @@ export default function ProductForShop() {
   // },[cart]);
 
   return (
-    <div className="lg:py-20 py-15">
+    <div className="lg:py-20 py-15 w-screen max-w-[1440px]">
       {/* Category Tabs */}
       <div className="flex justify-center lg:gap-10 gap-5 lg:text-lg text-sm lg:mb-20 mb-20 ">
         {categories.map((category) => (
@@ -128,13 +128,13 @@ export default function ProductForShop() {
 
       {/* Products Grid Large */}
       {products.length > 0 && (
-        <div className="py-10 hidden lg:grid lg:grid-cols-3 gap-10 justify-items-center lg:mx-18">
+        <div className="py-10 hidden lg:grid lg:grid-cols-3 gap-10 justify-items-center lg:mx-10">
           {products.map((product) => (
-            <div key={product.id} style={{ height: 320 }}>
+            <div key={product.id} style={{ height: 320 }} className=" w-[300px]">
               <motion.div
                 whileHover="hover"
                 animate="rest"
-                className="relative bg-[#779768]/10 rounded-xl shadow-xl shadow-[#C4DBBA] text-center py-10 w-70"
+                className="relative bg-[#779768]/10 rounded-xl shadow-xl shadow-[#C4DBBA] text-center py-10 w-[310px]"
                 style={{ height: 260 }}
                 variants={{
                   rest: { height: 260, top: 0 },
@@ -198,9 +198,9 @@ export default function ProductForShop() {
 
       {/* Products Grid Mobile and tablet */}
       {products.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 md:gap-15 gap-10 lg:hidden block justify-items-center mb-20 w-[80%] mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 md:gap-10 gap-10 lg:hidden block justify-items-center mb-20 w-[95%] mx-auto p-10">
           {products.map((product) => (
-            <div key={product.id} style={{ height: 320 }}>
+            <div key={product.id} style={{ height: 320 }} className="">
               <motion.div
                 // onClick={()=>setShowButtons(showButtons===product.id? null : product.id)}
                 // whileHover="hover"

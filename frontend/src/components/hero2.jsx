@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Hero2(){
     return(
         <section className="my-10 mt-40 w-screen flex flex-col">
-            <div className= " p-5 ps-10 md:ps-20 lg:ps-30 xl:ps-80 flex flex-col justify-start gap-2 md:gap-5 ">
+            <div className= " p-5 ps-[15%] flex flex-col justify-start gap-2 md:gap-5 ">
                 <h1 className="text-[#609647] font-heading font-bold text-lg md:text-2xl lg:text-4xl xl:text-5xl z-10">
                         Discover fresh organic goodness today.
                       </h1>
