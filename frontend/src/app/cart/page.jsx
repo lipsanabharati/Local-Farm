@@ -26,6 +26,10 @@ export default function Cart() {
 
   //handle form submission
   const handleCheckout = async () => {
+    if (cart.length === 0) {
+    showFail("Your cart is empty.");
+    return;
+  }
     if (!customerName || !customerAddress || !customerPhone || !customerEmail) {
       showFail("Please fill all required fields");
       return;
