@@ -41,7 +41,7 @@ export default function ProductForShop() {
     const fetchCategories = async () => {
       try {
         const res = await axios.get(
-          `https://api.localfarmnepal.com/api/product-categories`,
+          `http://localhost:5000/api/product-categories`,
         );
         setCategories(res.data);
         // console.log(res.data);
@@ -61,8 +61,8 @@ export default function ProductForShop() {
 
     const url =
       activeCategory.id > 0
-        ? `https://api.localfarmnepal.com/api/products/category/${activeCategory.id}`
-        : `https://api.localfarmnepal.com/api/products`;
+        ? `http://localhost:5000/api/products/category/${activeCategory.id}`
+        : `http://localhost:5000/api/products`;
 
     axios
       .get(url)
@@ -130,7 +130,11 @@ export default function ProductForShop() {
       {products.length > 0 && (
         <div className="py-10 hidden lg:grid lg:grid-cols-3 gap-10 justify-items-center lg:mx-10">
           {products.map((product) => (
-            <div key={product.id} style={{ height: 320 }} className=" w-[300px]">
+            <div
+              key={product.id}
+              style={{ height: 320 }}
+              className=" w-[300px]"
+            >
               <motion.div
                 whileHover="hover"
                 animate="rest"
@@ -146,7 +150,7 @@ export default function ProductForShop() {
                   <Image
                     src={
                       product.photos?.[0]?.imagePath
-                        ? `https://api.localfarmnepal.com/${product.photos[0].imagePath}`
+                        ? `http://localhost:5000/${product.photos[0].imagePath}`
                         : "/https://res.cloudinary.com/dpff5cxm3/image/upload/v1779941841/error_pr4qab.webp"
                     }
                     alt={product.productName}
@@ -206,7 +210,7 @@ export default function ProductForShop() {
                 // whileHover="hover"
                 // animate="rest"
                 className="relative bg-[#779768]/10 rounded-xl shadow-[#C4DBBA] py-10 text-center w-80"
-                 style={{ height: 300 }}
+                style={{ height: 300 }}
                 // variants={{
                 //   rest: { height: 260, top: 0 },
                 //   hover: { height: 320, top: -60 }, // move the card up by the extra height
@@ -217,7 +221,7 @@ export default function ProductForShop() {
                   <Image
                     src={
                       product.photos?.[0]?.imagePath
-                        ? `https://api.localfarmnepal.com/${product.photos[0].imagePath}`
+                        ? `http://localhost:5000/${product.photos[0].imagePath}`
                         : "/https://res.cloudinary.com/dpff5cxm3/image/upload/v1779941841/error_pr4qab.webp"
                     }
                     alt={product.productName}
@@ -242,25 +246,25 @@ export default function ProductForShop() {
                   //   rest: { opacity: 0 },
                   //   hover: { opacity: 1 },
                   // }}
-              //      initial={{opacity:0}}
-              // animate={{opacity:showButtons===product.id? 1:0,
-              //   pointerEvents: showButtons===product.id? "auto":"none",
-              // }}
-              
-              //     transition={{ duration: 0.2 }}
+                  //      initial={{opacity:0}}
+                  // animate={{opacity:showButtons===product.id? 1:0,
+                  //   pointerEvents: showButtons===product.id? "auto":"none",
+                  // }}
+
+                  //     transition={{ duration: 0.2 }}
                   className="flex justify-center gap-4 mt-6 p-2"
                 >
                   <Link
                     href={`/product/${product.id}`}
                     className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg"
                     aria-label="order now"
-                     onClick={(e) => e.stopPropagation()}
+                    onClick={(e) => e.stopPropagation()}
                   >
                     Order Now
                   </Link>
 
                   <button
-                     onClick={(e) => {
+                    onClick={(e) => {
                       e.stopPropagation();
                       addToCart(product, product.id);
                     }}

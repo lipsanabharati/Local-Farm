@@ -41,7 +41,7 @@ export default function ProductsSection() {
     const fetchCategories = async () => {
       try {
         const res = await axios.get(
-          `https://api.localfarmnepal.com/api/product-categories`,
+          `http://localhost:5000/api/product-categories`,
         );
         setCategories(res.data);
 
@@ -61,8 +61,8 @@ export default function ProductsSection() {
 
     const url =
       activeCategory.id > 0
-        ? `https://api.localfarmnepal.com/api/products/category/three/${activeCategory.id}`
-        : `https://api.localfarmnepal.com/api/products/three`;
+        ? `http://localhost:5000/api/products/category/three/${activeCategory.id}`
+        : `http://localhost:5000/api/products/three`;
 
     axios
       .get(url)
@@ -141,7 +141,7 @@ export default function ProductsSection() {
                 <Image
                   src={
                     product.photos?.[0]?.imagePath
-                      ? `https://api.localfarmnepal.com/${product.photos[0].imagePath}`
+                      ? `http://localhost:5000/${product.photos[0].imagePath}`
                       : "/https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779941841/error_pr4qab.webp"
                   }
                   alt={product.productName}
@@ -210,7 +210,7 @@ export default function ProductsSection() {
               <Image
                 src={
                   products[0].photos?.[0]?.imagePath
-                    ? `https://api.localfarmnepal.com/${products[0].photos[0].imagePath}`
+                    ? `http://localhost:5000/${products[0].photos[0].imagePath}`
                     : "/https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779941841/error_pr4qab.webp"
                 }
                 alt={products[0].productName}
@@ -240,14 +240,14 @@ export default function ProductsSection() {
               // animate={{opacity:showButtons===products[0].id? 1:0,
               //   pointerEvents: showButtons===products[0].id? "auto":"none",
               // }}
-              
+
               // transition={{duration:0.2}}
 
               className="flex justify-center gap-4 mt-6 p-2"
             >
               <Link
                 href={`/product/${products[0].id}`}
-                onClick={(e)=>e.stopPropagation()}
+                onClick={(e) => e.stopPropagation()}
                 className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg hover:cursor-pointer hover:bg-[#93C553] "
                 aria-label="order now"
               >
@@ -256,8 +256,8 @@ export default function ProductsSection() {
 
               <button
                 onClick={(e) => {
-                  e.stopPropagation()
-                  addToCart(products[0], products[0].id)
+                  e.stopPropagation();
+                  addToCart(products[0], products[0].id);
                 }}
                 className="bg-[#609647] text-white text-sm px-3 py-2 rounded-lg hover:cursor-pointer hover:bg-[#93C553]"
                 aria-label="add to cart button"
