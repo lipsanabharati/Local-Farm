@@ -80,35 +80,43 @@ const CartProvider = ({children}) => {
     
   };
   
-  //add to cart by number
-  const addToCartNum=(product,id,amt)=>{
-    try
-    {
-          const newItem={...product,amount:amt,price:product.price||0};
-        //check if the item is already in the cart
-        const cartItem = cart.find(item=>{
-          return item.id ===id;
-        });
-        //if cart item is already in the cart
-        if(cartItem){
-          const newCart= [...cart].map(item=>{
-            if(item.id===id){
-              return {...item, amount:cartItem.amount+amt};
-            }else{
-              return item;
-            }
-          });
-          setCart(newCart);
-        }else{
-          setCart([...cart,newItem]);
+  //add by number
+  const addToCartNum = (product, id, amt) => {
+  try {
+    const newAmount = Number(amt);
+
+    const newItem = {
+      ...product,
+      amount: newAmount,
+      price: product.price || 0,
+    };
+
+    const cartItem = cart.find((item) => {
+      return item.id === id;
+    });
+
+    if (cartItem) {
+      const newCart = [...cart].map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            amount: Number(item.amount) + newAmount,
+          };
+        } else {
+          return item;
         }
-        showSuccess("Added to cart");
+      });
+
+      setCart(newCart);
+    } else {
+      setCart([...cart, newItem]);
     }
-    catch(err)
-    {
-       showFail("Failed to add to cart");
-    }
-  };
+
+    showSuccess("Added to cart");
+  } catch (err) {
+    showFail("Failed to add to cart");
+  }
+};
 
   //remove from cart
   const removeFromCart=(id)=>{
@@ -123,33 +131,44 @@ const CartProvider = ({children}) => {
     setCart([]);
   }
 
-  //increase amount
-  const increaseAmount=(id)=>{
-    const cartItem=cart.find((item)=>item.id===id);
-    addToCart(cartItem,id);
-  };
-
-  //decrease amount
-  const decreaseAmount=(id)=>{
-    const cartItem=cart.find((item)=>{
-    return item.id===id});
-    if (cartItem){
-     const newCart=cart.map((item)=>{
-      if(item.id ===id){
-        return{...item,amount:cartItem.amount-1}
-      }
-      else{
-        return item;
-      }
-     });
-     setCart(newCart);
+  const increaseAmount = (id) => {
+  const newCart = cart.map((item) => {
+    if (item.id === id) {
+      return {
+        ...item,
+        amount: Number(item.amount) + 1,
+      };
     }
 
-  if (cartItem.amount<2){
-    removeFromCart(id);
-  }
-}
+    return item;
+  });
 
+  setCart(newCart);
+};
+
+const decreaseAmount = (id) => {
+  const cartItem = cart.find((item) => item.id === id);
+
+  if (cartItem) {
+    if (Number(cartItem.amount) <= 1) {
+      removeFromCart(id);
+      return;
+    }
+
+    const newCart = cart.map((item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          amount: Number(item.amount) - 1,
+        };
+      }
+
+      return item;
+    });
+
+    setCart(newCart);
+  }
+};
 
   return (
   <CartContext.Provider 

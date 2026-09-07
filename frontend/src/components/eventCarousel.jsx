@@ -10,7 +10,7 @@ export default function EventCarousel() {
   const [current, setCurrent] = useState(0);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/upcomingevents`)
+      .get(`https://api.localfarmnepal.com/api/upcomingevents`)
       .then((res) => {
         setEvents(res.data);
         // console.log(res.data);
@@ -50,7 +50,7 @@ export default function EventCarousel() {
               // style={{
               //   backgroundImage: `url(${
               //     events[current]?.photos?.[0]?.imagePath
-              //       ? `http://localhost:5000/${events[current].photos[0].imagePath}`
+              //       ? `https://api.localfarmnepal.com/${events[current].photos[0].imagePath}`
               //       : "/https://res.cloudinary.com/dpff5cxm3/image/upload/v1779941841/error_pr4qab.webp"
               //   })`,
               // }}
@@ -58,7 +58,7 @@ export default function EventCarousel() {
               <Image
                 src={`${
                   events[current]?.photos?.[0]?.imagePath
-                    ? `http://localhost:5000/${events[current].photos[0].imagePath}`
+                    ? `https://api.localfarmnepal.com/${events[current].photos[0].imagePath}`
                     : "/https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779941841/error_pr4qab.webp"
                 }`}
                 className="w-30"

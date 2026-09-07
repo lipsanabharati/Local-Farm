@@ -5,6 +5,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useContext } from "react";
 import { CartContext } from "@/context/CartContext";
+import { useToast } from "@/context/ToastContext";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -13,7 +14,7 @@ export default function ProductDesc({ id }) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/products/${id}`)
+      .get(`https://api.localfarmnepal.com/api/products/${id}`)
       .then((res) => {
         setProduct(res.data);
         //  console.log(res.data);
@@ -29,6 +30,9 @@ export default function ProductDesc({ id }) {
   const { addToCartNum } = useContext(CartContext);
   const [quantity, setQuantity] = useState(0);
 
+   //toast
+    const { showSuccess, showFail } = useToast();
+
   return (
     <>
       {product && (
@@ -41,7 +45,7 @@ export default function ProductDesc({ id }) {
                   alt={product.productName}
                   src={
                     product.photos?.[0]?.imagePath
-                      ? `http://localhost:5000/${product.photos[0].imagePath}`
+                      ? `https://api.localfarmnepal.com/${product.photos[0].imagePath}`
                       : "/https://res.cloudinary.com/dpff5cxm3/image/upload/v1779941841/error_pr4qab.webp"
                   }
                   className="w-[70%] lg:w-[80%]"
@@ -57,7 +61,7 @@ export default function ProductDesc({ id }) {
                       <Image
                         src={
                           photo.imagePath
-                            ? `http://localhost:5000/${photo.imagePath}`
+                            ? `https://api.localfarmnepal.com/${photo.imagePath}`
                             : "/https://res.cloudinary.com/dpff5cxm3/image/upload/v1779941841/error_pr4qab.webp"
                         }
                         alt={product.productName}
@@ -95,9 +99,18 @@ export default function ProductDesc({ id }) {
               </fieldset>
 
               <Link
-                href="/cart"
+                href={quantity > 0 ? "/cart" : "#"}
                 className="w-full bg-[#93C553] text-white text-center py-2 rounded-xl text-md font-medium hover:opacity-90 transition hover:cursor-pointer hover:bg-[#609647]"
-                onClick={() => addToCartNum(product, product.id, quantity)}
+                onClick={() =>{ 
+                  if(quantity<=0)
+                  {
+                    showFail("Please set quantity greater than 0")
+                  }
+                  else{
+                  addToCartNum(product, product.id, quantity)
+                }
+               }
+                }
                 aria-label="go to cart"
               >
                 Buy

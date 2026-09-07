@@ -9,7 +9,7 @@ export default function EventCard() {
   const [events, setEvents] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/events`)
+      .get(`https://api.localfarmnepal.com/api/events`)
       .then((res) => {
         setEvents(res.data);
         // console.log(res.data);
@@ -84,7 +84,7 @@ export default function EventCard() {
                   // style={{
                   //   backgroundImage: `url(${
                   //     event?.photos?.[0]?.imagePath
-                  //       ? `http://localhost:5000/${event.photos[0].imagePath}`
+                  //       ? `https://api.localfarmnepal.com/${event.photos[0].imagePath}`
                   //       : "/https://res.cloudinary.com/dpff5cxm3/image/upload/v1779941841/error_pr4qab.webp"
                   //   })`,
                   // }}
@@ -92,7 +92,7 @@ export default function EventCard() {
                   <Image
                     src={`${
                       event?.photos?.[0]?.imagePath
-                        ? `http://localhost:5000/${event.photos[0].imagePath}`
+                        ? `https://api.localfarmnepal.com/${event.photos[0].imagePath}`
                         : "/https://res.cloudinary.com/dpff5cxm3/image/upload/f_auto,q_60/v1779941841/error_pr4qab.webp"
                     }`}
                     fill
