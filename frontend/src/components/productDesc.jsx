@@ -13,7 +13,7 @@ export default function ProductDesc({ id }) {
 
   useEffect(() => {
     axios
-      .get(`https://api.localfarmnepal.com/api/products/${id}`)
+      .get(`http://localhost:5000/api/products/${id}`)
       .then((res) => {
         setProduct(res.data);
         //  console.log(res.data);
@@ -32,7 +32,7 @@ export default function ProductDesc({ id }) {
   return (
     <>
       {product && (
-        <div className="flex flex-row justify-center w-screen px-20 md:p-20 lg:px-30 m-20 ">
+        <div className="flex flex-row justify-center w-screen px-20 md:p-20 lg:px-30 m-20 lg:w-360">
           <div className="flex md:flex-row  flex-col justify-center gap-5 lg:gap-10 w-full lg:w-[80%]">
             {/*Images*/}
             <div className="flex flex-col md:w-1/2 w-full  items-start justify-start gap-4">
@@ -41,7 +41,7 @@ export default function ProductDesc({ id }) {
                   alt={product.productName}
                   src={
                     product.photos?.[0]?.imagePath
-                      ? `https://api.localfarmnepal.com/${product.photos[0].imagePath}`
+                      ? `http://localhost:5000/${product.photos[0].imagePath}`
                       : "/https://res.cloudinary.com/dpff5cxm3/image/upload/v1779941841/error_pr4qab.webp"
                   }
                   className="w-[70%] lg:w-[80%]"
@@ -57,7 +57,7 @@ export default function ProductDesc({ id }) {
                       <Image
                         src={
                           photo.imagePath
-                            ? `https://api.localfarmnepal.com/${photo.imagePath}`
+                            ? `http://localhost:5000/${photo.imagePath}`
                             : "/https://res.cloudinary.com/dpff5cxm3/image/upload/v1779941841/error_pr4qab.webp"
                         }
                         alt={product.productName}

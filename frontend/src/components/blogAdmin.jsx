@@ -54,7 +54,7 @@ export default function BlogAdmin() {
 
   useEffect(() => {
     axios
-      .get(`https://api.localfarmnepal.com/api/blogs`)
+      .get(`http://localhost:5000/api/blogs`)
       .then((res) => {
         setBlogs(res.data);
         // console.log(res.data);
@@ -148,7 +148,7 @@ export default function BlogAdmin() {
 
     try {
       await axios.put(
-        `https://api.localfarmnepal.com/api/blogs/${selected.id}`,
+        `http://localhost:5000/api/blogs/${selected.id}`,
         formData,
         {
           headers: {
@@ -185,7 +185,7 @@ export default function BlogAdmin() {
     });
 
     try {
-      await axios.post(`https://api.localfarmnepal.com/api/blogs`, formData, {
+      await axios.post(`http://localhost:5000/api/blogs`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -304,7 +304,7 @@ export default function BlogAdmin() {
   //getting categories
   useEffect(() => {
     axios
-      .get(`https://api.localfarmnepal.com/api/product-categories`)
+      .get(`http://localhost:5000/api/product-categories`)
       .then((res) => {
         // console.log(res.data);
         setCategories(res.data);
@@ -364,7 +364,7 @@ export default function BlogAdmin() {
                 {blog.photos?.map((image, index) => (
                   <Image
                     key={index}
-                    src={`https://api.localfarmnepal.com/${image.imagePath}`}
+                    src={`http://localhost:5000/${image.imagePath}`}
                     className="w-16 h-16 object-cover"
                     width={64}
                     height={64}
